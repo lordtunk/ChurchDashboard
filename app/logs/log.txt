@@ -12441,3 +12441,60 @@
                   p.first_name
 08-16-14 8:56 am	No parameters
 08-16-14 8:56 am	Success
+08-16-14 11:08 am	Session information missing
+08-16-14 11:08 am	UPDATE Users SET session_id=:session_id where username=:username AND password=:password
+08-16-14 11:08 am	:session_id => 53ef73ebc2bed1.91520420
+08-16-14 11:08 am	:username => alex
+08-16-14 11:08 am	:password => d693b886b75d616e6837e10869bb722b
+08-16-14 11:08 am	Success: TRUE
+08-16-14 11:08 am	SELECT id FROM Users WHERE username=:username AND password=:password
+08-16-14 11:08 am	:username => alex
+08-16-14 11:08 am	:password => d693b886b75d616e6837e10869bb722b
+08-16-14 11:08 am	Success
+08-16-14 11:08 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-16-14 11:08 am	:user_id => 1
+08-16-14 11:08 am	:session_id => 53ef73ebc2bed1.91520420
+08-16-14 11:08 am	Success: TRUE
+08-16-14 11:08 am	1
+08-16-14 11:08 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-16-14 11:08 am	:user_id => 1
+08-16-14 11:08 am	:session_id => 53ef73ebc2bed1.91520420
+08-16-14 11:08 am	Success: TRUE
+08-16-14 11:08 am	1
+08-16-14 11:08 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.description,
+                  p.last_name,
+                  p.first_name
+08-16-14 11:08 am	No parameters
+08-16-14 11:08 am	Success
+08-16-14 11:08 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-16-14 11:08 am	:user_id => 1
+08-16-14 11:08 am	:session_id => 53ef73ebc2bed1.91520420
+08-16-14 11:08 am	Success: TRUE
+08-16-14 11:08 am	1
+08-16-14 11:08 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-16-14 11:08 am	:user_id => 1
+08-16-14 11:08 am	:session_id => 53ef73ebc2bed1.91520420
+08-16-14 11:08 am	Success: TRUE
+08-16-14 11:08 am	1
+08-16-14 11:08 am	SELECT
+                  DATE_FORMAT(MAX(a.attendance_dt),'%m/%d/%Y') Last_Attendance_Dt,
+                  DATE_FORMAT(MIN(a.attendance_dt),'%m/%d/%Y') First_Attendance_Dt
+                FROM
+                  Attendance a
+                WHERE
+                  a.first = 1 OR a.second = 1
+08-16-14 11:08 am	No parameters
+08-16-14 11:08 am	Success
