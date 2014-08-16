@@ -12248,3 +12248,196 @@
                   a.first = 1 OR a.second = 1
 08-16-14 8:15 am	No parameters
 08-16-14 8:15 am	Success
+08-16-14 8:55 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-16-14 8:55 am	:user_id => 1
+08-16-14 8:55 am	:session_id => 53ef43fb86af10.05977713
+08-16-14 8:55 am	Success: TRUE
+08-16-14 8:55 am	1
+08-16-14 8:55 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-16-14 8:55 am	:user_id => 1
+08-16-14 8:55 am	:session_id => 53ef43fb86af10.05977713
+08-16-14 8:55 am	Success: TRUE
+08-16-14 8:55 am	1
+08-16-14 8:55 am	SELECT
+                  DATE_FORMAT(MAX(a.attendance_dt),'%m/%d/%Y') Last_Attendance_Dt,
+                  DATE_FORMAT(MIN(a.attendance_dt),'%m/%d/%Y') First_Attendance_Dt
+                FROM
+                  Attendance a
+                WHERE
+                  a.first = 1 OR a.second = 1
+08-16-14 8:55 am	No parameters
+08-16-14 8:55 am	Success
+08-16-14 8:55 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-16-14 8:55 am	:user_id => 1
+08-16-14 8:55 am	:session_id => 53ef43fb86af10.05977713
+08-16-14 8:55 am	Success: TRUE
+08-16-14 8:55 am	1
+08-16-14 8:55 am	SELECT
+                    COUNT(1) Total_Attendance,
+                    SUM(a.first) First_Service_Attendance,
+                    SUM(a.second) Second_Service_Attendance,
+                    SUM(CASE WHEN p.adult=1 AND a.first=1 THEN 1 ELSE 0 END) First_Service_Adult_Attendance,
+                    SUM(CASE WHEN p.adult=1 AND a.second=1 THEN 1 ELSE 0 END) Second_Service_Adult_Attendance,
+                    SUM(CASE WHEN p.adult=0 AND a.first=1 THEN 1 ELSE 0 END) First_Service_Kid_Attendance,
+                    SUM(CASE WHEN p.adult=0 AND a.second=1 THEN 1 ELSE 0 END) Second_Service_Kid_Attendance,
+                    DATE_FORMAT(attendance_dt,'%m/%d/%Y') Attendance_dt
+                  FROM
+                    People p
+                    INNER JOIN Attendance a ON a.attended_by=p.id
+                  WHERE
+                    (a.first = 1
+                      OR a.second = 1)
+                    AND (a.attendance_dt >= STR_TO_DATE(:fromDate,'%m/%d/%Y')
+                        AND a.attendance_dt <= STR_TO_DATE(:toDate,'%m/%d/%Y'))
+                  GROUP BY
+                    a.attendance_dt
+                  ORDER BY
+                    a.attendance_dt DESC
+08-16-14 8:55 am	:fromDate => 08/01/2014
+08-16-14 8:55 am	:toDate => 08/16/2014
+08-16-14 8:55 am	Success
+08-16-14 8:55 am	SELECT
+                    AVG(totals.Total_Attendance) Avg_Total_Attendance,
+                    AVG(totals.First_Service_Attendance) Avg_First_Service_Attendance,
+                    AVG(totals.Second_Service_Attendance) Avg_Second_Service_Attendance,
+                    AVG(totals.First_Service_Adult_Attendance) Avg_First_Service_Adult_Attendance,
+                    AVG(totals.Second_Service_Adult_Attendance) Avg_Second_Service_Adult_Attendance,
+                    AVG(totals.First_Service_Kid_Attendance) Avg_First_Service_Kid_Attendance,
+                    AVG(totals.Second_Service_Kid_Attendance) Avg_Second_Service_Kid_Attendance,
+                    MAX(totals.Total_Attendance) Max_Total_Attendance,
+                    MAX(totals.First_Service_Attendance) Max_First_Service_Attendance,
+                    MAX(totals.Second_Service_Attendance) Max_Second_Service_Attendance,
+                    MAX(totals.First_Service_Adult_Attendance) Max_First_Service_Adult_Attendance,
+                    MAX(totals.Second_Service_Adult_Attendance) Max_Second_Service_Adult_Attendance,
+                    MAX(totals.First_Service_Kid_Attendance) Max_First_Service_Kid_Attendance,
+                    MAX(totals.Second_Service_Kid_Attendance) Max_Second_Service_Kid_Attendance,
+                    MIN(totals.Total_Attendance) Min_Total_Attendance,
+                    MIN(totals.First_Service_Attendance) Min_First_Service_Attendance,
+                    MIN(totals.Second_Service_Attendance) Min_Second_Service_Attendance,
+                    MIN(totals.First_Service_Adult_Attendance) Min_First_Service_Adult_Attendance,
+                    MIN(totals.Second_Service_Adult_Attendance) Min_Second_Service_Adult_Attendance,
+                    MIN(totals.First_Service_Kid_Attendance) Min_First_Service_Kid_Attendance,
+                    MIN(totals.Second_Service_Kid_Attendance) Min_Second_Service_Kid_Attendance
+                  FROM (
+                    SELECT
+                      COUNT(1) Total_Attendance,
+                      SUM(a.first) First_Service_Attendance,
+                      SUM(a.second) Second_Service_Attendance,
+                      SUM(CASE WHEN p.adult=1 AND a.first=1 THEN 1 ELSE 0 END) First_Service_Adult_Attendance,
+                      SUM(CASE WHEN p.adult=1 AND a.second=1 THEN 1 ELSE 0 END) Second_Service_Adult_Attendance,
+                      SUM(CASE WHEN p.adult=0 AND a.first=1 THEN 1 ELSE 0 END) First_Service_Kid_Attendance,
+                      SUM(CASE WHEN p.adult=0 AND a.second=1 THEN 1 ELSE 0 END) Second_Service_Kid_Attendance
+                    FROM
+                      People p
+                      INNER JOIN Attendance a ON a.attended_by=p.id
+                    WHERE
+                      (a.first = 1
+                        OR a.second = 1)
+                      AND (a.attendance_dt >= STR_TO_DATE(:fromDate,'%m/%d/%Y')
+                            AND a.attendance_dt <= STR_TO_DATE(:toDate,'%m/%d/%Y'))
+                    GROUP BY
+                      a.attendance_dt
+                  ) totals
+08-16-14 8:55 am	:fromDate => 08/01/2014
+08-16-14 8:55 am	:toDate => 08/16/2014
+08-16-14 8:55 am	Success
+08-16-14 8:55 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-16-14 8:55 am	:user_id => 1
+08-16-14 8:55 am	:session_id => 53ef43fb86af10.05977713
+08-16-14 8:55 am	Success: TRUE
+08-16-14 8:55 am	1
+08-16-14 8:55 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-16-14 8:55 am	:user_id => 1
+08-16-14 8:55 am	:session_id => 53ef43fb86af10.05977713
+08-16-14 8:55 am	Success: TRUE
+08-16-14 8:55 am	1
+08-16-14 8:55 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.description,
+                  p.last_name,
+                  p.first_name
+08-16-14 8:55 am	No parameters
+08-16-14 8:55 am	Success
+08-16-14 8:55 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-16-14 8:55 am	:user_id => 1
+08-16-14 8:55 am	:session_id => 53ef43fb86af10.05977713
+08-16-14 8:55 am	Success: TRUE
+08-16-14 8:55 am	1
+08-16-14 8:55 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-16-14 8:55 am	:user_id => 1
+08-16-14 8:55 am	:session_id => 53ef43fb86af10.05977713
+08-16-14 8:55 am	Success: TRUE
+08-16-14 8:55 am	1
+08-16-14 8:55 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+08-16-14 8:55 am	:id => 1
+08-16-14 8:55 am	Success
+08-16-14 8:56 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-16-14 8:56 am	:user_id => 1
+08-16-14 8:56 am	:session_id => 53ef43fb86af10.05977713
+08-16-14 8:56 am	Success: TRUE
+08-16-14 8:56 am	1
+08-16-14 8:56 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-16-14 8:56 am	:user_id => 1
+08-16-14 8:56 am	:session_id => 53ef43fb86af10.05977713
+08-16-14 8:56 am	Success: TRUE
+08-16-14 8:56 am	1
+08-16-14 8:56 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+08-16-14 8:56 am	:id => 1
+08-16-14 8:56 am	Success
+08-16-14 8:56 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-16-14 8:56 am	:user_id => 1
+08-16-14 8:56 am	:session_id => 53ef43fb86af10.05977713
+08-16-14 8:56 am	Success: TRUE
+08-16-14 8:56 am	1
+08-16-14 8:56 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-16-14 8:56 am	:user_id => 1
+08-16-14 8:56 am	:session_id => 53ef43fb86af10.05977713
+08-16-14 8:56 am	Success: TRUE
+08-16-14 8:56 am	1
+08-16-14 8:56 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.description,
+                  p.last_name,
+                  p.first_name
+08-16-14 8:56 am	No parameters
+08-16-14 8:56 am	Success
