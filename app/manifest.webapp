@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0",
+  "name": "Guide Church Dash",
+  "launch_path": "/index.html",
+  "description": "An application that helps to manage attendance for Guide Church Baptist.",
+  "developer": {
+    "name": "Alex Stevens",
+    "url": ""
+  },
+  "installs_allowed_from": [
+    "*"
+  ],
+  "default_locale": "en",
+  "permissions": {
+  },
+  "locales": {
+    "en": {
+      "name": "Guide Church Dash",
+      "description": "An application that helps to manage attendance for Guide Church Baptist."
+    }
+  }
+}

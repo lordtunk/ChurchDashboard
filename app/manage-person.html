@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="A simple web application for Guide Church to keep track of attendance">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>Guide Church Dash</title>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Guide Church Dash">
+
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <!-- build:css styles/main.min.css -->
+    <link rel="stylesheet" href="styles/h5bp.css">
+    <link rel="stylesheet" href="styles/components/components.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/jquery-ui.css">
+    <link rel="stylesheet" href="styles/jquery.toastmessage.css">
+    <!-- endbuild -->
+  </head>
+  <body>
+    <header class="app-bar promote-layer">
+      <div class="app-bar-container">
+        <button class="menu"><img src="images/hamburger.svg" alt="menu"></button>
+        <h1 class="logo">Guide Church Dash</h1>
+        <section class="app-bar-actions">
+        <!-- Put App Bar Buttons Here -->
+        </section>
+      </div>
+    </header>
+
+    <nav class="navdrawer-container promote-layer">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="attendance.html">Attendance</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="#" onclick="logout()">Log Out</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <h1 id="manage-person">Manage Person</h1>
+
+      <div class="app-content view-person">
+        <label for="first-name">First Name:</label>
+        <input type="text" id="first-name"/><br />
+        <label for="last-name">Last Name:</label>
+        <input type="text" id="last-name"/><br />
+        <label for="description">Description:</label>
+        <input type="text" id="description"/><br />
+        <label for="adult">Adult?</label>
+        <input type="checkbox" id="adult"/>
+        <div class="form-bar background color--gray-keyline">
+          <div class="spacer"></div>
+          <button id="update" type="button" class="button--primary">Update</button>
+          <button id="delete" type="button" class="button button--red">Delete</button>
+          <button id="cancel" type="button" class="button--secondary">Cancel</button>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- build:js scripts/main.min.js -->
+    <script src="jquery/jquery-1.11.1.min.js"></script>
+    <script src="jquery/jquery.toastmessage.js"></script>
+    <script src="scripts/login.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/manage-person.js"></script>
+  </body>
+</html>
