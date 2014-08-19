@@ -22,6 +22,17 @@
     fromDateField.value = $.datepicker.formatDate('mm/dd/yy', new Date(d.getFullYear(), d.getMonth(), 1, 0, 0, 0, 0));
     toDateField.value = $.datepicker.formatDate('mm/dd/yy', d);
   }
+  
+  function onReportTypeChange() {
+    var reportType = parseInt(reportTypeField.value);
+    if(reportType === 3) {
+      $('#report-type-container')[0].style.setProperty('display', 'inline-block');
+      $('#from-to-dates')[0].style.setProperty('display', 'none');
+    } else {
+      $('#report-type-container')[0].style.setProperty('display', 'block');
+      $('#from-to-dates')[0].style.setProperty('display', 'inline-block');
+    }
+  }
 
   function onRunClick() {
     if(validateDates(fromDateField.value, toDateField.value)) {
@@ -34,6 +45,9 @@
         case 2:
           $('#attendance-by-person-container')[0].style.setProperty('display', 'inherit');
           break;
+        case 3:
+          $('#attendance-by-mia-container')[0].style.setProperty('display', 'inherit');
+          break;
       }
       loadReport(reportType, fromDateField.value, toDateField.value);
     }
@@ -42,6 +56,7 @@
   function hideAllReportContainers() {
     $('#attendance-by-person-container')[0].style.setProperty('display', 'none');
     $('#attendance-by-date-container')[0].style.setProperty('display', 'none');
+    $('#attendance-by-mia-container')[0].style.setProperty('display', 'none');
   }
 
   function validateDates(fDate, tDate) {
@@ -140,6 +155,31 @@
     }
     $('#adult-attendance-table > tbody:last').append(adultRows);
   }
+  
+  function populateAttendanceByMia(people) {
+    $('#mia-attendance-table > tbody:last').empty();
+    var adultRows= '';
+    for(var i=0; i<people.length; i++) {
+      if(people[i].adult == 'true')
+        adultRows += buildMiaRow(people[i]);
+    }
+    $('#mia-attendance-table > tbody:last').append(adultRows);
+  }
+  
+  function buildMiaRow(person) {
+    var display = '';
+
+    if(person.first_name || person.last_name) {
+      if(person.first_name) display += person.first_name + ' ';
+      if(person.last_name) display += person.last_name;
+    } else {
+      display = person.description;
+    }
+
+    display = '<a class="person_name" href="manage-person.html?id='+person.id+'">'+display+'</a>';
+
+    return '<tr adult="'+person.adult+'" personId="'+person.id+'"><td data-th="Name">'+display+'</td></tr>';
+  }
 
   function buildPersonRow(person) {
     var display = '';
@@ -163,7 +203,7 @@
   }
 
   function onClickTopBottom(e) {
-    var containerId = '#attendance-by-'+((e.target.id.indexOf('date') == -1) ? 'person' : 'date') + '-table-container';
+    var containerId = '#'+e.target.parentElement.previousElementSibling.id;
     var pos = (e.target.id.indexOf('top') == -1) ?
                     $(containerId)[0].scrollHeight
                     : 0;
@@ -191,6 +231,9 @@
             break;
           case 2:
             populateAttendanceByPerson(data.people);
+            break;
+          case 3:
+            populateAttendanceByMia(data.people);
             break;
         }
       } else {
@@ -260,6 +303,7 @@
     return true;
   }
   runBtn.addEventListener('click', onRunClick);
+  reportTypeField.addEventListener('change', onReportTypeChange);
   $('.top-bottom-links a').on('click', onClickTopBottom);
   
   checkLoginStatus(loadFirstLastServiceDates);

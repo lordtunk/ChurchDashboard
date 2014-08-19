@@ -54,16 +54,20 @@
         <label>Last Service:</label>
         <span id="last-date"></span>
         <br />
-        <label for="report-type">Report Type:</label>
-        <select id="report-type">
-          <option value="1">Attendance By Date</option>
-          <option value="2">Attendance By Person</option>
-          <!--<option value="3">Missing In Action</option>-->
-        </select><br />
-        <label for="from-date">From Date:</label>
-        <input type="text" id="from-date" class="date-field" /><br />
-        <label for="to-date">To Date:</label>
-        <input type="text" id="to-date" class="date-field" />
+        <div id="report-type-container" style="display: block;">
+          <label for="report-type">Report Type:</label>
+          <select id="report-type">
+            <option value="1">Attendance By Date</option>
+            <option value="2">Attendance By Person</option>
+            <option value="3">Missing In Action</option>
+          </select>
+        </div>
+        <div id="from-to-dates" style="display: inline-block;">
+          <label for="from-date">From Date:</label>
+          <input type="text" id="from-date" class="date-field" /><br />
+          <label for="to-date">To Date:</label>
+          <input type="text" id="to-date" class="date-field" />
+        </div>
         <div id="go-arrow"></div>
         <br />
         <div id="attendance-by-date-container" style="display: none;">
@@ -123,6 +127,24 @@
           <div class="top-bottom-links">
             <a href="javascript:void(0);" id="person-top">Top</a>
             <a href="javascript:void(0);" id="person-bottom">Bottom</a>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div id="attendance-by-mia-container" style="display: none;">
+          <div class="attendance-table-container" id="attendance-by-mia-table-container">
+            <table class="table-1 attendance-by-person-table" id="mia-attendance-table">
+              <thead>
+                  <tr>
+                      <th>Name</th>
+                  </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="top-bottom-links">
+            <a href="javascript:void(0);" id="mia-top">Top</a>
+            <a href="javascript:void(0);" id="mia-bottom">Bottom</a>
           </div>
           <div class="clear"></div>
         </div>

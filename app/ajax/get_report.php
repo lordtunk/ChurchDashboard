@@ -135,6 +135,42 @@
         $results = $f->fetchAndExecute($query, array(":fromDate"=>$fromDate, ":toDate"=>$toDate));
         $dict['people'] = $results;
         break;
+      case 3:
+        $query = "SELECT DISTINCT
+                    p.id,
+                    p.first_name,
+                    p.last_name,
+                    p.description,
+                    CASE WHEN p.adult = 1 THEN 'true' ELSE 'false' END adult
+                  FROM
+                    People p
+                    inner join Attendance a on p.id=a.attended_by
+                  WHERE
+                    a.attendance_dt IN
+                      (SELECT DISTINCT
+                          attendance_dt
+                      FROM
+                          Attendance
+                      WHERE
+                          attendance_dt IN
+                              (SELECT DISTINCT
+                                  attendance_dt
+                              FROM
+                                  Attendance as a1
+                              WHERE
+                                  (SELECT
+                                      COUNT(DISTINCT(attendance_dt))
+                                  FROM
+                                      Attendance as a2
+                                  WHERE
+                                      DAYOFWEEK(a2.attendance_dt) = 1
+                                      AND a1.attendance_dt <= a2.attendance_dt) IN (1,2)))
+                    AND a.first=0
+                    AND a.second=0
+                    AND p.adult=1";
+        $results = $f->fetchAndExecute($query);
+        $dict['people'] = $results;
+        break;
       }
       $dict['success'] = true;
     } catch (Exception $e) {
