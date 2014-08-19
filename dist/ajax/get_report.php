@@ -129,9 +129,11 @@
                     p.id
                   ORDER BY
                     Total_Attendance DESC,
-                    p.description,
+                    p.last_name IS NOT NULL DESC,
+                    p.description IS NOT NULL DESC,
                     p.last_name,
-                    p.first_name";
+                    p.first_name,
+                    p.description";
         $results = $f->fetchAndExecute($query, array(":fromDate"=>$fromDate, ":toDate"=>$toDate));
         $dict['people'] = $results;
         break;

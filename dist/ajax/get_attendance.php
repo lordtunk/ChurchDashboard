@@ -38,9 +38,11 @@
                   People p
                   LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
                 ORDER BY
-                  p.description,
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
                   p.last_name,
-                  p.first_name";
+                  p.first_name,
+                  p.description";
       $results = $f->fetchAndExecute($query);
       $people = array();
       foreach($results as $key => $row) {
