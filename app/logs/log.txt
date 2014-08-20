@@ -21480,3 +21480,333 @@
                   p.description
 08-19-14 10:10 pm	No parameters
 08-19-14 10:10 pm	Success
+08-19-14 10:17 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:17 pm	:user_id => 1
+08-19-14 10:17 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:17 pm	Success: TRUE
+08-19-14 10:17 pm	1
+08-19-14 10:17 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:17 pm	:user_id => 1
+08-19-14 10:17 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:17 pm	Success: TRUE
+08-19-14 10:17 pm	1
+08-19-14 10:17 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+08-19-14 10:17 pm	:id => 329
+08-19-14 10:17 pm	Success
+08-19-14 10:17 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:17 pm	:user_id => 1
+08-19-14 10:17 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:17 pm	Success: TRUE
+08-19-14 10:17 pm	1
+08-19-14 10:17 pm	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+08-19-14 10:17 pm	:first_name => 
+08-19-14 10:17 pm	:last_name => 
+08-19-14 10:17 pm	:description => Ava
+08-19-14 10:17 pm	:adult => 0
+08-19-14 10:17 pm	:modified_by => 1
+08-19-14 10:17 pm	:id => 329
+08-19-14 10:17 pm	Success: TRUE
+08-19-14 10:17 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:17 pm	:user_id => 1
+08-19-14 10:17 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:17 pm	Success: TRUE
+08-19-14 10:17 pm	1
+08-19-14 10:17 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:17 pm	:user_id => 1
+08-19-14 10:17 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:17 pm	Success: TRUE
+08-19-14 10:17 pm	1
+08-19-14 10:17 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description
+08-19-14 10:17 pm	No parameters
+08-19-14 10:17 pm	Success
+08-19-14 10:17 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:17 pm	:user_id => 1
+08-19-14 10:17 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:17 pm	Success: TRUE
+08-19-14 10:17 pm	1
+08-19-14 10:17 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:17 pm	:user_id => 1
+08-19-14 10:17 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:17 pm	Success: TRUE
+08-19-14 10:17 pm	1
+08-19-14 10:17 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+08-19-14 10:17 pm	:id => 329
+08-19-14 10:17 pm	Success
+08-19-14 10:17 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:17 pm	:user_id => 1
+08-19-14 10:17 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:17 pm	Success: TRUE
+08-19-14 10:17 pm	1
+08-19-14 10:17 pm	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+08-19-14 10:17 pm	:first_name => 
+08-19-14 10:17 pm	:last_name => 
+08-19-14 10:17 pm	:description => Ava
+08-19-14 10:17 pm	:adult => 0
+08-19-14 10:17 pm	:modified_by => 1
+08-19-14 10:17 pm	:id => 329
+08-19-14 10:17 pm	Success: TRUE
+08-19-14 10:17 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:17 pm	:user_id => 1
+08-19-14 10:17 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:17 pm	Success: TRUE
+08-19-14 10:17 pm	1
+08-19-14 10:17 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:17 pm	:user_id => 1
+08-19-14 10:17 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:17 pm	Success: TRUE
+08-19-14 10:17 pm	1
+08-19-14 10:17 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description
+08-19-14 10:17 pm	No parameters
+08-19-14 10:17 pm	Success
+08-19-14 10:21 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:21 pm	:user_id => 1
+08-19-14 10:21 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:21 pm	Success: TRUE
+08-19-14 10:21 pm	1
+08-19-14 10:21 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:21 pm	:user_id => 1
+08-19-14 10:21 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:21 pm	Success: TRUE
+08-19-14 10:21 pm	1
+08-19-14 10:21 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description
+08-19-14 10:21 pm	No parameters
+08-19-14 10:21 pm	Success
+08-19-14 10:21 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:21 pm	:user_id => 1
+08-19-14 10:21 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:21 pm	Success: TRUE
+08-19-14 10:21 pm	1
+08-19-14 10:21 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:21 pm	:user_id => 1
+08-19-14 10:21 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:21 pm	Success: TRUE
+08-19-14 10:21 pm	1
+08-19-14 10:21 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+08-19-14 10:21 pm	:id => 329
+08-19-14 10:21 pm	Success
+08-19-14 10:23 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:23 pm	:user_id => 1
+08-19-14 10:23 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:23 pm	Success: TRUE
+08-19-14 10:23 pm	1
+08-19-14 10:23 pm	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+08-19-14 10:23 pm	:first_name => 
+08-19-14 10:23 pm	:last_name => 
+08-19-14 10:23 pm	:description => Ava
+08-19-14 10:23 pm	:adult => 0
+08-19-14 10:23 pm	:modified_by => 1
+08-19-14 10:23 pm	:id => 329
+08-19-14 10:23 pm	Success: TRUE
+08-19-14 10:23 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:23 pm	:user_id => 1
+08-19-14 10:23 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:23 pm	Success: TRUE
+08-19-14 10:23 pm	1
+08-19-14 10:23 pm	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+08-19-14 10:23 pm	:first_name => 
+08-19-14 10:23 pm	:last_name => 
+08-19-14 10:23 pm	:description => Ava
+08-19-14 10:23 pm	:adult => 0
+08-19-14 10:23 pm	:modified_by => 1
+08-19-14 10:23 pm	:id => 329
+08-19-14 10:23 pm	Success: TRUE
+08-19-14 10:23 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:23 pm	:user_id => 1
+08-19-14 10:23 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:23 pm	Success: TRUE
+08-19-14 10:23 pm	1
+08-19-14 10:23 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:23 pm	:user_id => 1
+08-19-14 10:23 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:23 pm	Success: TRUE
+08-19-14 10:23 pm	1
+08-19-14 10:23 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description
+08-19-14 10:23 pm	No parameters
+08-19-14 10:23 pm	Success
+08-19-14 10:23 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:23 pm	:user_id => 1
+08-19-14 10:23 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:23 pm	Success: TRUE
+08-19-14 10:23 pm	1
+08-19-14 10:23 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:23 pm	:user_id => 1
+08-19-14 10:23 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:23 pm	Success: TRUE
+08-19-14 10:23 pm	1
+08-19-14 10:23 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+08-19-14 10:23 pm	:id => 329
+08-19-14 10:23 pm	Success
+08-19-14 10:23 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:23 pm	:user_id => 1
+08-19-14 10:23 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:23 pm	Success: TRUE
+08-19-14 10:23 pm	1
+08-19-14 10:23 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-19-14 10:23 pm	:user_id => 1
+08-19-14 10:23 pm	:session_id => 53f3ff27963da5.47765453
+08-19-14 10:23 pm	Success: TRUE
+08-19-14 10:23 pm	1
+08-19-14 10:23 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description
+08-19-14 10:23 pm	No parameters
+08-19-14 10:23 pm	Success
