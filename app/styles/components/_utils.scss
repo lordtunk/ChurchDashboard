@@ -56,7 +56,8 @@
 
   // Defining font family
   $fontDefault: Helvetica, Arial, sans-serif !default;
-  $fontHighlight: "Roboto Condensed", Helvetica, sans-serif !default;
+  // Removed from fontHighlight: "Roboto Condensed"
+  $fontHighlight: Helvetica, sans-serif !default;
   $fontIcon: "icons" !default;
 
   // Defining font sizes
