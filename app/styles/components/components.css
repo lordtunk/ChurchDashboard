@@ -2435,8 +2435,12 @@ table th {
     border-bottom: 1px solid #ffffff;
   }
 }
+table tr:nth-of-type(even) {
+  background: #d6d6d6;
+}
 table tbody {
   background: #f0f0f0;
+  /*darken($color, 10%)*/
 }
 table td {
   display: block;

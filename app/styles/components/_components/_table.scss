@@ -25,9 +25,13 @@ table {
       border-bottom: 1px solid #ffffff;
     }
   }
+  
+  tr:nth-of-type(even) {
+    background: darken($colorGrayBackground, 10%);
+  }
 
   tbody {
-    background: $colorGrayBackground;
+    background: $colorGrayBackground; /*darken($color, 10%)*/
   }
 
   td {
