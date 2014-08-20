@@ -152,6 +152,7 @@
   }
 
   function processPeople(data) {
+    detachLinkClickListeners();
     $('.attendance-table-attendance-col input:checkbox').off('change');
     adultTotalAttendanceCount = 0;
     adultFirstServiceAttendanceCount = 0;
@@ -172,6 +173,7 @@
     $('#adult-attendance-table > tbody:last').append(adultRows);
     $('#kid-attendance-table > tbody:last').append(kidRows);
     $('.attendance-table-attendance-col input:checkbox').on('change', updateAttendance);
+    attachLinkClickListeners();
   }
 
   function buildPersonRow(person, dt) {
@@ -205,7 +207,6 @@
       if(firstChecked || secondChecked) ++kidTotalAttendanceCount;
     }
     return    '<tr adult="'+person.adult+'" personId="'+person.id+'"><td data-th="Name">'+display+'</td>'+
-              //'<span name-part="first">'+person.first_name+'</span> <span name-part="last">'+person.last_name+'</span></td>'+
               '<td class="attendance-table-attendance-col" service="first" data-th="First?">'+
               '<label for="'+firstId+'"><input id="'+firstId+'" type="checkbox" '+firstChecked+'/></label></td>'+
               '<td class="attendance-table-attendance-col" service="second" data-th="Second?">'+
@@ -397,6 +398,24 @@
   function genPersonid() {
     return --personIdSequence;
   }
+  
+  function attachLinkClickListeners() {
+    $('#attendance-nav').on('click', onClickLink);
+    $('#reports-nav').on('click', onClickLink);
+    $('a.person_name').on('click', onClickLink);
+  }
+  
+  function detachLinkClickListeners() {
+    $('#attendance-nav').off('click', onClickLink);
+    $('#reports-nav').off('click', onClickLink);
+    $('a.person_name').off('click', onClickLink);
+  }
+  
+  function onClickLink(e) {
+    if(!(noChangesMade || confirm("If you continue you will lose any unsaved changes. Continue?"))) {
+      e.preventDefault();
+    }
+  }
 
   setAttendanceDate();
 
@@ -407,6 +426,7 @@
   addKidBtn.addEventListener('click', addKid);
 
   $('.top-bottom-links a').on('click', onClickTopBottom);
+  
 
   checkLoginStatus(loadPeople);
 })();

@@ -14,18 +14,20 @@ function checkLoginStatus(cb) {
 }
 
 function logout() {
-  $.ajax({
-    type: 'POST',
-    url: 'ajax/logout.php'
-  })
-  .done(function( msg ) {
-    var data = JSON.parse(msg);
-    if(data.success) {
-      window.location = 'index.html';
-    } else {
-      $().toastmessage('showErrorToast', 'Problem logging out');
-    }
-  });
+  if(confirm('If you have unsaved changes logging out will cause you to lose them. Continue?')) {
+    $.ajax({
+      type: 'POST',
+      url: 'ajax/logout.php'
+    })
+    .done(function( msg ) {
+      var data = JSON.parse(msg);
+      if(data.success) {
+        window.location = 'index.html';
+      } else {
+        $().toastmessage('showErrorToast', 'Problem logging out');
+      }
+    });
+  }
 }
 
 (function () {
