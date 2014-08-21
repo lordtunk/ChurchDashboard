@@ -325,13 +325,15 @@
       if(data.success) {
         processPeople(data.people);
         if(data.scroll_to_id && data.scroll_to_id >= 0) {
-          var scrollTo = $('[personid='+data.scroll_to_id+']')[0],
-              adult = scrollTo.getAttribute('adult') == 'true' ? 'adult' : 'kid',
-              containerId = '#'+adult+'-attendance-table-container',
-              screenOff = $(containerId).offset().top,
-              scrollOff = scrollTo.offsetTop;
-          $('body').animate({ scrollTop: screenOff }, 300);
-          $(containerId).animate({ scrollTop: scrollOff }, scrollAnimationMs);
+          var scrollTo = $('[personid='+data.scroll_to_id+']')[0];
+          if(scrollTo) {
+            var adult = scrollTo.getAttribute('adult') == 'true' ? 'adult' : 'kid',
+                containerId = '#'+adult+'-attendance-table-container',
+                screenOff = $(containerId).offset().top,
+                scrollOff = scrollTo.offsetTop;
+            $('body').animate({ scrollTop: screenOff }, 300);
+            $(containerId).animate({ scrollTop: scrollOff }, scrollAnimationMs);
+          }
         }
       } else {
         if(data.error === 1) {
