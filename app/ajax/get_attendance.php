@@ -31,6 +31,7 @@
                   p.last_name,
                   p.description,
                   p.adult,
+                  p.active,
                   DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
                   a.first,
                   a.second
@@ -48,25 +49,26 @@
       foreach($results as $key => $row) {
         $p = NULL;
         $j = NULL;
-        $foundPerson = false;
+        $foundPerson = FALSE;
         // Check to see if we have already added the person
         foreach($people as $k => $person) {
           if(!isset($person['id'])) continue;
           if($person['id'] == $row['id']) {
             $j = $k;
-            $foundPerson = true;
+            $foundPerson = TRUE;
             break;
           }
         }
 
         // Set the person data if we have not encountered this person before
-        if($foundPerson == false) {
+        if($foundPerson == FALSE) {
           $p = array();
           $p['id'] = $row['id'];
           $p['first_name'] = $row['first_name'];
           $p['last_name'] = $row['last_name'];
           $p['description'] = $row['description'];
-          $p['adult'] = $row['adult'] ? true : false;
+          $p['adult'] = $row['adult'] ? TRUE : FALSE;
+          $p['active'] = $row['active'] ? TRUE : FALSE;
           $p['attendance'] = array();
           array_push($people, $p);
           $j = count($people) - 1;
@@ -81,9 +83,9 @@
         }
       }
       $dict['people'] = $people;
-      $dict['success'] = true;
+      $dict['success'] = TRUE;
     } catch (Exception $e) {
-      $dict['success'] = false;
+      $dict['success'] = FALSE;
     }
   } else {
     $dict['error'] = 1;

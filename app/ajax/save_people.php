@@ -28,6 +28,7 @@
         // Translate TRUE/FALSE to 1/0 so that log statements
         // are easier to read since FALSE does not display
         $person->adult = $person->adult ? 1 : 0;
+        $person->active = $person->active ? 1 : 0;
         $person->first = $person->first ? 1 : 0;
         $person->second = $person->second ? 1 : 0;
 
@@ -48,11 +49,19 @@
               $person->id = $f->queryLastInsertId($query, array(":last_name"=>$person->last_name, ":first_name"=>$person->first_name, ":adult"=>$person->adult, ":user_id"=>$user_id));
             }
           }
+        } else {
+          $query = "UPDATE People SET active=true WHERE id=:id";
+          $f->executeAndReturnResult($query, array(":id"=>$person->id));
         }
+        
+        $query = "DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=:attendance_dt";
+        $f->executeAndReturnResult($query, array(":id"=>$person->id, ":attendance_dt"=>$person->attendanceDate));
 
-        // Add an Attendance record if a matching one does not exist, otherwise, update the existing
-        $query = "INSERT INTO Attendance (`attendance_dt`, `attended_by`, `first`, `second`) VALUES(STR_TO_DATE(:attendance_dt,'%m/%d/%Y'), :attended_by, :first, :second) ON DUPLICATE KEY UPDATE `first`=:first2, `second`=:second2";
-        $results = $f->executeAndReturnResult($query, array(":attendance_dt"=>$person->attendanceDate, ":attended_by"=>$person->id, ":first"=>$person->first, ":second"=>$person->second, ":first2"=>$person->first, ":second2"=>$person->second));
+        // Add an Attendance record if the person attended this service
+        if($person->first || $person->second) {
+          $query = "INSERT INTO Attendance (`attendance_dt`, `attended_by`, `first`, `second`) VALUES(STR_TO_DATE(:attendance_dt,'%m/%d/%Y'), :attended_by, :first, :second)";
+          $results = $f->executeAndReturnResult($query, array(":attendance_dt"=>$person->attendanceDate, ":attended_by"=>$person->id, ":first"=>$person->first, ":second"=>$person->second));
+        }
       }
       $f->commit();
       $dict['success'] = TRUE;
@@ -69,6 +78,7 @@
                     p.last_name,
                     p.description,
                     p.adult,
+                    p.active,
                     DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
                     a.first,
                     a.second
@@ -86,25 +96,26 @@
         foreach($results as $key => $row) {
         $p = NULL;
         $j = NULL;
-        $foundPerson = false;
+        $foundPerson = FALSE;
         // Check to see if we have already added the person
         foreach($people as $k => $person) {
           if(!isset($person['id'])) continue;
           if($person['id'] == $row['id']) {
             $j = $k;
-            $foundPerson = true;
+            $foundPerson = TRUE;
             break;
           }
         }
 
         // Set the person data if we have not encountered this person before
-        if($foundPerson == false) {
+        if($foundPerson == FALSE) {
           $p = array();
           $p['id'] = $row['id'];
           $p['first_name'] = $row['first_name'];
           $p['last_name'] = $row['last_name'];
           $p['description'] = $row['description'];
-          $p['adult'] = $row['adult'] ? true : false;
+          $p['adult'] = $row['adult'] ? TRUE : FALSE;
+          $p['active'] = $row['active'] ? TRUE : FALSE;
           $p['attendance'] = array();
           array_push($people, $p);
           $j = count($people) - 1;

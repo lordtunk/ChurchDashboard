@@ -285,6 +285,15 @@ main {
   text-align: right;
 }
 
+.app-content .active-input label {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.app-content .active-input {
+  display: inline-block;
+}
+
 .app-content.view-person input[type=text],
 .app-content.login-form input[type=text],
 .app-content.reports-form input[type=text],
@@ -294,6 +303,10 @@ main {
 
 .attendance-form .attendance-table-attendance-col label {
   padding: 12px;
+}
+
+.attendance-form input[type=radio]{
+  margin: 10px 5px 0px 20px;
 }
 
 .person_name, .person_name:visited {
@@ -455,4 +468,10 @@ main {
 
 @media all and (max-width: 600px) {
   
+}
+
+@media all and (min-width: 800px) {
+  .app-content .active-input {
+    display: inline-block;
+  }
 }
