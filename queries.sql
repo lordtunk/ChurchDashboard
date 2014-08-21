@@ -29,27 +29,23 @@ FROM
 WHERE
   DAYOFWEEK(attendance_dt) = 1
 ORDER BY
-  attendance_dt DESC LIMIT 0 , 2
+  attendance_dt DESC 
+LIMIT 2
 
 // Another query to get the dates for the last two sunday services
 SELECT DISTINCT
   attendance_dt
 FROM
-  Attendance
+  Attendance as a1
 WHERE
-  attendance_dt IN
-      (SELECT DISTINCT
-          attendance_dt
-         FROM
-          Attendance as a1
-         WHERE
-          (SELECT
-              COUNT(DISTINCT(attendance_dt))
-             FROM
-              Attendance as a2
-             WHERE
-              DAYOFWEEK(a2.attendance_dt) = 1
-              AND a1.attendance_dt <= a2.attendance_dt) IN (1,2))
+  (SELECT
+      COUNT(DISTINCT(attendance_dt))
+    FROM
+      Attendance as a2
+    WHERE
+      DAYOFWEEK(a2.attendance_dt) = 1
+      AND DAYOFWEEK(a1.attendance_dt) = 1
+      AND a1.attendance_dt <= a2.attendance_dt) IN (1,2)
 
 
 
@@ -61,27 +57,21 @@ SELECT DISTINCT
   p.description
 FROM
   People p
-  inner join Attendance a on p.id=a.attended_by
-WHERE
-  a.attendance_dt IN
+  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by AND a.attendance_dt IN
     (SELECT DISTINCT
         attendance_dt
-    FROM
-        Attendance
-    WHERE
-        attendance_dt IN
-            (SELECT DISTINCT
-                attendance_dt
-             FROM
-                Attendance as a1
-             WHERE
-                (SELECT
-                    COUNT(DISTINCT(attendance_dt))
-                 FROM
-                    Attendance as a2
-                 WHERE
-                    DAYOFWEEK(a2.attendance_dt) = 1
-                    AND a1.attendance_dt <= a2.attendance_dt) IN (1,2)))
-  AND a.first=0
-  AND a.second=0
+      FROM
+        Attendance AS a1
+      WHERE
+        (SELECT
+            COUNT(DISTINCT(attendance_dt))
+          FROM
+            Attendance AS a2
+          WHERE
+            DAYOFWEEK(a2.attendance_dt) = 1
+            AND DAYOFWEEK(a1.attendance_dt) = 1
+            AND a1.attendance_dt <= a2.attendance_dt) IN (1,2))
+WHERE
+  a.attendance_dt IS NULL
   AND p.adult=1
+  AND p.active=1
