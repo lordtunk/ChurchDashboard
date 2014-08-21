@@ -146,24 +146,22 @@
 
   function populateAttendanceByPerson(people) {
     $('#adult-attendance-table > tbody:last').empty();
-    var adultRows= '';
+    var rows= '';
     for(var i=0; i<people.length; i++) {
       if(people[i].adult == 'true')
-        adultRows += buildPersonRow(people[i]);
-//       else
-//         kidRows += buildPersonRow(people[i], dt);
+        rows += buildPersonRow(people[i]);
     }
-    $('#adult-attendance-table > tbody:last').append(adultRows);
+    $('#adult-attendance-table > tbody:last').append(rows);
   }
   
   function populateAttendanceByMia(people) {
     $('#mia-attendance-table > tbody:last').empty();
-    var adultRows= '';
+    var rows= '';
     for(var i=0; i<people.length; i++) {
       if(people[i].adult == 'true')
-        adultRows += buildMiaRow(people[i]);
+        rows += buildMiaRow(people[i]);
     }
-    $('#mia-attendance-table > tbody:last').append(adultRows);
+    $('#mia-attendance-table > tbody:last').append(rows);
   }
   
   function buildMiaRow(person) {

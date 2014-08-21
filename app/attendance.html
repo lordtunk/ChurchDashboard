@@ -50,8 +50,14 @@
       <div class="app-content attendance-form">
         <label for="attendance-date">Attendance Date:</label>
         <input type="text" id="attendance-date" class="date-field"/>
-        <div id="go-arrow"></div>
-        <br />
+        <div class="active-input">
+          <input type="radio" id="active-true" name="active" value="true" checked />
+          <label for="active-true">Active</label>
+          <input type="radio" id="active-false" name="active" value="false" />
+          <label for="active-false">Inactive</label>
+          <div id="go-arrow"></div>
+          <br />
+        </div>
         <p class="large attendance-header">Adults</p>
         <label>Total Attendance:</label>
         <div id="adult-total-attendance" class="attendance-count"></div><br />

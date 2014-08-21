@@ -10,6 +10,8 @@
       kidTotalAttendance = document.querySelector('#kid-total-attendance'),
       kidFirstServiceAttendance = document.querySelector('#kid-first-service-attendance'),
       kidSecondServiceAttendance = document.querySelector('#kid-second-service-attendance'),
+      activeTrue = document.querySelector('#active-true'),
+      activeFalse = document.querySelector('#active-false'),
       updateBtn = document.querySelector('#update'),
       cancelBtn = document.querySelector('#cancel'),
       selectDateBtn = document.querySelector('#go-arrow'),
@@ -164,10 +166,12 @@
     var dt = attendanceDate.value;
     var adultRows = '', kidRows = '';
     for(var i=0; i<people.length; i++) {
-      if(people[i].adult)
-        adultRows += buildPersonRow(people[i], dt);
-      else
-        kidRows += buildPersonRow(people[i], dt);
+      if(people[i].active == activeTrue.checked) {
+        if(people[i].adult)
+          adultRows += buildPersonRow(people[i], dt);
+        else
+          kidRows += buildPersonRow(people[i], dt);
+      }
     }
     setAttendance(adultTotalAttendanceCount, adultFirstServiceAttendanceCount, adultSecondServiceAttendanceCount, kidTotalAttendanceCount, kidFirstServiceAttendanceCount, kidSecondServiceAttendanceCount);
     $('#adult-attendance-table > tbody:last').append(adultRows);
