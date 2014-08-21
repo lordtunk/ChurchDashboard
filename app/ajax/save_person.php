@@ -30,15 +30,15 @@
       $person->last_name = trim($person->last_name);
       $person->description = trim($person->description);
       
-      if($person->first_name === ""){
-        $person->first_name = NULL;
-      }
-      if($person->last_name === ""){
-        $person->last_name = NULL;
-      }
-      if($person->description === ""){
-        $person->description = NULL;
-      }
+//       if($person->first_name === ""){
+//         $person->first_name = NULL;
+//       }
+//       if($person->last_name === ""){
+//         $person->last_name = NULL;
+//       }
+//       if($person->description === ""){
+//         $person->description = NULL;
+//       }
 
       // Make sure their is a valid person id and
       // at least a first and last name or a description
