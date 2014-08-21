@@ -26,6 +26,7 @@
                   p.first_name,
                   p.last_name,
                   p.description,
+                  p.active,
                   p.adult
                 FROM
                   People p
@@ -41,6 +42,7 @@
           $p['last_name'] = $row['last_name'];
           $p['description'] = $row['description'];
           $p['adult'] = $row['adult'] ? TRUE : FALSE;
+          $p['active'] = $row['active'] ? TRUE : FALSE;
           array_push($people, $p);
         }
         $dict['person'] = $people[0];

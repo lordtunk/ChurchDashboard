@@ -8,6 +8,7 @@
       lastName = document.querySelector('#last-name'),
       description = document.querySelector('#description'),
       adult = document.querySelector('#adult'),
+      active = document.querySelector('#active'),
       updateBtn = document.querySelector('#update'),
       cancelBtn = document.querySelector('#cancel'),
       deleteBtn = document.querySelector('#delete');
@@ -33,6 +34,7 @@
     lastName.value = person.last_name;
     description.value = person.description;
     adult.checked = person.adult;
+    active.checked = person.active;
   }
 
   function onUpdateClick() {
@@ -45,7 +47,8 @@
         first_name: first_name,
         last_name: last_name,
         description: descr,
-        adult: adult.checked
+        adult: adult.checked,
+        active: active.checked
       });
     }
   }
