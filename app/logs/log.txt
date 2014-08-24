@@ -23044,3 +23044,2719 @@
                     p.description
 08-20-14 10:21 pm	No parameters
 08-20-14 10:21 pm	Success
+08-24-14 12:57 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-24-14 12:57 pm	:user_id => 1
+08-24-14 12:57 pm	:session_id => 53f699aec6a9d5.81446349
+08-24-14 12:57 pm	Success: TRUE
+08-24-14 12:57 pm	1
+08-24-14 12:57 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-24-14 12:57 pm	:user_id => 1
+08-24-14 12:57 pm	:session_id => 53f699aec6a9d5.81446349
+08-24-14 12:57 pm	Success: TRUE
+08-24-14 12:57 pm	1
+08-24-14 12:57 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description
+08-24-14 12:57 pm	No parameters
+08-24-14 12:57 pm	Success
+08-24-14 12:57 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-24-14 12:57 pm	:user_id => 1
+08-24-14 12:57 pm	:session_id => 53f699aec6a9d5.81446349
+08-24-14 12:57 pm	Success: TRUE
+08-24-14 12:57 pm	1
+08-24-14 12:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 12:57 pm	:id => 239
+08-24-14 12:57 pm	Success: TRUE
+08-24-14 12:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=:attendance_dt
+08-24-14 12:57 pm	:id => 239
+08-24-14 12:57 pm	:attendance_dt => 08/24/2014
+08-24-14 12:57 pm	Success: TRUE
+08-24-14 12:57 pm	INSERT INTO Attendance (`attendance_dt`, `attended_by`, `first`, `second`) VALUES(STR_TO_DATE(:attendance_dt,'%m/%d/%Y'), :attended_by, :first, :second)
+08-24-14 12:57 pm	:attendance_dt => 08/24/2014
+08-24-14 12:57 pm	:attended_by => 239
+08-24-14 12:57 pm	:first => 1
+08-24-14 12:57 pm	:second => 0
+08-24-14 3:53 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-24-14 3:53 pm	:user_id => 1
+08-24-14 3:53 pm	:session_id => 53f699aec6a9d5.81446349
+08-24-14 3:53 pm	Success: TRUE
+08-24-14 3:53 pm	1
+08-24-14 3:53 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-24-14 3:53 pm	:user_id => 1
+08-24-14 3:53 pm	:session_id => 53f699aec6a9d5.81446349
+08-24-14 3:53 pm	Success: TRUE
+08-24-14 3:53 pm	1
+08-24-14 3:53 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description
+08-24-14 3:53 pm	No parameters
+08-24-14 3:53 pm	Success
+08-24-14 3:56 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-24-14 3:56 pm	:user_id => 1
+08-24-14 3:56 pm	:session_id => 53f699aec6a9d5.81446349
+08-24-14 3:56 pm	Success: TRUE
+08-24-14 3:56 pm	1
+08-24-14 3:56 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-24-14 3:56 pm	:user_id => 1
+08-24-14 3:56 pm	:session_id => 53f699aec6a9d5.81446349
+08-24-14 3:56 pm	Success: TRUE
+08-24-14 3:56 pm	1
+08-24-14 3:56 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description
+08-24-14 3:56 pm	No parameters
+08-24-14 3:56 pm	Success
+08-24-14 3:57 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+08-24-14 3:57 pm	:user_id => 1
+08-24-14 3:57 pm	:session_id => 53f699aec6a9d5.81446349
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	1
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 239
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 239
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	INSERT INTO Attendance (`attendance_dt`, `attended_by`, `first`, `second`) VALUES(STR_TO_DATE(:attendance_dt,'%m/%d/%Y'), :attended_by, :first, :second)
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	:attended_by => 239
+08-24-14 3:57 pm	:first => 1
+08-24-14 3:57 pm	:second => 1
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 14
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 14
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	INSERT INTO Attendance (`attendance_dt`, `attended_by`, `first`, `second`) VALUES(STR_TO_DATE(:attendance_dt,'%m/%d/%Y'), :attended_by, :first, :second)
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	:attended_by => 14
+08-24-14 3:57 pm	:first => 1
+08-24-14 3:57 pm	:second => 0
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 15
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 15
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 208
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 208
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 209
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 209
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 210
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 210
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 211
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 211
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 249
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 249
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 251
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 251
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 250
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 250
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 238
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 238
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 230
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 230
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 243
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 243
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 246
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 246
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 245
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 245
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 16
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 16
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 18
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 18
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 19
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 19
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 20
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 20
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 22
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 22
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 235
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 235
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 257
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 257
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 258
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 258
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 301
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 301
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 21
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 21
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 302
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 302
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 223
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 223
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 23
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 23
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 367
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 367
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 366
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 366
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 24
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 24
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 30
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 30
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 313
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 313
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 31
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 31
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 32
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 32
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 248
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 248
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 216
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 216
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 33
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 33
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 34
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 34
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 35
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 35
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 36
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 36
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 37
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 37
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 38
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 38
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 188
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 188
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 187
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 187
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 39
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 39
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 40
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 40
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 41
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 41
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 42
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 42
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 43
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 43
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 44
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 44
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 45
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 45
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 46
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 46
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 308
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 308
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 47
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 47
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 48
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 48
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 225
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 225
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 56
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 56
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 57
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 57
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 54
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 54
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 55
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 55
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 179
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 179
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 58
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 58
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 59
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 59
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 60
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 60
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 61
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 61
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 190
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 190
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 320
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 320
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 319
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 319
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 62
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 62
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 63
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 63
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 304
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 304
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 264
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 264
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 265
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 265
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 369
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 369
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 303
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 303
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 64
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 64
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 65
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 65
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 66
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 66
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 244
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 244
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 67
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 67
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 68
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 68
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 69
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 69
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 70
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 70
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 71
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 71
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 72
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 72
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 307
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 307
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 306
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 306
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 76
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 76
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 77
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 77
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 78
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 78
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 79
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 79
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 80
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 80
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 81
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 81
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 82
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 82
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 83
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 83
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 87
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 87
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 88
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 88
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 89
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 89
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 183
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 183
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 182
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 182
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 90
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 90
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 91
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 91
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 335
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 335
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 185
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 185
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 92
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 92
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 93
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 93
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 184
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 184
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 96
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 96
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 242
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 242
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 247
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 247
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 95
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 95
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 97
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 97
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 231
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 231
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 98
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 98
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 99
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 99
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 199
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 199
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 198
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 198
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 102
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 102
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 103
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 103
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 104
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 104
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 105
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 105
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 106
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 106
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 107
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 107
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 108
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 108
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 109
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 109
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 233
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 233
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 232
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 232
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 110
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 110
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 315
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 315
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 111
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 111
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 112
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 112
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 113
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 113
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 114
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 114
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 115
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 115
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 116
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 116
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 117
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 117
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 120
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 120
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 121
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 121
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 123
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 123
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 124
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 124
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 125
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 125
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 122
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 122
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 126
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 126
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 127
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 127
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 128
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 128
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 213
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 213
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 332
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 332
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 228
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 228
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 129
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 129
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 130
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 130
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 131
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 131
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 266
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 266
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 267
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 267
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 219
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 219
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 354
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 354
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 353
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 353
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 132
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 132
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 133
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 133
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 134
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 134
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 135
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 135
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 136
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 136
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 137
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 137
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 138
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 138
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 224
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 224
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 191
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 191
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 139
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 139
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 140
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 140
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 141
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 141
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 142
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 142
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 143
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 143
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 144
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 144
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 253
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 253
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 145
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 145
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 254
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 254
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 345
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 345
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 146
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 146
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 147
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 147
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 222
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 222
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 220
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 220
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 221
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 221
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 148
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 148
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 149
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 149
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 150
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 150
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 186
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 186
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 151
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 151
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 152
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 152
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 153
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 153
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 154
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 154
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 212
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 212
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 344
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 344
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 343
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 343
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 229
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 229
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 155
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 155
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 156
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 156
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 157
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 157
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 226
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 226
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 158
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 158
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 333
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 333
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 159
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 159
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 160
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 160
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 161
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 161
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 175
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 175
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 176
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 176
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 177
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 177
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 178
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 178
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 321
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 321
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 94
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 94
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 357
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 357
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 347
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 347
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 352
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 352
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 260
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 260
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 350
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 350
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 256
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 256
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 255
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 255
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 214
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 214
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 203
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 203
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 252
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 252
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 316
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 316
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 337
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 337
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 180
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 180
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 195
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 195
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 322
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 322
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 193
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 193
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 237
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 237
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 236
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 236
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 336
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 336
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 207
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 207
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 364
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 364
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 241
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 241
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 240
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 240
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 196
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 196
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 215
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 215
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 227
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 227
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 197
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 197
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 360
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 360
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 359
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 359
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 358
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 358
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 261
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 261
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 312
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 312
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 361
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 361
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 310
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 310
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 205
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 205
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 356
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 356
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 355
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 355
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 365
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 365
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 314
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 314
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 338
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 338
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 100
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 100
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 201
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 201
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 262
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 262
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 204
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 204
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 101
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 101
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 181
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 181
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 263
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 263
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 259
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 259
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 346
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 346
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 217
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 217
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 218
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 218
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 194
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 194
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 206
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 206
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 317
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 317
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 309
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 309
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 189
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 189
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 363
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 363
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 334
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 334
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 311
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 311
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 351
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 351
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 362
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 362
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 305
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 305
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 192
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 192
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 234
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 234
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 200
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 200
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 318
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 318
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 370
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 370
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 368
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 368
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 202
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 202
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 340
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 340
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 342
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 342
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 339
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 339
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 341
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 341
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 348
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 348
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 349
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 349
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 296
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 296
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 289
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 289
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 284
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 284
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 291
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 291
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	INSERT INTO Attendance (`attendance_dt`, `attended_by`, `first`, `second`) VALUES(STR_TO_DATE(:attendance_dt,'%m/%d/%Y'), :attended_by, :first, :second)
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	:attended_by => 291
+08-24-14 3:57 pm	:first => 1
+08-24-14 3:57 pm	:second => 0
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 17
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 17
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 25
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 25
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 26
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 26
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 27
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 27
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 294
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 294
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 295
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 295
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 373
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 373
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 300
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 300
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 28
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 28
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 29
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 29
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 278
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 278
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 277
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 277
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 49
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 49
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 50
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 50
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 273
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 273
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 272
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 272
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 51
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 51
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 52
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 52
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 53
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 53
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 282
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 282
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 290
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 290
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 297
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 297
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 298
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 298
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 325
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 325
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 324
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 324
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 323
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 323
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 73
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 73
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 74
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 74
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 293
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 293
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 326
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 326
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 75
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 75
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 84
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 84
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 85
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 85
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 86
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 86
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 270
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 270
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 288
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 288
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 287
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 287
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 118
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 118
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 119
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 119
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 162
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 162
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 163
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 163
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 164
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 164
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 165
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 165
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 166
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 166
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 167
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 167
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 168
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 168
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 169
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 169
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 170
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 170
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 372
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 372
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 275
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 275
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 376
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 376
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 171
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 171
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 172
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 172
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 374
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 374
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 276
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 276
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 173
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 173
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 174
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 174
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 331
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 331
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 330
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 330
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 268
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 268
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 269
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 269
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 379
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 379
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 378
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 378
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 329
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 329
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 327
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 327
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 371
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 371
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 328
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 328
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 281
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 281
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 286
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 286
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 292
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 292
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 285
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 285
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 299
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 299
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 377
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 377
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 279
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 279
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 283
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 283
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 280
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 280
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 375
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 375
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 271
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 271
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	UPDATE People SET active=true WHERE id=:id
+08-24-14 3:57 pm	:id => 274
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')
+08-24-14 3:57 pm	:id => 274
+08-24-14 3:57 pm	:attendance_dt => 08/24/2014
+08-24-14 3:57 pm	Success: TRUE
+08-24-14 3:57 pm	SELECT
+                    p.id,
+                    p.first_name,
+                    p.last_name,
+                    p.description,
+                    p.adult,
+                    p.active,
+                    DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                    a.first,
+                    a.second
+                  FROM
+                    People p
+                    LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                  ORDER BY
+                    p.last_name IS NOT NULL DESC,
+                    p.description IS NOT NULL DESC,
+                    p.last_name,
+                    p.first_name,
+                    p.description
+08-24-14 3:57 pm	No parameters
+08-24-14 3:57 pm	Success

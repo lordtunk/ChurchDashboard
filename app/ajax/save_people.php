@@ -28,7 +28,6 @@
         // Translate TRUE/FALSE to 1/0 so that log statements
         // are easier to read since FALSE does not display
         $person->adult = $person->adult ? 1 : 0;
-        $person->active = $person->active ? 1 : 0;
         $person->first = $person->first ? 1 : 0;
         $person->second = $person->second ? 1 : 0;
 
@@ -54,7 +53,7 @@
           $f->executeAndReturnResult($query, array(":id"=>$person->id));
         }
         
-        $query = "DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=:attendance_dt";
+        $query = "DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')";
         $f->executeAndReturnResult($query, array(":id"=>$person->id, ":attendance_dt"=>$person->attendanceDate));
 
         // Add an Attendance record if the person attended this service

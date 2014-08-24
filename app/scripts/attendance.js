@@ -1,5 +1,7 @@
+//var attendance = new 
 (function () {
   'use strict';
+  
   if($('#attendance').length === 0) return;
  
   $( "#attendance-date" ).datepicker();

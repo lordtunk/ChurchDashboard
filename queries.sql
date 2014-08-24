@@ -81,3 +81,6 @@ ORDER BY
   p.last_name,
   p.first_name,
   p.description
+  
+  
+SELECT * FROM People WHERE id=239
