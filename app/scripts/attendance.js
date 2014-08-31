@@ -19,6 +19,7 @@
       selectDateBtn = document.querySelector('#go-arrow'),
       addAdultBtn = document.querySelector('#add-adult'),
       addKidBtn = document.querySelector('#add-kid'),
+      attendanceDateDisplay = document.querySelector('#attendance-date-display'),
       people = [],
       adultTotalAttendanceCount = 0,
       adultFirstServiceAttendanceCount = 0,
@@ -29,6 +30,7 @@
       idSequence = 0,
       personIdSequence = -1,
       prevAttendanceDate,
+      currAttendanceDate,
       noChangesMade = true,
       scrollAnimationMs = 1000;
 
@@ -55,7 +57,7 @@
         id: personId,
         adult: true,
         display: display,
-        attendanceDate: attendanceDate.value,
+        attendanceDate: currAttendanceDate,
         first: isAttendingFirstService(personId),
         second: isAttendingSecondService(personId)
       });
@@ -79,7 +81,7 @@
         id: personId,
         adult: false,
         display: display,
-        attendanceDate: attendanceDate.value,
+        attendanceDate: currAttendanceDate,
         first: isAttendingFirstService(personId),
         second: isAttendingSecondService(personId)
       });
@@ -107,7 +109,7 @@
       id: genPersonid(),
       adult: true
     };
-    var row = buildNewPersonRow(person, attendanceDate.value);
+    var row = buildNewPersonRow(person, currAttendanceDate);
     $('#adult-attendance-table > tbody:last').append(row);
     $('[personid='+person.id+'] input:checkbox').on('change', updateAttendance);
     $('#adult-attendance-table-container').animate({ scrollTop: $('#adult-attendance-table-container')[0].scrollHeight}, scrollAnimationMs);
@@ -120,7 +122,7 @@
       id: genPersonid(),
       adult: false
     };
-    var row = buildNewPersonRow(person, attendanceDate.value);
+    var row = buildNewPersonRow(person, currAttendanceDate);
     $('#kid-attendance-table > tbody:last').append(row);
     $('[personid='+person.id+'] input:checkbox').on('change', updateAttendance);
     $('#kid-attendance-table-container').animate({ scrollTop: $('#kid-attendance-table-container')[0].scrollHeight}, scrollAnimationMs);
@@ -131,16 +133,21 @@
     var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
     var sunday = new Date(curr.setDate(first));
     attendanceDate.value = getDateString(sunday);
+    currAttendanceDate = attendanceDate.value;
     prevAttendanceDate = sunday;
+    
+    attendanceDateDisplay.innerHTML = attendanceDate.value;
   }
   
   function onSelectAttendanceDate() {
     if(noChangesMade || confirm("If you change the date you will lose any unsaved changes. Continue?")) {
       prevAttendanceDate = new Date(attendanceDate.value);
+      currAttendanceDate = attendanceDate.value;
       reset();
     } else {
       attendanceDate.value = getDateString(prevAttendanceDate);
     }
+    attendanceDateDisplay.innerHTML = attendanceDate.value;
   }
 
   function onClickTopBottom(e) {
@@ -165,7 +172,7 @@
     kidFirstServiceAttendanceCount = 0;
     kidSecondServiceAttendanceCount = 0;
     people = data;
-    var dt = attendanceDate.value;
+    var dt = currAttendanceDate;
     var adultRows = '', kidRows = '';
     for(var i=0; i<people.length; i++) {
       if(people[i].active == activeTrue.checked) {

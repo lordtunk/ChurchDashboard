@@ -258,6 +258,10 @@ main {
   -webkit-overflow-scrolling: touch;
 }
 
+#attendance-date-display {
+  text-align: center;
+}
+
 .top-bottom-links {
   display: inline-block;
   float: right;
