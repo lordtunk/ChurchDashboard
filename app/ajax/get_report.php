@@ -103,7 +103,6 @@
                         OR a.second = 1)
                       AND (a.attendance_dt >= STR_TO_DATE(:fromDate,'%m/%d/%Y')
                             AND a.attendance_dt <= STR_TO_DATE(:toDate,'%m/%d/%Y'))
-                      AND p.active=1
                     GROUP BY
                       a.attendance_dt
                   ) totals";
