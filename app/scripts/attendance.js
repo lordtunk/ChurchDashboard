@@ -34,58 +34,66 @@
       scrollAnimationMs = 1000;
 
   function update() {
+    try {
+      $('.attendance-form').mask('Loading...');
+      setTimeout(doUpdate, 50);
+    } catch(e) {
+      $('.attendance-form').unmask();
+    }
+  }
+  
+  function doUpdate() {
     var updatedPeople = [],
         i, rows, personId, display, displayField;
-    
     rows = $('#adult-attendance-table > tbody:last').children();
-    for(i=0; i<rows.length; i++) {
-      personId = rows[i].getAttribute('personId');
-      displayField = rows[i].querySelector('[name=name_description]');
-      
-      // An input field should be found for added people
-      if(displayField) {
-        display = $.trim(displayField.value);
-        // If the display field is empty then do not save the person
-        if(display === '')
-          continue;
-      } else {
-        display = undefined;
+      for(i=0; i<rows.length; i++) {
+        personId = rows[i].getAttribute('personId');
+        displayField = rows[i].querySelector('[name=name_description]');
+        
+        // An input field should be found for added people
+        if(displayField) {
+          display = $.trim(displayField.value);
+          // If the display field is empty then do not save the person
+          if(display === '')
+            continue;
+        } else {
+          display = undefined;
+        }
+        
+        updatedPeople.push({
+          id: personId,
+          adult: true,
+          display: display,
+          attendanceDate: currAttendanceDate,
+          first: isAttendingFirstService(personId),
+          second: isAttendingSecondService(personId)
+        });
       }
-      
-      updatedPeople.push({
-        id: personId,
-        adult: true,
-        display: display,
-        attendanceDate: currAttendanceDate,
-        first: isAttendingFirstService(personId),
-        second: isAttendingSecondService(personId)
-      });
-    }
-    rows = $('#kid-attendance-table > tbody:last').children();
-    for(i=0; i<rows.length; i++) {
-      personId = rows[i].getAttribute('personId');
-      displayField = rows[i].querySelector('[name=name_description]');
+      rows = $('#kid-attendance-table > tbody:last').children();
+      for(i=0; i<rows.length; i++) {
+        personId = rows[i].getAttribute('personId');
+        displayField = rows[i].querySelector('[name=name_description]');
 
-      // An input field should be found for added people
-      if(displayField) {
-        display = $.trim(displayField.value);
-        // If the display field is empty then do not save the person
-        if(!display)
-          continue;
-      } else {
-        display = undefined;
+        // An input field should be found for added people
+        if(displayField) {
+          display = $.trim(displayField.value);
+          // If the display field is empty then do not save the person
+          if(!display)
+            continue;
+        } else {
+          display = undefined;
+        }
+        
+        updatedPeople.push({
+          id: personId,
+          adult: false,
+          display: display,
+          attendanceDate: currAttendanceDate,
+          first: isAttendingFirstService(personId),
+          second: isAttendingSecondService(personId)
+        });
       }
-      
-      updatedPeople.push({
-        id: personId,
-        adult: false,
-        display: display,
-        attendanceDate: currAttendanceDate,
-        first: isAttendingFirstService(personId),
-        second: isAttendingSecondService(personId)
-      });
-    }
-    savePeople(updatedPeople);
+      savePeople(updatedPeople);
   }
 
   function cancel() {
@@ -324,11 +332,13 @@
   }
 
   function loadPeople() {
+    $('.attendance-form').mask('Loading...');
     $.ajax({
       type: 'GET',
       url: 'ajax/get_attendance.php'
     })
     .done(function(msg) {
+      $('.attendance-form').unmask();
       var data = JSON.parse(msg);
       if(data.success) {
         processPeople(data.people);
@@ -352,6 +362,7 @@
       }
     })
     .fail(function() {
+      $('.attendance-form').unmask();
       $().toastmessage('showErrorToast', "Error loading");
     });
   }
@@ -363,6 +374,7 @@
       data: { people: JSON.stringify(newPeople) }
     })
     .done(function( msg ) {
+      $('.attendance-form').unmask();
       var data = JSON.parse(msg);
       if(data.success) {
         people = data.people;
