@@ -457,6 +457,7 @@
   
   function personCompareTo(p1, p2) {
     if(p1 == p2) return 0;
+
     if(p1 === null) return -1;
     if(p2 === null) return 1;
     
