@@ -24,6 +24,10 @@
     try {
       $f->useTransaction = FALSE;
       $f->beginTransaction();
+      
+      $query = "DELETE FROM Attendance WHERE attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')";
+      $f->executeAndReturnResult($query, array(":attendance_dt"=>$person->attendanceDate));
+      
       foreach($people as $key => $person) {
         // Translate TRUE/FALSE to 1/0 so that log statements
         // are easier to read since FALSE does not display
@@ -52,9 +56,6 @@
           $query = "UPDATE People SET active=true WHERE id=:id";
           $f->executeAndReturnResult($query, array(":id"=>$person->id));
         }
-        
-        $query = "DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')";
-        $f->executeAndReturnResult($query, array(":id"=>$person->id, ":attendance_dt"=>$person->attendanceDate));
 
         // Add an Attendance record if the person attended this service
         if($person->first || $person->second) {
