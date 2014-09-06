@@ -1,4 +1,3 @@
-//var attendance = new 
 (function () {
   'use strict';
   
