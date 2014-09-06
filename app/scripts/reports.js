@@ -211,6 +211,7 @@
   }
 
   function loadReport(reportType, fromDate, toDate) {
+    $('.reports-form').mask('Loading...');
     $.ajax({
       type: 'GET',
       url: 'ajax/get_report.php',
@@ -221,6 +222,7 @@
       }
     })
     .done(function(msg) {
+      $('.reports-form').unmask();
       var data = JSON.parse(msg);
       if(data.success) {
         switch(reportType) {
@@ -243,16 +245,19 @@
       }
     })
     .fail(function() {
+      $('.reports-form').unmask();
       $().toastmessage('showErrorToast', "Error loading report");
     });
   }
 
   function loadFirstLastServiceDates() {
+    $('.reports-form').mask('Loading...');
     $.ajax({
       type: 'GET',
       url: 'ajax/get_first_last_service_dates.php'
     })
     .done(function(msg) {
+      $('.reports-form').unmask();
       var data = JSON.parse(msg);
       if(data.success) {
         populateForm(data.first_dt, data.last_dt);
@@ -265,6 +270,7 @@
       }
     })
     .fail(function() {
+      $('.reports-form').unmask();
       $().toastmessage('showErrorToast', "Error loading data");
     });
   }
