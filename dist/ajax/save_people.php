@@ -25,8 +25,10 @@
       $f->useTransaction = FALSE;
       $f->beginTransaction();
       
-      $query = "DELETE FROM Attendance WHERE attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')";
-      $f->executeAndReturnResult($query, array(":attendance_dt"=>$person->attendanceDate));
+      if(count($people) > 0) {
+        $query = "DELETE FROM Attendance WHERE attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')";
+        $f->executeAndReturnResult($query, array(":attendance_dt"=>$people[0]->attendanceDate));
+      }
       
       foreach($people as $key => $person) {
         // Translate TRUE/FALSE to 1/0 so that log statements
