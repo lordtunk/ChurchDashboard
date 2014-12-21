@@ -277,6 +277,7 @@
   }
   
   function updateNewPeople(data) {
+    noChangesMade = true;
     if(!data || data.length === 0) return;
     var personRows = [],
         lastAdultInd = 0,
@@ -306,7 +307,7 @@
         if(person.adult !== newPerson.adult) continue;
  
         if(personCompareTo(newPerson, person) === -1) {
-          $('[personid='+person.id+']').insertBefore(personRows[i]);
+          $(personRows[i]).insertBefore('[personid='+person.id+']');
           people.splice(j, 0, newPerson);
           inserted = true;
           break;
@@ -316,10 +317,10 @@
       if(inserted === false) {
         if(newPerson.adult === true) {
           $('#adult-attendance-table > tbody:last').append(personRows[i]);
-          people.splice(lastAdultInd, 0, newPerson);
+          people.splice(lastAdultInd+1, 0, newPerson);
         } else {
           $('#kid-attendance-table > tbody:last').append(personRows[i]);
-          people.splice(lastKidInd, 0, newPerson);
+          people.splice(lastKidInd+1, 0, newPerson);
         }
       }
     }
@@ -516,8 +517,8 @@
     if(p1.first_name || p1.last_name) {
       if(p2.first_name || p2.last_name) {
         if(p1Display === p2Display) return 0;
-        if(p1Display < p2Display) return -1;
-        if(p1Display > p2Display) return 1;
+        if(p1Display.toLowerCase() < p2Display.toLowerCase()) return -1;
+        if(p1Display.toLowerCase() > p2Display.toLowerCase()) return 1;
       } else {
         return -1;
       }
@@ -525,8 +526,8 @@
       return 1;
     } else {
       if(p1Display === p2Display) return 0;
-      if(p1Display < p2Display) return -1;
-      if(p1Display > p2Display) return 1;
+      if(p1Display.toLowerCase() < p2Display.toLowerCase()) return -1;
+      if(p1Display.toLowerCase() > p2Display.toLowerCase()) return 1;
     }
   }
   
