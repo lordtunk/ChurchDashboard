@@ -44,7 +44,7 @@
                   p.last_name,
                   p.first_name,
                   p.description,
-                  attendance_dt";
+                  attendance_dt DESC";
       $results = $f->fetchAndExecute($query);
       $people = array();
       foreach($results as $key => $row) {
