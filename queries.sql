@@ -83,4 +83,31 @@ ORDER BY
   p.description
   
   
-SELECT * FROM People WHERE id=239
+// Another way to get all people who missed the last two sunday services
+SELECT DISTINCT
+  p.id,
+  p.first_name,
+  p.last_name,
+  p.description
+FROM
+  People p
+  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+  LEFT OUTER JOIN (SELECT DISTINCT
+		  attendance_dt
+		FROM
+		  Attendance
+		WHERE
+		  DAYOFWEEK(attendance_dt) = 1
+		ORDER BY
+		  attendance_dt DESC 
+		LIMIT 2) at ON a.attendance_dt = at.attendance_dt
+WHERE
+  a.attendance_dt IS NULL
+  AND p.adult=1
+  AND p.active=1
+ORDER BY
+  p.last_name IS NOT NULL DESC,
+  p.description IS NOT NULL DESC,
+  p.last_name,
+  p.first_name,
+  p.description

@@ -43,7 +43,8 @@
                   p.description IS NOT NULL DESC,
                   p.last_name,
                   p.first_name,
-                  p.description";
+                  p.description,
+                  attendance_dt";
       $results = $f->fetchAndExecute($query);
       $people = array();
       foreach($results as $key => $row) {

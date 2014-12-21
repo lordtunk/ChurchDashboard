@@ -31,7 +31,13 @@
       prevAttendanceDate,
       currAttendanceDate,
       noChangesMade = true,
-      scrollAnimationMs = 1000;
+      scrollAnimationMs = 1000,
+      dialog = $( "#dialog-form" ).dialog({
+        autoOpen: false,
+        height: 400,
+        width: 450,
+        modal: true
+      });
 
   function update() {
     try {
@@ -44,7 +50,8 @@
   
   function doUpdate() {
     var updatedPeople = [],
-        i, rows, personId, display, displayField;
+        i, j, rows, personId, display, displayField, attendanceDateFound, 
+        first, second, p;
     rows = $('#adult-attendance-table > tbody:last').children();
       for(i=0; i<rows.length; i++) {
         // Only update modified rows
@@ -52,6 +59,8 @@
  
         personId = rows[i].getAttribute('personId');
         displayField = rows[i].querySelector('[name=name_description]');
+        first = isAttendingFirstService(personId);
+        second = isAttendingSecondService(personId);
         
         // An input field should be found for added people
         if(displayField) {
@@ -63,13 +72,30 @@
           display = undefined;
         }
         
+        // Update the cached person information
+        p = getPerson(personId);
+        attendanceDateFound = false;
+        for(j=0; j<p.attendance.length; j++) {
+          if(p.attendance[j].date === currAttendanceDate) {
+            p.attendance[j].first = first;
+            p.attendance[j].second = second;
+            attendanceDateFound = true;
+          }
+        }
+        if(!attendanceDateFound) {
+          p.attendance.push({
+            date: currAttendanceDate,
+            first: first,
+            second: second
+          });
+        }
         updatedPeople.push({
           id: personId,
           adult: true,
           display: display,
           attendanceDate: currAttendanceDate,
-          first: isAttendingFirstService(personId),
-          second: isAttendingSecondService(personId)
+          first: first,
+          second: second
         });
       }
       rows = $('#kid-attendance-table > tbody:last').children();
@@ -220,13 +246,6 @@
     }
 
     display = getDisplayName(person);
-//     if(person.first_name || person.last_name) {
-//       if(person.first_name) display += person.first_name + ' ';
-//       if(person.last_name) display += person.last_name;
-//     } else {
-//       display = person.description;
-//     }
-
     display = '<a class="person_name" href="manage-person.html?id='+person.id+'">'+display+'</a>';
 
     if(person.adult) {
@@ -238,7 +257,8 @@
       if(secondChecked) ++kidSecondServiceAttendanceCount;
       if(firstChecked || secondChecked) ++kidTotalAttendanceCount;
     }
-    return    '<tr adult="'+person.adult+'" personId="'+person.id+'"><td data-th="Name">'+display+'</td>'+
+    return    '<tr adult="'+person.adult+'" personId="'+person.id+'"><td data-th="Name">'+
+              '<button class="attendance-history-button"><i class="fa fa-archive" /></button>'+display+'</td>'+
               '<td class="attendance-table-attendance-col" service="first" data-th="First?">'+
               '<label for="'+firstId+'"><input id="'+firstId+'" type="checkbox" '+firstChecked+'/></label></td>'+
               '<td class="attendance-table-attendance-col" service="second" data-th="Second?">'+
@@ -374,6 +394,31 @@
       kidTotalAttendance.innerHTML = kidTotalAttendanceCount;
     }
   }
+  
+  function showPersonAttendance(personId) {
+    var p = getPerson(personId);
+    if(!p) return;
+    
+    $('#person-attendance-history-table > tbody:last').children().remove();
+ 
+    dialog.dialog("open");
+    dialog[0].querySelector('#person-name').innerHTML = getDisplayName(p, false);
+    var rows = '', a;
+    for(var i=0; i<p.attendance.length; i++) {
+      rows += buildAttendanceRow(p.attendance[i]);
+    }
+    $('#person-attendance-history-table > tbody:last').append(rows);
+  }
+  
+  function buildAttendanceRow(a) {
+    var firstChecked = a.first ? 'checked' : '';
+    var secondChecked = a.second ? 'checked' : '';
+    return    '<tr><td data-th="Date">'+a.date+'</td>'+
+              '<td class="attendance-table-attendance-col" service="first" data-th="First?">'+
+              '<input type="checkbox" '+firstChecked+' disabled/></td>'+
+              '<td class="attendance-table-attendance-col" service="second" data-th="Second?">'+
+              '<input type="checkbox" '+secondChecked+' disabled/></td></tr>';
+  }
 
   function setAttendance(totalAdult, firstAdult, secondAdult, totalKid, firstKid, secondKid) {
     adultTotalAttendanceCount = totalAdult;
@@ -463,8 +508,8 @@
   
   function personCompareTo(p1, p2) {
     if(p1 == p2) return 0;
-    if(p1 == null) return -1;
-    if(p2 == null) return 1;
+    if(p1 === null) return -1;
+    if(p2 === null) return 1;
     
     var p1Display = getDisplayName(p1, true), 
         p2Display = getDisplayName(p2, true);
@@ -486,7 +531,7 @@
   }
   
   function getDisplayName(person, withComma) {
-    if(person == null) return '';
+    if(person === null) return '';
     
     var display = '';
     if(person.first_name || person.last_name) {
@@ -524,6 +569,13 @@
     
     return curr_month + "/" + curr_date + "/" + curr_year;
   }
+  
+  function getPerson(id) {
+    for(var i=0; i<people.length; i++) {
+      if(people[i].id === id) return people[i];
+    }
+    return null;
+  }
 
   function genId() {
     return 'id-'+(++idSequence);
@@ -537,12 +589,19 @@
     $('#attendance-nav').on('click', onClickLink);
     $('#reports-nav').on('click', onClickLink);
     $('a.person_name').on('click', onClickLink);
+    $('button.attendance-history-button').on('click', onClickAttendanceHistoryButton);
   }
   
   function detachLinkClickListeners() {
     $('#attendance-nav').off('click', onClickLink);
     $('#reports-nav').off('click', onClickLink);
     $('a.person_name').off('click', onClickLink);
+    $('button.attendance-history-button').off('click', onClickAttendanceHistoryButton);
+  }
+  
+  function onClickAttendanceHistoryButton() {
+    var personId = this.parentElement.parentElement.getAttribute('personId');
+    showPersonAttendance(personId);
   }
   
   function onClickLink(e) {
