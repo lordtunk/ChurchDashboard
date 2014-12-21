@@ -268,12 +268,21 @@ main {
   margin: 20px;
 }
 
+#person-attendance-table-container {
+  overflow-y: scroll;
+  height: 300px;
+}
+
 .attendance-table-attendance-col {
   width: 30px !important;
 }
 
 .report-attendance-table-attendance-col {
   text-align: center;
+}
+
+.attendance-history-button {
+  margin-right: 10px;
 }
 
 .app-content label {

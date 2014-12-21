@@ -65,6 +65,12 @@ gulp.task('styles:css', function () {
     .pipe($.size({title: 'styles:css'}));
 });
 
+gulp.task('styles:fontawesomefonts', function () {
+  return gulp.src('app/fonts/**')
+    .pipe(gulp.dest('dist/fonts'))
+    .pipe($.size({title: 'styles:fontawesomefonts'}));
+});
+
 // Compile Sass For Style Guide Components (app/styles/components)
 gulp.task('styles:components', function () {
   return gulp.src('app/styles/components/components.scss')
@@ -92,7 +98,7 @@ gulp.task('styles:scss', function () {
 });
 
 // Output Final CSS Styles
-gulp.task('styles', ['styles:components', 'styles:scss', 'styles:css']);
+gulp.task('styles', ['styles:components', 'styles:scss', 'styles:css', 'styles:fontawesomefonts']);
 
 // Scan Your HTML For Assets & Optimize Them
 gulp.task('html', function () {

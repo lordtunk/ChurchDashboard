@@ -31,7 +31,13 @@
       prevAttendanceDate,
       currAttendanceDate,
       noChangesMade = true,
-      scrollAnimationMs = 1000;
+      scrollAnimationMs = 1000,
+      dialog = $( "#dialog-form" ).dialog({
+        autoOpen: false,
+        height: 400,
+        width: 450,
+        modal: true
+      });
 
   function update() {
     try {
@@ -44,11 +50,17 @@
   
   function doUpdate() {
     var updatedPeople = [],
-        i, rows, personId, display, displayField;
+        i, j, rows, personId, display, displayField, attendanceDateFound, 
+        first, second, p;
     rows = $('#adult-attendance-table > tbody:last').children();
       for(i=0; i<rows.length; i++) {
+        // Only update modified rows
+        if(rows[i].getAttribute('modified') === null) continue;
+ 
         personId = rows[i].getAttribute('personId');
         displayField = rows[i].querySelector('[name=name_description]');
+        first = isAttendingFirstService(personId);
+        second = isAttendingSecondService(personId);
         
         // An input field should be found for added people
         if(displayField) {
@@ -60,17 +72,37 @@
           display = undefined;
         }
         
+        // Update the cached person information
+        p = getPerson(personId);
+        attendanceDateFound = false;
+        for(j=0; j<p.attendance.length; j++) {
+          if(p.attendance[j].date === currAttendanceDate) {
+            p.attendance[j].first = first;
+            p.attendance[j].second = second;
+            attendanceDateFound = true;
+          }
+        }
+        if(!attendanceDateFound) {
+          p.attendance.push({
+            date: currAttendanceDate,
+            first: first,
+            second: second
+          });
+        }
         updatedPeople.push({
           id: personId,
           adult: true,
           display: display,
           attendanceDate: currAttendanceDate,
-          first: isAttendingFirstService(personId),
-          second: isAttendingSecondService(personId)
+          first: first,
+          second: second
         });
       }
       rows = $('#kid-attendance-table > tbody:last').children();
       for(i=0; i<rows.length; i++) {
+        // Only update modified rows
+        if(rows[i].getAttribute('modified') === null) continue;
+ 
         personId = rows[i].getAttribute('personId');
         displayField = rows[i].querySelector('[name=name_description]');
 
@@ -93,7 +125,12 @@
           second: isAttendingSecondService(personId)
         });
       }
-      savePeople(updatedPeople);
+      if(updatedPeople.length > 0) {
+        savePeople(updatedPeople);
+      } else {
+        $('.attendance-form').unmask();
+        $().toastmessage('showWarningToast', "No attendance was modified");
+      }
   }
 
   function cancel() {
@@ -208,13 +245,7 @@
       secondChecked = person.attendance[ind].second ? 'checked' : '';
     }
 
-    if(person.first_name || person.last_name) {
-      if(person.first_name) display += person.first_name + ' ';
-      if(person.last_name) display += person.last_name;
-    } else {
-      display = person.description;
-    }
-
+    display = getDisplayName(person);
     display = '<a class="person_name" href="manage-person.html?id='+person.id+'">'+display+'</a>';
 
     if(person.adult) {
@@ -226,7 +257,8 @@
       if(secondChecked) ++kidSecondServiceAttendanceCount;
       if(firstChecked || secondChecked) ++kidTotalAttendanceCount;
     }
-    return    '<tr adult="'+person.adult+'" personId="'+person.id+'"><td data-th="Name">'+display+'</td>'+
+    return    '<tr adult="'+person.adult+'" personId="'+person.id+'"><td data-th="Name">'+
+              '<button class="attendance-history-button"><i class="fa fa-archive" /></button>'+display+'</td>'+
               '<td class="attendance-table-attendance-col" service="first" data-th="First?">'+
               '<label for="'+firstId+'"><input id="'+firstId+'" type="checkbox" '+firstChecked+'/></label></td>'+
               '<td class="attendance-table-attendance-col" service="second" data-th="Second?">'+
@@ -236,12 +268,62 @@
   function buildNewPersonRow(person, dt) {
     var firstId = genId(),
         secondId = genId();
-    return    '<tr adult="'+person.adult+'" personId="'+person.id+'"><td data-th="Name">'+
+    return    '<tr adult="'+person.adult+'" personId="'+person.id+'" modified="true"><td data-th="Name">'+
               '<input name="name_description" type="text" placeholder="Last, First or Description" /></td>'+
               '<td class="attendance-table-attendance-col" service="first" data-th="First?">'+
               '<label for="'+firstId+'"><input id="'+firstId+'" type="checkbox" /></label></td>'+
               '<td class="attendance-table-attendance-col" service="second" data-th="Second?">'+
               '<label for="'+secondId+'"><input id="'+secondId+'" type="checkbox" /></label></td></tr>';
+  }
+  
+  function updateNewPeople(data) {
+    noChangesMade = true;
+    if(!data || data.length === 0) return;
+    var personRows = [],
+        lastAdultInd = 0,
+        lastKidInd = 0,
+        i,j,person,newPerson,inserted;
+    // Remove any 'new person' rows from the table
+    $('[personid^=-]').remove();
+    
+    // Create rows for them
+    for(i=0; i<data.length; i++) {
+      personRows.push(buildPersonRow(data[i], currAttendanceDate));
+    }
+    
+    // Add them to the appropriate person table
+    for(i=0; i<data.length; i++) {
+      newPerson = data[i];
+      inserted = false;
+      for(j=0; j<people.length; j++) {
+        person = people[j];
+        
+        if(person.adult === true)
+          lastAdultInd = j;
+        else
+          lastKidInd = j;
+        
+        // Only compare the two if they are both adults or both kids
+        if(person.adult !== newPerson.adult) continue;
+ 
+        if(personCompareTo(newPerson, person) === -1) {
+          $(personRows[i]).insertBefore('[personid='+person.id+']');
+          people.splice(j, 0, newPerson);
+          inserted = true;
+          break;
+        }
+      }
+      // If the person was not inserted into the table in the loop then add to the end
+      if(inserted === false) {
+        if(newPerson.adult === true) {
+          $('#adult-attendance-table > tbody:last').append(personRows[i]);
+          people.splice(lastAdultInd+1, 0, newPerson);
+        } else {
+          $('#kid-attendance-table > tbody:last').append(personRows[i]);
+          people.splice(lastKidInd+1, 0, newPerson);
+        }
+      }
+    }
   }
 
   function updateAttendance(e) {
@@ -250,6 +332,7 @@
         adult = me.parentElement.parentElement.parentElement.getAttribute('adult');
 
     noChangesMade = false;
+    me.parentElement.parentElement.parentElement.setAttribute('modified', true);
     if(adult == 'true') {
       if(me.parentElement.parentElement.getAttribute('service') === 'first') {
         if(me.checked) {
@@ -311,6 +394,31 @@
 
       kidTotalAttendance.innerHTML = kidTotalAttendanceCount;
     }
+  }
+  
+  function showPersonAttendance(personId) {
+    var p = getPerson(personId);
+    if(!p) return;
+    
+    $('#person-attendance-history-table > tbody:last').children().remove();
+ 
+    dialog.dialog("open");
+    dialog[0].querySelector('#person-name').innerHTML = getDisplayName(p, false);
+    var rows = '', a;
+    for(var i=0; i<p.attendance.length; i++) {
+      rows += buildAttendanceRow(p.attendance[i]);
+    }
+    $('#person-attendance-history-table > tbody:last').append(rows);
+  }
+  
+  function buildAttendanceRow(a) {
+    var firstChecked = a.first ? 'checked' : '';
+    var secondChecked = a.second ? 'checked' : '';
+    return    '<tr><td data-th="Date">'+a.date+'</td>'+
+              '<td class="attendance-table-attendance-col" service="first" data-th="First?">'+
+              '<input type="checkbox" '+firstChecked+' disabled/></td>'+
+              '<td class="attendance-table-attendance-col" service="second" data-th="Second?">'+
+              '<input type="checkbox" '+secondChecked+' disabled/></td></tr>';
   }
 
   function setAttendance(totalAdult, firstAdult, secondAdult, totalKid, firstKid, secondKid) {
@@ -377,8 +485,9 @@
       $('.attendance-form').unmask();
       var data = JSON.parse(msg);
       if(data.success) {
-        people = data.people;
-        reset();
+        updateNewPeople(data.people);
+        //people = data.people;
+        //reset();
         $().toastmessage('showSuccessToast', "Save successful");
       } else {
         if(data.error === 1) {
@@ -396,6 +505,51 @@
 
   function isAttendingSecondService(id) {
     return $('[personId='+id+'] input:checkbox:last')[0].checked;
+  }
+  
+  function personCompareTo(p1, p2) {
+    if(p1 == p2) return 0;
+    if(p1 === null) return -1;
+    if(p2 === null) return 1;
+    
+    var p1Display = getDisplayName(p1, true), 
+        p2Display = getDisplayName(p2, true);
+    if(p1.first_name || p1.last_name) {
+      if(p2.first_name || p2.last_name) {
+        if(p1Display === p2Display) return 0;
+        if(p1Display.toLowerCase() < p2Display.toLowerCase()) return -1;
+        if(p1Display.toLowerCase() > p2Display.toLowerCase()) return 1;
+      } else {
+        return -1;
+      }
+    } else if(p2.first_name || p2.last_name) {
+      return 1;
+    } else {
+      if(p1Display === p2Display) return 0;
+      if(p1Display.toLowerCase() < p2Display.toLowerCase()) return -1;
+      if(p1Display.toLowerCase() > p2Display.toLowerCase()) return 1;
+    }
+  }
+  
+  function getDisplayName(person, withComma) {
+    if(person === null) return '';
+    
+    var display = '';
+    if(person.first_name || person.last_name) {
+      if(person.last_name) display += person.last_name;
+      
+      if(person.last_name && person.first_name) {
+        if(withComma === true)
+          display += ", " + person.first_name;
+        else
+          display = person.first_name + ' ' + display;
+      } else if(person.first_name) {
+        display += person.first_name + ' ';
+      }
+    } else {
+      display = person.description;
+    }
+    return display;
   }
 
   function getDateIndex(person, dt) {
@@ -416,6 +570,13 @@
     
     return curr_month + "/" + curr_date + "/" + curr_year;
   }
+  
+  function getPerson(id) {
+    for(var i=0; i<people.length; i++) {
+      if(people[i].id === id) return people[i];
+    }
+    return null;
+  }
 
   function genId() {
     return 'id-'+(++idSequence);
@@ -429,12 +590,19 @@
     $('#attendance-nav').on('click', onClickLink);
     $('#reports-nav').on('click', onClickLink);
     $('a.person_name').on('click', onClickLink);
+    $('button.attendance-history-button').on('click', onClickAttendanceHistoryButton);
   }
   
   function detachLinkClickListeners() {
     $('#attendance-nav').off('click', onClickLink);
     $('#reports-nav').off('click', onClickLink);
     $('a.person_name').off('click', onClickLink);
+    $('button.attendance-history-button').off('click', onClickAttendanceHistoryButton);
+  }
+  
+  function onClickAttendanceHistoryButton() {
+    var personId = this.parentElement.parentElement.getAttribute('personId');
+    showPersonAttendance(personId);
   }
   
   function onClickLink(e) {

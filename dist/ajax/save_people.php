@@ -4,6 +4,7 @@
   $f = new Func();
   $people = json_decode($_POST['people']);
   $dict = array();
+  $new_people = array();
   if(!isset($_SESSION['user_id']) || !isset($_SESSION['session_id'])) {
     $dict['success'] = FALSE;
     $f->logMessage('Session information missing');
@@ -25,10 +26,10 @@
       $f->useTransaction = FALSE;
       $f->beginTransaction();
       
-      if(count($people) > 0) {
-        $query = "DELETE FROM Attendance WHERE attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')";
-        $f->executeAndReturnResult($query, array(":attendance_dt"=>$people[0]->attendanceDate));
-      }
+//       if(count($people) > 0) {
+//         $query = "DELETE FROM Attendance WHERE attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')";
+//         $f->executeAndReturnResult($query, array(":attendance_dt"=>$people[0]->attendanceDate));
+//       }
       
       foreach($people as $key => $person) {
         // Translate TRUE/FALSE to 1/0 so that log statements
@@ -53,10 +54,14 @@
               $query = "INSERT INTO People (last_name, first_name, adult, last_modified_dt, modified_by, creation_dt, created_by) VALUES (:last_name, :first_name, :adult, NOW(), :user_id, NOW(), :user_id)";
               $person->id = $f->queryLastInsertId($query, array(":last_name"=>$person->last_name, ":first_name"=>$person->first_name, ":adult"=>$person->adult, ":user_id"=>$user_id));
             }
+            array_push($new_people, $person->id);
           }
         } else {
           $query = "UPDATE People SET active=true WHERE id=:id";
           $f->executeAndReturnResult($query, array(":id"=>$person->id));
+          
+          $query = "DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')";
+          $f->executeAndReturnResult($query, array(":id"=>$person->id, ":attendance_dt"=>$person->attendanceDate));
         }
 
         // Add an Attendance record if the person attended this service
@@ -72,8 +77,14 @@
       $dict['msg']= $e->getMessage();
       $f->rollback();
     }
-    if($dict['success'] == TRUE) {
+    
+    if($dict['success'] == TRUE && count($new_people) > 0) {
       try {
+        // Should be safe to build query as no input from the client is used
+        $idIn = "".$new_people[0];
+        for($i=1; $i < count($new_people); $i++) {
+          $idIn = $idIn.",".$new_people[$i];
+        }
         $query = "SELECT
                     p.id,
                     p.first_name,
@@ -87,6 +98,8 @@
                   FROM
                     People p
                     LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                  WHERE
+                    p.id IN ($idIn)
                   ORDER BY
                     p.last_name IS NOT NULL DESC,
                     p.description IS NOT NULL DESC,
