@@ -27670,3 +27670,35 @@
 12-20-14 8:47 pm	:first => 1
 12-20-14 8:47 pm	:second => 1
 12-20-14 8:47 pm	Success: TRUE
+12-20-14 9:04 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+12-20-14 9:04 pm	:user_id => 1
+12-20-14 9:04 pm	:session_id => 5495f479e69672.97069096
+12-20-14 9:04 pm	Success: TRUE
+12-20-14 9:04 pm	1
+12-20-14 9:04 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+12-20-14 9:04 pm	:user_id => 1
+12-20-14 9:04 pm	:session_id => 5495f479e69672.97069096
+12-20-14 9:04 pm	Success: TRUE
+12-20-14 9:04 pm	1
+12-20-14 9:04 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description,
+                  attendance_dt
+12-20-14 9:04 pm	No parameters
+12-20-14 9:04 pm	Success
