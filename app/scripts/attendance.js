@@ -53,7 +53,7 @@
         i, j, rows, personId, display, displayField, attendanceDateFound, 
         first, second, p;
     rows = $('#adult-attendance-table > tbody:last').children();
-      for(i=0; i<rows.length; i++) {
+    for(i=0; i<rows.length; i++) {
         // Only update modified rows
         if(rows[i].getAttribute('modified') === null) continue;
  
@@ -72,22 +72,26 @@
           display = undefined;
         }
         
-        // Update the cached person information
-        p = getPerson(personId);
-        attendanceDateFound = false;
-        for(j=0; j<p.attendance.length; j++) {
-          if(p.attendance[j].date === currAttendanceDate) {
-            p.attendance[j].first = first;
-            p.attendance[j].second = second;
-            attendanceDateFound = true;
+        if(personId.indexOf('-') === -1) {
+          // Update the cached person information
+          p = getPerson(personId);
+          if(p) {
+            attendanceDateFound = false;
+            for(j=0; j<p.attendance.length; j++) {
+              if(p.attendance[j].date === currAttendanceDate) {
+                p.attendance[j].first = first;
+                p.attendance[j].second = second;
+                attendanceDateFound = true;
+              }
+            }
+            if(!attendanceDateFound) {
+              p.attendance.push({
+                date: currAttendanceDate,
+                first: first,
+                second: second
+              });
+            }
           }
-        }
-        if(!attendanceDateFound) {
-          p.attendance.push({
-            date: currAttendanceDate,
-            first: first,
-            second: second
-          });
         }
         updatedPeople.push({
           id: personId,
@@ -282,12 +286,13 @@
     var personRows = [],
         lastAdultInd = 0,
         lastKidInd = 0,
-        i,j,person,newPerson,inserted;
+        i,j,person,newPerson,inserted,pEl;
     // Remove any 'new person' rows from the table
     $('[personid^=-]').remove();
     
     // Create rows for them
     for(i=0; i<data.length; i++) {
+      people.push(data[i]);
       personRows.push(buildPersonRow(data[i], currAttendanceDate));
     }
     
@@ -323,6 +328,12 @@
           people.splice(lastKidInd+1, 0, newPerson);
         }
       }
+      
+      // Attach listeners to inserted rows
+      pEl = $('[personid='+newPerson.id+']');
+      pEl.find('a.person_name').on('click', onClickLink);
+      pEl.find('button.attendance-history-button').on('click', onClickAttendanceHistoryButton);
+      pEl.find('input:checkbox').on('change', updateAttendance);
     }
   }
 
