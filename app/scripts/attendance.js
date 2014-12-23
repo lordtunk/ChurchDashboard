@@ -614,7 +614,7 @@
   }
   
   function onClickAttendanceHistoryButton() {
-    var personId = this.parentElement.parentElement.getAttribute('personId');
+    var personId = this.parentElement.parentElement.getAttribute('personId'); // jshint ignore:line
     showPersonAttendance(personId);
   }
   
