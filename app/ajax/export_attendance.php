@@ -84,12 +84,13 @@ session_start();
                   attendance_dt";
       $results = $f->fetchAndExecute($query);
       
-      $fileName = 'attendance.csv';
+      $today = date("m-d-y");
+      $fileName = "attendance as of $today.csv";
  
       header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
       header('Content-Description: File Transfer');
       header("Content-type: text/csv");
-      header("Content-Disposition: attachment; filename={$fileName}");
+      header("Content-Disposition: attachment; filename=\"{$fileName}\"");
       header("Expires: 0");
       header("Pragma: public");
       
