@@ -2101,3 +2101,35 @@
                   attendance_dt DESC
 12-27-14 2:31 pm	No parameters
 12-27-14 2:31 pm	Success
+12-27-14 2:35 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+12-27-14 2:35 pm	:user_id => 1
+12-27-14 2:35 pm	:session_id => 549efc999d6a56.44043109
+12-27-14 2:35 pm	Success: TRUE
+12-27-14 2:35 pm	1
+12-27-14 2:35 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+12-27-14 2:35 pm	:user_id => 1
+12-27-14 2:35 pm	:session_id => 549efc999d6a56.44043109
+12-27-14 2:35 pm	Success: TRUE
+12-27-14 2:35 pm	1
+12-27-14 2:35 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description,
+                  attendance_dt DESC
+12-27-14 2:35 pm	No parameters
+12-27-14 2:35 pm	Success
