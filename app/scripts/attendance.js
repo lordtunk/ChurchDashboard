@@ -15,6 +15,7 @@
       activeFalse = document.querySelector('#active-false'),
       updateBtn = document.querySelector('#update'),
       cancelBtn = document.querySelector('#cancel'),
+      exportBtn = document.querySelector('#export'),
       selectDateBtn = document.querySelector('#go-arrow'),
       addAdultBtn = document.querySelector('#add-adult'),
       addKidBtn = document.querySelector('#add-kid'),
@@ -39,6 +40,10 @@
         modal: true
       });
 
+  function exportAttendance() {
+    window.location = 'ajax/export_attendance.php';
+  }
+  
   function update() {
     try {
       $('.attendance-form').mask('Loading...');
@@ -628,6 +633,7 @@
 
   updateBtn.addEventListener('click', update);
   cancelBtn.addEventListener('click', cancel);
+  exportBtn.addEventListener('click', exportAttendance);
   selectDateBtn.addEventListener('click', onSelectAttendanceDate);
   addAdultBtn.addEventListener('click', addAdult);
   addKidBtn.addEventListener('click', addKid);

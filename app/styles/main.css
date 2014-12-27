@@ -225,6 +225,10 @@ main {
   margin: 10px 10px 10px 0;
 }
 
+#export {
+  margin-left: 10px;
+}
+
 .spacer {
   -webkit-flex: 1;
   flex: 1;
