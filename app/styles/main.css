@@ -259,10 +259,14 @@ main {
   text-align: center;
 }
 
-.top-bottom-links {
+.navigation-links {
   display: inline-block;
   float: right;
   margin: 20px;
+}
+
+.jump-to {
+  margin-right: 10px;
 }
 
 #person-attendance-table-container {

@@ -216,6 +216,7 @@
   }
 
   function processPeople(data) {
+    clearNavigation();
     detachLinkClickListeners();
     $('.attendance-table-attendance-col input:checkbox').off('change');
     adultTotalAttendanceCount = 0;
@@ -229,10 +230,11 @@
     var adultRows = '', kidRows = '';
     for(var i=0; i<people.length; i++) {
       if(people[i].active == activeTrue.checked) {
-        if(people[i].adult)
+        if(people[i].adult) {
           adultRows += buildPersonRow(people[i], dt);
-        else
+        } else {
           kidRows += buildPersonRow(people[i], dt);
+        }
       }
     }
     setAttendance(adultTotalAttendanceCount, adultFirstServiceAttendanceCount, adultSecondServiceAttendanceCount, kidTotalAttendanceCount, kidFirstServiceAttendanceCount, kidSecondServiceAttendanceCount);
@@ -243,6 +245,7 @@
   }
 
   function buildPersonRow(person, dt) {
+    appendNavigationOption(person.id, person.last_name, person.adult);
     var firstChecked = '',
         secondChecked = '',
         display = '',
@@ -623,6 +626,36 @@
     showPersonAttendance(personId);
   }
   
+  function clearNavigation() {
+    document.querySelector('#adult-jump-to').innerHTML = '<option>--Jump To Letter--</option>';
+    document.querySelector('#kid-jump-to').innerHTML = '<option>--Jump To Letter--</option>';
+  }
+  
+  function appendNavigationOption(id, lastName, isAdult) {
+    if(!lastName) return;
+    var containerId = '#'+(isAdult ? 'adult' : 'kid') + '-jump-to';
+    var letter = lastName.substr(0,1).toUpperCase();
+    if($(containerId+' option:contains("'+letter+'")').length > 0) return;
+    var s = document.querySelector(containerId);
+    var o = document.createElement('option');
+    o.setAttribute('scroll_to_id', id);
+    o.innerHTML = letter;
+    s.appendChild(o);
+  }
+  
+  function jumpTo(e) {
+    var o = e.target.options[e.target.options.selectedIndex];
+    if(!o) return;
+
+    var scrollTo = $('[personid='+o.getAttribute('scroll_to_id')+']')[0];
+    if(!scrollTo) return;
+    var containerId = '#'+((e.target.id.indexOf('adult') == -1) ? 'kid' : 'adult') + '-attendance-table-container',
+        screenOff = $(containerId).offset().top,
+        scrollOff = scrollTo.offsetTop;
+    $('body').animate({ scrollTop: screenOff }, 300);
+    $(containerId).animate({ scrollTop: scrollOff }, scrollAnimationMs);
+  }
+  
   function onClickLink(e) {
     if(!(noChangesMade || confirm("If you continue you will lose any unsaved changes. Continue?"))) {
       e.preventDefault();
@@ -637,7 +670,7 @@
   selectDateBtn.addEventListener('click', onSelectAttendanceDate);
   addAdultBtn.addEventListener('click', addAdult);
   addKidBtn.addEventListener('click', addKid);
-
+  $('.jump-to').on('change', jumpTo);
   $('.top-bottom-links a').on('click', onClickTopBottom);
   
 
