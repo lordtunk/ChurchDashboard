@@ -193,8 +193,9 @@ gulp.task('git:push', function () {
   return gulp.src('./')
     .pipe(git.add())
     .pipe(git.commit(argv.m))
-    .pipe(git.push('origin', 'develop'))
-    .pipe(gulp.dest('./'));
+    .pipe(git.push('origin', 'develop', function (err) {
+      if (err) throw err;
+    }));
 });
 
 gulp.task('git', function() {
