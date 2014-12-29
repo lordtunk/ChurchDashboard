@@ -33,6 +33,7 @@ var cache = require('gulp-cache');
 var reload = browserSync.reload;
 var bump = require('gulp-bump');
 var git = require('gulp-git');
+var shell = require('gulp-shell');
 
 cache.clearAll();
 
@@ -195,11 +196,16 @@ gulp.task('git:commit', function () {
     .pipe(git.commit(argv.m));
 });
 
-gulp.task('git:push', function () {
-  git.push('origin', 'develop', function (err) {
-    if (err) throw err;
-  });
-});
+gulp.task('git:push', shell.task('git push origin develop'));
+
+// gulp.task('git:push', function () {
+//   shell.task([
+//     'git push origin develop'
+//   ]);
+// //   git.push('origin', 'develop', function (err) {
+// //     if (err) throw err;
+// //   });
+// });
 
 gulp.task('git', function() {
   var argv = require('yargs').argv;
