@@ -27,5 +27,10 @@
   "engines": {
     "node": ">=0.10.0"
   },
-  "private": true
+  "private": true,
+  "version": "1.2.7",
+  "dependencies": {
+    "gulp-bump": "^0.1.11",
+    "gulp-git": "^0.5.5"
+  }
 }

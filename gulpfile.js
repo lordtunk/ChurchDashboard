@@ -31,6 +31,8 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var cache = require('gulp-cache');
 var reload = browserSync.reload;
+var bump = require('gulp-bump');
+var git = require('gulp-git');
 
 cache.clearAll();
 
@@ -155,6 +157,54 @@ gulp.task('files:config', function() {
 });
 
 gulp.task('files', ['files:ajax', 'files:config']);
+
+gulp.task('bump-patch', function(){
+  gulp.src(['./app/manifest.webapp'])
+  .pipe(bump({type:'patch'}))
+  .pipe(gulp.dest('./app/'));
+  
+  gulp.src(['./package.json'])
+  .pipe(bump({type:'patch'}))
+  .pipe(gulp.dest('./'));
+});
+
+gulp.task('bump-minor', function(){
+  gulp.src(['./app/manifest.webapp'])
+  .pipe(bump({type:'minor'}))
+  .pipe(gulp.dest('./app/'));
+  
+  gulp.src(['./package.json'])
+  .pipe(bump({type:'minor'}))
+  .pipe(gulp.dest('./'));
+});
+
+gulp.task('bump-major', function(){
+  gulp.src(['./app/manifest.webapp'])
+  .pipe(bump({type:'major'}))
+  .pipe(gulp.dest('./app/'));
+  
+  gulp.src(['./package.json'])
+  .pipe(bump({type:'major'}))
+  .pipe(gulp.dest('./'));
+});
+
+gulp.task('git:push', function () {
+  var argv = require('yargs').argv;
+  return gulp.src('./')
+    .pipe(git.add())
+    .pipe(git.commit(argv.m))
+    .pipe(git.push('origin', 'develop'))
+    .pipe(gulp.dest('./'));
+});
+
+gulp.task('git', function() {
+  var argv = require('yargs').argv;
+  if(!argv.m) {
+    throw 'To commit code you must specify a message using "--m"';
+    return;
+  }
+  runSequence('styles', 'jshint', 'html', 'images', 'files', 'scripts', 'bump-patch', 'git:push');
+});
 
 // Clean Output Directory
 gulp.task('clean', function (cb) {
