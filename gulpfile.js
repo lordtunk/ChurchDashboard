@@ -188,14 +188,17 @@ gulp.task('bump-major', function(){
   .pipe(gulp.dest('./'));
 });
 
-gulp.task('git:push', function () {
+gulp.task('git:commit', function () {
   var argv = require('yargs').argv;
   return gulp.src('./')
     .pipe(git.add())
-    .pipe(git.commit(argv.m))
-    .pipe(git.push('origin', 'develop', function (err) {
-      if (err) throw err;
-    }));
+    .pipe(git.commit(argv.m));
+});
+
+gulp.task('git:push', function () {
+  git.push('origin', 'develop', function (err) {
+    if (err) throw err;
+  });
 });
 
 gulp.task('git', function() {
@@ -204,7 +207,7 @@ gulp.task('git', function() {
     throw 'To commit code you must specify a message using "--m"';
     return;
   }
-  runSequence('styles', 'jshint', 'html', 'images', 'files', 'scripts', 'bump-patch', 'git:push');
+  runSequence('styles', 'jshint', 'html', 'images', 'files', 'scripts', 'bump-patch', 'git:commit', 'git:push');
 });
 
 // Clean Output Directory
