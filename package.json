@@ -29,7 +29,7 @@
     "node": ">=0.10.0"
   },
   "private": true,
-  "version": "1.2.10",
+  "version": "1.2.14",
   "dependencies": {
     "gulp-bump": "^0.1.11",
     "gulp-git": "^0.5.5"

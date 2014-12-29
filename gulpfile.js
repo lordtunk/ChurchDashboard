@@ -189,33 +189,6 @@ gulp.task('bump-major', function(){
   .pipe(gulp.dest('./'));
 });
 
-gulp.task('git:commit', function () {
-  var argv = require('yargs').argv;
-  return gulp.src('./')
-    .pipe(git.add())
-    .pipe(git.commit(argv.m));
-});
-
-gulp.task('git:push', shell.task('git push origin develop'));
-
-// gulp.task('git:push', function () {
-//   shell.task([
-//     'git push origin develop'
-//   ]);
-// //   git.push('origin', 'develop', function (err) {
-// //     if (err) throw err;
-// //   });
-// });
-
-gulp.task('git', function() {
-  var argv = require('yargs').argv;
-  if(!argv.m) {
-    throw 'To commit code you must specify a message using "--m"';
-    return;
-  }
-  runSequence('styles', 'jshint', 'html', 'images', 'files', 'scripts', 'bump-patch', 'git:commit', 'git:push');
-});
-
 // Clean Output Directory
 gulp.task('clean', function (cb) {
   rimraf('dist', rimraf.bind({}, '.tmp', cb));
