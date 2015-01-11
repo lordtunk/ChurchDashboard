@@ -9495,3 +9495,44 @@
 01-10-15 7:35 pm	:session_id => 54b1bffac40a28.04712864
 01-10-15 7:35 pm	Success: TRUE
 01-10-15 7:35 pm	1
+01-11-15 7:55 am	UPDATE Users SET session_id=:session_id where username=:username AND password=:password
+01-11-15 7:55 am	:session_id => 54b272ca001346.20033563
+01-11-15 7:55 am	:username => alex
+01-11-15 7:55 am	:password => d693b886b75d616e6837e10869bb722b
+01-11-15 7:55 am	Success: TRUE
+01-11-15 7:55 am	SELECT id FROM Users WHERE username=:username AND password=:password
+01-11-15 7:55 am	:username => alex
+01-11-15 7:55 am	:password => d693b886b75d616e6837e10869bb722b
+01-11-15 7:55 am	Success
+01-11-15 7:55 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-11-15 7:55 am	:user_id => 1
+01-11-15 7:55 am	:session_id => 54b272ca001346.20033563
+01-11-15 7:55 am	Success: TRUE
+01-11-15 7:55 am	1
+01-11-15 7:55 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-11-15 7:55 am	:user_id => 1
+01-11-15 7:55 am	:session_id => 54b272ca001346.20033563
+01-11-15 7:55 am	Success: TRUE
+01-11-15 7:55 am	1
+01-11-15 7:55 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description,
+                  attendance_dt DESC
+01-11-15 7:55 am	No parameters
+01-11-15 7:55 am	Success

@@ -148,7 +148,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('files:ajax', function() {
-    return gulp.src('app/ajax/*.php')
+    return gulp.src('app/ajax/*.{php,json}')
         .pipe(gulp.dest('dist/ajax'));
 });
 
