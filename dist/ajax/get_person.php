@@ -27,7 +27,13 @@
                   p.last_name,
                   p.description,
                   p.active,
-                  p.adult
+                  p.adult,
+                  '' street1,
+                  '' street2,
+                  '' city,
+                  '' state,
+                  '' primary_phone,
+                  '' secondary_phone
                 FROM
                   People p
                 WHERE
@@ -43,6 +49,10 @@
           $p['description'] = $row['description'];
           $p['adult'] = $row['adult'] ? TRUE : FALSE;
           $p['active'] = $row['active'] ? TRUE : FALSE;
+          $p['street1'] = $row['street1'];
+          $p['street2'] = $row['street2'];
+          $p['city'] = $row['city'];
+          $p['state'] = $row['state'];
           array_push($people, $p);
         }
         $dict['person'] = $people[0];

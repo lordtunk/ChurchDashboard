@@ -1,7 +1,6 @@
 <?php
   session_start();
   include("func.php");
-  $id = $_GET['id'];
   $f = new Func();
   $dict = array();
   if(!isset($_SESSION['user_id']) || !isset($_SESSION['session_id'])) {
@@ -25,20 +24,12 @@
                   p.id,
                   p.first_name,
                   p.last_name,
-                  p.description,
-                  p.active,
-                  p.adult,
-                  '' street1,
-                  '' street2,
-                  '' city,
-                  '' state,
-                  '' primary_phone,
-                  '' secondary_phone
+                  p.description
                 FROM
                   People p
                 WHERE
-                  p.id=:id";
-      $results = $f->fetchAndExecute($query, array(":id"=>$id));
+                  p.visitor=true";
+      $results = $f->fetchAndExecute($query);
       if(count($results) > 0) {
         $people = array();
         foreach($results as $key => $row) {
@@ -47,17 +38,10 @@
           $p['first_name'] = $row['first_name'];
           $p['last_name'] = $row['last_name'];
           $p['description'] = $row['description'];
-          $p['adult'] = $row['adult'] ? TRUE : FALSE;
-          $p['active'] = $row['active'] ? TRUE : FALSE;
-          $p['street1'] = $row['street1'];
-          $p['street2'] = $row['street2'];
-          $p['city'] = $row['city'];
-          $p['state'] = $row['state'];
           array_push($people, $p);
         }
-        $dict['person'] = $people[0];
+        $dict['people'] = $people;
         $dict['success'] = TRUE;
-        $_SESSION['scroll_to_id'] = $id;
       } else {
         $dict['success'] = FALSE;
       }

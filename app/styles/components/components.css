@@ -2569,6 +2569,23 @@ td:last-child:after {
   }
 }
 
+.table-5 col {
+  width: 137.6px;
+}
+@media only screen and (min-width: 800px) {
+  .table-5 col {
+    width: 172.8px;
+  }
+}
+@media only screen and (min-width: 620px) {
+  .table-5 th:nth-child(2), .table-5 th:nth-child(3),
+  .table-5 td:nth-child(2),
+  .table-5 td:nth-child(3) {
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #ffffff;
+  }
+}
+
 /**
 *
 * Media - imgs/videos

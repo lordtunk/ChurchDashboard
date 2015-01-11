@@ -160,3 +160,23 @@ td:last-child:after {
     }
   }
 }
+
+.table-5 {
+  col {
+    width: $mediumContainer / 5;
+    @include wide {
+      width: $wideContainer / 5;
+    }
+  }
+
+  th,
+  td {
+    @include medium {
+      &:nth-child(2),
+      &:nth-child(3) {
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #ffffff;
+      }
+    }
+  }
+}

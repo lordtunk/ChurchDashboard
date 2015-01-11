@@ -3,7 +3,7 @@
   
   if($('#attendance').length === 0) return;
  
-  $( "#attendance-date" ).datepicker();
+  $('#attendance-date').datepicker();
   var attendanceDate = document.querySelector('#attendance-date'),
       adultTotalAttendance = document.querySelector('#adult-total-attendance'),
       adultFirstServiceAttendance = document.querySelector('#adult-first-service-attendance'),
@@ -33,7 +33,7 @@
       currAttendanceDate,
       noChangesMade = true,
       scrollAnimationMs = 1000,
-      dialog = $( "#dialog-form" ).dialog({
+      dialog = $('.dialog-form').dialog({
         autoOpen: false,
         height: 400,
         width: 450,
@@ -423,7 +423,7 @@
     
     $('#person-attendance-history-table > tbody:last').children().remove();
  
-    dialog.dialog("open");
+    dialog.dialog('open');
     dialog[0].querySelector('#person-name').innerHTML = getDisplayName(p, false);
     var rows = '', a;
     for(var i=0; i<p.attendance.length; i++) {

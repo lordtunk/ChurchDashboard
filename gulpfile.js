@@ -197,9 +197,7 @@ gulp.task('clean', function (cb) {
 // Watch Files For Changes & Reload
 gulp.task('serve', function () {
   browserSync.init({
-    server: {
-      baseDir: ['app', '.tmp']
-    },
+    proxy: "localhost/GuideChurchDash/app",
     notify: false
   });
 

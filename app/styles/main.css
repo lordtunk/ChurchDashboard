@@ -225,8 +225,8 @@ main {
   margin: 10px 10px 10px 0;
 }
 
-#export {
-  margin-left: 10px;
+.first-button {
+  margin-left: 10px !important;
 }
 
 .spacer {
@@ -255,6 +255,18 @@ main {
   -webkit-overflow-scrolling: touch;
 }
 
+#follow-up-table-container {
+  max-height: 500px;
+  width: 100%;
+  display: block;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+#follow-up-table td {
+  padding: 5px 10px;
+}
+
 #attendance-date-display {
   text-align: center;
 }
@@ -274,6 +286,20 @@ main {
   height: 300px;
 }
 
+.follow-up-table-button-col {
+  width: 90px !important;
+  padding: 0 10px 0 0 !important;
+}
+
+.follow-up-table-date-col {
+  width: 80px !important;
+  padding: 0 10px 0 10px;
+}
+
+.follow-up-table-comments-col {
+  width: 200px !important;
+}
+
 .attendance-table-attendance-col {
   width: 30px !important;
 }
@@ -291,11 +317,39 @@ main {
   padding-right: 10px;
 }
 
-.app-content.view-person label,
 .app-content.login-form label,
-.app-content.reports-form label{
+.app-content.reports-form label {
   display: inline-block;
   width:150px;
+  text-align: right;
+}
+
+.dialog-form-inner>label {
+  display: inline-block;
+  width: 50px;
+}
+
+.dialog-form-inner {
+  height: 256px;
+  overflow-y: scroll;
+}
+
+#follow-up-visitors {
+  font-style: italic;
+  display: inline;
+}
+
+.check-field {
+  display: inline-block;
+}
+
+.check-field input {
+  margin: 0 5px;
+}
+
+.app-content.view-person label {
+  display: inline-block;
+  width:165px;
   text-align: right;
 }
 
@@ -308,11 +362,30 @@ main {
   display: inline-block;
 }
 
-.app-content.view-person input[type=text],
-.app-content.login-form input[type=text],
-.app-content.reports-form input[type=text],
-.app-content.reports-form select{
+.app-form input[type=text],
+.app-form input[type=tel],
+.app-form select {
   margin-bottom: 5px;
+}
+
+.delete-follow-up {
+  color: red;
+  margin-left: 5px;
+}
+
+.form-section {
+  display: inline-block;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 10px 10px 5px 0;
+}
+
+.form-section {
+  margin: 0 0 10px 65px;
+}
+
+.form-section > label {
+  width: 100px !important;
 }
 
 .attendance-form .attendance-table-attendance-col label {
@@ -353,7 +426,7 @@ main {
   width: 120px;
 }
 
-/** Larger Screens - desktops and tablets **/
+/* Larger Screens - desktops and tablets */
 @media all and (min-device-width: 1200px) {
   .app-bar {
     position: relative;
@@ -487,5 +560,21 @@ main {
 @media all and (min-width: 800px) {
   .app-content .active-input {
     display: inline-block;
+  }
+  
+  .col-1, .col-2 {
+    display: inline-block;
+  }
+  .col-2 {
+    vertical-align: top;
+  }
+  .form-section-title {
+    padding: 0 0 0 65px;
+  }
+}
+
+@media all and (max-width: 799px) {
+  .form-section-title {
+    padding: 10px 0 0 65px;
   }
 }
