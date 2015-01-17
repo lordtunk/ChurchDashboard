@@ -40,10 +40,11 @@
 		  p.email,
 		  p.primary_phone,
 		  p.secondary_phone,
+		  f.id follow_up_id,
 		  f.type follow_up_type,
 		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
 		  f.comments follow_up_comments,
-		  v.follow_up_id,
+		  v.follow_up_id visitor_follow_up_id,
 		  v.person_id,
 		  fp.first_name follow_up_first_name,
 		  fp.last_name follow_up_last_name,
@@ -54,7 +55,9 @@
 		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
 		  left outer join People fp on fp.id=v.person_id
 		WHERE
-		  p.id=:id";
+		  p.id=:id
+		ORDER BY
+		  f.follow_up_date";
       $results = $f->fetchAndExecute($query, array(":id"=>$id));
       if(count($results) > 0) {
         $people = array();

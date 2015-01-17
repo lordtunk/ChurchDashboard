@@ -106,6 +106,7 @@
     if(p.state)
       stateSelect.value = p.state;
     
+    email.value = p.email;
     primaryPhone.value = p.primary_phone;
     secondaryPhone.value = p.secondary_phone;
     
@@ -139,13 +140,30 @@
       city: $.trim(city.value),
       zip: $.trim(zip.value),
       state: $.trim(stateSelect.value),
+      email: $.trim(email.value),
       primary_phone: $.trim(primaryPhone.value),
-      secondary_phone: $.trim(secondaryPhone.value)
+      secondary_phone: $.trim(secondaryPhone.value),
+      follow_ups: getFollowUps()
     };
     
     if(validateUpdate(p)) {
       savePerson(p);
     }
+  }
+  
+  function getFollowUps() {
+    var followUps = [];
+    $('#follow-up-table tbody tr').each(function(ind, row) {
+      followUps.push({
+	id: row.getAttribute('follow_up_id'),
+	typeCd: row.children[0].getAttribute('typeCd') || '',
+	date: row.children[1].innerHTML || '',
+	comments: row.children[3].innerHTML || '',
+	visitorsIds: row.children[2].getAttribute('visitorsIds').split(',') || '',
+	visitors: row.children[2].innerHTML.split(', ') || ''
+      });
+    });
+    return followUps;
   }
 
   function validateUpdate(p) {
@@ -502,7 +520,7 @@
   }
   
   function onDeleteFollowUpClick(e) {
-    if(confirm("Are you sure you would like to delete this Follow Up?")) {
+    if(confirm("Are you sure you would like to PERMANENTLY delete this Follow Up?")) {
       var id = e.currentTarget.parentElement.parentElement.getAttribute('follow_up_id');
       deleteFollowUp(id);
     }

@@ -544,3 +544,2396 @@
 		  p.id=:id
 01-17-15 9:48 am	:id => 249
 01-17-15 9:48 am	Success
+01-17-15 9:56 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 9:56 am	:user_id => 1
+01-17-15 9:56 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 9:56 am	Success: TRUE
+01-17-15 9:56 am	1
+01-17-15 9:56 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 9:56 am	:user_id => 1
+01-17-15 9:56 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 9:56 am	Success: TRUE
+01-17-15 9:56 am	1
+01-17-15 9:56 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 9:56 am	:id => 249
+01-17-15 9:56 am	Success
+01-17-15 9:56 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 9:56 am	:user_id => 1
+01-17-15 9:56 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 9:56 am	Success: TRUE
+01-17-15 9:56 am	1
+01-17-15 9:56 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 9:56 am	No parameters
+01-17-15 9:56 am	Success
+01-17-15 9:59 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 9:59 am	:user_id => 1
+01-17-15 9:59 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 9:59 am	Success: TRUE
+01-17-15 9:59 am	1
+01-17-15 9:59 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 9:59 am	:user_id => 1
+01-17-15 9:59 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 9:59 am	Success: TRUE
+01-17-15 9:59 am	1
+01-17-15 9:59 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 9:59 am	:id => 144
+01-17-15 9:59 am	Success
+01-17-15 9:59 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 9:59 am	:user_id => 1
+01-17-15 9:59 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 9:59 am	Success: TRUE
+01-17-15 9:59 am	1
+01-17-15 9:59 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 9:59 am	No parameters
+01-17-15 9:59 am	Success
+01-17-15 9:59 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 9:59 am	:user_id => 1
+01-17-15 9:59 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 9:59 am	Success: TRUE
+01-17-15 9:59 am	1
+01-17-15 9:59 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 9:59 am	:user_id => 1
+01-17-15 9:59 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 9:59 am	Success: TRUE
+01-17-15 9:59 am	1
+01-17-15 9:59 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 9:59 am	:id => 144
+01-17-15 9:59 am	Success
+01-17-15 9:59 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 9:59 am	:user_id => 1
+01-17-15 9:59 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 9:59 am	Success: TRUE
+01-17-15 9:59 am	1
+01-17-15 9:59 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 9:59 am	No parameters
+01-17-15 9:59 am	Success
+01-17-15 10:01 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 10:01 am	:user_id => 1
+01-17-15 10:01 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 10:01 am	Success: TRUE
+01-17-15 10:01 am	1
+01-17-15 10:01 am	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-17-15 10:01 am	:first_name => Kathleen
+01-17-15 10:01 am	:last_name => Stevens
+01-17-15 10:01 am	:description => 
+01-17-15 10:01 am	:adult => 1
+01-17-15 10:01 am	:active => 1
+01-17-15 10:01 am	:baptized => 1
+01-17-15 10:01 am	:saved => 1
+01-17-15 10:01 am	:member => 1
+01-17-15 10:01 am	:visitor => 1
+01-17-15 10:01 am	:street1 => 383 Lilyfield LN
+01-17-15 10:01 am	:street2 => 
+01-17-15 10:01 am	:city => Galloway
+01-17-15 10:01 am	:state => OH
+01-17-15 10:01 am	:zip => 43119
+01-17-15 10:01 am	:email => buck3y3girl13@gmail.com
+01-17-15 10:01 am	:primary_phone => 2063756883
+01-17-15 10:01 am	:secondary_phone => 2063756883
+01-17-15 10:01 am	:modified_by => 1
+01-17-15 10:01 am	:id => 144
+01-17-15 10:01 am	Success: TRUE
+01-17-15 10:03 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 10:03 am	:user_id => 1
+01-17-15 10:03 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 10:03 am	Success: TRUE
+01-17-15 10:03 am	1
+01-17-15 10:03 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 10:03 am	:user_id => 1
+01-17-15 10:03 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 10:03 am	Success: TRUE
+01-17-15 10:03 am	1
+01-17-15 10:03 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 10:03 am	:id => 144
+01-17-15 10:03 am	Success
+01-17-15 10:03 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 10:03 am	:user_id => 1
+01-17-15 10:03 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 10:03 am	Success: TRUE
+01-17-15 10:03 am	1
+01-17-15 10:03 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 10:03 am	No parameters
+01-17-15 10:03 am	Success
+01-17-15 10:03 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 10:03 am	:user_id => 1
+01-17-15 10:03 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 10:03 am	Success: TRUE
+01-17-15 10:03 am	1
+01-17-15 10:03 am	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-17-15 10:03 am	:first_name => Kathleen
+01-17-15 10:03 am	:last_name => Stevens
+01-17-15 10:03 am	:description => 
+01-17-15 10:03 am	:adult => 1
+01-17-15 10:03 am	:active => 1
+01-17-15 10:03 am	:baptized => 1
+01-17-15 10:03 am	:saved => 1
+01-17-15 10:03 am	:member => 1
+01-17-15 10:03 am	:visitor => 1
+01-17-15 10:03 am	:street1 => 383 Lilyfield LN
+01-17-15 10:03 am	:street2 => 
+01-17-15 10:03 am	:city => Galloway
+01-17-15 10:03 am	:state => OH
+01-17-15 10:03 am	:zip => 43119
+01-17-15 10:03 am	:email => buck3y3girl13@gmail.com
+01-17-15 10:03 am	:primary_phone => 2063756883
+01-17-15 10:03 am	:secondary_phone => 
+01-17-15 10:03 am	:modified_by => 1
+01-17-15 10:03 am	:id => 144
+01-17-15 10:03 am	Success: TRUE
+01-17-15 10:04 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 10:04 am	:user_id => 1
+01-17-15 10:04 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 10:04 am	Success: TRUE
+01-17-15 10:04 am	1
+01-17-15 10:04 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 10:04 am	:user_id => 1
+01-17-15 10:04 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 10:04 am	Success: TRUE
+01-17-15 10:04 am	1
+01-17-15 10:04 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 10:04 am	:id => 144
+01-17-15 10:04 am	Success
+01-17-15 10:04 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 10:04 am	:user_id => 1
+01-17-15 10:04 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 10:04 am	Success: TRUE
+01-17-15 10:04 am	1
+01-17-15 10:04 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 10:04 am	No parameters
+01-17-15 10:04 am	Success
+01-17-15 10:41 am	Session information missing
+01-17-15 10:41 am	UPDATE Users SET session_id=:session_id where username=:username AND password=:password
+01-17-15 10:41 am	:session_id => 54ba829c90f590.67368003
+01-17-15 10:41 am	:username => alex
+01-17-15 10:41 am	:password => d693b886b75d616e6837e10869bb722b
+01-17-15 10:41 am	Success: TRUE
+01-17-15 10:41 am	SELECT id FROM Users WHERE username=:username AND password=:password
+01-17-15 10:41 am	:username => alex
+01-17-15 10:41 am	:password => d693b886b75d616e6837e10869bb722b
+01-17-15 10:41 am	Success
+01-17-15 10:41 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 10:41 am	:user_id => 1
+01-17-15 10:41 am	:session_id => 54ba829c90f590.67368003
+01-17-15 10:41 am	Success: TRUE
+01-17-15 10:41 am	1
+01-17-15 10:41 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 10:41 am	:user_id => 1
+01-17-15 10:41 am	:session_id => 54ba829c90f590.67368003
+01-17-15 10:41 am	Success: TRUE
+01-17-15 10:41 am	1
+01-17-15 10:41 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description,
+                  attendance_dt DESC
+01-17-15 10:41 am	No parameters
+01-17-15 10:41 am	Success
+01-17-15 10:41 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 10:41 am	:user_id => 1
+01-17-15 10:41 am	:session_id => 54ba829c90f590.67368003
+01-17-15 10:41 am	Success: TRUE
+01-17-15 10:41 am	1
+01-17-15 10:41 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 10:41 am	:user_id => 1
+01-17-15 10:41 am	:session_id => 54ba829c90f590.67368003
+01-17-15 10:41 am	Success: TRUE
+01-17-15 10:41 am	1
+01-17-15 10:41 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 10:41 am	:id => 15
+01-17-15 10:41 am	Success
+01-17-15 10:41 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 10:41 am	:user_id => 1
+01-17-15 10:41 am	:session_id => 54ba829c90f590.67368003
+01-17-15 10:41 am	Success: TRUE
+01-17-15 10:41 am	1
+01-17-15 10:41 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 10:41 am	No parameters
+01-17-15 10:41 am	Success
+01-17-15 10:41 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 10:41 am	:user_id => 1
+01-17-15 10:41 am	:session_id => 54ba829c90f590.67368003
+01-17-15 10:41 am	Success: TRUE
+01-17-15 10:41 am	1
+01-17-15 10:41 am	DELETE FROM FollowUpVisitors WHERE follow_up_id=:id
+01-17-15 10:41 am	:id => 2
+01-17-15 10:41 am	Success: TRUE
+01-17-15 10:41 am	DELETE FROM FollowUps WHERE id=:id
+01-17-15 10:41 am	:id => 2
+01-17-15 10:41 am	Success: TRUE
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     01-17-15 10:51 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 10:51 am	:user_id => 1
+01-17-15 10:51 am	:session_id => 54ba829c90f590.67368003
+01-17-15 10:51 am	Success: TRUE
+01-17-15 10:51 am	1
+01-17-15 10:51 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 10:51 am	:user_id => 1
+01-17-15 10:51 am	:session_id => 54ba829c90f590.67368003
+01-17-15 10:51 am	Success: TRUE
+01-17-15 10:51 am	1
+01-17-15 10:51 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 10:51 am	:id => 15
+01-17-15 10:51 am	Success
+01-17-15 10:51 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 10:51 am	:user_id => 1
+01-17-15 10:51 am	:session_id => 54ba829c90f590.67368003
+01-17-15 10:51 am	Success: TRUE
+01-17-15 10:51 am	1
+01-17-15 10:51 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 10:51 am	No parameters
+01-17-15 10:51 am	Success
+01-17-15 10:55 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 10:55 am	:user_id => 1
+01-17-15 10:55 am	:session_id => 54ba829c90f590.67368003
+01-17-15 10:55 am	Success: TRUE
+01-17-15 10:55 am	1
+01-17-15 10:55 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 10:55 am	:user_id => 1
+01-17-15 10:55 am	:session_id => 54ba829c90f590.67368003
+01-17-15 10:55 am	Success: TRUE
+01-17-15 10:55 am	1
+01-17-15 10:55 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 10:55 am	:id => 15
+01-17-15 10:55 am	Success
+01-17-15 10:55 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 10:55 am	:user_id => 1
+01-17-15 10:55 am	:session_id => 54ba829c90f590.67368003
+01-17-15 10:55 am	Success: TRUE
+01-17-15 10:55 am	1
+01-17-15 10:55 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 10:55 am	No parameters
+01-17-15 10:55 am	Success
+01-17-15 11:00 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:00 am	:user_id => 1
+01-17-15 11:00 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:00 am	Success: TRUE
+01-17-15 11:00 am	1
+01-17-15 11:00 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:00 am	:user_id => 1
+01-17-15 11:00 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:00 am	Success: TRUE
+01-17-15 11:00 am	1
+01-17-15 11:00 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 11:00 am	:id => 15
+01-17-15 11:00 am	Success
+01-17-15 11:00 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:00 am	:user_id => 1
+01-17-15 11:00 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:00 am	Success: TRUE
+01-17-15 11:00 am	1
+01-17-15 11:00 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 11:00 am	No parameters
+01-17-15 11:00 am	Success
+01-17-15 11:01 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:01 am	:user_id => 1
+01-17-15 11:01 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:01 am	Success: TRUE
+01-17-15 11:01 am	1
+01-17-15 11:01 am	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-17-15 11:01 am	:first_name => Ashley
+01-17-15 11:01 am	:last_name => Andrews
+01-17-15 11:01 am	:description => 
+01-17-15 11:01 am	:adult => 1
+01-17-15 11:01 am	:active => 1
+01-17-15 11:01 am	:baptized => 0
+01-17-15 11:01 am	:saved => 0
+01-17-15 11:01 am	:member => 0
+01-17-15 11:01 am	:visitor => 0
+01-17-15 11:01 am	:street1 => 
+01-17-15 11:01 am	:street2 => 
+01-17-15 11:01 am	:city => 
+01-17-15 11:01 am	:state => OH
+01-17-15 11:01 am	:zip => 
+01-17-15 11:01 am	:email => 
+01-17-15 11:01 am	:primary_phone => 
+01-17-15 11:01 am	:secondary_phone => 
+01-17-15 11:01 am	:modified_by => 1
+01-17-15 11:01 am	:id => 15
+01-17-15 11:01 am	Success: TRUE
+01-17-15 11:01 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:01 am	:user_id => 1
+01-17-15 11:01 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:01 am	Success: TRUE
+01-17-15 11:01 am	1
+01-17-15 11:01 am	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-17-15 11:01 am	:first_name => Ashley
+01-17-15 11:01 am	:last_name => Andrews
+01-17-15 11:01 am	:description => 
+01-17-15 11:01 am	:adult => 1
+01-17-15 11:01 am	:active => 1
+01-17-15 11:01 am	:baptized => 0
+01-17-15 11:01 am	:saved => 0
+01-17-15 11:01 am	:member => 0
+01-17-15 11:01 am	:visitor => 0
+01-17-15 11:01 am	:street1 => 
+01-17-15 11:01 am	:street2 => 
+01-17-15 11:01 am	:city => 
+01-17-15 11:01 am	:state => OH
+01-17-15 11:01 am	:zip => 
+01-17-15 11:01 am	:email => 
+01-17-15 11:01 am	:primary_phone => 
+01-17-15 11:01 am	:secondary_phone => 
+01-17-15 11:01 am	:modified_by => 1
+01-17-15 11:01 am	:id => 15
+01-17-15 11:01 am	Success: TRUE
+01-17-15 11:17 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:17 am	:user_id => 1
+01-17-15 11:17 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:17 am	Success: TRUE
+01-17-15 11:17 am	1
+01-17-15 11:17 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:17 am	:user_id => 1
+01-17-15 11:17 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:17 am	Success: TRUE
+01-17-15 11:17 am	1
+01-17-15 11:17 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 11:17 am	:id => 15
+01-17-15 11:17 am	Success
+01-17-15 11:17 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:17 am	:user_id => 1
+01-17-15 11:17 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:17 am	Success: TRUE
+01-17-15 11:17 am	1
+01-17-15 11:17 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 11:17 am	No parameters
+01-17-15 11:17 am	Success
+01-17-15 11:17 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:17 am	:user_id => 1
+01-17-15 11:17 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:17 am	Success: TRUE
+01-17-15 11:17 am	1
+01-17-15 11:17 am	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-17-15 11:17 am	:first_name => Ashley
+01-17-15 11:17 am	:last_name => Andrews
+01-17-15 11:17 am	:description => 
+01-17-15 11:17 am	:adult => 1
+01-17-15 11:17 am	:active => 1
+01-17-15 11:17 am	:baptized => 0
+01-17-15 11:17 am	:saved => 0
+01-17-15 11:17 am	:member => 0
+01-17-15 11:17 am	:visitor => 0
+01-17-15 11:17 am	:street1 => 
+01-17-15 11:17 am	:street2 => 
+01-17-15 11:17 am	:city => 
+01-17-15 11:17 am	:state => OH
+01-17-15 11:17 am	:zip => 
+01-17-15 11:17 am	:email => 
+01-17-15 11:17 am	:primary_phone => 
+01-17-15 11:17 am	:secondary_phone => 
+01-17-15 11:17 am	:modified_by => 1
+01-17-15 11:17 am	:id => 15
+01-17-15 11:17 am	Success: TRUE
+01-17-15 11:17 am	DELETE FROM FollowUpVisitors WHERE follow_up_id=:id
+01-17-15 11:17 am	:id => 1
+01-17-15 11:17 am	Success: TRUE
+01-17-15 11:18 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:18 am	:user_id => 1
+01-17-15 11:18 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:18 am	Success: TRUE
+01-17-15 11:18 am	1
+01-17-15 11:18 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:18 am	:user_id => 1
+01-17-15 11:18 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:18 am	Success: TRUE
+01-17-15 11:18 am	1
+01-17-15 11:18 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 11:18 am	:id => 15
+01-17-15 11:18 am	Success
+01-17-15 11:18 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:18 am	:user_id => 1
+01-17-15 11:18 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:18 am	Success: TRUE
+01-17-15 11:18 am	1
+01-17-15 11:18 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 11:18 am	No parameters
+01-17-15 11:18 am	Success
+01-17-15 11:19 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:19 am	:user_id => 1
+01-17-15 11:19 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:19 am	Success: TRUE
+01-17-15 11:19 am	1
+01-17-15 11:19 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:19 am	:user_id => 1
+01-17-15 11:19 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:19 am	Success: TRUE
+01-17-15 11:19 am	1
+01-17-15 11:19 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 11:19 am	:id => 15
+01-17-15 11:19 am	Success
+01-17-15 11:19 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:19 am	:user_id => 1
+01-17-15 11:19 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:19 am	Success: TRUE
+01-17-15 11:19 am	1
+01-17-15 11:19 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 11:19 am	No parameters
+01-17-15 11:19 am	Success
+01-17-15 11:23 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:23 am	:user_id => 1
+01-17-15 11:23 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:23 am	Success: TRUE
+01-17-15 11:23 am	1
+01-17-15 11:23 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:23 am	:user_id => 1
+01-17-15 11:23 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:23 am	Success: TRUE
+01-17-15 11:23 am	1
+01-17-15 11:23 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 11:23 am	No parameters
+01-17-15 11:23 am	Success
+01-17-15 11:23 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:23 am	:user_id => 1
+01-17-15 11:23 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:23 am	Success: TRUE
+01-17-15 11:23 am	1
+01-17-15 11:23 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 11:23 am	:id => 15
+01-17-15 11:23 am	Success
+01-17-15 11:23 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:23 am	:user_id => 1
+01-17-15 11:23 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:23 am	Success: TRUE
+01-17-15 11:23 am	1
+01-17-15 11:23 am	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-17-15 11:23 am	:first_name => Ashley
+01-17-15 11:23 am	:last_name => Andrews
+01-17-15 11:23 am	:description => 
+01-17-15 11:23 am	:adult => 1
+01-17-15 11:23 am	:active => 1
+01-17-15 11:23 am	:baptized => 0
+01-17-15 11:23 am	:saved => 0
+01-17-15 11:23 am	:member => 0
+01-17-15 11:23 am	:visitor => 0
+01-17-15 11:23 am	:street1 => 
+01-17-15 11:23 am	:street2 => 
+01-17-15 11:23 am	:city => 
+01-17-15 11:23 am	:state => OH
+01-17-15 11:23 am	:zip => 
+01-17-15 11:23 am	:email => 
+01-17-15 11:23 am	:primary_phone => 
+01-17-15 11:23 am	:secondary_phone => 
+01-17-15 11:23 am	:modified_by => 1
+01-17-15 11:23 am	:id => 15
+01-17-15 11:23 am	Success: TRUE
+01-17-15 11:23 am	DELETE FROM FollowUpVisitors WHERE follow_up_id=:id
+01-17-15 11:23 am	:id => 1
+01-17-15 11:23 am	Success: TRUE
+01-17-15 11:23 am	
+01-17-15 11:23 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:23 am	:user_id => 1
+01-17-15 11:23 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:23 am	Success: TRUE
+01-17-15 11:23 am	1
+01-17-15 11:23 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:23 am	:user_id => 1
+01-17-15 11:23 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:23 am	Success: TRUE
+01-17-15 11:23 am	1
+01-17-15 11:23 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 11:23 am	:id => 15
+01-17-15 11:23 am	Success
+01-17-15 11:23 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:23 am	:user_id => 1
+01-17-15 11:23 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:23 am	Success: TRUE
+01-17-15 11:23 am	1
+01-17-15 11:23 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 11:23 am	No parameters
+01-17-15 11:23 am	Success
+01-17-15 11:23 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:23 am	:user_id => 1
+01-17-15 11:23 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:23 am	Success: TRUE
+01-17-15 11:23 am	1
+01-17-15 11:23 am	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-17-15 11:23 am	:first_name => Ashley
+01-17-15 11:23 am	:last_name => Andrews
+01-17-15 11:23 am	:description => 
+01-17-15 11:23 am	:adult => 1
+01-17-15 11:23 am	:active => 1
+01-17-15 11:23 am	:baptized => 0
+01-17-15 11:23 am	:saved => 0
+01-17-15 11:23 am	:member => 0
+01-17-15 11:23 am	:visitor => 0
+01-17-15 11:23 am	:street1 => 
+01-17-15 11:23 am	:street2 => 
+01-17-15 11:23 am	:city => 
+01-17-15 11:23 am	:state => OH
+01-17-15 11:23 am	:zip => 
+01-17-15 11:23 am	:email => 
+01-17-15 11:23 am	:primary_phone => 
+01-17-15 11:23 am	:secondary_phone => 
+01-17-15 11:23 am	:modified_by => 1
+01-17-15 11:23 am	:id => 15
+01-17-15 11:23 am	Success: TRUE
+01-17-15 11:23 am	DELETE FROM FollowUpVisitors WHERE follow_up_id=:id
+01-17-15 11:23 am	:id => 1
+01-17-15 11:23 am	Success: TRUE
+01-17-15 11:23 am	
+01-17-15 11:25 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:25 am	:user_id => 1
+01-17-15 11:25 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:25 am	Success: TRUE
+01-17-15 11:25 am	1
+01-17-15 11:25 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:25 am	:user_id => 1
+01-17-15 11:25 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:25 am	Success: TRUE
+01-17-15 11:25 am	1
+01-17-15 11:25 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 11:25 am	:id => 15
+01-17-15 11:25 am	Success
+01-17-15 11:25 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:25 am	:user_id => 1
+01-17-15 11:25 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:25 am	Success: TRUE
+01-17-15 11:25 am	1
+01-17-15 11:25 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 11:25 am	No parameters
+01-17-15 11:25 am	Success
+01-17-15 11:25 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:25 am	:user_id => 1
+01-17-15 11:25 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:25 am	Success: TRUE
+01-17-15 11:25 am	1
+01-17-15 11:25 am	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-17-15 11:25 am	:first_name => Ashley
+01-17-15 11:25 am	:last_name => Andrews
+01-17-15 11:25 am	:description => 
+01-17-15 11:25 am	:adult => 1
+01-17-15 11:25 am	:active => 1
+01-17-15 11:25 am	:baptized => 0
+01-17-15 11:25 am	:saved => 0
+01-17-15 11:25 am	:member => 0
+01-17-15 11:25 am	:visitor => 0
+01-17-15 11:25 am	:street1 => 
+01-17-15 11:25 am	:street2 => 
+01-17-15 11:25 am	:city => 
+01-17-15 11:25 am	:state => OH
+01-17-15 11:25 am	:zip => 
+01-17-15 11:25 am	:email => 
+01-17-15 11:25 am	:primary_phone => 
+01-17-15 11:25 am	:secondary_phone => 
+01-17-15 11:25 am	:modified_by => 1
+01-17-15 11:25 am	:id => 15
+01-17-15 11:25 am	Success: TRUE
+01-17-15 11:25 am	DELETE FROM FollowUpVisitors WHERE follow_up_id=:id
+01-17-15 11:25 am	:id => 1
+01-17-15 11:25 am	Success: TRUE
+01-17-15 11:25 am	143,178
+01-17-15 11:25 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:25 am	:follow_up_id => 1
+01-17-15 11:25 am	:person_id => 143
+01-17-15 11:25 am	Success: TRUE
+01-17-15 11:25 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:25 am	:follow_up_id => 1
+01-17-15 11:25 am	:person_id => 178
+01-17-15 11:25 am	Success: TRUE
+01-17-15 11:25 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:25 am	:user_id => 1
+01-17-15 11:25 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:25 am	Success: TRUE
+01-17-15 11:25 am	1
+01-17-15 11:25 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:25 am	:user_id => 1
+01-17-15 11:25 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:25 am	Success: TRUE
+01-17-15 11:25 am	1
+01-17-15 11:25 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 11:25 am	:id => 15
+01-17-15 11:25 am	Success
+01-17-15 11:25 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:25 am	:user_id => 1
+01-17-15 11:25 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:25 am	Success: TRUE
+01-17-15 11:25 am	1
+01-17-15 11:25 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 11:25 am	No parameters
+01-17-15 11:25 am	Success
+01-17-15 11:26 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:26 am	:user_id => 1
+01-17-15 11:26 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:26 am	1
+01-17-15 11:26 am	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-17-15 11:26 am	:first_name => Ashley
+01-17-15 11:26 am	:last_name => Andrews
+01-17-15 11:26 am	:description => 
+01-17-15 11:26 am	:adult => 1
+01-17-15 11:26 am	:active => 1
+01-17-15 11:26 am	:baptized => 0
+01-17-15 11:26 am	:saved => 0
+01-17-15 11:26 am	:member => 0
+01-17-15 11:26 am	:visitor => 0
+01-17-15 11:26 am	:street1 => 
+01-17-15 11:26 am	:street2 => 
+01-17-15 11:26 am	:city => 
+01-17-15 11:26 am	:state => OH
+01-17-15 11:26 am	:zip => 
+01-17-15 11:26 am	:email => 
+01-17-15 11:26 am	:primary_phone => 
+01-17-15 11:26 am	:secondary_phone => 
+01-17-15 11:26 am	:modified_by => 1
+01-17-15 11:26 am	:id => 15
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:26 am	DELETE FROM FollowUpVisitors WHERE follow_up_id=:id
+01-17-15 11:26 am	:id => 1
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:26 am	143,178
+01-17-15 11:26 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:26 am	:follow_up_id => 1
+01-17-15 11:26 am	:person_id => 143
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:26 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:26 am	:follow_up_id => 1
+01-17-15 11:26 am	:person_id => 178
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:26 am	INSERT INTO FollowUps 
+		      (follow_up_to_person_id, type, follow_up_date, comments)
+		    VALUES
+		      (:person_id, :type, :follow_up_date, :comments)
+01-17-15 11:26 am	:person_id => 15
+01-17-15 11:26 am	:type => 2
+01-17-15 11:26 am	:follow_up_date => 01/26/2015
+01-17-15 11:26 am	:comments => Test
+01-17-15 11:26 am	Success: 2
+01-17-15 11:26 am	144,177
+01-17-15 11:26 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:26 am	:follow_up_id => 2
+01-17-15 11:26 am	:person_id => 144
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:26 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:26 am	:follow_up_id => 2
+01-17-15 11:26 am	:person_id => 177
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:26 am	INSERT INTO FollowUps 
+		      (follow_up_to_person_id, type, follow_up_date, comments)
+		    VALUES
+		      (:person_id, :type, :follow_up_date, :comments)
+01-17-15 11:26 am	:person_id => 15
+01-17-15 11:26 am	:type => 1
+01-17-15 11:26 am	:follow_up_date => 01/06/2015
+01-17-15 11:26 am	:comments => No answer
+01-17-15 11:26 am	Success: 3
+01-17-15 11:26 am	176
+01-17-15 11:26 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:26 am	:follow_up_id => 3
+01-17-15 11:26 am	:person_id => 176
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:26 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:26 am	:user_id => 1
+01-17-15 11:26 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:26 am	1
+01-17-15 11:26 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:26 am	:user_id => 1
+01-17-15 11:26 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:26 am	1
+01-17-15 11:26 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 11:26 am	:id => 15
+01-17-15 11:26 am	Success
+01-17-15 11:26 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:26 am	:user_id => 1
+01-17-15 11:26 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:26 am	1
+01-17-15 11:26 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 11:26 am	No parameters
+01-17-15 11:26 am	Success
+01-17-15 11:26 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:26 am	:user_id => 1
+01-17-15 11:26 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:26 am	1
+01-17-15 11:26 am	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-17-15 11:26 am	:first_name => Ashley
+01-17-15 11:26 am	:last_name => Andrews
+01-17-15 11:26 am	:description => 
+01-17-15 11:26 am	:adult => 1
+01-17-15 11:26 am	:active => 1
+01-17-15 11:26 am	:baptized => 0
+01-17-15 11:26 am	:saved => 0
+01-17-15 11:26 am	:member => 0
+01-17-15 11:26 am	:visitor => 0
+01-17-15 11:26 am	:street1 => 
+01-17-15 11:26 am	:street2 => 
+01-17-15 11:26 am	:city => 
+01-17-15 11:26 am	:state => OH
+01-17-15 11:26 am	:zip => 
+01-17-15 11:26 am	:email => 
+01-17-15 11:26 am	:primary_phone => 
+01-17-15 11:26 am	:secondary_phone => 
+01-17-15 11:26 am	:modified_by => 1
+01-17-15 11:26 am	:id => 15
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:26 am	DELETE FROM FollowUpVisitors WHERE follow_up_id=:id
+01-17-15 11:26 am	:id => 1
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:26 am	143,178
+01-17-15 11:26 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:26 am	:follow_up_id => 1
+01-17-15 11:26 am	:person_id => 143
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:26 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:26 am	:follow_up_id => 1
+01-17-15 11:26 am	:person_id => 178
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:26 am	DELETE FROM FollowUpVisitors WHERE follow_up_id=:id
+01-17-15 11:26 am	:id => 2
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:26 am	144,177
+01-17-15 11:26 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:26 am	:follow_up_id => 2
+01-17-15 11:26 am	:person_id => 144
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:26 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:26 am	:follow_up_id => 2
+01-17-15 11:26 am	:person_id => 177
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:26 am	DELETE FROM FollowUpVisitors WHERE follow_up_id=:id
+01-17-15 11:26 am	:id => 3
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:26 am	176
+01-17-15 11:26 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:26 am	:follow_up_id => 3
+01-17-15 11:26 am	:person_id => 176
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:26 am	INSERT INTO FollowUps 
+		      (follow_up_to_person_id, type, follow_up_date, comments)
+		    VALUES
+		      (:person_id, :type, :follow_up_date, :comments)
+01-17-15 11:26 am	:person_id => 15
+01-17-15 11:26 am	:type => 3
+01-17-15 11:26 am	:follow_up_date => 01/01/2015
+01-17-15 11:26 am	:comments => Test
+01-17-15 11:26 am	Success: 4
+01-17-15 11:26 am	144
+01-17-15 11:26 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:26 am	:follow_up_id => 4
+01-17-15 11:26 am	:person_id => 144
+01-17-15 11:26 am	Success: TRUE
+01-17-15 11:29 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:29 am	:user_id => 1
+01-17-15 11:29 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:29 am	Success: TRUE
+01-17-15 11:29 am	1
+01-17-15 11:29 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:29 am	:user_id => 1
+01-17-15 11:29 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:29 am	Success: TRUE
+01-17-15 11:29 am	1
+01-17-15 11:29 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 11:29 am	:id => 15
+01-17-15 11:29 am	Success
+01-17-15 11:29 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:29 am	:user_id => 1
+01-17-15 11:29 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:29 am	Success: TRUE
+01-17-15 11:29 am	1
+01-17-15 11:29 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 11:29 am	No parameters
+01-17-15 11:29 am	Success
+01-17-15 11:30 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:30 am	:user_id => 1
+01-17-15 11:30 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:30 am	Success: TRUE
+01-17-15 11:30 am	1
+01-17-15 11:30 am	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-17-15 11:30 am	:first_name => Ashley
+01-17-15 11:30 am	:last_name => Andrews
+01-17-15 11:30 am	:description => 
+01-17-15 11:30 am	:adult => 1
+01-17-15 11:30 am	:active => 1
+01-17-15 11:30 am	:baptized => 0
+01-17-15 11:30 am	:saved => 0
+01-17-15 11:30 am	:member => 0
+01-17-15 11:30 am	:visitor => 0
+01-17-15 11:30 am	:street1 => 
+01-17-15 11:30 am	:street2 => 
+01-17-15 11:30 am	:city => 
+01-17-15 11:30 am	:state => OH
+01-17-15 11:30 am	:zip => 
+01-17-15 11:30 am	:email => 
+01-17-15 11:30 am	:primary_phone => 
+01-17-15 11:30 am	:secondary_phone => 
+01-17-15 11:30 am	:modified_by => 1
+01-17-15 11:30 am	:id => 15
+01-17-15 11:30 am	Success: TRUE
+01-17-15 11:30 am	UPDATE FollowUps SET 
+		      follow_up_to_person_id = :person_id,
+		      type = :type,
+		      follow_up_date = STR_TO_DATE(:follow_up_date,'%m/%d/%Y'),
+		      comments = :comments
+		    WHERE
+		      id=:follow_up_id
+01-17-15 11:30 am	:person_id => 15
+01-17-15 11:30 am	:type => 2
+01-17-15 11:30 am	:follow_up_date => 01/05/2015
+01-17-15 11:30 am	:comments => Good visit. Needs to be saved
+01-17-15 11:30 am	:follow_up_id => 1
+01-17-15 11:30 am	Success: TRUE
+01-17-15 11:30 am	DELETE FROM FollowUpVisitors WHERE follow_up_id=:id
+01-17-15 11:30 am	:id => 1
+01-17-15 11:30 am	Success: TRUE
+01-17-15 11:30 am	143,178
+01-17-15 11:30 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:30 am	:follow_up_id => 1
+01-17-15 11:30 am	:person_id => 143
+01-17-15 11:30 am	Success: TRUE
+01-17-15 11:30 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:30 am	:follow_up_id => 1
+01-17-15 11:30 am	:person_id => 178
+01-17-15 11:30 am	Success: TRUE
+01-17-15 11:30 am	UPDATE FollowUps SET 
+		      follow_up_to_person_id = :person_id,
+		      type = :type,
+		      follow_up_date = STR_TO_DATE(:follow_up_date,'%m/%d/%Y'),
+		      comments = :comments
+		    WHERE
+		      id=:follow_up_id
+01-17-15 11:30 am	:person_id => 15
+01-17-15 11:30 am	:type => 2
+01-17-15 11:30 am	:follow_up_date => 01/01/2015
+01-17-15 11:30 am	:comments => Test
+01-17-15 11:30 am	:follow_up_id => 2
+01-17-15 11:30 am	Success: TRUE
+01-17-15 11:30 am	DELETE FROM FollowUpVisitors WHERE follow_up_id=:id
+01-17-15 11:30 am	:id => 2
+01-17-15 11:30 am	Success: TRUE
+01-17-15 11:30 am	144,177
+01-17-15 11:30 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:30 am	:follow_up_id => 2
+01-17-15 11:30 am	:person_id => 144
+01-17-15 11:30 am	Success: TRUE
+01-17-15 11:30 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:30 am	:follow_up_id => 2
+01-17-15 11:30 am	:person_id => 177
+01-17-15 11:30 am	Success: TRUE
+01-17-15 11:30 am	UPDATE FollowUps SET 
+		      follow_up_to_person_id = :person_id,
+		      type = :type,
+		      follow_up_date = STR_TO_DATE(:follow_up_date,'%m/%d/%Y'),
+		      comments = :comments
+		    WHERE
+		      id=:follow_up_id
+01-17-15 11:30 am	:person_id => 15
+01-17-15 11:30 am	:type => 1
+01-17-15 11:30 am	:follow_up_date => 01/11/2015
+01-17-15 11:30 am	:comments => No answer
+01-17-15 11:30 am	:follow_up_id => 3
+01-17-15 11:30 am	Success: TRUE
+01-17-15 11:30 am	DELETE FROM FollowUpVisitors WHERE follow_up_id=:id
+01-17-15 11:30 am	:id => 3
+01-17-15 11:30 am	Success: TRUE
+01-17-15 11:30 am	176
+01-17-15 11:30 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:30 am	:follow_up_id => 3
+01-17-15 11:30 am	:person_id => 176
+01-17-15 11:30 am	Success: TRUE
+01-17-15 11:30 am	UPDATE FollowUps SET 
+		      follow_up_to_person_id = :person_id,
+		      type = :type,
+		      follow_up_date = STR_TO_DATE(:follow_up_date,'%m/%d/%Y'),
+		      comments = :comments
+		    WHERE
+		      id=:follow_up_id
+01-17-15 11:30 am	:person_id => 15
+01-17-15 11:30 am	:type => 3
+01-17-15 11:30 am	:follow_up_date => 01/01/2015
+01-17-15 11:30 am	:comments => Test
+01-17-15 11:30 am	:follow_up_id => 4
+01-17-15 11:30 am	Success: TRUE
+01-17-15 11:30 am	DELETE FROM FollowUpVisitors WHERE follow_up_id=:id
+01-17-15 11:30 am	:id => 4
+01-17-15 11:30 am	Success: TRUE
+01-17-15 11:30 am	144
+01-17-15 11:30 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:30 am	:follow_up_id => 4
+01-17-15 11:30 am	:person_id => 144
+01-17-15 11:30 am	Success: TRUE
+01-17-15 11:30 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:30 am	:user_id => 1
+01-17-15 11:30 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:30 am	Success: TRUE
+01-17-15 11:30 am	1
+01-17-15 11:30 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:30 am	:user_id => 1
+01-17-15 11:30 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:30 am	Success: TRUE
+01-17-15 11:30 am	1
+01-17-15 11:30 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 11:30 am	:id => 15
+01-17-15 11:30 am	Success
+01-17-15 11:30 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:30 am	:user_id => 1
+01-17-15 11:30 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:30 am	Success: TRUE
+01-17-15 11:30 am	1
+01-17-15 11:30 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 11:30 am	No parameters
+01-17-15 11:30 am	Success
+01-17-15 11:31 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:31 am	:user_id => 1
+01-17-15 11:31 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	1
+01-17-15 11:31 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:31 am	:user_id => 1
+01-17-15 11:31 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	1
+01-17-15 11:31 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+		ORDER BY
+		  f.follow_up_date
+01-17-15 11:31 am	:id => 15
+01-17-15 11:31 am	Success
+01-17-15 11:31 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:31 am	:user_id => 1
+01-17-15 11:31 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	1
+01-17-15 11:31 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 11:31 am	No parameters
+01-17-15 11:31 am	Success
+01-17-15 11:31 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:31 am	:user_id => 1
+01-17-15 11:31 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	1
+01-17-15 11:31 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:31 am	:user_id => 1
+01-17-15 11:31 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	1
+01-17-15 11:31 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+		ORDER BY
+		  f.follow_up_date
+01-17-15 11:31 am	:id => 15
+01-17-15 11:31 am	Success
+01-17-15 11:31 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:31 am	:user_id => 1
+01-17-15 11:31 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	1
+01-17-15 11:31 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 11:31 am	No parameters
+01-17-15 11:31 am	Success
+01-17-15 11:31 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:31 am	:user_id => 1
+01-17-15 11:31 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	1
+01-17-15 11:31 am	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-17-15 11:31 am	:first_name => Ashley
+01-17-15 11:31 am	:last_name => Andrews
+01-17-15 11:31 am	:description => 
+01-17-15 11:31 am	:adult => 1
+01-17-15 11:31 am	:active => 1
+01-17-15 11:31 am	:baptized => 0
+01-17-15 11:31 am	:saved => 0
+01-17-15 11:31 am	:member => 0
+01-17-15 11:31 am	:visitor => 0
+01-17-15 11:31 am	:street1 => 
+01-17-15 11:31 am	:street2 => 
+01-17-15 11:31 am	:city => 
+01-17-15 11:31 am	:state => OH
+01-17-15 11:31 am	:zip => 
+01-17-15 11:31 am	:email => 
+01-17-15 11:31 am	:primary_phone => 
+01-17-15 11:31 am	:secondary_phone => 
+01-17-15 11:31 am	:modified_by => 1
+01-17-15 11:31 am	:id => 15
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	UPDATE FollowUps SET 
+		      follow_up_to_person_id = :person_id,
+		      type = :type,
+		      follow_up_date = STR_TO_DATE(:follow_up_date,'%m/%d/%Y'),
+		      comments = :comments
+		    WHERE
+		      id=:follow_up_id
+01-17-15 11:31 am	:person_id => 15
+01-17-15 11:31 am	:type => 2
+01-17-15 11:31 am	:follow_up_date => 01/03/2015
+01-17-15 11:31 am	:comments => Test
+01-17-15 11:31 am	:follow_up_id => 2
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	DELETE FROM FollowUpVisitors WHERE follow_up_id=:id
+01-17-15 11:31 am	:id => 2
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	144,177
+01-17-15 11:31 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:31 am	:follow_up_id => 2
+01-17-15 11:31 am	:person_id => 144
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:31 am	:follow_up_id => 2
+01-17-15 11:31 am	:person_id => 177
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	UPDATE FollowUps SET 
+		      follow_up_to_person_id = :person_id,
+		      type = :type,
+		      follow_up_date = STR_TO_DATE(:follow_up_date,'%m/%d/%Y'),
+		      comments = :comments
+		    WHERE
+		      id=:follow_up_id
+01-17-15 11:31 am	:person_id => 15
+01-17-15 11:31 am	:type => 3
+01-17-15 11:31 am	:follow_up_date => 01/01/2015
+01-17-15 11:31 am	:comments => Test
+01-17-15 11:31 am	:follow_up_id => 4
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	DELETE FROM FollowUpVisitors WHERE follow_up_id=:id
+01-17-15 11:31 am	:id => 4
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	144
+01-17-15 11:31 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:31 am	:follow_up_id => 4
+01-17-15 11:31 am	:person_id => 144
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	UPDATE FollowUps SET 
+		      follow_up_to_person_id = :person_id,
+		      type = :type,
+		      follow_up_date = STR_TO_DATE(:follow_up_date,'%m/%d/%Y'),
+		      comments = :comments
+		    WHERE
+		      id=:follow_up_id
+01-17-15 11:31 am	:person_id => 15
+01-17-15 11:31 am	:type => 2
+01-17-15 11:31 am	:follow_up_date => 01/05/2015
+01-17-15 11:31 am	:comments => Good visit. Needs to be saved
+01-17-15 11:31 am	:follow_up_id => 1
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	DELETE FROM FollowUpVisitors WHERE follow_up_id=:id
+01-17-15 11:31 am	:id => 1
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	143,178
+01-17-15 11:31 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:31 am	:follow_up_id => 1
+01-17-15 11:31 am	:person_id => 143
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:31 am	:follow_up_id => 1
+01-17-15 11:31 am	:person_id => 178
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	UPDATE FollowUps SET 
+		      follow_up_to_person_id = :person_id,
+		      type = :type,
+		      follow_up_date = STR_TO_DATE(:follow_up_date,'%m/%d/%Y'),
+		      comments = :comments
+		    WHERE
+		      id=:follow_up_id
+01-17-15 11:31 am	:person_id => 15
+01-17-15 11:31 am	:type => 1
+01-17-15 11:31 am	:follow_up_date => 01/11/2015
+01-17-15 11:31 am	:comments => No answer
+01-17-15 11:31 am	:follow_up_id => 3
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	DELETE FROM FollowUpVisitors WHERE follow_up_id=:id
+01-17-15 11:31 am	:id => 3
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	176
+01-17-15 11:31 am	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-17-15 11:31 am	:follow_up_id => 3
+01-17-15 11:31 am	:person_id => 176
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:31 am	:user_id => 1
+01-17-15 11:31 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	1
+01-17-15 11:31 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:31 am	:user_id => 1
+01-17-15 11:31 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	1
+01-17-15 11:31 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+		ORDER BY
+		  f.follow_up_date
+01-17-15 11:31 am	:id => 15
+01-17-15 11:31 am	Success
+01-17-15 11:31 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 11:31 am	:user_id => 1
+01-17-15 11:31 am	:session_id => 54ba829c90f590.67368003
+01-17-15 11:31 am	Success: TRUE
+01-17-15 11:31 am	1
+01-17-15 11:31 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 11:31 am	No parameters
+01-17-15 11:31 am	Success
