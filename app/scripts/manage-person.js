@@ -188,7 +188,12 @@
       url: 'ajax/states.json'
     })
     .done(function(msg) {
-      populateStates(msg);
+      if($.isArray(msg)) {
+	populateStates(msg);
+      } else {
+	var data = JSON.parse(msg);
+	populateStates(data);
+      }
       populateTypes();
       loadPerson();
       loadVisitors();

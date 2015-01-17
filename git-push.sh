@@ -11,6 +11,6 @@ if [ -z "$1" ]
 fi
 gulp
 gulp bump-patch
-git add .
+git add --all
 git commit -m "$1"
 git push origin develop
