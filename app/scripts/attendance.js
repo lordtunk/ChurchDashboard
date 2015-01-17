@@ -671,7 +671,7 @@
   addAdultBtn.addEventListener('click', addAdult);
   addKidBtn.addEventListener('click', addKid);
   $('.jump-to').on('change', jumpTo);
-  $('.top-bottom-links a').on('click', onClickTopBottom);
+  $('.navigation-links a').on('click', onClickTopBottom);
   
 
   checkLoginStatus(loadPeople);

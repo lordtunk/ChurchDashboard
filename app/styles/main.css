@@ -380,12 +380,31 @@ main {
   padding: 10px 10px 5px 0;
 }
 
-.form-section {
+.address-form-section {
   margin: 0 0 10px 65px;
 }
 
-.form-section > label {
+.address-form-section > label {
   width: 100px !important;
+}
+
+.contact-form-section-title {
+  padding: 0 0 0 40px;
+}
+.contact-form-section {
+  margin: 0 0 0 40px;
+}
+
+.col-1 {
+  margin-top: 10px;
+}
+
+.col-2 {
+  margin: 10px 0 0 40px;
+}
+
+#email {
+  width: 273px;
 }
 
 .attendance-form .attendance-table-attendance-col label {
@@ -427,7 +446,7 @@ main {
 }
 
 /* Larger Screens - desktops and tablets */
-@media all and (min-device-width: 1200px) {
+@media all and (min-device-width:1200px) {
   .app-bar {
     position: relative;
   }
@@ -518,7 +537,7 @@ main {
   }
 }
 
-@media all and (min-device-width: 1200px) and (max-width: 800px) {
+@media all and (min-device-width:1200px) and (max-width:800px) {
   .app-bar .logo {
     float: none;
     width: 100%;
@@ -547,17 +566,17 @@ main {
   }
 }
 
-@media all and (min-device-width: 800px) {
+@media all and (min-device-width:800px) {
   td.attendance-table-attendance-col {
     text-align: center;
   }
 }
 
-@media all and (max-width: 600px) {
+@media all and (max-width:600px) {
   
 }
 
-@media all and (min-width: 800px) {
+@media all and (min-width:800px) {
   .app-content .active-input {
     display: inline-block;
   }
@@ -568,13 +587,16 @@ main {
   .col-2 {
     vertical-align: top;
   }
-  .form-section-title {
-    padding: 0 0 0 65px;
+  .address-form-section-title {
+    padding: 0 0 0 50px;
+  }
+  .address-form-section {
+    margin: 0 0 10px 50px;
   }
 }
 
-@media all and (max-width: 799px) {
-  .form-section-title {
+@media all and (max-width:799px) {
+  .address-form-section-title {
     padding: 10px 0 0 65px;
   }
 }

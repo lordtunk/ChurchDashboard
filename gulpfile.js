@@ -32,7 +32,6 @@ var concat = require('gulp-concat');
 var cache = require('gulp-cache');
 var reload = browserSync.reload;
 var bump = require('gulp-bump');
-var git = require('gulp-git');
 var shell = require('gulp-shell');
 
 cache.clearAll();

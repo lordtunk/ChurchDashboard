@@ -9536,3 +9536,4932 @@
                   attendance_dt DESC
 01-11-15 7:55 am	No parameters
 01-11-15 7:55 am	Success
+01-11-15 5:22 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-11-15 5:22 pm	:user_id => 1
+01-11-15 5:22 pm	:session_id => 54b2f759f2db94.22350725
+01-11-15 5:22 pm	Success: TRUE
+01-11-15 5:22 pm	1
+01-11-15 5:22 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-11-15 5:22 pm	:user_id => 1
+01-11-15 5:22 pm	:session_id => 54b2f759f2db94.22350725
+01-11-15 5:22 pm	Success: TRUE
+01-11-15 5:22 pm	1
+01-11-15 5:22 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  '' street1,
+                  '' street2,
+                  '' city,
+                  '' state,
+                  '' primary_phone,
+                  '' secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-11-15 5:22 pm	:id => 241
+01-11-15 5:22 pm	Success
+01-11-15 5:22 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-11-15 5:22 pm	:user_id => 1
+01-11-15 5:22 pm	:session_id => 54b2f759f2db94.22350725
+01-11-15 5:22 pm	Success: TRUE
+01-11-15 5:22 pm	1
+01-11-15 5:22 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-11-15 5:22 pm	No parameters
+01-11-15 5:22 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-11-15 5:22 pm	:user_id => 1
+01-11-15 5:22 pm	:session_id => 54b2f759f2db94.22350725
+01-11-15 5:22 pm	Success: TRUE
+01-11-15 5:22 pm	1
+01-11-15 5:24 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-11-15 5:24 pm	:user_id => 1
+01-11-15 5:24 pm	:session_id => 54b2f759f2db94.22350725
+01-11-15 5:24 pm	Success: TRUE
+01-11-15 5:24 pm	1
+01-11-15 5:24 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-11-15 5:24 pm	:user_id => 1
+01-11-15 5:24 pm	:session_id => 54b2f759f2db94.22350725
+01-11-15 5:24 pm	Success: TRUE
+01-11-15 5:24 pm	1
+01-11-15 5:24 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  '' street1,
+                  '' street2,
+                  '' city,
+                  '' state,
+                  '' primary_phone,
+                  '' secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-11-15 5:24 pm	:id => 241
+01-11-15 5:24 pm	Success
+01-11-15 5:24 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-11-15 5:24 pm	:user_id => 1
+01-11-15 5:24 pm	:session_id => 54b2f759f2db94.22350725
+01-11-15 5:24 pm	Success: TRUE
+01-11-15 5:24 pm	1
+01-11-15 5:24 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-11-15 5:24 pm	No parameters
+01-11-15 5:24 pm	Success
+01-11-15 5:24 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-11-15 5:24 pm	:user_id => 1
+01-11-15 5:24 pm	:session_id => 54b2f759f2db94.22350725
+01-11-15 5:24 pm	Success: TRUE
+01-11-15 5:24 pm	1
+01-11-15 8:18 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-11-15 8:18 pm	:user_id => 1
+01-11-15 8:18 pm	:session_id => 54b2f759f2db94.22350725
+01-11-15 8:18 pm	Success: TRUE
+01-11-15 8:18 pm	1
+01-11-15 8:18 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-11-15 8:18 pm	:user_id => 1
+01-11-15 8:18 pm	:session_id => 54b2f759f2db94.22350725
+01-11-15 8:18 pm	Success: TRUE
+01-11-15 8:18 pm	1
+01-11-15 8:18 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description,
+                  attendance_dt DESC
+01-11-15 8:18 pm	No parameters
+01-11-15 8:18 pm	Success
+01-15-15 7:14 pm	Session information missing
+01-15-15 7:14 pm	UPDATE Users SET session_id=:session_id where username=:username AND password=:password
+01-15-15 7:14 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 7:14 pm	:username => alex
+01-15-15 7:14 pm	:password => d693b886b75d616e6837e10869bb722b
+01-15-15 7:14 pm	Success: TRUE
+01-15-15 7:14 pm	SELECT id FROM Users WHERE username=:username AND password=:password
+01-15-15 7:14 pm	:username => alex
+01-15-15 7:14 pm	:password => d693b886b75d616e6837e10869bb722b
+01-15-15 7:14 pm	Success
+01-15-15 7:14 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 7:14 pm	:user_id => 1
+01-15-15 7:14 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 7:14 pm	Success: TRUE
+01-15-15 7:14 pm	1
+01-15-15 7:14 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 7:14 pm	:user_id => 1
+01-15-15 7:14 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 7:14 pm	Success: TRUE
+01-15-15 7:14 pm	1
+01-15-15 7:14 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description,
+                  attendance_dt DESC
+01-15-15 7:14 pm	No parameters
+01-15-15 7:14 pm	Success
+01-15-15 7:17 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 7:17 pm	:user_id => 1
+01-15-15 7:17 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 7:17 pm	Success: TRUE
+01-15-15 7:17 pm	1
+01-15-15 7:17 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 7:17 pm	:user_id => 1
+01-15-15 7:17 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 7:17 pm	Success: TRUE
+01-15-15 7:17 pm	1
+01-15-15 7:17 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description,
+                  attendance_dt DESC
+01-15-15 7:17 pm	No parameters
+01-15-15 7:17 pm	Success
+01-15-15 7:20 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 7:20 pm	:user_id => 1
+01-15-15 7:20 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 7:20 pm	Success: TRUE
+01-15-15 7:20 pm	1
+01-15-15 7:20 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 7:20 pm	:user_id => 1
+01-15-15 7:20 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 7:20 pm	Success: TRUE
+01-15-15 7:20 pm	1
+01-15-15 7:20 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  '' street1,
+                  '' street2,
+                  '' city,
+                  '' state,
+                  '' primary_phone,
+                  '' secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-15-15 7:20 pm	:id => 15
+01-15-15 7:20 pm	Success
+01-15-15 7:20 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 7:20 pm	:user_id => 1
+01-15-15 7:20 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 7:20 pm	Success: TRUE
+01-15-15 7:20 pm	1
+01-15-15 7:20 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-15-15 7:20 pm	No parameters
+01-15-15 7:20 pm	Success
+01-15-15 7:20 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 7:20 pm	:user_id => 1
+01-15-15 7:20 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 7:20 pm	Success: TRUE
+01-15-15 7:20 pm	1
+01-15-15 7:24 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 7:24 pm	:user_id => 1
+01-15-15 7:24 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 7:24 pm	Success: TRUE
+01-15-15 7:24 pm	1
+01-15-15 7:24 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 7:24 pm	:user_id => 1
+01-15-15 7:24 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 7:24 pm	Success: TRUE
+01-15-15 7:24 pm	1
+01-15-15 7:24 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  '' street1,
+                  '' street2,
+                  '' city,
+                  '' state,
+                  '' primary_phone,
+                  '' secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-15-15 7:24 pm	:id => 15
+01-15-15 7:24 pm	Success
+01-15-15 7:24 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 7:24 pm	:user_id => 1
+01-15-15 7:24 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 7:24 pm	Success: TRUE
+01-15-15 7:24 pm	1
+01-15-15 7:24 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 7:24 pm	:user_id => 1
+01-15-15 7:24 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 7:24 pm	Success: TRUE
+01-15-15 7:24 pm	1
+01-15-15 7:24 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-15-15 7:24 pm	No parameters
+01-15-15 7:24 pm	Success
+01-15-15 7:33 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 7:33 pm	:user_id => 1
+01-15-15 7:33 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 7:33 pm	Success: TRUE
+01-15-15 7:33 pm	1
+01-15-15 7:33 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 7:33 pm	:user_id => 1
+01-15-15 7:33 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 7:33 pm	Success: TRUE
+01-15-15 7:33 pm	1
+01-15-15 7:33 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  '' street1,
+                  '' street2,
+                  '' city,
+                  '' state,
+                  '' primary_phone,
+                  '' secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-15-15 7:33 pm	:id => 15
+01-15-15 7:33 pm	Success
+01-15-15 7:33 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 7:33 pm	:user_id => 1
+01-15-15 7:33 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 7:33 pm	Success: TRUE
+01-15-15 7:33 pm	1
+01-15-15 7:33 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 7:33 pm	:user_id => 1
+01-15-15 7:33 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 7:33 pm	Success: TRUE
+01-15-15 7:33 pm	1
+01-15-15 7:33 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-15-15 7:33 pm	No parameters
+01-15-15 7:33 pm	Success
+01-15-15 8:03 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 8:03 pm	:user_id => 1
+01-15-15 8:03 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 8:03 pm	Success: TRUE
+01-15-15 8:03 pm	1
+01-15-15 8:03 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 8:03 pm	:user_id => 1
+01-15-15 8:03 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 8:03 pm	Success: TRUE
+01-15-15 8:03 pm	1
+01-15-15 8:03 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  '' street1,
+                  '' street2,
+                  '' city,
+                  '' state,
+                  '' primary_phone,
+                  '' secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-15-15 8:03 pm	:id => 15
+01-15-15 8:03 pm	Success
+01-15-15 8:03 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 8:03 pm	:user_id => 1
+01-15-15 8:03 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 8:03 pm	Success: TRUE
+01-15-15 8:03 pm	1
+01-15-15 8:03 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 8:03 pm	:user_id => 1
+01-15-15 8:03 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 8:03 pm	Success: TRUE
+01-15-15 8:03 pm	1
+01-15-15 8:03 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-15-15 8:03 pm	No parameters
+01-15-15 8:03 pm	Success
+01-15-15 8:03 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 8:03 pm	:user_id => 1
+01-15-15 8:03 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 8:03 pm	Success: TRUE
+01-15-15 8:03 pm	1
+01-15-15 8:07 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 8:07 pm	:user_id => 1
+01-15-15 8:07 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 8:07 pm	Success: TRUE
+01-15-15 8:07 pm	1
+01-15-15 8:07 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 8:07 pm	:user_id => 1
+01-15-15 8:07 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 8:07 pm	Success: TRUE
+01-15-15 8:07 pm	1
+01-15-15 8:07 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  '' street1,
+                  '' street2,
+                  '' city,
+                  '' state,
+                  '' primary_phone,
+                  '' secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-15-15 8:07 pm	:id => 15
+01-15-15 8:07 pm	Success
+01-15-15 8:07 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 8:07 pm	:user_id => 1
+01-15-15 8:07 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 8:07 pm	Success: TRUE
+01-15-15 8:07 pm	1
+01-15-15 8:07 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-15-15 8:07 pm	No parameters
+01-15-15 8:07 pm	Success
+01-15-15 8:07 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 8:07 pm	:user_id => 1
+01-15-15 8:07 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 8:07 pm	Success: TRUE
+01-15-15 8:07 pm	1
+01-15-15 8:07 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 8:07 pm	:user_id => 1
+01-15-15 8:07 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 8:07 pm	Success: TRUE
+01-15-15 8:07 pm	1
+01-15-15 8:35 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 8:35 pm	:user_id => 1
+01-15-15 8:35 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 8:35 pm	Success: TRUE
+01-15-15 8:35 pm	1
+01-15-15 8:35 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 8:35 pm	:user_id => 1
+01-15-15 8:35 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 8:35 pm	Success: TRUE
+01-15-15 8:35 pm	1
+01-15-15 8:35 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-15-15 8:35 pm	No parameters
+01-15-15 8:35 pm	Success
+01-15-15 8:35 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 8:35 pm	:user_id => 1
+01-15-15 8:35 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 8:35 pm	Success: TRUE
+01-15-15 8:35 pm	1
+01-15-15 8:35 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  '' street1,
+                  '' street2,
+                  '' city,
+                  '' state,
+                  '' primary_phone,
+                  '' secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-15-15 8:35 pm	:id => 15
+01-15-15 8:35 pm	Success
+01-15-15 8:35 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 8:35 pm	:user_id => 1
+01-15-15 8:35 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 8:35 pm	Success: TRUE
+01-15-15 8:35 pm	1
+01-15-15 8:37 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 8:37 pm	:user_id => 1
+01-15-15 8:37 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 8:37 pm	Success: TRUE
+01-15-15 8:37 pm	1
+01-15-15 8:37 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 8:37 pm	:user_id => 1
+01-15-15 8:37 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 8:37 pm	Success: TRUE
+01-15-15 8:37 pm	1
+01-15-15 8:37 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  '' street1,
+                  '' street2,
+                  '' city,
+                  '' state,
+                  '' primary_phone,
+                  '' secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-15-15 8:37 pm	:id => 15
+01-15-15 8:37 pm	Success
+01-15-15 8:37 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 8:37 pm	:user_id => 1
+01-15-15 8:37 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 8:37 pm	Success: TRUE
+01-15-15 8:37 pm	1
+01-15-15 8:37 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-15-15 8:37 pm	:user_id => 1
+01-15-15 8:37 pm	:session_id => 54b857e689dc41.08076516
+01-15-15 8:37 pm	Success: TRUE
+01-15-15 8:37 pm	1
+01-15-15 8:37 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-15-15 8:37 pm	No parameters
+01-15-15 8:37 pm	Success
+01-16-15 4:45 pm	Session information missing
+01-16-15 4:45 pm	UPDATE Users SET session_id=:session_id where username=:username AND password=:password
+01-16-15 4:45 pm	:session_id => 54b98673efc507.74449040
+01-16-15 4:45 pm	:username => alex
+01-16-15 4:45 pm	:password => d693b886b75d616e6837e10869bb722b
+01-16-15 4:45 pm	Success: TRUE
+01-16-15 4:45 pm	SELECT id FROM Users WHERE username=:username AND password=:password
+01-16-15 4:45 pm	:username => alex
+01-16-15 4:45 pm	:password => d693b886b75d616e6837e10869bb722b
+01-16-15 4:45 pm	Success
+01-16-15 4:45 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 4:45 pm	:user_id => 1
+01-16-15 4:45 pm	:session_id => 54b98673efc507.74449040
+01-16-15 4:45 pm	Success: TRUE
+01-16-15 4:45 pm	1
+01-16-15 4:45 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 4:45 pm	:user_id => 1
+01-16-15 4:45 pm	:session_id => 54b98673efc507.74449040
+01-16-15 4:45 pm	Success: TRUE
+01-16-15 4:45 pm	1
+01-16-15 4:45 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description,
+                  attendance_dt DESC
+01-16-15 4:45 pm	No parameters
+01-16-15 4:45 pm	Success
+01-16-15 4:45 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 4:45 pm	:user_id => 1
+01-16-15 4:45 pm	:session_id => 54b98673efc507.74449040
+01-16-15 4:45 pm	Success: TRUE
+01-16-15 4:45 pm	1
+01-16-15 4:45 pm	SELECT DISTINCT 
+                  DATE_FORMAT(attendance_dt,'%m/%d/%Y') attendance_dt 
+                FROM 
+                  `Attendance` 
+                ORDER BY 
+                  attendance_dt
+01-16-15 4:45 pm	No parameters
+01-16-15 4:45 pm	Success
+01-16-15 4:45 pm	SELECT
+                  id,
+                  first_name,
+                  last_name,
+                  description,
+                  adult,
+                  active
+                FROM
+                  People
+                ORDER BY
+                  last_name IS NOT NULL DESC,
+                  description IS NOT NULL DESC,
+                  last_name,
+                  first_name,
+                  description
+01-16-15 4:45 pm	No parameters
+01-16-15 4:45 pm	Success
+01-16-15 4:45 pm	SELECT
+                  p.id,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.id,
+                  attendance_dt
+01-16-15 4:45 pm	No parameters
+01-16-15 4:45 pm	Success
+01-16-15 5:05 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:05 pm	:user_id => 1
+01-16-15 5:05 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:05 pm	Success: TRUE
+01-16-15 5:05 pm	1
+01-16-15 5:05 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:05 pm	:user_id => 1
+01-16-15 5:05 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:05 pm	Success: TRUE
+01-16-15 5:05 pm	1
+01-16-15 5:05 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  '' street1,
+                  '' street2,
+                  '' city,
+                  '' state,
+                  '' zip,
+                  '' primary_phone,
+                  '' secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 5:05 pm	:id => 251
+01-16-15 5:05 pm	Success
+01-16-15 5:05 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:05 pm	:user_id => 1
+01-16-15 5:05 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:05 pm	Success: TRUE
+01-16-15 5:05 pm	1
+01-16-15 5:05 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 5:05 pm	No parameters
+01-16-15 5:05 pm	Success
+01-16-15 5:05 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:05 pm	:user_id => 1
+01-16-15 5:05 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:05 pm	Success: TRUE
+01-16-15 5:05 pm	1
+01-16-15 5:14 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:14 pm	:user_id => 1
+01-16-15 5:14 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:14 pm	Success: TRUE
+01-16-15 5:14 pm	1
+01-16-15 5:14 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:14 pm	:user_id => 1
+01-16-15 5:14 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:14 pm	Success: TRUE
+01-16-15 5:14 pm	1
+01-16-15 5:14 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  '' street1,
+                  '' street2,
+                  '' city,
+                  '' state,
+                  '' zip,
+                  '' primary_phone,
+                  '' secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 5:14 pm	:id => 251
+01-16-15 5:14 pm	Success
+01-16-15 5:14 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:14 pm	:user_id => 1
+01-16-15 5:14 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:14 pm	Success: TRUE
+01-16-15 5:14 pm	1
+01-16-15 5:14 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:14 pm	:user_id => 1
+01-16-15 5:14 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:14 pm	Success: TRUE
+01-16-15 5:14 pm	1
+01-16-15 5:14 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 5:14 pm	No parameters
+01-16-15 5:14 pm	Success
+01-16-15 5:16 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:16 pm	:user_id => 1
+01-16-15 5:16 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:16 pm	Success: TRUE
+01-16-15 5:16 pm	1
+01-16-15 5:16 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:16 pm	:user_id => 1
+01-16-15 5:16 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:16 pm	Success: TRUE
+01-16-15 5:16 pm	1
+01-16-15 5:16 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  '' street1,
+                  '' street2,
+                  '' city,
+                  '' state,
+                  '' zip,
+                  '' email,
+                  '' primary_phone,
+                  '' secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 5:16 pm	:id => 251
+01-16-15 5:16 pm	Success
+01-16-15 5:16 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:16 pm	:user_id => 1
+01-16-15 5:16 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:16 pm	Success: TRUE
+01-16-15 5:16 pm	1
+01-16-15 5:16 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:16 pm	:user_id => 1
+01-16-15 5:16 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:16 pm	Success: TRUE
+01-16-15 5:16 pm	1
+01-16-15 5:16 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 5:16 pm	No parameters
+01-16-15 5:16 pm	Success
+01-16-15 5:25 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:25 pm	:user_id => 1
+01-16-15 5:25 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:25 pm	Success: TRUE
+01-16-15 5:25 pm	1
+01-16-15 5:25 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:25 pm	:user_id => 1
+01-16-15 5:25 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:25 pm	Success: TRUE
+01-16-15 5:25 pm	1
+01-16-15 5:25 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  '' street1,
+                  '' street2,
+                  '' city,
+                  '' state,
+                  '' zip,
+                  '' email,
+                  '' primary_phone,
+                  '' secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 5:25 pm	:id => 251
+01-16-15 5:25 pm	Success
+01-16-15 5:25 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:25 pm	:user_id => 1
+01-16-15 5:25 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:25 pm	Success: TRUE
+01-16-15 5:25 pm	1
+01-16-15 5:25 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 5:25 pm	No parameters
+01-16-15 5:25 pm	Success
+01-16-15 5:25 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:25 pm	:user_id => 1
+01-16-15 5:25 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:25 pm	Success: TRUE
+01-16-15 5:25 pm	1
+01-16-15 5:27 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:27 pm	:user_id => 1
+01-16-15 5:27 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:27 pm	Success: TRUE
+01-16-15 5:27 pm	1
+01-16-15 5:27 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:27 pm	:user_id => 1
+01-16-15 5:27 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:27 pm	Success: TRUE
+01-16-15 5:27 pm	1
+01-16-15 5:27 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  '' street1,
+                  '' street2,
+                  '' city,
+                  '' state,
+                  '' zip,
+                  '' email,
+                  '' primary_phone,
+                  '' secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 5:27 pm	:id => 251
+01-16-15 5:27 pm	Success
+01-16-15 5:27 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:27 pm	:user_id => 1
+01-16-15 5:27 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:27 pm	Success: TRUE
+01-16-15 5:27 pm	1
+01-16-15 5:27 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 5:27 pm	No parameters
+01-16-15 5:27 pm	Success
+01-16-15 5:27 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:27 pm	:user_id => 1
+01-16-15 5:27 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:27 pm	Success: TRUE
+01-16-15 5:27 pm	1
+01-16-15 5:27 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:27 pm	:user_id => 1
+01-16-15 5:27 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:27 pm	Success: TRUE
+01-16-15 5:27 pm	1
+01-16-15 5:27 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:27 pm	:user_id => 1
+01-16-15 5:27 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:27 pm	Success: TRUE
+01-16-15 5:27 pm	1
+01-16-15 5:27 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  '' street1,
+                  '' street2,
+                  '' city,
+                  '' state,
+                  '' zip,
+                  '' email,
+                  '' primary_phone,
+                  '' secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 5:27 pm	:id => 251
+01-16-15 5:27 pm	Success
+01-16-15 5:27 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:27 pm	:user_id => 1
+01-16-15 5:27 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:27 pm	Success: TRUE
+01-16-15 5:27 pm	1
+01-16-15 5:27 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 5:27 pm	No parameters
+01-16-15 5:27 pm	Success
+01-16-15 5:27 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:27 pm	:user_id => 1
+01-16-15 5:27 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:27 pm	Success: TRUE
+01-16-15 5:27 pm	1
+01-16-15 5:28 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:28 pm	:user_id => 1
+01-16-15 5:28 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:28 pm	Success: TRUE
+01-16-15 5:28 pm	1
+01-16-15 5:28 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:28 pm	:user_id => 1
+01-16-15 5:28 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:28 pm	Success: TRUE
+01-16-15 5:28 pm	1
+01-16-15 5:28 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  '' street1,
+                  '' street2,
+                  '' city,
+                  '' state,
+                  '' zip,
+                  '' email,
+                  '' primary_phone,
+                  '' secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 5:28 pm	:id => 251
+01-16-15 5:28 pm	Success
+01-16-15 5:28 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:28 pm	:user_id => 1
+01-16-15 5:28 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:28 pm	Success: TRUE
+01-16-15 5:28 pm	1
+01-16-15 5:28 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 5:28 pm	No parameters
+01-16-15 5:28 pm	Success
+01-16-15 5:28 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 5:28 pm	:user_id => 1
+01-16-15 5:28 pm	:session_id => 54b98673efc507.74449040
+01-16-15 5:28 pm	Success: TRUE
+01-16-15 5:28 pm	1
+01-16-15 7:57 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 7:57 pm	:user_id => 1
+01-16-15 7:57 pm	:session_id => 54b98673efc507.74449040
+01-16-15 7:57 pm	Success: TRUE
+01-16-15 7:57 pm	1
+01-16-15 7:57 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 7:57 pm	:user_id => 1
+01-16-15 7:57 pm	:session_id => 54b98673efc507.74449040
+01-16-15 7:57 pm	Success: TRUE
+01-16-15 7:57 pm	1
+01-16-15 7:57 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 7:57 pm	:id => 251
+01-16-15 7:57 pm	Success
+01-16-15 7:57 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 7:57 pm	:user_id => 1
+01-16-15 7:57 pm	:session_id => 54b98673efc507.74449040
+01-16-15 7:57 pm	Success: TRUE
+01-16-15 7:57 pm	1
+01-16-15 7:57 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 7:57 pm	No parameters
+01-16-15 7:57 pm	Success
+01-16-15 7:57 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 7:57 pm	:user_id => 1
+01-16-15 7:57 pm	:session_id => 54b98673efc507.74449040
+01-16-15 7:57 pm	Success: TRUE
+01-16-15 7:57 pm	1
+01-16-15 7:59 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 7:59 pm	:user_id => 1
+01-16-15 7:59 pm	:session_id => 54b98673efc507.74449040
+01-16-15 7:59 pm	Success: TRUE
+01-16-15 7:59 pm	1
+01-16-15 7:59 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 7:59 pm	:user_id => 1
+01-16-15 7:59 pm	:session_id => 54b98673efc507.74449040
+01-16-15 7:59 pm	Success: TRUE
+01-16-15 7:59 pm	1
+01-16-15 7:59 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 7:59 pm	:id => 251
+01-16-15 7:59 pm	Success
+01-16-15 7:59 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 7:59 pm	:user_id => 1
+01-16-15 7:59 pm	:session_id => 54b98673efc507.74449040
+01-16-15 7:59 pm	Success: TRUE
+01-16-15 7:59 pm	1
+01-16-15 7:59 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 7:59 pm	No parameters
+01-16-15 7:59 pm	Success
+01-16-15 7:59 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 7:59 pm	:user_id => 1
+01-16-15 7:59 pm	:session_id => 54b98673efc507.74449040
+01-16-15 7:59 pm	Success: TRUE
+01-16-15 7:59 pm	1
+01-16-15 8:01 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:01 pm	:user_id => 1
+01-16-15 8:01 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:01 pm	Success: TRUE
+01-16-15 8:01 pm	1
+01-16-15 8:01 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:01 pm	:user_id => 1
+01-16-15 8:01 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:01 pm	Success: TRUE
+01-16-15 8:01 pm	1
+01-16-15 8:01 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:01 pm	:id => 251
+01-16-15 8:01 pm	Success
+01-16-15 8:01 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:01 pm	:user_id => 1
+01-16-15 8:01 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:01 pm	Success: TRUE
+01-16-15 8:01 pm	1
+01-16-15 8:01 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:01 pm	:user_id => 1
+01-16-15 8:01 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:01 pm	Success: TRUE
+01-16-15 8:01 pm	1
+01-16-15 8:01 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:01 pm	No parameters
+01-16-15 8:01 pm	Success
+01-16-15 8:01 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:01 pm	:user_id => 1
+01-16-15 8:01 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:01 pm	Success: TRUE
+01-16-15 8:01 pm	1
+01-16-15 8:01 pm	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-16-15 8:01 pm	:first_name => Khloe
+01-16-15 8:01 pm	:last_name => Appleyard
+01-16-15 8:01 pm	:description => 
+01-16-15 8:01 pm	:adult => 0
+01-16-15 8:01 pm	:active => 1
+01-16-15 8:01 pm	:modified_by => 1
+01-16-15 8:01 pm	:id => 251
+01-16-15 8:01 pm	Success: TRUE
+01-16-15 8:09 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:09 pm	:user_id => 1
+01-16-15 8:09 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:09 pm	Success: TRUE
+01-16-15 8:09 pm	1
+01-16-15 8:09 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:09 pm	:user_id => 1
+01-16-15 8:09 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:09 pm	Success: TRUE
+01-16-15 8:09 pm	1
+01-16-15 8:09 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:09 pm	:id => 251
+01-16-15 8:09 pm	Success
+01-16-15 8:09 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:09 pm	:user_id => 1
+01-16-15 8:09 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:09 pm	Success: TRUE
+01-16-15 8:09 pm	1
+01-16-15 8:09 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:09 pm	:user_id => 1
+01-16-15 8:09 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:09 pm	Success: TRUE
+01-16-15 8:09 pm	1
+01-16-15 8:09 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:09 pm	No parameters
+01-16-15 8:09 pm	Success
+01-16-15 8:10 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:10 pm	:user_id => 1
+01-16-15 8:10 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:10 pm	Success: TRUE
+01-16-15 8:10 pm	1
+01-16-15 8:10 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:10 pm	:user_id => 1
+01-16-15 8:10 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:10 pm	Success: TRUE
+01-16-15 8:10 pm	1
+01-16-15 8:10 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description,
+                  attendance_dt DESC
+01-16-15 8:10 pm	No parameters
+01-16-15 8:10 pm	Success
+01-16-15 8:11 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:11 pm	:user_id => 1
+01-16-15 8:11 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:11 pm	Success: TRUE
+01-16-15 8:11 pm	1
+01-16-15 8:11 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:11 pm	:user_id => 1
+01-16-15 8:11 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:11 pm	Success: TRUE
+01-16-15 8:11 pm	1
+01-16-15 8:11 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:11 pm	:id => 143
+01-16-15 8:11 pm	Success
+01-16-15 8:11 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:11 pm	:user_id => 1
+01-16-15 8:11 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:11 pm	Success: TRUE
+01-16-15 8:11 pm	1
+01-16-15 8:11 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:11 pm	No parameters
+01-16-15 8:11 pm	Success
+01-16-15 8:11 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:11 pm	:user_id => 1
+01-16-15 8:11 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:11 pm	Success: TRUE
+01-16-15 8:11 pm	1
+01-16-15 8:12 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:12 pm	:user_id => 1
+01-16-15 8:12 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:12 pm	Success: TRUE
+01-16-15 8:12 pm	1
+01-16-15 8:12 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:12 pm	:user_id => 1
+01-16-15 8:12 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:12 pm	Success: TRUE
+01-16-15 8:12 pm	1
+01-16-15 8:12 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:12 pm	:id => 143
+01-16-15 8:12 pm	Success
+01-16-15 8:12 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:12 pm	:user_id => 1
+01-16-15 8:12 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:12 pm	Success: TRUE
+01-16-15 8:12 pm	1
+01-16-15 8:12 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:12 pm	No parameters
+01-16-15 8:12 pm	Success
+01-16-15 8:12 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:12 pm	:user_id => 1
+01-16-15 8:12 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:12 pm	Success: TRUE
+01-16-15 8:12 pm	1
+01-16-15 8:13 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:13 pm	:user_id => 1
+01-16-15 8:13 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:13 pm	Success: TRUE
+01-16-15 8:13 pm	1
+01-16-15 8:13 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:13 pm	:user_id => 1
+01-16-15 8:13 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:13 pm	Success: TRUE
+01-16-15 8:13 pm	1
+01-16-15 8:13 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:13 pm	No parameters
+01-16-15 8:13 pm	Success
+01-16-15 8:13 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:13 pm	:user_id => 1
+01-16-15 8:13 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:13 pm	Success: TRUE
+01-16-15 8:13 pm	1
+01-16-15 8:13 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:13 pm	:id => 143
+01-16-15 8:13 pm	Success
+01-16-15 8:13 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:13 pm	:user_id => 1
+01-16-15 8:13 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:13 pm	Success: TRUE
+01-16-15 8:13 pm	1
+01-16-15 8:13 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:13 pm	:user_id => 1
+01-16-15 8:13 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:13 pm	Success: TRUE
+01-16-15 8:13 pm	1
+01-16-15 8:13 pm	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-16-15 8:13 pm	:first_name => Alex
+01-16-15 8:13 pm	:last_name => Stevens
+01-16-15 8:13 pm	:description => 
+01-16-15 8:13 pm	:adult => 1
+01-16-15 8:13 pm	:active => 1
+01-16-15 8:13 pm	:baptized => 1
+01-16-15 8:13 pm	:saved => 1
+01-16-15 8:13 pm	:member => 1
+01-16-15 8:13 pm	:visitor => 1
+01-16-15 8:13 pm	:street1 => 
+01-16-15 8:13 pm	:street2 => 
+01-16-15 8:13 pm	:city => 
+01-16-15 8:13 pm	:state => OH
+01-16-15 8:13 pm	:zip => 
+01-16-15 8:13 pm	:email => 
+01-16-15 8:13 pm	:primary_phone => 
+01-16-15 8:13 pm	:secondary_phone => 
+01-16-15 8:13 pm	:modified_by => 1
+01-16-15 8:13 pm	:id => 143
+01-16-15 8:13 pm	Success: TRUE
+01-16-15 8:13 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:13 pm	:user_id => 1
+01-16-15 8:13 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:13 pm	Success: TRUE
+01-16-15 8:13 pm	1
+01-16-15 8:13 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:13 pm	:user_id => 1
+01-16-15 8:13 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:13 pm	Success: TRUE
+01-16-15 8:13 pm	1
+01-16-15 8:13 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:13 pm	:id => 143
+01-16-15 8:13 pm	Success
+01-16-15 8:13 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:13 pm	:user_id => 1
+01-16-15 8:13 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:13 pm	Success: TRUE
+01-16-15 8:13 pm	1
+01-16-15 8:13 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:13 pm	:user_id => 1
+01-16-15 8:13 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:13 pm	Success: TRUE
+01-16-15 8:13 pm	1
+01-16-15 8:13 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:13 pm	No parameters
+01-16-15 8:13 pm	Success
+01-16-15 8:16 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:16 pm	:user_id => 1
+01-16-15 8:16 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:16 pm	Success: TRUE
+01-16-15 8:16 pm	1
+01-16-15 8:16 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:16 pm	:user_id => 1
+01-16-15 8:16 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:16 pm	Success: TRUE
+01-16-15 8:16 pm	1
+01-16-15 8:16 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:16 pm	:id => 143
+01-16-15 8:16 pm	Success
+01-16-15 8:16 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:16 pm	:user_id => 1
+01-16-15 8:16 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:16 pm	Success: TRUE
+01-16-15 8:16 pm	1
+01-16-15 8:16 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:16 pm	:user_id => 1
+01-16-15 8:16 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:16 pm	Success: TRUE
+01-16-15 8:16 pm	1
+01-16-15 8:16 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:16 pm	No parameters
+01-16-15 8:16 pm	Success
+01-16-15 8:16 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:16 pm	:user_id => 1
+01-16-15 8:16 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:16 pm	Success: TRUE
+01-16-15 8:16 pm	1
+01-16-15 8:16 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:16 pm	:user_id => 1
+01-16-15 8:16 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:16 pm	Success: TRUE
+01-16-15 8:16 pm	1
+01-16-15 8:16 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:16 pm	No parameters
+01-16-15 8:16 pm	Success
+01-16-15 8:16 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:16 pm	:user_id => 1
+01-16-15 8:16 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:16 pm	Success: TRUE
+01-16-15 8:16 pm	1
+01-16-15 8:16 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:16 pm	:id => 143
+01-16-15 8:16 pm	Success
+01-16-15 8:16 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:16 pm	:user_id => 1
+01-16-15 8:16 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:16 pm	Success: TRUE
+01-16-15 8:16 pm	1
+01-16-15 8:16 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:16 pm	:user_id => 1
+01-16-15 8:16 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:16 pm	Success: TRUE
+01-16-15 8:16 pm	1
+01-16-15 8:16 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:16 pm	:user_id => 1
+01-16-15 8:16 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:16 pm	Success: TRUE
+01-16-15 8:16 pm	1
+01-16-15 8:16 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:16 pm	:id => 143
+01-16-15 8:16 pm	Success
+01-16-15 8:16 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:16 pm	:user_id => 1
+01-16-15 8:16 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:16 pm	Success: TRUE
+01-16-15 8:16 pm	1
+01-16-15 8:16 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:16 pm	No parameters
+01-16-15 8:16 pm	Success
+01-16-15 8:16 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:16 pm	:user_id => 1
+01-16-15 8:16 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:16 pm	Success: TRUE
+01-16-15 8:16 pm	1
+01-16-15 8:23 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:23 pm	:user_id => 1
+01-16-15 8:23 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:23 pm	Success: TRUE
+01-16-15 8:23 pm	1
+01-16-15 8:23 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:23 pm	:user_id => 1
+01-16-15 8:23 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:23 pm	Success: TRUE
+01-16-15 8:23 pm	1
+01-16-15 8:23 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:23 pm	:id => 143
+01-16-15 8:23 pm	Success
+01-16-15 8:23 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:23 pm	:user_id => 1
+01-16-15 8:23 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:23 pm	Success: TRUE
+01-16-15 8:23 pm	1
+01-16-15 8:23 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:23 pm	No parameters
+01-16-15 8:23 pm	Success
+01-16-15 8:23 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:23 pm	:user_id => 1
+01-16-15 8:23 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:23 pm	Success: TRUE
+01-16-15 8:23 pm	1
+01-16-15 8:29 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:29 pm	:user_id => 1
+01-16-15 8:29 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:29 pm	Success: TRUE
+01-16-15 8:29 pm	1
+01-16-15 8:29 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:29 pm	:user_id => 1
+01-16-15 8:29 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:29 pm	Success: TRUE
+01-16-15 8:29 pm	1
+01-16-15 8:29 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:29 pm	:id => 143
+01-16-15 8:29 pm	Success
+01-16-15 8:29 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:29 pm	:user_id => 1
+01-16-15 8:29 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:29 pm	Success: TRUE
+01-16-15 8:29 pm	1
+01-16-15 8:29 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:29 pm	:user_id => 1
+01-16-15 8:29 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:29 pm	Success: TRUE
+01-16-15 8:29 pm	1
+01-16-15 8:29 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:29 pm	No parameters
+01-16-15 8:29 pm	Success
+01-16-15 8:30 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:30 pm	:user_id => 1
+01-16-15 8:30 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:30 pm	Success: TRUE
+01-16-15 8:30 pm	1
+01-16-15 8:30 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:30 pm	:user_id => 1
+01-16-15 8:30 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:30 pm	Success: TRUE
+01-16-15 8:30 pm	1
+01-16-15 8:30 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:30 pm	:id => 143
+01-16-15 8:30 pm	Success
+01-16-15 8:30 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:30 pm	:user_id => 1
+01-16-15 8:30 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:30 pm	Success: TRUE
+01-16-15 8:30 pm	1
+01-16-15 8:30 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:30 pm	No parameters
+01-16-15 8:30 pm	Success
+01-16-15 8:30 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:30 pm	:user_id => 1
+01-16-15 8:30 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:30 pm	Success: TRUE
+01-16-15 8:30 pm	1
+01-16-15 8:30 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:30 pm	:user_id => 1
+01-16-15 8:30 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:30 pm	Success: TRUE
+01-16-15 8:30 pm	1
+01-16-15 8:30 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:30 pm	:user_id => 1
+01-16-15 8:30 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:30 pm	Success: TRUE
+01-16-15 8:30 pm	1
+01-16-15 8:30 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:30 pm	:id => 143
+01-16-15 8:30 pm	Success
+01-16-15 8:30 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:30 pm	:user_id => 1
+01-16-15 8:30 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:30 pm	Success: TRUE
+01-16-15 8:30 pm	1
+01-16-15 8:30 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:30 pm	No parameters
+01-16-15 8:30 pm	Success
+01-16-15 8:30 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:30 pm	:user_id => 1
+01-16-15 8:30 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:30 pm	Success: TRUE
+01-16-15 8:30 pm	1
+01-16-15 8:31 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:31 pm	:user_id => 1
+01-16-15 8:31 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:31 pm	Success: TRUE
+01-16-15 8:31 pm	1
+01-16-15 8:31 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:31 pm	:user_id => 1
+01-16-15 8:31 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:31 pm	Success: TRUE
+01-16-15 8:31 pm	1
+01-16-15 8:31 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:31 pm	:id => 143
+01-16-15 8:31 pm	Success
+01-16-15 8:31 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:31 pm	:user_id => 1
+01-16-15 8:31 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:31 pm	Success: TRUE
+01-16-15 8:31 pm	1
+01-16-15 8:31 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:31 pm	No parameters
+01-16-15 8:31 pm	Success
+01-16-15 8:31 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:31 pm	:user_id => 1
+01-16-15 8:31 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:31 pm	Success: TRUE
+01-16-15 8:31 pm	1
+01-16-15 8:32 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:32 pm	:user_id => 1
+01-16-15 8:32 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:32 pm	Success: TRUE
+01-16-15 8:32 pm	1
+01-16-15 8:32 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:32 pm	:user_id => 1
+01-16-15 8:32 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:32 pm	Success: TRUE
+01-16-15 8:32 pm	1
+01-16-15 8:32 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:32 pm	:id => 143
+01-16-15 8:32 pm	Success
+01-16-15 8:32 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:32 pm	:user_id => 1
+01-16-15 8:32 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:32 pm	Success: TRUE
+01-16-15 8:32 pm	1
+01-16-15 8:32 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:32 pm	No parameters
+01-16-15 8:32 pm	Success
+01-16-15 8:32 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:32 pm	:user_id => 1
+01-16-15 8:32 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:32 pm	Success: TRUE
+01-16-15 8:32 pm	1
+01-16-15 8:32 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:32 pm	:user_id => 1
+01-16-15 8:32 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:32 pm	Success: TRUE
+01-16-15 8:32 pm	1
+01-16-15 8:32 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:32 pm	:user_id => 1
+01-16-15 8:32 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:32 pm	Success: TRUE
+01-16-15 8:32 pm	1
+01-16-15 8:32 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:32 pm	:id => 143
+01-16-15 8:32 pm	Success
+01-16-15 8:32 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:32 pm	:user_id => 1
+01-16-15 8:32 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:32 pm	Success: TRUE
+01-16-15 8:32 pm	1
+01-16-15 8:32 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:32 pm	No parameters
+01-16-15 8:32 pm	Success
+01-16-15 8:32 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:32 pm	:user_id => 1
+01-16-15 8:32 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:32 pm	Success: TRUE
+01-16-15 8:32 pm	1
+01-16-15 8:33 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:33 pm	:user_id => 1
+01-16-15 8:33 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:33 pm	Success: TRUE
+01-16-15 8:33 pm	1
+01-16-15 8:33 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:33 pm	:user_id => 1
+01-16-15 8:33 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:33 pm	Success: TRUE
+01-16-15 8:33 pm	1
+01-16-15 8:33 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:33 pm	:id => 143
+01-16-15 8:33 pm	Success
+01-16-15 8:33 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:33 pm	:user_id => 1
+01-16-15 8:33 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:33 pm	Success: TRUE
+01-16-15 8:33 pm	1
+01-16-15 8:33 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:33 pm	No parameters
+01-16-15 8:33 pm	Success
+01-16-15 8:33 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:33 pm	:user_id => 1
+01-16-15 8:33 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:33 pm	Success: TRUE
+01-16-15 8:33 pm	1
+01-16-15 8:39 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:39 pm	:user_id => 1
+01-16-15 8:39 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:39 pm	Success: TRUE
+01-16-15 8:39 pm	1
+01-16-15 8:39 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:39 pm	:user_id => 1
+01-16-15 8:39 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:39 pm	Success: TRUE
+01-16-15 8:39 pm	1
+01-16-15 8:39 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:39 pm	:id => 143
+01-16-15 8:39 pm	Success
+01-16-15 8:39 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:39 pm	:user_id => 1
+01-16-15 8:39 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:39 pm	Success: TRUE
+01-16-15 8:39 pm	1
+01-16-15 8:39 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:39 pm	No parameters
+01-16-15 8:39 pm	Success
+01-16-15 8:39 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:39 pm	:user_id => 1
+01-16-15 8:39 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:39 pm	Success: TRUE
+01-16-15 8:39 pm	1
+01-16-15 8:40 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:40 pm	:user_id => 1
+01-16-15 8:40 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:40 pm	Success: TRUE
+01-16-15 8:40 pm	1
+01-16-15 8:40 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:40 pm	:user_id => 1
+01-16-15 8:40 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:40 pm	Success: TRUE
+01-16-15 8:40 pm	1
+01-16-15 8:40 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:40 pm	:id => 143
+01-16-15 8:40 pm	Success
+01-16-15 8:40 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:40 pm	:user_id => 1
+01-16-15 8:40 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:40 pm	Success: TRUE
+01-16-15 8:40 pm	1
+01-16-15 8:40 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:40 pm	No parameters
+01-16-15 8:40 pm	Success
+01-16-15 8:40 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:40 pm	:user_id => 1
+01-16-15 8:40 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:40 pm	Success: TRUE
+01-16-15 8:40 pm	1
+01-16-15 8:42 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:42 pm	:user_id => 1
+01-16-15 8:42 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:42 pm	Success: TRUE
+01-16-15 8:42 pm	1
+01-16-15 8:42 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:42 pm	:user_id => 1
+01-16-15 8:42 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:42 pm	Success: TRUE
+01-16-15 8:42 pm	1
+01-16-15 8:42 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:42 pm	:id => 143
+01-16-15 8:42 pm	Success
+01-16-15 8:42 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:42 pm	:user_id => 1
+01-16-15 8:42 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:42 pm	Success: TRUE
+01-16-15 8:42 pm	1
+01-16-15 8:42 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:42 pm	No parameters
+01-16-15 8:42 pm	Success
+01-16-15 8:42 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:42 pm	:user_id => 1
+01-16-15 8:42 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:42 pm	Success: TRUE
+01-16-15 8:42 pm	1
+01-16-15 8:47 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:47 pm	:user_id => 1
+01-16-15 8:47 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:47 pm	Success: TRUE
+01-16-15 8:47 pm	1
+01-16-15 8:47 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:47 pm	:user_id => 1
+01-16-15 8:47 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:47 pm	Success: TRUE
+01-16-15 8:47 pm	1
+01-16-15 8:47 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:47 pm	:id => 143
+01-16-15 8:47 pm	Success
+01-16-15 8:47 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:47 pm	:user_id => 1
+01-16-15 8:47 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:47 pm	Success: TRUE
+01-16-15 8:47 pm	1
+01-16-15 8:47 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:47 pm	No parameters
+01-16-15 8:47 pm	Success
+01-16-15 8:47 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:47 pm	:user_id => 1
+01-16-15 8:47 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:47 pm	Success: TRUE
+01-16-15 8:47 pm	1
+01-16-15 8:49 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:49 pm	:user_id => 1
+01-16-15 8:49 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:49 pm	Success: TRUE
+01-16-15 8:49 pm	1
+01-16-15 8:49 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:49 pm	:user_id => 1
+01-16-15 8:49 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:49 pm	Success: TRUE
+01-16-15 8:49 pm	1
+01-16-15 8:49 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:49 pm	:id => 143
+01-16-15 8:49 pm	Success
+01-16-15 8:49 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:49 pm	:user_id => 1
+01-16-15 8:49 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:49 pm	Success: TRUE
+01-16-15 8:49 pm	1
+01-16-15 8:49 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:49 pm	No parameters
+01-16-15 8:49 pm	Success
+01-16-15 8:49 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:49 pm	:user_id => 1
+01-16-15 8:49 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:49 pm	Success: TRUE
+01-16-15 8:49 pm	1
+01-16-15 8:55 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:55 pm	:user_id => 1
+01-16-15 8:55 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:55 pm	Success: TRUE
+01-16-15 8:55 pm	1
+01-16-15 8:55 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:55 pm	:user_id => 1
+01-16-15 8:55 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:55 pm	Success: TRUE
+01-16-15 8:55 pm	1
+01-16-15 8:55 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 8:55 pm	:id => 143
+01-16-15 8:55 pm	Success
+01-16-15 8:55 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:55 pm	:user_id => 1
+01-16-15 8:55 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:55 pm	Success: TRUE
+01-16-15 8:55 pm	1
+01-16-15 8:55 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 8:55 pm	No parameters
+01-16-15 8:55 pm	Success
+01-16-15 8:55 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 8:55 pm	:user_id => 1
+01-16-15 8:55 pm	:session_id => 54b98673efc507.74449040
+01-16-15 8:55 pm	Success: TRUE
+01-16-15 8:55 pm	1
+01-16-15 9:05 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:05 pm	:user_id => 1
+01-16-15 9:05 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:05 pm	Success: TRUE
+01-16-15 9:05 pm	1
+01-16-15 9:05 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:05 pm	:user_id => 1
+01-16-15 9:05 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:05 pm	Success: TRUE
+01-16-15 9:05 pm	1
+01-16-15 9:05 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 9:05 pm	:id => 143
+01-16-15 9:05 pm	Success
+01-16-15 9:05 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:05 pm	:user_id => 1
+01-16-15 9:05 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:05 pm	Success: TRUE
+01-16-15 9:05 pm	1
+01-16-15 9:05 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 9:05 pm	No parameters
+01-16-15 9:05 pm	Success
+01-16-15 9:05 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:05 pm	:user_id => 1
+01-16-15 9:05 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:05 pm	Success: TRUE
+01-16-15 9:05 pm	1
+01-16-15 9:06 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:06 pm	:user_id => 1
+01-16-15 9:06 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:06 pm	Success: TRUE
+01-16-15 9:06 pm	1
+01-16-15 9:06 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:06 pm	:user_id => 1
+01-16-15 9:06 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:06 pm	Success: TRUE
+01-16-15 9:06 pm	1
+01-16-15 9:06 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 9:06 pm	:id => 143
+01-16-15 9:06 pm	Success
+01-16-15 9:06 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:06 pm	:user_id => 1
+01-16-15 9:06 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:06 pm	Success: TRUE
+01-16-15 9:06 pm	1
+01-16-15 9:06 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 9:06 pm	No parameters
+01-16-15 9:06 pm	Success
+01-16-15 9:06 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:06 pm	:user_id => 1
+01-16-15 9:06 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:06 pm	Success: TRUE
+01-16-15 9:06 pm	1
+01-16-15 9:15 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:15 pm	:user_id => 1
+01-16-15 9:15 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:15 pm	Success: TRUE
+01-16-15 9:15 pm	1
+01-16-15 9:15 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:15 pm	:user_id => 1
+01-16-15 9:15 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:15 pm	Success: TRUE
+01-16-15 9:15 pm	1
+01-16-15 9:15 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 9:15 pm	:id => 143
+01-16-15 9:15 pm	Success
+01-16-15 9:15 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:15 pm	:user_id => 1
+01-16-15 9:15 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:15 pm	Success: TRUE
+01-16-15 9:15 pm	1
+01-16-15 9:15 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 9:15 pm	No parameters
+01-16-15 9:15 pm	Success
+01-16-15 9:15 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:15 pm	:user_id => 1
+01-16-15 9:15 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:15 pm	Success: TRUE
+01-16-15 9:15 pm	1
+01-16-15 9:17 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:17 pm	:user_id => 1
+01-16-15 9:17 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:17 pm	Success: TRUE
+01-16-15 9:17 pm	1
+01-16-15 9:17 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:17 pm	:user_id => 1
+01-16-15 9:17 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:17 pm	Success: TRUE
+01-16-15 9:17 pm	1
+01-16-15 9:17 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 9:17 pm	No parameters
+01-16-15 9:17 pm	Success
+01-16-15 9:17 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:17 pm	:user_id => 1
+01-16-15 9:17 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:17 pm	Success: TRUE
+01-16-15 9:17 pm	1
+01-16-15 9:17 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:17 pm	:user_id => 1
+01-16-15 9:17 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:17 pm	Success: TRUE
+01-16-15 9:17 pm	1
+01-16-15 9:17 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 9:17 pm	:id => 143
+01-16-15 9:17 pm	Success
+01-16-15 9:19 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:19 pm	:user_id => 1
+01-16-15 9:19 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:19 pm	Success: TRUE
+01-16-15 9:19 pm	1
+01-16-15 9:19 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:19 pm	:user_id => 1
+01-16-15 9:19 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:19 pm	Success: TRUE
+01-16-15 9:19 pm	1
+01-16-15 9:19 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 9:19 pm	:id => 143
+01-16-15 9:19 pm	Success
+01-16-15 9:19 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:19 pm	:user_id => 1
+01-16-15 9:19 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:19 pm	Success: TRUE
+01-16-15 9:19 pm	1
+01-16-15 9:19 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 9:19 pm	No parameters
+01-16-15 9:19 pm	Success
+01-16-15 9:19 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:19 pm	:user_id => 1
+01-16-15 9:19 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:19 pm	Success: TRUE
+01-16-15 9:19 pm	1
+01-16-15 9:19 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:19 pm	:user_id => 1
+01-16-15 9:19 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:19 pm	Success: TRUE
+01-16-15 9:19 pm	1
+01-16-15 9:19 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:19 pm	:user_id => 1
+01-16-15 9:19 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:19 pm	Success: TRUE
+01-16-15 9:19 pm	1
+01-16-15 9:19 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 9:19 pm	:id => 143
+01-16-15 9:19 pm	Success
+01-16-15 9:19 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:19 pm	:user_id => 1
+01-16-15 9:19 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:19 pm	Success: TRUE
+01-16-15 9:19 pm	1
+01-16-15 9:19 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 9:19 pm	No parameters
+01-16-15 9:19 pm	Success
+01-16-15 9:19 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:19 pm	:user_id => 1
+01-16-15 9:19 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:19 pm	Success: TRUE
+01-16-15 9:19 pm	1
+01-16-15 9:20 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:20 pm	:user_id => 1
+01-16-15 9:20 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:20 pm	Success: TRUE
+01-16-15 9:20 pm	1
+01-16-15 9:20 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:20 pm	:user_id => 1
+01-16-15 9:20 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:20 pm	Success: TRUE
+01-16-15 9:20 pm	1
+01-16-15 9:20 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 9:20 pm	:id => 143
+01-16-15 9:20 pm	Success
+01-16-15 9:20 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:20 pm	:user_id => 1
+01-16-15 9:20 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:20 pm	Success: TRUE
+01-16-15 9:20 pm	1
+01-16-15 9:20 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 9:20 pm	No parameters
+01-16-15 9:20 pm	Success
+01-16-15 9:20 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:20 pm	:user_id => 1
+01-16-15 9:20 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:20 pm	Success: TRUE
+01-16-15 9:20 pm	1
+01-16-15 9:20 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:20 pm	:user_id => 1
+01-16-15 9:20 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:20 pm	Success: TRUE
+01-16-15 9:20 pm	1
+01-16-15 9:20 pm	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-16-15 9:20 pm	:first_name => Alex
+01-16-15 9:20 pm	:last_name => Stevens
+01-16-15 9:20 pm	:description => 
+01-16-15 9:20 pm	:adult => 1
+01-16-15 9:20 pm	:active => 1
+01-16-15 9:20 pm	:baptized => 1
+01-16-15 9:20 pm	:saved => 1
+01-16-15 9:20 pm	:member => 1
+01-16-15 9:20 pm	:visitor => 1
+01-16-15 9:20 pm	:street1 => 383 Lilyfield Ln
+01-16-15 9:20 pm	:street2 => 
+01-16-15 9:20 pm	:city => Galloway
+01-16-15 9:20 pm	:state => OH
+01-16-15 9:20 pm	:zip => 43119
+01-16-15 9:20 pm	:email => 
+01-16-15 9:20 pm	:primary_phone => 7706080581
+01-16-15 9:20 pm	:secondary_phone => 7706080581
+01-16-15 9:20 pm	:modified_by => 1
+01-16-15 9:20 pm	:id => 143
+01-16-15 9:20 pm	Success: TRUE
+01-16-15 9:20 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:20 pm	:user_id => 1
+01-16-15 9:20 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:20 pm	Success: TRUE
+01-16-15 9:20 pm	1
+01-16-15 9:20 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:20 pm	:user_id => 1
+01-16-15 9:20 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:20 pm	Success: TRUE
+01-16-15 9:20 pm	1
+01-16-15 9:20 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 9:20 pm	:id => 143
+01-16-15 9:20 pm	Success
+01-16-15 9:20 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:20 pm	:user_id => 1
+01-16-15 9:20 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:20 pm	Success: TRUE
+01-16-15 9:20 pm	1
+01-16-15 9:20 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 9:20 pm	No parameters
+01-16-15 9:20 pm	Success
+01-16-15 9:20 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:20 pm	:user_id => 1
+01-16-15 9:20 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:20 pm	Success: TRUE
+01-16-15 9:20 pm	1
+01-16-15 9:22 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:22 pm	:user_id => 1
+01-16-15 9:22 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:22 pm	Success: TRUE
+01-16-15 9:22 pm	1
+01-16-15 9:22 pm	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-16-15 9:22 pm	:first_name => Alex
+01-16-15 9:22 pm	:last_name => Stevens
+01-16-15 9:22 pm	:description => 
+01-16-15 9:22 pm	:adult => 1
+01-16-15 9:22 pm	:active => 1
+01-16-15 9:22 pm	:baptized => 1
+01-16-15 9:22 pm	:saved => 1
+01-16-15 9:22 pm	:member => 1
+01-16-15 9:22 pm	:visitor => 1
+01-16-15 9:22 pm	:street1 => 
+01-16-15 9:22 pm	:street2 => 
+01-16-15 9:22 pm	:city => 
+01-16-15 9:22 pm	:state => OH
+01-16-15 9:22 pm	:zip => 
+01-16-15 9:22 pm	:email => 
+01-16-15 9:22 pm	:primary_phone => 7706080581
+01-16-15 9:22 pm	:secondary_phone => 7706080581
+01-16-15 9:22 pm	:modified_by => 1
+01-16-15 9:22 pm	:id => 143
+01-16-15 9:22 pm	Success: TRUE
+01-16-15 9:22 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:22 pm	:user_id => 1
+01-16-15 9:22 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:22 pm	Success: TRUE
+01-16-15 9:22 pm	1
+01-16-15 9:22 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:22 pm	:user_id => 1
+01-16-15 9:22 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:22 pm	Success: TRUE
+01-16-15 9:22 pm	1
+01-16-15 9:22 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 9:22 pm	:id => 143
+01-16-15 9:22 pm	Success
+01-16-15 9:22 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:22 pm	:user_id => 1
+01-16-15 9:22 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:22 pm	Success: TRUE
+01-16-15 9:22 pm	1
+01-16-15 9:22 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 9:22 pm	No parameters
+01-16-15 9:22 pm	Success
+01-16-15 9:22 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:22 pm	:user_id => 1
+01-16-15 9:22 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:22 pm	Success: TRUE
+01-16-15 9:22 pm	1
+01-16-15 9:22 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:22 pm	:user_id => 1
+01-16-15 9:22 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:22 pm	Success: TRUE
+01-16-15 9:22 pm	1
+01-16-15 9:22 pm	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-16-15 9:22 pm	:first_name => Alex
+01-16-15 9:22 pm	:last_name => Stevens
+01-16-15 9:22 pm	:description => 
+01-16-15 9:22 pm	:adult => 1
+01-16-15 9:22 pm	:active => 1
+01-16-15 9:22 pm	:baptized => 1
+01-16-15 9:22 pm	:saved => 1
+01-16-15 9:22 pm	:member => 1
+01-16-15 9:22 pm	:visitor => 1
+01-16-15 9:22 pm	:street1 => 383 Lilyfield Ln
+01-16-15 9:22 pm	:street2 => 
+01-16-15 9:22 pm	:city => Galloway
+01-16-15 9:22 pm	:state => OH
+01-16-15 9:22 pm	:zip => 43119
+01-16-15 9:22 pm	:email => 
+01-16-15 9:22 pm	:primary_phone => 7706080581
+01-16-15 9:22 pm	:secondary_phone => 7706080581
+01-16-15 9:22 pm	:modified_by => 1
+01-16-15 9:22 pm	:id => 143
+01-16-15 9:22 pm	Success: TRUE
+01-16-15 9:26 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:26 pm	:user_id => 1
+01-16-15 9:26 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:26 pm	Success: TRUE
+01-16-15 9:26 pm	1
+01-16-15 9:26 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:26 pm	:user_id => 1
+01-16-15 9:26 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:26 pm	Success: TRUE
+01-16-15 9:26 pm	1
+01-16-15 9:26 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 9:26 pm	:id => 143
+01-16-15 9:26 pm	Success
+01-16-15 9:26 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:26 pm	:user_id => 1
+01-16-15 9:26 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:26 pm	Success: TRUE
+01-16-15 9:26 pm	1
+01-16-15 9:26 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 9:26 pm	No parameters
+01-16-15 9:26 pm	Success
+01-16-15 9:26 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:26 pm	:user_id => 1
+01-16-15 9:26 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:26 pm	Success: TRUE
+01-16-15 9:26 pm	1
+01-16-15 9:26 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:26 pm	:user_id => 1
+01-16-15 9:26 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:26 pm	Success: TRUE
+01-16-15 9:26 pm	1
+01-16-15 9:26 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:26 pm	:user_id => 1
+01-16-15 9:26 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:26 pm	Success: TRUE
+01-16-15 9:26 pm	1
+01-16-15 9:26 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 9:26 pm	:id => 143
+01-16-15 9:26 pm	Success
+01-16-15 9:26 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:26 pm	:user_id => 1
+01-16-15 9:26 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:26 pm	Success: TRUE
+01-16-15 9:26 pm	1
+01-16-15 9:26 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 9:26 pm	No parameters
+01-16-15 9:26 pm	Success
+01-16-15 9:26 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:26 pm	:user_id => 1
+01-16-15 9:26 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:26 pm	Success: TRUE
+01-16-15 9:26 pm	1
+01-16-15 9:27 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:27 pm	:user_id => 1
+01-16-15 9:27 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:27 pm	Success: TRUE
+01-16-15 9:27 pm	1
+01-16-15 9:27 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:27 pm	:user_id => 1
+01-16-15 9:27 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:27 pm	Success: TRUE
+01-16-15 9:27 pm	1
+01-16-15 9:27 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 9:27 pm	:id => 143
+01-16-15 9:27 pm	Success
+01-16-15 9:27 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:27 pm	:user_id => 1
+01-16-15 9:27 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:27 pm	Success: TRUE
+01-16-15 9:27 pm	1
+01-16-15 9:27 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 9:27 pm	No parameters
+01-16-15 9:27 pm	Success
+01-16-15 9:27 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:27 pm	:user_id => 1
+01-16-15 9:27 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:27 pm	Success: TRUE
+01-16-15 9:27 pm	1
+01-16-15 9:28 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:28 pm	:user_id => 1
+01-16-15 9:28 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:28 pm	Success: TRUE
+01-16-15 9:28 pm	1
+01-16-15 9:28 pm	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-16-15 9:28 pm	:first_name => Alex
+01-16-15 9:28 pm	:last_name => Stevens
+01-16-15 9:28 pm	:description => 
+01-16-15 9:28 pm	:adult => 1
+01-16-15 9:28 pm	:active => 1
+01-16-15 9:28 pm	:baptized => 1
+01-16-15 9:28 pm	:saved => 1
+01-16-15 9:28 pm	:member => 1
+01-16-15 9:28 pm	:visitor => 1
+01-16-15 9:28 pm	:street1 => 
+01-16-15 9:28 pm	:street2 => 
+01-16-15 9:28 pm	:city => Galloway
+01-16-15 9:28 pm	:state => OH
+01-16-15 9:28 pm	:zip => 43119
+01-16-15 9:28 pm	:email => 
+01-16-15 9:28 pm	:primary_phone => 7706080581
+01-16-15 9:28 pm	:secondary_phone => 7706080581
+01-16-15 9:28 pm	:modified_by => 1
+01-16-15 9:28 pm	:id => 143
+01-16-15 9:28 pm	Success: TRUE
+01-16-15 9:28 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:28 pm	:user_id => 1
+01-16-15 9:28 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:28 pm	Success: TRUE
+01-16-15 9:28 pm	1
+01-16-15 9:28 pm	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-16-15 9:28 pm	:first_name => Alex
+01-16-15 9:28 pm	:last_name => Stevens
+01-16-15 9:28 pm	:description => 
+01-16-15 9:28 pm	:adult => 1
+01-16-15 9:28 pm	:active => 1
+01-16-15 9:28 pm	:baptized => 1
+01-16-15 9:28 pm	:saved => 1
+01-16-15 9:28 pm	:member => 1
+01-16-15 9:28 pm	:visitor => 1
+01-16-15 9:28 pm	:street1 => 
+01-16-15 9:28 pm	:street2 => 
+01-16-15 9:28 pm	:city => 
+01-16-15 9:28 pm	:state => OH
+01-16-15 9:28 pm	:zip => 
+01-16-15 9:28 pm	:email => 
+01-16-15 9:28 pm	:primary_phone => 7706080581
+01-16-15 9:28 pm	:secondary_phone => 7706080581
+01-16-15 9:28 pm	:modified_by => 1
+01-16-15 9:28 pm	:id => 143
+01-16-15 9:28 pm	Success: TRUE
+01-16-15 9:29 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:29 pm	:user_id => 1
+01-16-15 9:29 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:29 pm	Success: TRUE
+01-16-15 9:29 pm	1
+01-16-15 9:29 pm	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-16-15 9:29 pm	:first_name => Alex
+01-16-15 9:29 pm	:last_name => Stevens
+01-16-15 9:29 pm	:description => 
+01-16-15 9:29 pm	:adult => 1
+01-16-15 9:29 pm	:active => 1
+01-16-15 9:29 pm	:baptized => 1
+01-16-15 9:29 pm	:saved => 1
+01-16-15 9:29 pm	:member => 1
+01-16-15 9:29 pm	:visitor => 1
+01-16-15 9:29 pm	:street1 => 383 Lilyfield Ln
+01-16-15 9:29 pm	:street2 => 
+01-16-15 9:29 pm	:city => Galloway
+01-16-15 9:29 pm	:state => OH
+01-16-15 9:29 pm	:zip => 43119
+01-16-15 9:29 pm	:email => 
+01-16-15 9:29 pm	:primary_phone => 7706080581
+01-16-15 9:29 pm	:secondary_phone => 7706080581
+01-16-15 9:29 pm	:modified_by => 1
+01-16-15 9:29 pm	:id => 143
+01-16-15 9:29 pm	Success: TRUE
+01-16-15 9:29 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:29 pm	:user_id => 1
+01-16-15 9:29 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:29 pm	Success: TRUE
+01-16-15 9:29 pm	1
+01-16-15 9:29 pm	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-16-15 9:29 pm	:first_name => Alex
+01-16-15 9:29 pm	:last_name => Stevens
+01-16-15 9:29 pm	:description => 
+01-16-15 9:29 pm	:adult => 1
+01-16-15 9:29 pm	:active => 1
+01-16-15 9:29 pm	:baptized => 1
+01-16-15 9:29 pm	:saved => 1
+01-16-15 9:29 pm	:member => 1
+01-16-15 9:29 pm	:visitor => 1
+01-16-15 9:29 pm	:street1 => 
+01-16-15 9:29 pm	:street2 => 
+01-16-15 9:29 pm	:city => 
+01-16-15 9:29 pm	:state => OH
+01-16-15 9:29 pm	:zip => 
+01-16-15 9:29 pm	:email => 
+01-16-15 9:29 pm	:primary_phone => 7706080581
+01-16-15 9:29 pm	:secondary_phone => 7706080581
+01-16-15 9:29 pm	:modified_by => 1
+01-16-15 9:29 pm	:id => 143
+01-16-15 9:29 pm	Success: TRUE
+01-16-15 9:29 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:29 pm	:user_id => 1
+01-16-15 9:29 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:29 pm	Success: TRUE
+01-16-15 9:29 pm	1
+01-16-15 9:29 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:29 pm	:user_id => 1
+01-16-15 9:29 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:29 pm	Success: TRUE
+01-16-15 9:29 pm	1
+01-16-15 9:29 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description,
+                  attendance_dt DESC
+01-16-15 9:29 pm	No parameters
+01-16-15 9:29 pm	Success
+01-16-15 9:29 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:29 pm	:user_id => 1
+01-16-15 9:29 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:29 pm	Success: TRUE
+01-16-15 9:29 pm	1
+01-16-15 9:29 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:29 pm	:user_id => 1
+01-16-15 9:29 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:29 pm	Success: TRUE
+01-16-15 9:29 pm	1
+01-16-15 9:29 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 9:29 pm	:id => 31
+01-16-15 9:29 pm	Success
+01-16-15 9:29 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:29 pm	:user_id => 1
+01-16-15 9:29 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:29 pm	Success: TRUE
+01-16-15 9:29 pm	1
+01-16-15 9:29 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:29 pm	:user_id => 1
+01-16-15 9:29 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:29 pm	Success: TRUE
+01-16-15 9:29 pm	1
+01-16-15 9:29 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 9:29 pm	No parameters
+01-16-15 9:29 pm	Success
+01-16-15 9:30 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:30 pm	:user_id => 1
+01-16-15 9:30 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:30 pm	Success: TRUE
+01-16-15 9:30 pm	1
+01-16-15 9:30 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:30 pm	:user_id => 1
+01-16-15 9:30 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:30 pm	Success: TRUE
+01-16-15 9:30 pm	1
+01-16-15 9:30 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 9:30 pm	:id => 31
+01-16-15 9:30 pm	Success
+01-16-15 9:30 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:30 pm	:user_id => 1
+01-16-15 9:30 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:30 pm	Success: TRUE
+01-16-15 9:30 pm	1
+01-16-15 9:30 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:30 pm	:user_id => 1
+01-16-15 9:30 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:30 pm	Success: TRUE
+01-16-15 9:30 pm	1
+01-16-15 9:30 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 9:30 pm	No parameters
+01-16-15 9:30 pm	Success
+01-16-15 9:31 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:31 pm	:user_id => 1
+01-16-15 9:31 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:31 pm	Success: TRUE
+01-16-15 9:31 pm	1
+01-16-15 9:35 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:35 pm	:user_id => 1
+01-16-15 9:35 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:35 pm	Success: TRUE
+01-16-15 9:35 pm	1
+01-16-15 9:35 pm	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-16-15 9:35 pm	:first_name => Jeff
+01-16-15 9:35 pm	:last_name => Chadrick
+01-16-15 9:35 pm	:description => 
+01-16-15 9:35 pm	:adult => 1
+01-16-15 9:35 pm	:active => 1
+01-16-15 9:35 pm	:baptized => 0
+01-16-15 9:35 pm	:saved => 0
+01-16-15 9:35 pm	:member => 0
+01-16-15 9:35 pm	:visitor => 0
+01-16-15 9:35 pm	:street1 => 2021 Arway Dr
+01-16-15 9:35 pm	:street2 => 
+01-16-15 9:35 pm	:city => Hilliard
+01-16-15 9:35 pm	:state => OH
+01-16-15 9:35 pm	:zip => 43026
+01-16-15 9:35 pm	:email => 
+01-16-15 9:35 pm	:primary_phone => 
+01-16-15 9:35 pm	:secondary_phone => 
+01-16-15 9:35 pm	:modified_by => 1
+01-16-15 9:35 pm	:id => 31
+01-16-15 9:35 pm	Success: TRUE
+01-16-15 9:36 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:36 pm	:user_id => 1
+01-16-15 9:36 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:36 pm	Success: TRUE
+01-16-15 9:36 pm	1
+01-16-15 9:36 pm	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-16-15 9:36 pm	:first_name => Jeff
+01-16-15 9:36 pm	:last_name => Chadrick
+01-16-15 9:36 pm	:description => 
+01-16-15 9:36 pm	:adult => 1
+01-16-15 9:36 pm	:active => 1
+01-16-15 9:36 pm	:baptized => 0
+01-16-15 9:36 pm	:saved => 0
+01-16-15 9:36 pm	:member => 0
+01-16-15 9:36 pm	:visitor => 0
+01-16-15 9:36 pm	:street1 => 
+01-16-15 9:36 pm	:street2 => 
+01-16-15 9:36 pm	:city => 
+01-16-15 9:36 pm	:state => OH
+01-16-15 9:36 pm	:zip => 
+01-16-15 9:36 pm	:email => 
+01-16-15 9:36 pm	:primary_phone => 
+01-16-15 9:36 pm	:secondary_phone => 
+01-16-15 9:36 pm	:modified_by => 1
+01-16-15 9:36 pm	:id => 31
+01-16-15 9:36 pm	Success: TRUE
+01-16-15 9:40 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:40 pm	:user_id => 1
+01-16-15 9:40 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:40 pm	Success: TRUE
+01-16-15 9:40 pm	1
+01-16-15 9:40 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:40 pm	:user_id => 1
+01-16-15 9:40 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:40 pm	Success: TRUE
+01-16-15 9:40 pm	1
+01-16-15 9:40 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 9:40 pm	No parameters
+01-16-15 9:40 pm	Success
+01-16-15 9:40 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 9:40 pm	:user_id => 1
+01-16-15 9:40 pm	:session_id => 54b98673efc507.74449040
+01-16-15 9:40 pm	Success: TRUE
+01-16-15 9:40 pm	1
+01-16-15 9:40 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.active,
+                  p.adult,
+                  p.saved,
+                  p.baptized,
+                  p.member,
+                  p.visitor,
+                  p.street1,
+                  p.street2,
+                  p.city,
+                  p.state,
+                  p.zip,
+                  p.email,
+                  p.primary_phone,
+                  p.secondary_phone
+                FROM
+                  People p
+                WHERE
+                  p.id=:id
+01-16-15 9:40 pm	:id => 31
+01-16-15 9:40 pm	Success
+01-16-15 11:39 pm	Session information missing
+01-16-15 11:39 pm	UPDATE Users SET session_id=:session_id where username=:username AND password=:password
+01-16-15 11:39 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:39 pm	:username => alex
+01-16-15 11:39 pm	:password => d693b886b75d616e6837e10869bb722b
+01-16-15 11:39 pm	Success: TRUE
+01-16-15 11:39 pm	SELECT id FROM Users WHERE username=:username AND password=:password
+01-16-15 11:39 pm	:username => alex
+01-16-15 11:39 pm	:password => d693b886b75d616e6837e10869bb722b
+01-16-15 11:39 pm	Success
+01-16-15 11:39 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:39 pm	:user_id => 1
+01-16-15 11:39 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:39 pm	Success: TRUE
+01-16-15 11:39 pm	1
+01-16-15 11:39 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:39 pm	:user_id => 1
+01-16-15 11:39 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:39 pm	Success: TRUE
+01-16-15 11:39 pm	1
+01-16-15 11:39 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description,
+                  attendance_dt DESC
+01-16-15 11:39 pm	No parameters
+01-16-15 11:39 pm	Success
+01-16-15 11:39 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:39 pm	:user_id => 1
+01-16-15 11:39 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:39 pm	Success: TRUE
+01-16-15 11:39 pm	1
+01-16-15 11:39 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:39 pm	:user_id => 1
+01-16-15 11:39 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:39 pm	Success: TRUE
+01-16-15 11:39 pm	1
+01-16-15 11:39 pm	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  f.follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  inner join FollowUps f on f.follow_up_to_person_id=p.id
+		  inner join FollowUpVisitors v on f.id=v.follow_up_id
+		  inner join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-16-15 11:39 pm	:id => 143
+01-16-15 11:39 pm	Success
+01-16-15 11:39 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:39 pm	:user_id => 1
+01-16-15 11:39 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:39 pm	Success: TRUE
+01-16-15 11:39 pm	1
+01-16-15 11:39 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 11:39 pm	No parameters
+01-16-15 11:39 pm	Success
+01-16-15 11:43 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:43 pm	:user_id => 1
+01-16-15 11:43 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:43 pm	Success: TRUE
+01-16-15 11:43 pm	1
+01-16-15 11:43 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:43 pm	:user_id => 1
+01-16-15 11:43 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:43 pm	Success: TRUE
+01-16-15 11:43 pm	1
+01-16-15 11:43 pm	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  f.follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  inner join FollowUps f on f.follow_up_to_person_id=p.id
+		  inner join FollowUpVisitors v on f.id=v.follow_up_id
+		  inner join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-16-15 11:43 pm	:id => 143
+01-16-15 11:43 pm	Success
+01-16-15 11:43 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:43 pm	:user_id => 1
+01-16-15 11:43 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:43 pm	Success: TRUE
+01-16-15 11:43 pm	1
+01-16-15 11:43 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 11:43 pm	No parameters
+01-16-15 11:43 pm	Success
+01-16-15 11:45 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:45 pm	:user_id => 1
+01-16-15 11:45 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:45 pm	Success: TRUE
+01-16-15 11:45 pm	1
+01-16-15 11:45 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:45 pm	:user_id => 1
+01-16-15 11:45 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:45 pm	Success: TRUE
+01-16-15 11:45 pm	1
+01-16-15 11:45 pm	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  f.follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-16-15 11:45 pm	:id => 143
+01-16-15 11:45 pm	Success
+01-16-15 11:45 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:45 pm	:user_id => 1
+01-16-15 11:45 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:45 pm	Success: TRUE
+01-16-15 11:45 pm	1
+01-16-15 11:45 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 11:45 pm	No parameters
+01-16-15 11:45 pm	Success
+01-16-15 11:45 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:45 pm	:user_id => 1
+01-16-15 11:45 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:45 pm	Success: TRUE
+01-16-15 11:45 pm	1
+01-16-15 11:45 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:45 pm	:user_id => 1
+01-16-15 11:45 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:45 pm	Success: TRUE
+01-16-15 11:45 pm	1
+01-16-15 11:45 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description,
+                  attendance_dt DESC
+01-16-15 11:45 pm	No parameters
+01-16-15 11:45 pm	Success
+01-16-15 11:45 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:45 pm	:user_id => 1
+01-16-15 11:45 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:45 pm	Success: TRUE
+01-16-15 11:45 pm	1
+01-16-15 11:45 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:45 pm	:user_id => 1
+01-16-15 11:45 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:45 pm	Success: TRUE
+01-16-15 11:45 pm	1
+01-16-15 11:45 pm	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  f.follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-16-15 11:45 pm	:id => 15
+01-16-15 11:45 pm	Success
+01-16-15 11:45 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:45 pm	:user_id => 1
+01-16-15 11:45 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:45 pm	Success: TRUE
+01-16-15 11:45 pm	1
+01-16-15 11:45 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 11:45 pm	No parameters
+01-16-15 11:45 pm	Success
+01-16-15 11:46 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:46 pm	:user_id => 1
+01-16-15 11:46 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:46 pm	Success: TRUE
+01-16-15 11:46 pm	1
+01-16-15 11:46 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:46 pm	:user_id => 1
+01-16-15 11:46 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:46 pm	Success: TRUE
+01-16-15 11:46 pm	1
+01-16-15 11:46 pm	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  f.follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-16-15 11:46 pm	:id => 15
+01-16-15 11:46 pm	Success
+01-16-15 11:46 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:46 pm	:user_id => 1
+01-16-15 11:46 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:46 pm	Success: TRUE
+01-16-15 11:46 pm	1
+01-16-15 11:46 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 11:46 pm	No parameters
+01-16-15 11:46 pm	Success
+01-16-15 11:49 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:49 pm	:user_id => 1
+01-16-15 11:49 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:49 pm	Success: TRUE
+01-16-15 11:49 pm	1
+01-16-15 11:49 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:49 pm	:user_id => 1
+01-16-15 11:49 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:49 pm	Success: TRUE
+01-16-15 11:49 pm	1
+01-16-15 11:49 pm	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  f.follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-16-15 11:49 pm	:id => 15
+01-16-15 11:49 pm	Success
+01-16-15 11:49 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-16-15 11:49 pm	:user_id => 1
+01-16-15 11:49 pm	:session_id => 54b9e77a48ab51.58084414
+01-16-15 11:49 pm	Success: TRUE
+01-16-15 11:49 pm	1
+01-16-15 11:49 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-16-15 11:49 pm	No parameters
+01-16-15 11:49 pm	Success
+01-17-15 12:09 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 12:09 am	:user_id => 1
+01-17-15 12:09 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 12:09 am	Success: TRUE
+01-17-15 12:09 am	1
+01-17-15 12:09 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 12:09 am	:user_id => 1
+01-17-15 12:09 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 12:09 am	Success: TRUE
+01-17-15 12:09 am	1
+01-17-15 12:09 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 12:09 am	No parameters
+01-17-15 12:09 am	Success
+01-17-15 12:17 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 12:17 am	:user_id => 1
+01-17-15 12:17 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 12:17 am	Success: TRUE
+01-17-15 12:17 am	1
+01-17-15 12:17 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  f.follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 12:17 am	:id => 15
+01-17-15 12:17 am	Success
+01-17-15 12:17 am	follow_up_id = 1
+01-17-15 12:18 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 12:18 am	:user_id => 1
+01-17-15 12:18 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 12:18 am	Success: TRUE
+01-17-15 12:18 am	1
+01-17-15 12:18 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  f.follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 12:18 am	:id => 15
+01-17-15 12:18 am	Success
+01-17-15 12:18 am	follow_up_id = 1
+01-17-15 12:18 am	 = FALSE
+01-17-15 12:18 am	follow_up_id = 1
+01-17-15 12:18 am	 = FALSE
+01-17-15 12:18 am	follow_up_id = 2
+01-17-15 12:18 am	 = FALSE
+01-17-15 12:22 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 12:22 am	:user_id => 1
+01-17-15 12:22 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 12:22 am	Success: TRUE
+01-17-15 12:22 am	1
+01-17-15 12:22 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  f.follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 12:22 am	:id => 15
+01-17-15 12:22 am	Success
+01-17-15 12:22 am	follow_up_id = 1
+01-17-15 12:22 am	foundFollowUp = FALSE
+01-17-15 12:22 am	follow_up_id = 1
+01-17-15 12:22 am	foundFollowUp = TRUE
+01-17-15 12:22 am	follow_up_id = 2
+01-17-15 12:22 am	foundFollowUp = FALSE
+01-17-15 12:23 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 12:23 am	:user_id => 1
+01-17-15 12:23 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 12:23 am	Success: TRUE
+01-17-15 12:23 am	1
+01-17-15 12:23 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 12:23 am	:user_id => 1
+01-17-15 12:23 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 12:23 am	Success: TRUE
+01-17-15 12:23 am	1
+01-17-15 12:23 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  f.follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 12:23 am	:id => 15
+01-17-15 12:23 am	Success
+01-17-15 12:23 am	follow_up_id = 1
+01-17-15 12:23 am	foundFollowUp = FALSE
+01-17-15 12:23 am	follow_up_id = 1
+01-17-15 12:23 am	foundFollowUp = TRUE
+01-17-15 12:23 am	follow_up_id = 2
+01-17-15 12:23 am	foundFollowUp = FALSE
+01-17-15 12:23 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 12:23 am	:user_id => 1
+01-17-15 12:23 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 12:23 am	Success: TRUE
+01-17-15 12:23 am	1
+01-17-15 12:23 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 12:23 am	No parameters
+01-17-15 12:23 am	Success
+01-17-15 12:24 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 12:24 am	:user_id => 1
+01-17-15 12:24 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 12:24 am	Success: TRUE
+01-17-15 12:24 am	1
+01-17-15 12:24 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 12:24 am	:user_id => 1
+01-17-15 12:24 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 12:24 am	Success: TRUE
+01-17-15 12:24 am	1
+01-17-15 12:24 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 12:24 am	No parameters
+01-17-15 12:24 am	Success
+01-17-15 12:24 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 12:24 am	:user_id => 1
+01-17-15 12:24 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 12:24 am	Success: TRUE
+01-17-15 12:24 am	1
+01-17-15 12:24 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 12:24 am	:id => 15
+01-17-15 12:24 am	Success
+01-17-15 12:24 am	follow_up_id = 1
+01-17-15 12:24 am	foundFollowUp = FALSE
+01-17-15 12:24 am	follow_up_id = 1
+01-17-15 12:24 am	foundFollowUp = TRUE
+01-17-15 12:24 am	follow_up_id = 2
+01-17-15 12:24 am	foundFollowUp = FALSE
+01-17-15 8:36 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 8:36 am	:user_id => 1
+01-17-15 8:36 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 8:36 am	Success: TRUE
+01-17-15 8:36 am	1
+01-17-15 8:36 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 8:36 am	:user_id => 1
+01-17-15 8:36 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 8:36 am	Success: TRUE
+01-17-15 8:36 am	1
+01-17-15 8:36 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 8:36 am	No parameters
+01-17-15 8:36 am	Success
+01-17-15 8:36 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 8:36 am	:user_id => 1
+01-17-15 8:36 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 8:36 am	Success: TRUE
+01-17-15 8:36 am	1
+01-17-15 8:36 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 8:36 am	:id => 15
+01-17-15 8:36 am	Success
+01-17-15 8:36 am	follow_up_id = 1
+01-17-15 8:36 am	foundFollowUp = FALSE
+01-17-15 8:36 am	follow_up_id = 1
+01-17-15 8:36 am	foundFollowUp = TRUE
+01-17-15 8:36 am	follow_up_id = 2
+01-17-15 8:36 am	foundFollowUp = FALSE
+01-17-15 8:37 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 8:37 am	:user_id => 1
+01-17-15 8:37 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 8:37 am	Success: TRUE
+01-17-15 8:37 am	1
+01-17-15 8:37 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 8:37 am	:user_id => 1
+01-17-15 8:37 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 8:37 am	Success: TRUE
+01-17-15 8:37 am	1
+01-17-15 8:37 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 8:37 am	:id => 15
+01-17-15 8:37 am	Success
+01-17-15 8:37 am	follow_up_id = 1
+01-17-15 8:37 am	foundFollowUp = FALSE
+01-17-15 8:37 am	follow_up_id = 1
+01-17-15 8:37 am	foundFollowUp = TRUE
+01-17-15 8:37 am	follow_up_id = 2
+01-17-15 8:37 am	foundFollowUp = FALSE
+01-17-15 8:37 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 8:37 am	:user_id => 1
+01-17-15 8:37 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 8:37 am	Success: TRUE
+01-17-15 8:37 am	1
+01-17-15 8:37 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 8:37 am	No parameters
+01-17-15 8:37 am	Success
+01-17-15 8:38 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 8:38 am	:user_id => 1
+01-17-15 8:38 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 8:38 am	Success: TRUE
+01-17-15 8:38 am	1
+01-17-15 8:38 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 8:38 am	:user_id => 1
+01-17-15 8:38 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 8:38 am	Success: TRUE
+01-17-15 8:38 am	1
+01-17-15 8:38 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 8:38 am	:id => 15
+01-17-15 8:38 am	Success
+01-17-15 8:38 am	follow_up_id = 1
+01-17-15 8:38 am	foundFollowUp = FALSE
+01-17-15 8:38 am	follow_up_id = 1
+01-17-15 8:38 am	foundFollowUp = TRUE
+01-17-15 8:38 am	follow_up_id = 2
+01-17-15 8:38 am	foundFollowUp = FALSE
+01-17-15 8:38 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 8:38 am	:user_id => 1
+01-17-15 8:38 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 8:38 am	Success: TRUE
+01-17-15 8:38 am	1
+01-17-15 8:38 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 8:38 am	No parameters
+01-17-15 8:38 am	Success
+01-17-15 8:39 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 8:39 am	:user_id => 1
+01-17-15 8:39 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 8:39 am	Success: TRUE
+01-17-15 8:39 am	1
+01-17-15 8:39 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 8:39 am	:user_id => 1
+01-17-15 8:39 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 8:39 am	Success: TRUE
+01-17-15 8:39 am	1
+01-17-15 8:39 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 8:39 am	:id => 15
+01-17-15 8:39 am	Success
+01-17-15 8:39 am	follow_up_id = 1
+01-17-15 8:39 am	foundFollowUp = FALSE
+01-17-15 8:39 am	follow_up_id = 1
+01-17-15 8:39 am	foundFollowUp = TRUE
+01-17-15 8:39 am	follow_up_id = 2
+01-17-15 8:39 am	foundFollowUp = FALSE
+01-17-15 8:39 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 8:39 am	:user_id => 1
+01-17-15 8:39 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 8:39 am	Success: TRUE
+01-17-15 8:39 am	1
+01-17-15 8:39 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 8:39 am	No parameters
+01-17-15 8:39 am	Success
+01-17-15 8:39 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 8:39 am	:user_id => 1
+01-17-15 8:39 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 8:39 am	Success: TRUE
+01-17-15 8:39 am	1
+01-17-15 8:39 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 8:39 am	:user_id => 1
+01-17-15 8:39 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 8:39 am	Success: TRUE
+01-17-15 8:39 am	1
+01-17-15 8:39 am	SELECT
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+01-17-15 8:39 am	:id => 15
+01-17-15 8:39 am	Success
+01-17-15 8:39 am	follow_up_id = 1
+01-17-15 8:39 am	foundFollowUp = FALSE
+01-17-15 8:39 am	follow_up_id = 1
+01-17-15 8:39 am	foundFollowUp = TRUE
+01-17-15 8:39 am	follow_up_id = 2
+01-17-15 8:39 am	foundFollowUp = FALSE
+01-17-15 8:39 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 8:39 am	:user_id => 1
+01-17-15 8:39 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 8:39 am	Success: TRUE
+01-17-15 8:39 am	1
+01-17-15 8:39 am	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-17-15 8:39 am	No parameters
+01-17-15 8:39 am	Success
+01-17-15 8:55 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 8:55 am	:user_id => 1
+01-17-15 8:55 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 8:55 am	Success: TRUE
+01-17-15 8:55 am	1
+01-17-15 8:55 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 8:55 am	:user_id => 1
+01-17-15 8:55 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 8:55 am	Success: TRUE
+01-17-15 8:55 am	1
+01-17-15 8:55 am	SELECT
+                  DATE_FORMAT(MAX(a.attendance_dt),'%m/%d/%Y') Last_Attendance_Dt,
+                  DATE_FORMAT(MIN(a.attendance_dt),'%m/%d/%Y') First_Attendance_Dt
+                FROM
+                  Attendance a
+                WHERE
+                  a.first = 1 OR a.second = 1
+01-17-15 8:55 am	No parameters
+01-17-15 8:55 am	Success
+01-17-15 8:55 am	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-17-15 8:55 am	:user_id => 1
+01-17-15 8:55 am	:session_id => 54b9e77a48ab51.58084414
+01-17-15 8:55 am	Success: TRUE
+01-17-15 8:55 am	1
+01-17-15 8:55 am	SELECT DISTINCT
+		    attendance_dt
+		  FROM
+		    Attendance AS a1
+		  WHERE
+		    (SELECT
+			COUNT(DISTINCT(attendance_dt))
+		      FROM
+			Attendance AS a2
+		      WHERE
+			DAYOFWEEK(a2.attendance_dt) = 1
+			AND DAYOFWEEK(a1.attendance_dt) = 1
+			AND a1.attendance_dt <= a2.attendance_dt) IN (1,2)
+01-17-15 8:55 am	No parameters
+01-17-15 8:55 am	Success

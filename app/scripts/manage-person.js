@@ -11,9 +11,16 @@
       description = document.querySelector('#description'),
       adult = document.querySelector('#adult'),
       active = document.querySelector('#active'),
+      baptized = document.querySelector('#baptized'),
+      saved = document.querySelector('#saved'),
+      member = document.querySelector('#member'),
+      visitor = document.querySelector('#visitor'),
       street1 = document.querySelector('#street1'),
       street2 = document.querySelector('#street2'),
       city = document.querySelector('#city'),
+      zip = document.querySelector('#zip'),
+      primaryPhone = document.querySelector('#primary-phone'),
+      secondaryPhone = document.querySelector('#secondary-phone'),
       stateSelect = document.querySelector('#state'),
       updateBtn = document.querySelector('#update'),
       cancelBtn = document.querySelector('#cancel'),
@@ -38,7 +45,16 @@
       followUpComments = dialog[0].querySelector('#follow-up-comments'),
       $dialogTitle = $('.ui-dialog-title').text('Edit Follow Up'),
       followUpIdSequence = -1,
-      noChangesMade = true;
+      noChangesMade = true,
+      mapPanel = document.querySelector('#map-panel'),
+      gMapsImgUrl = '//maps.googleapis.com/maps/api/staticmap?zoom=11&size=400x400&markers=color:red%7Clabel:A|',
+      gMapsUrl = 'https://www.google.com/maps/place/',
+      followUpTypeData = {
+	1: "Phone Call",
+	2: "Visit",
+	3: "Communication Card",
+	4: "Entered in The City"
+      };
 
   (window.onpopstate = function () {
       var match,
@@ -63,42 +79,80 @@
     });
     $select.val('OH');
   }
+  
+  function populateTypes() {
+    var $select = $('#follow-up-type');
+    $.each(followUpTypeData,function(typeCd, type) {
+        $select.append('<option value=' + typeCd + '>' + type + '</option>');
+    });
+    $select.val('2');
+  }
  
-  function populateForm(person) {
-    firstName.value = person.first_name;
-    lastName.value = person.last_name;
-    description.value = person.description;
-    adult.checked = person.adult;
-    active.checked = person.active;
+  function populateForm(p) {
+    firstName.value = p.first_name;
+    lastName.value = p.last_name;
+    description.value = p.description;
+    adult.checked = p.adult;
+    active.checked = p.active;
+    baptized.checked = p.baptized;
+    saved.checked = p.saved;
+    member.checked = p.member;
+    visitor.checked = p.visitor;
+
+    street1.value = p.street1;
+    street2.value = p.street2;
+    city.value = p.city;
+    zip.value = p.zip;
+    if(p.state)
+      stateSelect.value = p.state;
     
-    street1.value = person.street1;
-    street2.value = person.street2;
-    city.value = person.city;
-    if(person.state)
-      stateSelect.value = person.state;
+    primaryPhone.value = p.primary_phone;
+    secondaryPhone.value = p.secondary_phone;
+    
+    updateMap(p);
+    processFollowUps(p.follow_ups);
+  }
+  
+  function updateMap(p) {
+    var addr = getAddressString(p);
+    // Don't generate a map if the string is just 'OH' since that is the default
+    if(addr === 'OH' || addr === '')
+      mapPanel.innerHTML = '';
+    else
+      mapPanel.innerHTML = '<a href="'+gMapsUrl+addr+'" target="_blank"><img border="0" src="'+gMapsImgUrl+addr+'" /></a>';
   }
 
   function onUpdateClick() {
-    var first_name = $.trim(firstName.value),
-        last_name = $.trim(lastName.value),
-        descr = $.trim(description.value);
-    if(validateUpdate(first_name, last_name, descr)) {
-      savePerson({
-        id: person.id,
-        first_name: first_name,
-        last_name: last_name,
-        description: descr,
-        adult: adult.checked,
-        active: active.checked
-      });
+    var p = {
+      id: person.id,
+      first_name: $.trim(firstName.value),
+      last_name: $.trim(lastName.value),
+      description: $.trim(description.value),
+      adult: adult.checked,
+      active: active.checked,
+      baptized: baptized.checked,
+      saved: saved.checked,
+      member: member.checked,
+      visitor: visitor.checked,
+      street1: $.trim(street1.value),
+      street2: $.trim(street2.value),
+      city: $.trim(city.value),
+      zip: $.trim(zip.value),
+      state: $.trim(stateSelect.value),
+      primary_phone: $.trim(primaryPhone.value),
+      secondary_phone: $.trim(secondaryPhone.value)
+    };
+    
+    if(validateUpdate(p)) {
+      savePerson(p);
     }
   }
 
-  function validateUpdate(first_name, last_name, descr) {
+  function validateUpdate(p) {
     var msg = '',
-        firstNameSpecified = !!first_name,
-        lastNameSpecified = !!last_name,
-        descriptionSpecified = !!descr;
+        firstNameSpecified = !!p.first_name,
+        lastNameSpecified = !!p.last_name,
+        descriptionSpecified = !!p.description;
     if(!firstNameSpecified && lastNameSpecified) {
       msg += 'First Name cannot be blank if Last Name is specified<br />';
     } else if(firstNameSpecified && !lastNameSpecified) {
@@ -135,9 +189,9 @@
     })
     .done(function(msg) {
       populateStates(msg);
+      populateTypes();
       loadPerson();
       loadVisitors();
-      loadFollowUps();
     })
     .fail(function() {
       $().toastmessage('showErrorToast', "Error loading states");
@@ -166,28 +220,6 @@
     });
   }
   
-  function loadFollowUps() {
-    $.ajax({
-      type: 'GET',
-      url: 'ajax/get_follow_ups.php'
-    })
-    .done(function(msg) {
-      var data = JSON.parse(msg);
-      if(data.success) {
-        processFollowUps(data.follow_ups);
-      } else {
-        if(data.error === 1) {
-          logout();
-        } else {
-          $().toastmessage('showErrorToast', "Error loading Follow Ups");
-        }
-      }
-    })
-    .fail(function() {
-      $().toastmessage('showErrorToast', "Error loading Follow Ups");
-    });
-  }
-  
   function loadPerson() {
     $.ajax({
       type: 'GET',
@@ -212,15 +244,16 @@
     });
   }
 
-  function savePerson(person) {
+  function savePerson(p) {
     $.ajax({
       type: 'POST',
       url: 'ajax/save_person.php',
-      data: { person: JSON.stringify(person) }
+      data: { person: JSON.stringify(p) }
     })
     .done(function(msg) {
       var data = JSON.parse(msg);
       if(data.success) {
+	updateMap(p);
         $().toastmessage('showSuccessToast', "Save successful");
       } else {
         if(data.error === 1) {
@@ -267,7 +300,7 @@
     .done(function(msg) {
       var data = JSON.parse(msg);
       if(data.success) {
-        $('#follow-up-table tr[id='+id+']').remove();
+        $('#follow-up-table tr[follow_up_id='+id+']').remove();
       } else {
         if(data.error === 1) {
           logout();
@@ -355,6 +388,8 @@
   }
   
   function appendFollowUp(followUp) {
+    if(!followUp.type && followUp.typeCd)
+      followUp.type = followUpTypeData[followUp.typeCd] || '';
     $('#follow-up-table > tbody:last').append(
       '<tr follow_up_id="'+followUp.id+'">' +
         '<td typeCd="'+followUp.typeCd+'">'+followUp.type+'</td>' +
@@ -468,6 +503,20 @@
     }
   }
   
+  function getAddressString(p) {
+    var addr = '';
+    addr += p.street1 || '';
+    addr += ' ';
+    addr += p.street2 || '';
+    addr += ' ';
+    addr += p.city || '';
+    addr += ' ';
+    addr += p.state || '';
+    addr += ' ';
+    addr += p.zip || '';
+    
+    return addr.trim();
+  }
   
   function onClickLink(e) {
     if(!(noChangesMade || confirm("If you continue you will lose any unsaved changes. Continue?"))) {
