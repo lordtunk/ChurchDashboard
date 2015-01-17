@@ -98,8 +98,8 @@
 	    $j = count($people) - 1;
 	  }
 	  
-	  $f->logMessage("follow_up_id = ".$row['follow_up_id']);
-	  if(isset($row['follow_up_id'])) {
+	  
+	  if($row['follow_up_id'] != "" && $row['follow_up_id'] != NULL) {
 	    $l = NULL;
 	    $fo = NULL;
 	    $foundFollowUp = FALSE;
@@ -112,7 +112,6 @@
 		break;
 	      }
 	    }
-	    $f->logMessage("foundFollowUp = ".($foundFollowUp ? "TRUE" : "FALSE"));
 	    // Set the person data if we have not encountered this person before
 	    if($foundFollowUp == FALSE) {
 	      $fo = array();
