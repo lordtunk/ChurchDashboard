@@ -62,11 +62,8 @@
       if($person->last_name === ""){
         $person->last_name = NULL;
       }
-      
-//       if($person->description === ""){
-//         $person->description = NULL;
-//       }
-
+      $f->useTransaction = FALSE;
+      $f->beginTransaction();
       // Add an Attendance record if a matching one does not exist, otherwise, update the existing
       $query = "UPDATE
                   People
@@ -112,10 +109,55 @@
 		":secondary_phone"=>$person->secondary_phone,
 		":modified_by"=>$user_id, 
 		":id"=>$person->id));
+      
+      foreach($person->follow_ups as $key => $follow_up) {
+	if($follow_up->id < 0) {
+	  $query = "INSERT INTO FollowUps 
+		      (follow_up_to_person_id, type, follow_up_date, comments)
+		    VALUES
+		      (:person_id, :type, STR_TO_DATE(:follow_up_date,'%m/%d/%Y'), :comments)";
+	  $follow_up->id = $f->queryLastInsertId($query, 
+	      array(":person_id"=>$person->id,
+		    ":type"=>$follow_up->typeCd,
+		    ":follow_up_date"=>$follow_up->date,
+		    ":comments"=>$follow_up->comments));
+	} else {
+	  $query = "UPDATE FollowUps SET 
+		      follow_up_to_person_id = :person_id,
+		      type = :type,
+		      follow_up_date = STR_TO_DATE(:follow_up_date,'%m/%d/%Y'),
+		      comments = :comments
+		    WHERE
+		      id=:follow_up_id";
+	  $results = $f->executeAndReturnResult($query, 
+	      array(":person_id"=>$person->id,
+		    ":type"=>$follow_up->typeCd,
+		    ":follow_up_date"=>$follow_up->date,
+		    ":comments"=>$follow_up->comments,
+		    ":follow_up_id"=>$follow_up->id));
+		    
+	  $query = "DELETE FROM FollowUpVisitors WHERE follow_up_id=:id";
+	  $results = $f->executeAndReturnResult($query, array(":id"=>$follow_up->id));
+	}
+	$f->logMessage(implode(",", $follow_up->visitorsIds));
+	if(count($follow_up->visitorsIds) > 0) {
+	  foreach($follow_up->visitorsIds as $k => $visitor_id) {
+	    $query = "INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)";
+	    $results = $f->executeAndReturnResult($query, 
+		array(":follow_up_id"=>$follow_up->id,
+		      ":person_id"=>$visitor_id));
+	  }
+	}
+      }
+      $f->commit();
       $dict['success'] = TRUE;
     } catch (Exception $e) {
       $dict['success'] = FALSE;
       $dict['msg']= $e->getMessage();
+      $f->rollback();
     }
   } else {
     $dict['error'] = 1;

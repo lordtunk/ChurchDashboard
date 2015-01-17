@@ -22,16 +22,15 @@
   if($dict['success'] == TRUE) {
     $dict['success'] = FALSE;
     try {
-//       $f->useTransaction = FALSE;
-//       $f->beginTransaction();
-//       
-//       $query = "DELETE FROM People WHERE id=:id";
-//       $results = $f->executeAndReturnResult($query, array(":id"=>$id));
-//       $query = "DELETE FROM Attendance WHERE attended_by=:id";
-//       $results = $f->executeAndReturnResult($query, array(":id"=>$id));
-// 
-//       $f->commit();
-//       $_SESSION['scroll_to_id'] = -1;
+      $f->useTransaction = FALSE;
+      $f->beginTransaction();
+      
+      $query = "DELETE FROM FollowUpVisitors WHERE follow_up_id=:id";
+      $results = $f->executeAndReturnResult($query, array(":id"=>$id));
+      $query = "DELETE FROM FollowUps WHERE id=:id";
+      $results = $f->executeAndReturnResult($query, array(":id"=>$id));
+
+      $f->commit();
       $dict['success'] = TRUE;
     } catch (Exception $e) {
       $dict['success'] = FALSE;
