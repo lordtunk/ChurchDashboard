@@ -140,39 +140,48 @@
         $dict['people'] = $results;
         break;
       case 3:
-        $query = "SELECT DISTINCT
-                    p.id,
-                    p.first_name,
-                    p.last_name,
-                    p.description,
-                    CASE WHEN p.adult = 1 THEN 'true' ELSE 'false' END adult
-                  FROM
-                    People p
-                    LEFT OUTER JOIN Attendance a ON p.id=a.attended_by AND a.attendance_dt IN
-                      (SELECT DISTINCT
-                          attendance_dt
-                        FROM
-                          Attendance AS a1
-                        WHERE
-                          (SELECT
-                              COUNT(DISTINCT(attendance_dt))
-                            FROM
-                              Attendance AS a2
-                            WHERE
-                              DAYOFWEEK(a2.attendance_dt) = 1
-                              AND DAYOFWEEK(a1.attendance_dt) = 1
-                              AND a1.attendance_dt <= a2.attendance_dt) IN (1,2))
-                  WHERE
-                    a.attendance_dt IS NULL
-                    AND p.adult=1
-                    AND p.active=1
-                  ORDER BY
-                    p.last_name IS NOT NULL DESC,
-                    p.description IS NOT NULL DESC,
-                    p.last_name,
-                    p.first_name,
-                    p.description";
-        $results = $f->fetchAndExecute($query);
+	$query = "SELECT DISTINCT
+		    attendance_dt
+		  FROM
+		    Attendance AS a1
+		  WHERE
+		    (SELECT
+			COUNT(DISTINCT(attendance_dt))
+		      FROM
+			Attendance AS a2
+		      WHERE
+			DAYOFWEEK(a2.attendance_dt) = 1
+			AND DAYOFWEEK(a1.attendance_dt) = 1
+			AND a1.attendance_dt <= a2.attendance_dt) IN (1,2)";
+	$results = $f->fetchAndExecute($query, array());
+	if(count($results) > 0) {
+	  $dates = array();
+	  foreach($results as $key => $row) {
+	    array_push($dates, $row['attendance_dt']);
+	  }
+	  $dateString = implode(",", $dates);
+	  $query = "SELECT DISTINCT
+		      p.id,
+		      p.first_name,
+		      p.last_name,
+		      p.description,
+		      CASE WHEN p.adult = 1 THEN 'true' ELSE 'false' END adult
+		    FROM
+		      People p
+		      LEFT OUTER JOIN Attendance a ON p.id=a.attended_by AND a.attendance_dt IN
+			($dateString)
+		    WHERE
+		      a.attendance_dt IS NULL
+		      AND p.adult=1
+		      AND p.active=1
+		    ORDER BY
+		      p.last_name IS NOT NULL DESC,
+		      p.description IS NOT NULL DESC,
+		      p.last_name,
+		      p.first_name,
+		      p.description";
+	  $results = $f->fetchAndExecute($query);
+        }
         $dict['people'] = $results;
         break;
       }
