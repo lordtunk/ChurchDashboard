@@ -53,7 +53,8 @@
 	1: "Phone Call",
 	2: "Visit",
 	3: "Communication Card",
-	4: "Entered in The City"
+	4: "Entered in The City",
+	5: "Thank You Card Sent"
       };
 
   (window.onpopstate = function () {
