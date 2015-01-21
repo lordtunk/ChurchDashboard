@@ -380,7 +380,7 @@
   
   function formatPhoneNumber(phone) {
     phone = phone || '';
-    if(phone.match(/\D/g,'') == null) {
+    if(phone.match(/\D/g,'') === null) {
       var tmp = phone.replace(/\D/g);
       if(tmp.length === 7) {
 	phone = tmp.substr(0,3) + '-' + tmp.substr(3);

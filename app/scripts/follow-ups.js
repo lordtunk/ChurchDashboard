@@ -39,20 +39,6 @@
     $select.val('2');
   }
   
-  function setVisitors() {
-    if(followUpVisitors.innerHTML.trim() === '') {
-      var v;
-      for(var i=0; i<visitors.length; i++) {
-        v = visitors[i];
-        followUpVisitors.innerHTML += 
-          '<div class="check-field">' +
-            '<label for="follow-up-by-'+v.id+'">'+getDisplayName(v)+'</label>' +
-            '<input type="checkbox" personid="'+v.id+'" id="follow-up-by-'+v.id+'"/>' +
-          '</div>';
-      }
-    }
-  }
-  
   function loadVisitors() {
     $.ajax({
       type: 'GET',
