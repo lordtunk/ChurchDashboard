@@ -42,6 +42,8 @@
       <ul>
         <li><a id="attendance-nav" href="attendance.html">Attendance</a></li>
         <li><a id="reports-nav" href="#reports">Reports</a></li>
+        <li><a id="follow-ups-nav" href="follow-ups.html">Follow Up Entry</a></li>
+        <li><a id="search-nav" href="search.html">Search</a></li>
         <li><a href="javascript:logout()">Log Out</a></li>
       </ul>
     </nav>
@@ -62,16 +64,42 @@
             <option value="1">Attendance By Date</option>
             <option value="2">Attendance By Person</option>
             <option value="3">Missing In Action</option>
+            <option value="4">Follow Up</option>
           </select>
         </div>
+        <h4 id="communication-card-header" style="display: none;">Communication Card Received</h4>
         <div id="from-to-dates" style="display: inline-block;">
           <label for="from-date">From Date:</label>
           <input type="text" id="from-date" class="date-field" /><br />
           <label for="to-date">To Date:</label>
           <input type="text" id="to-date" class="date-field" />
         </div>
-        <!--<div id="go-arrow"></div>-->
-        <button id="go-arrow" class="button--secondary-small"><i class="fa fa-arrow-right"></i></button>
+        <div id="follow-up-options-spacer" style="display: none;"></div>
+        <div id="follow-up-options" style="display: none;">
+	  <label for="not-visited">Not yet visited</label>
+	  <input type="checkbox" id="not-visited"/>
+	  <label for="ty-card-not-sent">Thank you card not sent</label>
+	  <input type="checkbox" id="ty-card-not-sent"/><br />
+	  <label for="signed-up-for-baptism">Signed up for baptism</label>
+	  <input type="checkbox" id="signed-up-for-baptism"/>
+	  <label for="baptized">Baptized</label>
+	  <input type="checkbox" id="baptized"/><br />
+	  <label for="interested-in-gkids">Interested in gKids</label>
+	  <input type="checkbox" id="interested-in-gkids"/>
+	  <label for="interested-in-next">Interested in Next</label>
+	  <input type="checkbox" id="interested-in-next"/><br />
+	  <label for="interested-in-ggroups">Interested in gGroups</label>
+	  <input type="checkbox" id="interested-in-ggroups"/>
+	  <label for="interested-in-gteams">Interested in gTeams</label>
+	  <input type="checkbox" id="interested-in-gteams"/><br />
+	  <label for="interested-in-joining">Interested in joining GC</label>
+	  <input type="checkbox" id="interested-in-joining"/>
+	  <label for="would-like-visit">Would like a visit from a GC Pastor</label>
+	  <input type="checkbox" id="would-like-visit"/><br />
+	  <label for="no-agent">Not assigned an agent</label>
+	  <input type="checkbox" id="no-agent"/><br />
+        </div>
+        <button id="go-arrow" class="button--secondary-small">Run <i class="fa fa-arrow-right"></i></button>
         <br />
         <div id="attendance-by-date-container" style="display: none;">
           <div class="attendance-table-container">
@@ -139,6 +167,28 @@
               <thead>
                   <tr>
                       <th>Name</th>
+                  </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="top-bottom-links">
+            <a href="javascript:void(0);" id="mia-top">Top</a>
+            <a href="javascript:void(0);" id="mia-bottom">Bottom</a>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div id="follow-up-container" style="display: none;">
+          <div class="attendance-table-container" id="follow-up-table-container">
+            <table class="table-5 follow-up-table" id="follow-up-table">
+              <thead>
+                  <tr>
+                      <th>Name</th>
+                      <th>Visited</th>
+                      <th>Phone Number</th>
+                      <th>Thank You<br />Card Sent</th>
+                      <th>Communication Card<br />Received</th>
                   </tr>
               </thead>
               <tbody>

@@ -3,18 +3,22 @@
   if($('#manage-person').length === 0) return;
  
   $( '#follow-up-date' ).datepicker();
+  $( '#first-visit' ).datepicker();
   var urlParams = {},
       person = {},
       visitors = [],
       firstName = document.querySelector('#first-name'),
       lastName = document.querySelector('#last-name'),
       description = document.querySelector('#description'),
+      firstVisit = document.querySelector('#first-visit'),
+      firstRecordedVisit = document.querySelector('#first-recorded-visit'),
       adult = document.querySelector('#adult'),
       active = document.querySelector('#active'),
       baptized = document.querySelector('#baptized'),
       saved = document.querySelector('#saved'),
       member = document.querySelector('#member'),
       visitor = document.querySelector('#visitor'),
+      assignedAgent = document.querySelector('#assigned-agent'),
       street1 = document.querySelector('#street1'),
       street2 = document.querySelector('#street2'),
       city = document.querySelector('#city'),
@@ -22,6 +26,17 @@
       primaryPhone = document.querySelector('#primary-phone'),
       secondaryPhone = document.querySelector('#secondary-phone'),
       stateSelect = document.querySelector('#state'),
+      commitmentChrist = document.querySelector('#commitment-christ'),
+      recommitmentChrist = document.querySelector('#recommitment-christ'),
+      commitmentTithe = document.querySelector('#commitment-tithe'),
+      commitmentMinistry = document.querySelector('#commitment-ministry'),
+      commitmentBaptism = document.querySelector('#commitment-baptism'),
+      infoNext = document.querySelector('#info-next'),
+      infoGKids = document.querySelector('#info-gkids'),
+      infoGGroups = document.querySelector('#info-ggroups'),
+      infoGTeams = document.querySelector('#info-gteams'),
+      infoMember = document.querySelector('#info-member'),
+      infoVisit = document.querySelector('#info-visit'),
       updateBtn = document.querySelector('#update'),
       cancelBtn = document.querySelector('#cancel'),
       deleteBtn = document.querySelector('#delete'),
@@ -93,12 +108,15 @@
     firstName.value = p.first_name;
     lastName.value = p.last_name;
     description.value = p.description;
+    firstVisit.value = p.first_visit;
+    firstRecordedVisit.innerHTML = p.first_attendance_dt || '';
     adult.checked = p.adult;
     active.checked = p.active;
     baptized.checked = p.baptized;
     saved.checked = p.saved;
     member.checked = p.member;
     visitor.checked = p.visitor;
+    assignedAgent.checked = p.assigned_agent;
 
     street1.value = p.street1;
     street2.value = p.street2;
@@ -108,8 +126,21 @@
       stateSelect.value = p.state;
     
     email.value = p.email;
-    primaryPhone.value = p.primary_phone;
-    secondaryPhone.value = p.secondary_phone;
+    primaryPhone.value = formatPhoneNumber(p.primary_phone);
+    secondaryPhone.value = formatPhoneNumber(p.secondary_phone);
+    
+    commitmentChrist.checked = p.commitment_christ;
+    recommitmentChrist.checked = p.recommitment_christ;
+    commitmentTithe.checked = p.commitment_tithe;
+    commitmentMinistry.checked = p.commitment_ministry;
+    commitmentBaptism.checked = p.commitment_baptism;
+    
+    infoNext.checked = p.info_next;
+    infoGKids.checked = p.info_gkids;
+    infoGGroups.checked = p.info_ggroups;
+    infoGTeams.checked = p.info_gteams;
+    infoMember.checked = p.info_member;
+    infoVisit.checked = p.info_visit;
     
     updateMap(p);
     processFollowUps(p.follow_ups);
@@ -130,12 +161,14 @@
       first_name: $.trim(firstName.value),
       last_name: $.trim(lastName.value),
       description: $.trim(description.value),
+      first_visit: $.trim(firstVisit.value),
       adult: adult.checked,
       active: active.checked,
       baptized: baptized.checked,
       saved: saved.checked,
       member: member.checked,
       visitor: visitor.checked,
+      assigned_agent: assignedAgent.checked,
       street1: $.trim(street1.value),
       street2: $.trim(street2.value),
       city: $.trim(city.value),
@@ -144,6 +177,17 @@
       email: $.trim(email.value),
       primary_phone: $.trim(primaryPhone.value),
       secondary_phone: $.trim(secondaryPhone.value),
+      commitment_christ: commitmentChrist.checked,
+      recommitment_christ: recommitmentChrist.checked,
+      commitment_tithe: commitmentTithe.checked,
+      commitment_ministry: commitmentMinistry.checked,
+      commitment_baptism: commitmentBaptism.checked,
+      info_next: infoNext.checked,
+      info_gkids: infoGKids.checked,
+      info_ggroups: infoGGroups.checked,
+      info_gteams: infoGTeams.checked,
+      info_member: infoMember.checked,
+      info_visit: infoVisit.checked,
       follow_ups: getFollowUps()
     };
     
@@ -169,19 +213,48 @@
 
   function validateUpdate(p) {
     var msg = '',
+	warning = '',
         firstNameSpecified = !!p.first_name,
         lastNameSpecified = !!p.last_name,
         descriptionSpecified = !!p.description;
-    if(!firstNameSpecified && lastNameSpecified) {
+    if(!firstNameSpecified && lastNameSpecified)
       msg += 'First Name cannot be blank if Last Name is specified<br />';
-    } else if(firstNameSpecified && !lastNameSpecified) {
+    else if(firstNameSpecified && !lastNameSpecified)
       msg += 'Last Name cannot be blank if First Name is specified<br />';
-    } else if(!firstNameSpecified && !lastNameSpecified && !descriptionSpecified) {
+    else if(!firstNameSpecified && !lastNameSpecified && !descriptionSpecified)
       msg += 'Must specify either First and Last Name or Description<br />';
-    }
+    
+    if(p.first_name.length > 50)
+      msg += 'First Name cannot exceed 50 characters<br />';
+    if(p.last_name.length > 50)
+      msg += 'Last Name cannot exceed 50 characters<br />';
+    if(p.description.length > 250)
+      msg += 'Description cannot exceed 250 characters<br />';
+    if(p.email.length > 100)
+      msg += 'Email cannot exceed 100 characters<br />';
+    if(!email.checkValidity())
+      warning += 'Email is not valid<br />';
+    if(p.primary_phone.length > 15)
+      msg += 'Primary Phone cannot exceed 15 characters<br />';
+    if(p.secondary_phone.length > 15)
+      msg += 'Secondary Phone cannot exceed 15 characters<br />';
+    if(p.street1.length > 100)
+      msg += 'Street 1 cannot exceed 100 characters<br />';
+    if(p.street2.length > 100)
+      msg += 'Street 2 cannot exceed 100 characters<br />';
+    if(p.city.length > 100)
+      msg += 'City cannot exceed 100 characters<br />';
+    if(p.zip.length > 5)
+      msg += 'Zip Code cannot exceed 5 characters<br />';
+    if(p.street1.length > 100)
+      msg += 'Street 1 cannot exceed 100 characters<br />';
+    
     if(msg) {
       $().toastmessage('showErrorToast', msg);
       return false;
+    }
+    if(warning) {
+      $().toastmessage('showWarningToast', warning);
     }
     return true;
   }
@@ -277,6 +350,7 @@
     .done(function(msg) {
       var data = JSON.parse(msg);
       if(data.success) {
+	noChangesMade = true;
 	updateMap(p);
         $().toastmessage('showSuccessToast', "Save successful");
       } else {
@@ -414,13 +488,14 @@
   function appendFollowUp(followUp) {
     if(!followUp.type && followUp.typeCd)
       followUp.type = followUpTypeData[followUp.typeCd] || '';
+    followUp.date = followUp.date || '';
     $('#follow-up-table > tbody:last').append(
       '<tr follow_up_id="'+followUp.id+'">' +
-        '<td typeCd="'+followUp.typeCd+'">'+followUp.type+'</td>' +
-        '<td class="follow-up-table-date-col">'+followUp.date+'</td>' +
-        '<td visitorsIds="'+followUp.visitorsIds.join(',')+'">'+followUp.visitors.join(', ')+'</td>' +
-        '<td class="follow-up-table-comments-col">'+followUp.comments+'</td>' +
-        '<td class="follow-up-table-button-col"><button class="edit-follow-up"><i class="fa fa-edit"></i></button><button class="delete-follow-up"><i class="fa fa-minus-circle"></i></button></td>' +
+        '<td data-th="Type" typeCd="'+followUp.typeCd+'">'+followUp.type+'</td>' +
+        '<td data-th="Date" class="follow-up-table-date-col">'+followUp.date+'</td>' +
+        '<td data-th="By" visitorsIds="'+followUp.visitorsIds.join(',')+'">'+followUp.visitors.join(', ')+'</td>' +
+        '<td data-th="Comments" class="follow-up-table-comments-col">'+followUp.comments+'</td>' +
+        '<td data-th="" class="follow-up-table-button-col"><button class="edit-follow-up"><i class="fa fa-edit"></i></button><button class="delete-follow-up"><i class="fa fa-minus-circle"></i></button></td>' +
       '</tr>');
   }
   
@@ -560,10 +635,25 @@
     $('#reports-nav').off('click', onClickLink);
     $('button.edit-follow-up').off('click', onEditFollowUpClick);
     $('button.delete-follow-up').off('click', onDeleteFollowUpClick);
-  }  
+  }
   
   function genFollowUpId() {
     return --followUpIdSequence;
+  }
+  
+  // Format the phone number if there is no formatting already and if the number
+  // is either 7 or 10 characters.
+  function formatPhoneNumber(phone) {
+    phone = phone || '';
+    if(phone.match(/\D/g,'') == null) {
+      var tmp = phone.replace(/\D/g);
+      if(tmp.length === 7) {
+	phone = tmp.substr(0,3) + '-' + tmp.substr(3);
+      } else if(tmp.length === 10) {
+	phone = '(' + tmp.substr(0,3) + ') ' + tmp.substr(3,3) + '-' + tmp.substr(6);
+      }
+    }
+    return phone;
   }
   
   addFollowUpBtn.addEventListener('click', addFollowUp);

@@ -22,16 +22,19 @@
   if($dict['success'] == TRUE) {
     try {
       $query = "SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
 		  p.id,
 		  p.first_name,
 		  p.last_name,
 		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
 		  p.active,
 		  p.adult,
 		  p.saved,
 		  p.baptized,
 		  p.member,
 		  p.visitor,
+		  p.assigned_agent,
 		  p.street1,
 		  p.street2,
 		  p.city,
@@ -40,6 +43,17 @@
 		  p.email,
 		  p.primary_phone,
 		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
 		  f.id follow_up_id,
 		  f.type follow_up_type,
 		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
@@ -50,6 +64,7 @@
 		  fp.last_name follow_up_last_name,
 		  fp.description follow_up_description
 		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
 		  People p
 		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
 		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
@@ -79,15 +94,18 @@
 	  if($foundPerson == FALSE) {
 	    $p = array();
 	    $p['id'] = $row['id'];
+	    $p['first_attendance_dt'] = $row['first_attendance_dt'];
 	    $p['first_name'] = $row['first_name'];
 	    $p['last_name'] = $row['last_name'];
 	    $p['description'] = $row['description'];
+	    $p['first_visit'] = $row['first_visit'];
 	    $p['adult'] = $row['adult'] ? TRUE : FALSE;
 	    $p['active'] = $row['active'] ? TRUE : FALSE;
 	    $p['saved'] = $row['saved'] ? TRUE : FALSE;
 	    $p['baptized'] = $row['baptized'] ? TRUE : FALSE;
 	    $p['member'] = $row['member'] ? TRUE : FALSE;
 	    $p['visitor'] = $row['visitor'] ? TRUE : FALSE;
+	    $p['assigned_agent'] = $row['assigned_agent'] ? TRUE : FALSE;
 	    $p['street1'] = $row['street1'];
 	    $p['street2'] = $row['street2'];
 	    $p['city'] = $row['city'];
@@ -96,6 +114,18 @@
 	    $p['email'] = $row['email'];
 	    $p['primary_phone'] = $row['primary_phone'];
 	    $p['secondary_phone'] = $row['secondary_phone'];
+	    $p['commitment_christ'] = $row['commitment_christ'] ? TRUE : FALSE;
+	    $p['recommitment_christ'] = $row['recommitment_christ'] ? TRUE : FALSE;
+	    $p['commitment_tithe'] = $row['commitment_tithe'] ? TRUE : FALSE;
+	    $p['commitment_ministry'] = $row['commitment_ministry'] ? TRUE : FALSE;
+	    $p['commitment_baptism'] = $row['commitment_baptism'] ? TRUE : FALSE;
+	    $p['info_next'] = $row['info_next'] ? TRUE : FALSE;
+	    $p['info_gkids'] = $row['info_gkids'] ? TRUE : FALSE;
+	    $p['info_ggroups'] = $row['info_ggroups'] ? TRUE : FALSE;
+	    $p['info_gteams'] = $row['info_gteams'] ? TRUE : FALSE;
+	    $p['info_member'] = $row['info_member'] ? TRUE : FALSE;
+	    $p['info_visit'] = $row['info_visit'] ? TRUE : FALSE;
+	    
 	    $p['follow_ups'] = array();
 	    array_push($people, $p);
 	    $j = count($people) - 1;

@@ -288,7 +288,7 @@ main {
 
 .follow-up-table-button-col {
   width: 90px !important;
-  padding: 0 10px 0 0 !important;
+  padding: 0 0 0 10px !important;
 }
 
 .follow-up-table-date-col {
@@ -324,6 +324,41 @@ main {
   text-align: right;
 }
 
+#follow-ups-form-title {
+  margin-left: 20px;
+}
+
+#follow-up-person-container {
+  display: -webkit-flex;
+  display: flex;
+}
+#follow-up-person-container>label {
+  padding-top: 10px;
+  width: 110px;
+  text-align: right;
+}
+#follow-up-person-container>button {
+  margin-top: 0;
+}
+
+#follow-up-person-container>div {
+  display: inline-block;
+  -webkit-flex: 1;
+  flex: 1;
+  padding-top: 10px;
+  font-style: italic;
+}
+
+#follow-up-comments {
+  margin-left: 110px;
+}
+
+.follow-ups-form-inner>label {
+  display: inline-block;
+  width: 110px;
+  text-align: right;
+}
+
 .dialog-form-inner>label {
   display: inline-block;
   width: 50px;
@@ -339,6 +374,10 @@ main {
   display: inline;
 }
 
+#first-recorded-visit {
+  display: inline-block;
+}
+
 .check-field {
   display: inline-block;
 }
@@ -347,9 +386,14 @@ main {
   margin: 0 5px;
 }
 
+.app-content .check-field label {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 .app-content.view-person label {
   display: inline-block;
-  width:165px;
+  width: 175px;
   text-align: right;
 }
 
@@ -364,6 +408,7 @@ main {
 
 .app-form input[type=text],
 .app-form input[type=tel],
+.app-form input[type=email],
 .app-form select {
   margin-bottom: 5px;
 }
@@ -378,6 +423,33 @@ main {
   border: 1px solid gray;
   border-radius: 5px;
   padding: 10px 10px 5px 0;
+}
+
+#communication-card-header {
+  padding: 10px 0 5px 20px;
+}
+
+.follow-ups-form {
+  margin: 20px;
+  border: 1px gray solid;
+  border-radius: 5px;
+}
+
+.follow-ups-form-inner {
+  padding: 10px;
+}
+
+#follow-up-options {
+  margin: 5px 0 0 50px;
+  border: 1px gray solid;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 10px;
+}
+
+#follow-up-options > label {
+  width: 280px;
+  text-align: left;
 }
 
 .address-form-section {
@@ -395,6 +467,26 @@ main {
   margin: 0 0 0 40px;
 }
 
+.form-section.interested-form-section>label,
+.form-section.commitments-form-section>label {
+  width:500px;
+  text-align: left;
+}
+
+.commitments-form-section-title {
+  padding: 0 0 0 40px;
+}
+.commitments-form-section {
+  margin: 0 0 10px 40px;
+}
+
+.interested-form-section-title {
+  padding: 0 0 0 40px;
+}
+.interested-form-section {
+  margin: 0 0 0 40px;
+}
+
 .col-1 {
   margin-top: 10px;
 }
@@ -409,6 +501,10 @@ main {
 
 .attendance-form .attendance-table-attendance-col label {
   padding: 12px;
+}
+
+td.checkbox-table-col {
+  text-align: center;
 }
 
 .attendance-form input[type=radio]{

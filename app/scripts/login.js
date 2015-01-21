@@ -20,12 +20,7 @@ function logout() {
       url: 'ajax/logout.php'
     })
     .done(function( msg ) {
-      var data = JSON.parse(msg);
-      if(data.success) {
-        window.location = 'index.html';
-      } else {
-        $().toastmessage('showErrorToast', 'Problem logging out');
-      }
+      window.location = 'index.html';
     });
   }
 }

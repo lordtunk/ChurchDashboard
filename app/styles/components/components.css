@@ -1967,7 +1967,7 @@ li > p {
 * Button
 *
 **/
-.button, .button--primary, .button--secondary, .button--secondary-small, .button--secondary-variation {
+.button, .button--primary, .button--secondary, .button--secondary-small, .button--secondary-variation, .button--blue, .button--blue-small {
   display: inline-block;
   padding: 12px 32px;
   margin-bottom: 13px;
@@ -1980,7 +1980,7 @@ li > p {
   outline: 0;
   transition: none;
 }
-.button:hover, .button--primary:hover, .button--secondary:hover, .button--secondary-small:hover, .button--secondary-variation:hover {
+.button:hover, .button--primary:hover, .button--secondary:hover, .button--secondary-small:hover, .button--secondary-variation:hover, .button--blue:hover, .button--blue-small:hover {
   background: #4d4d4d;
   color: #ffffff;
   border: 1px solid #4d4d4d;
@@ -2014,6 +2014,22 @@ li > p {
   color: #007838;
   border: 1px solid #e6e6e6;
   border-color: transparent;
+}
+
+.button--blue {
+  background: #3372df;
+  color: #ffffff;
+  border: 1px solid #1e5ac1;
+}
+
+.button--blue-small {
+  padding: 7.6666666667px 16px;
+  margin-bottom: 8.6666666667px;
+  margin-top: 8.6666666667px;
+  min-height: 26px;
+  background: #3372df;
+  color: #ffffff;
+  border: 1px solid #1e5ac1;
 }
 
 /**
@@ -2579,9 +2595,29 @@ td:last-child:after {
   }
 }
 @media only screen and (min-width: 620px) {
-  .table-5 th:nth-child(2), .table-5 th:nth-child(3),
+  .table-5 th:nth-child(2), .table-5 th:nth-child(3), .table-5 th:nth-child(4),
   .table-5 td:nth-child(2),
-  .table-5 td:nth-child(3) {
+  .table-5 td:nth-child(3),
+  .table-5 td:nth-child(4) {
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #ffffff;
+  }
+}
+
+.table-6 col {
+  width: 114.6666666667px;
+}
+@media only screen and (min-width: 800px) {
+  .table-6 col {
+    width: 144px;
+  }
+}
+@media only screen and (min-width: 620px) {
+  .table-6 th:nth-child(2), .table-6 th:nth-child(3), .table-6 th:nth-child(4), .table-6 th:nth-child(5),
+  .table-6 td:nth-child(2),
+  .table-6 td:nth-child(3),
+  .table-6 td:nth-child(4),
+  .table-6 td:nth-child(5) {
     border-left: 2px solid #ffffff;
     border-right: 2px solid #ffffff;
   }
