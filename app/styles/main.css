@@ -255,6 +255,14 @@ main {
   -webkit-overflow-scrolling: touch;
 }
 
+#address-view-table-container {
+  max-height: 500px;
+  width: 100%;
+  display: block;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 #follow-up-table-container {
   max-height: 500px;
   width: 100%;
@@ -449,6 +457,12 @@ main {
   border: 1px solid gray;
   border-radius: 5px;
   padding: 10px 10px 5px 0;
+}
+
+.address-view-form label {
+  width: 120px;
+  text-align: right;
+  display: inline-block;
 }
 
 #communication-card-header {

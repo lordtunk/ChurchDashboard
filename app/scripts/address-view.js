@@ -1,39 +1,87 @@
 (function () {
   'use strict';
-  if($('#search').length === 0) return;
+  if($('.address-view-form').length === 0) return;
  
-  var searchBtn = document.querySelector('#search'),
-      searchField = document.querySelector('#search-name'),
-      scrollAnimationMs = 1000;
+  $( "#from-date" ).datepicker();
+  $( "#to-date" ).datepicker();
   
-  function search() {
-    var text = $.trim(searchField.value);
-    if(text === '')
-      $().toastmessage('showErrorToast', "Must enter Name");
-    else
-      doSearch(text);
+  var toDateField = document.querySelector('#to-date'),
+      fromDateField = document.querySelector('#from-date'),
+      runBtn = document.querySelector('#go-arrow'),
+      genMapBtn = document.querySelector('#gen-map'),
+      scrollAnimationMs = 1000,
+      mapPanel = document.querySelector('#map-panel'),
+      mapLegend = document.querySelector('#map-legend'),
+      gMapsImgUrl = '//maps.googleapis.com/maps/api/staticmap?zoom=11&size=400x400',
+      gMapsUrl = 'https://www.google.com/maps/place/',
+      gMapsMarker = '&markers=color:red%7Clabel:',
+      gMapsLabels = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','1','2','3','4','5','6','7','8','9','0'];
+  
+  function onRunClick() {
+    if(validateDates(fromDateField.value, toDateField.value)) {
+      var params;
+      params = {
+	  fromDate: fromDateField.value,
+	  toDate: toDateField.value,
+	  active: $('#active').is(':checked'),
+	  not_visited: $('#not-visited').is(':checked'),
+	  ty_card_not_sent: false,
+	  signed_up_for_baptism: false,
+	  baptized: false,
+	  interested_in_gkids: false,
+	  interested_in_next: false,
+	  interested_in_ggroups: false,
+	  interested_in_gteams: false,
+	  interested_in_joining: false,
+	  would_like_visit: $('#would-like-visit').is(':checked'),
+	  no_agent: false
+	};
+	doSearch(params);
+    }
   }
   
-  function doSearch(text) {
+  function validateDates(fDate, tDate) {
+    var msg = '';
+    
+    if(!isDate(fDate, true)) {
+      msg += 'From Date must be a valid date<br />';
+    }
+    if(!isDate(tDate, true)) {
+      msg += 'To Date must be a valid date<br />';
+    }
+    
+    if(msg) {
+      $().toastmessage('showErrorToast', msg);
+      return false;
+    }
+    return true;
+  }
+  
+  function doSearch(params) {
+    $('.address-view-form').mask('Loading...');
     $.ajax({
-      type: 'GET',
-      url: 'ajax/search.php',
-      data: { search: text }
+      type: 'POST',
+      url: 'ajax/get_report.php',
+      data: { 
+	type: 4,
+	params: JSON.stringify(params)
+      }
     })
     .done(function(msg) {
       var data = JSON.parse(msg);
       if(data.success) {
 	processSearchResults(data.people);
+	$('.address-view-form').unmask();
       } else {
         if(data.error === 1) {
           logout();
         } else {
-          $().toastmessage('showErrorToast', "Error loading visitors");
+          $().toastmessage('showErrorToast', "Error searching people");
         }
       }
     })
     .fail(function() {
-      $().toastmessage('showErrorToast', "Error loading visitors");
+      $().toastmessage('showErrorToast', "Error searching people");
     });
   }
   
@@ -59,7 +107,7 @@
   }
   
   function processSearchResults(results) {
-    $('#search-table tbody tr').remove();
+    $('#address-view-table tbody tr').remove();
     for(var i=0; i<results.length; i++) {
       appendPerson(results[i]);
     }
@@ -67,12 +115,50 @@
   
   function appendPerson(p) {
     var name = getDisplayName(p);
-    $('#search-table > tbody:last').append(
+    $('#address-view-table > tbody:last').append(
       '<tr person_id="'+p.id+'">' +
 	'<td data-th="Name" person_name="'+name+'"><a class="person_name" href="manage-person.html?id='+p.id+'">'+name+'</a></td>' +
-        '<td data-th="Email">'+p.email+'</td>'+
 	'<td data-th="Address">'+getAddress(p)+'</td>'+
+	'<td data-th="Visit" class="checkbox-table-col"><label for="visit-checkbox-'+p.id+'"><input id="visit-checkbox-'+p.id+'" class="visit-checkbox" type="checkbox" address="'+getAddressString(p)+'" /></label></td>'+
       '</tr>');
+  }
+  
+  function updateMap() {
+    var checkboxes = $('.visit-checkbox:checked'), url=gMapsImgUrl, addr, name, addrStr;
+    if(checkboxes.length > gMapsLabels.length) {
+      $().toastmessage('showErrorToast', "Can't show more than "+gMapsLabels.length+" people at once.");
+      return;
+    }
+    mapLegend.innerHTML = '';
+    for(var i=0; i<checkboxes.length; i++) {
+      addrStr = checkboxes[i].getAttribute('address');
+      // Don't generate a map if the string is just 'OH' since that is the default
+      if(addrStr === 'OH' || addrStr === '') continue;
+      url += gMapsMarker+gMapsLabels[i]+'|'+addrStr;
+      addr = checkboxes[i].parentElement.parentElement.previousElementSibling.innerHTML;
+      name = checkboxes[i].parentElement.parentElement.previousElementSibling.previousElementSibling.getAttribute('person_name');
+      mapLegend.innerHTML += ' <span style="font-weight: bold;">' + gMapsLabels[i] + '</span> : ' + name + '<br /><a href="'+gMapsUrl+addr+'" target="_blank">' + addr +'</a><br /><br />';
+	
+    }
+    if(mapLegend.innerHTML !== '')
+      mapPanel.innerHTML = '<img border="0" src="'+url+'" />';
+    else
+      mapPanel.innerHTML = '';
+  }
+  
+  function getAddressString(p) {
+    var addr = '';
+    addr += p.street1 || '';
+    addr += ' ';
+    addr += p.street2 || '';
+    addr += ' ';
+    addr += p.city || '';
+    addr += ' ';
+    addr += p.state || '';
+    addr += ' ';
+    addr += p.zip || '';
+    
+    return addr.trim();
   }
   
   function getAddress(p) {
@@ -95,8 +181,40 @@
     return addr.trim();
   }
   
+  function isDate(txtDate, allowBlank) {
+    var currVal = txtDate;
+    if(currVal === '')
+      return !!allowBlank;
+
+    //Declare Regex
+    var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/;
+    var dtArray = currVal.match(rxDatePattern); // is format OK?
+
+    if (dtArray === null)
+      return false;
+
+    //Checks for mm/dd/yyyy format.
+    var dtMonth = dtArray[1];
+    var dtDay= dtArray[3];
+    var dtYear = dtArray[5];
+
+    if (dtMonth < 1 || dtMonth > 12)
+        return false;
+    else if (dtDay < 1 || dtDay> 31)
+        return false;
+    else if ((dtMonth==4 || dtMonth==6 || dtMonth==9 || dtMonth==11) && dtDay ==31)
+        return false;
+    else if (dtMonth == 2)
+    {
+      var isleap = (dtYear % 4 === 0 && (dtYear % 100 !== 0 || dtYear % 400 === 0));
+      if (dtDay> 29 || (dtDay ==29 && !isleap))
+            return false;
+    }
+    return true;
+  }
+  
   function onClickTopBottom(e) {
-    var container = $('#search-table-container'),
+    var container = $('#address-view-table-container'),
         pos = (e.target.id.indexOf('top') == -1) ?
                     container[0].scrollHeight
                     : 0;
@@ -107,12 +225,8 @@
   }
   $('.navigation-links a').on('click', onClickTopBottom);
   
-  searchBtn.addEventListener('click', search);
-  searchField.addEventListener('keydown', function(e) {
-    if(e.keyCode==13){
-      search();
-    }
-  });
+  runBtn.addEventListener('click', onRunClick);
+  genMapBtn.addEventListener('click', updateMap);
   
   checkLoginStatus();
 })();

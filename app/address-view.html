@@ -42,28 +42,41 @@
       <ul>
 	<li><a id="attendance-nav" href="attendance.html">Attendance</a></li>
         <li><a id="reports-nav" href="reports.html">Reports</a></li>
-        <li><a id="reports-nav" href="address-view.html">Address View</a></li>
+        <li><a id="address-view-nav" href="#address-view">Address View</a></li>
         <li><a id="follow-ups-nav" href="follow-ups.html">Follow Up Entry</a></li>
-        <li><a id="search-nav" href="#search">Search</a></li>
+        <li><a id="search-nav" href="search.html">Search</a></li>
         <li><a href="javascript:logout()">Log Out</a></li>
       </ul>
     </nav>
 
     <main>
-      <h1>Address View</h1>
+      <h1 id="address-view">Address View</h1>
 
       <div class="app-content app-form address-view-form">
-        <label for="search-name">Name</label>
-        <input type="text" id="search-name" />
-        <button id="search" type="button" class="button--primary"><i class="fa fa-search"></i></i></button>
-        <div id="search-container">
-          <div class="search-table-container" id="search-table-container">
-            <table class="table-3 search-table" id="search-table">
+        <h4 id="communication-card-header">Communication Card Received</h4>
+        <label for="from-date">From Date:</label>
+	<input type="text" id="from-date" class="date-field" /><br />
+	<label for="to-date">To Date:</label>
+	<input type="text" id="to-date" class="date-field" />
+        <div id="follow-up-options-spacer"></div>
+        <div id="follow-up-options">
+	  <label for="active">Active</label>
+	  <input type="checkbox" id="active" checked/><br />
+	  <label for="not-visited">Not yet visited</label>
+	  <input type="checkbox" id="not-visited"/><br />
+	  <label for="would-like-visit">Would like a visit from a GC Pastor</label>
+	  <input type="checkbox" id="would-like-visit"/>
+        </div>
+        <button id="go-arrow" class="button--secondary-small">Run <i class="fa fa-arrow-right"></i></button>
+        <br />
+        <div id="address-view-container">
+          <div class="address-view-table-container" id="address-view-table-container">
+            <table class="table-3 address-view-table" id="address-view-table">
               <thead>
                   <tr>
                       <th>Name</th>
-                      <th>Email</th>
                       <th>Address</th>
+                      <th>View</th>
                   </tr>
               </thead>
               <tbody>
@@ -74,6 +87,10 @@
             <a href="javascript:void(0);" id="mia-top">Top</a>
             <a href="javascript:void(0);" id="mia-bottom">Bottom</a>
           </div>
+          <br />
+          <button id="gen-map" class="button--blue"><i class="fa fa-map-marker"></i> Map</button>
+          <div id="map-panel"></div>
+          <div id="map-legend"></div>
           <div class="clear"></div>
         </div>
       </div>

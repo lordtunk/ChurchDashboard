@@ -15,6 +15,7 @@
   }
   
   function doSearch(text) {
+    $('.search-form').mask('Loading...');
     $.ajax({
       type: 'GET',
       url: 'ajax/search.php',
@@ -24,16 +25,17 @@
       var data = JSON.parse(msg);
       if(data.success) {
 	processSearchResults(data.people);
+	$('.search-form').unmask();
       } else {
         if(data.error === 1) {
           logout();
         } else {
-          $().toastmessage('showErrorToast', "Error loading visitors");
+          $().toastmessage('showErrorToast', "Error searching people");
         }
       }
     })
     .fail(function() {
-      $().toastmessage('showErrorToast', "Error loading visitors");
+      $().toastmessage('showErrorToast', "Error searching people");
     });
   }
   

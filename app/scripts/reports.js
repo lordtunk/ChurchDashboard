@@ -66,6 +66,7 @@
 	  params = {
 	    fromDate: fromDateField.value,
 	    toDate: toDateField.value,
+	    active: $('#active').is(':checked'),
 	    not_visited: $('#not-visited').is(':checked'),
 	    ty_card_not_sent: $('#ty-card-not-sent').is(':checked'),
 	    signed_up_for_baptism: $('#signed-up-for-baptism').is(':checked'),

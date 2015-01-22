@@ -191,8 +191,8 @@
 	      array(":person_id"=>$person->id,
 		    ":type"=>$follow_up->typeCd,
 		    ":follow_up_date"=>$follow_up->date,
-		    ":comments"=>$follow_up->comments),
-		    ":user_id"=>$user_id);
+		    ":comments"=>$follow_up->comments,
+		    ":user_id"=>$user_id));
 	} else {
 	  $query = "UPDATE FollowUps SET 
 		      follow_up_to_person_id = :person_id,

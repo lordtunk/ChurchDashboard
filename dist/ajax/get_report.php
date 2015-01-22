@@ -207,7 +207,14 @@
       case 4:
 	$where = "
 		  WHERE 
-		    p.active = 1";
+		    p.adult = 1";
+	$orderBy = "
+		  ORDER BY
+		    p.last_name IS NOT NULL DESC,
+		    p.description IS NOT NULL DESC,
+		    p.last_name,
+		    p.first_name,
+		    p.description";
 	$groupBy = "
 		  GROUP BY 
 		    p.id ";
@@ -226,6 +233,11 @@
 		    p.last_name, 
 		    p.description,
 		    p.primary_phone,
+		    p.street1,
+		    p.street2,
+		    p.city,
+		    p.state,
+		    p.zip,
 		    CASE WHEN p.commitment_baptism = 1 THEN  'true' ELSE  'false' END commitment_baptism
 		  FROM 
 		    People p
@@ -233,6 +245,10 @@
 		    LEFT OUTER JOIN (SELECT COUNT(*) visit_count, follow_up_to_person_id FROM FollowUps WHERE TYPE =2)vc ON vc.follow_up_to_person_id = p.id
 		    LEFT OUTER JOIN (SELECT COUNT(*) ty_card_sent_count, follow_up_to_person_id, follow_up_date FROM FollowUps WHERE TYPE =5)tyc ON tyc.follow_up_to_person_id = p.id";
 	
+	if($params->active) {
+	  $where .= "
+		    AND p.active = 1";
+	}
 	if($params->signed_up_for_baptism) {
 	  $where .= "
 		    AND p.commitment_baptism = 1";
@@ -292,6 +308,8 @@
 	  $query .= join(" AND ", $havingArr);
 	}
 	
+	$query .= $orderBy;
+	
         $results = $f->fetchAndExecute($query, $queryParams);
         $dict['people'] = $results;
         break;
@@ -299,6 +317,7 @@
       $dict['success'] = true;
     } catch (Exception $e) {
       $dict['success'] = false;
+      $f->logMessage($e);
     }
     
   }
