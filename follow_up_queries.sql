@@ -13,7 +13,7 @@ ADD zip varchar(5) AFTER state,
 ADD email varchar(100) AFTER zip,
 ADD primary_phone varchar(15) AFTER email,
 ADD secondary_phone varchar(15) AFTER primary_phone,
-ADD info_next tinyint(1) NOT NULL DEFAULT 0 AFTER primary_phone,
+ADD info_next tinyint(1) NOT NULL DEFAULT 0 AFTER secondary_phone,
 ADD info_gkids tinyint(1) NOT NULL DEFAULT 0 AFTER info_next,
 ADD info_ggroups tinyint(1) NOT NULL DEFAULT 0 AFTER info_gkids,
 ADD info_gteams tinyint(1) NOT NULL DEFAULT 0 AFTER info_ggroups,
@@ -25,20 +25,6 @@ ADD commitment_tithe tinyint(1) NOT NULL DEFAULT 0 AFTER recommitment_christ,
 ADD commitment_ministry tinyint(1) NOT NULL DEFAULT 0 AFTER commitment_tithe,
 ADD commitment_baptism tinyint(1) NOT NULL DEFAULT 0 AFTER commitment_ministry;
 
-ALTER TABLE People
-ADD first_visit datetime AFTER description,
-ADD assigned_agent tinyint(1) NOT NULL DEFAULT 0 AFTER member,
-ADD info_next tinyint(1) NOT NULL DEFAULT 0 AFTER primary_phone,
-ADD info_gkids tinyint(1) NOT NULL DEFAULT 0 AFTER info_next,
-ADD info_ggroups tinyint(1) NOT NULL DEFAULT 0 AFTER info_gkids,
-ADD info_gteams tinyint(1) NOT NULL DEFAULT 0 AFTER info_ggroups,
-ADD info_member tinyint(1) NOT NULL DEFAULT 0 AFTER info_gteams,
-ADD info_visit tinyint(1) NOT NULL DEFAULT 0 AFTER info_member,
-ADD commitment_christ tinyint(1) NOT NULL DEFAULT 0 AFTER info_visit,
-ADD recommitment_christ tinyint(1) NOT NULL DEFAULT 0 AFTER commitment_christ,
-ADD commitment_tithe tinyint(1) NOT NULL DEFAULT 0 AFTER recommitment_christ,
-ADD commitment_ministry tinyint(1) NOT NULL DEFAULT 0 AFTER commitment_tithe,
-ADD commitment_baptism tinyint(1) NOT NULL DEFAULT 0 AFTER commitment_ministry
 
 CREATE TABLE FollowUps (
   id int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
