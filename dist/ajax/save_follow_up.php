@@ -49,7 +49,7 @@
 		  WHERE
 		    id=:follow_up_id";
 	$results = $f->executeAndReturnResult($query, 
-	    array(":person_id"=>$follow_up->person_id,
+	    array(":person_id"=>$follow_up->personId,
 		  ":type"=>$follow_up->typeCd,
 		  ":follow_up_date"=>$follow_up->date,
 		  ":comments"=>$follow_up->comments,

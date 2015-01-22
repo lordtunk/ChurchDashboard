@@ -281,6 +281,33 @@ main {
   margin-right: 10px;
 }
 
+.dialog-form #search-table-container {
+  overflow-y: scroll;
+  height: 198px;
+  width: 464px;
+}
+
+.dialog-form .navigation-links {
+  margin: 0 20px 0 0;
+}
+
+.search-form #search-table-container {
+  overflow-y: scroll;
+  max-height: 500px;
+}
+
+.dialog-form #search-table-container table {
+  margin-top: 5px;
+}
+
+.dialog-form #search-table-container table td {
+  padding: 8px 10px;
+}
+
+.search-table-button-col {
+  padding: 5px;
+}
+
 #person-attendance-table-container {
   overflow-y: scroll;
   height: 300px;
@@ -343,13 +370,12 @@ main {
 
 #follow-up-person-container>div {
   display: inline-block;
-  -webkit-flex: 1;
-  flex: 1;
+  padding-right: 20px;
   padding-top: 10px;
   font-style: italic;
 }
 
-#follow-up-comments {
+.follow-ups-form #follow-up-comments {
   margin-left: 110px;
 }
 

@@ -44,45 +44,41 @@
 		ORDER BY
 		  f.follow_up_date";
       $results = $f->fetchAndExecute($query, array());
-      if(count($results) > 0) {
-        $follow_ups = array();
-        foreach($results as $key => $row) {
-	  $l = NULL;
-	  $fo = NULL;
-	  $foundFollowUp = FALSE;
-	  // Check to see if we have already added this follow up
-	  foreach($follow_ups as $m => $follow_up) {
-	    if(!isset($follow_up['id'])) continue;
-	    if($follow_up['id'] == $row['follow_up_id']) {
-	      $l = $m;
-	      $foundFollowUp = TRUE;
-	      break;
-	    }
+      $follow_ups = array();
+      foreach($results as $key => $row) {
+	$l = NULL;
+	$fo = NULL;
+	$foundFollowUp = FALSE;
+	// Check to see if we have already added this follow up
+	foreach($follow_ups as $m => $follow_up) {
+	  if(!isset($follow_up['id'])) continue;
+	  if($follow_up['id'] == $row['follow_up_id']) {
+	    $l = $m;
+	    $foundFollowUp = TRUE;
+	    break;
 	  }
-	  // Set the person data if we have not encountered this person before
-	  if($foundFollowUp == FALSE) {
-	    $fo = array();
-	    $fo['id'] = $row['follow_up_id'];
-	    $fo['personId'] = $row['person_id'];
-	    $fo['name'] = getDisplayName($row);
-	    $fo['typeCd'] = $row['follow_up_type'];
-	    $fo['date'] = $row['follow_up_date'];
-	    $fo['comments'] = $row['follow_up_comments'];
-	    $fo['visitors'] = array();
-	    $fo['visitorsIds'] = array();
-	    
-	    array_push($follow_ups, $fo);
-	    $l = count($follow_ups) - 1;
-	  }
+	}
+	// Set the person data if we have not encountered this person before
+	if($foundFollowUp == FALSE) {
+	  $fo = array();
+	  $fo['id'] = $row['follow_up_id'];
+	  $fo['personId'] = $row['person_id'];
+	  $fo['name'] = getDisplayName($row);
+	  $fo['typeCd'] = $row['follow_up_type'];
+	  $fo['date'] = $row['follow_up_date'];
+	  $fo['comments'] = $row['follow_up_comments'];
+	  $fo['visitors'] = array();
+	  $fo['visitorsIds'] = array();
 	  
-	  array_push($follow_ups[$l]['visitors'], getDisplayName($row, "follow_up_"));
-	  array_push($follow_ups[$l]['visitorsIds'], $row['visitor_person_id']);
-        }
-        $dict['follow_ups'] = $follow_ups;
-        $dict['success'] = TRUE;
-      } else {
-        $dict['success'] = FALSE;
+	  array_push($follow_ups, $fo);
+	  $l = count($follow_ups) - 1;
+	}
+	
+	array_push($follow_ups[$l]['visitors'], getDisplayName($row, "follow_up_"));
+	array_push($follow_ups[$l]['visitorsIds'], $row['visitor_person_id']);
       }
+      $dict['follow_ups'] = $follow_ups;
+      $dict['success'] = TRUE;
     } catch (Exception $e) {
       $dict['success'] = false;
       $dict['errorMsg'] = $e;

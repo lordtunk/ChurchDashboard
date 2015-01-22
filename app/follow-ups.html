@@ -49,29 +49,27 @@
     </nav>
     
     <div class="dialog-form app-form" title="Select Person">
-      <div class="dialog-form-inner">
-        <label for="search-name">Name</label>
-        <input type="text" id="search-name" />
-        <div id="search-container">
-          <div class="search-table-container" id="search-table-container">
-            <table class="table-4 search-table" id="search-table">
-              <thead>
-                  <tr>
-                      <th>Name</th>
-                      <th>Address</th>
-                      <th></th>
-                  </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
-          </div>
-          <div class="top-bottom-links">
-            <a href="javascript:void(0);" id="mia-top">Top</a>
-            <a href="javascript:void(0);" id="mia-bottom">Bottom</a>
-          </div>
-          <div class="clear"></div>
-        </div>
+      <label for="search-name">Name</label>
+      <input type="text" id="search-name" />
+      <div id="search-container">
+	<div class="search-table-container" id="search-table-container">
+	  <table class="table-4 search-table" id="search-table">
+	    <thead>
+		<tr>
+		    <th>Name</th>
+		    <th>Address</th>
+		    <th></th>
+		</tr>
+	    </thead>
+	    <tbody>
+	    </tbody>
+	  </table>
+	</div>
+	<div class="navigation-links">
+	  <a href="javascript:void(0);" id="table-top">Top</a>
+	  <a href="javascript:void(0);" id="table-bottom">Bottom</a>
+	</div>
+	<div class="clear"></div>
       </div>
       <div class="form-bar background color--gray-keyline">
         <button id="add-new-person" type="button" class="button--primary first-button"><i class="fa fa-plus"></i></button>
@@ -91,7 +89,7 @@
 	    <input type="hidden" id="follow-up-id" value="-1" />
 	    <div id="follow-up-person-container">
 	      <label for="follow-up-person">Person:</label>
-	      <div id="follow-up-person" personid="139">Alex Stevens</div>
+	      <div id="follow-up-person" personid="-1">(Select a person)</div>
 	      <button id="select-person-btn" class="button--blue-small">Select Person</button>
 	    </div>
 	    <label for="follow-up-type">Type:</label>

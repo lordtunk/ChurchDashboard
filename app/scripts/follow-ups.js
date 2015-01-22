@@ -15,12 +15,17 @@
       addClearBtn = document.querySelector('#add-clear'),
       addCopyBtn = document.querySelector('#add-copy'),
       clearBtn = document.querySelector('#clear'),
+      addNewPersonBtn = document.querySelector('#add-new-person'),
+      searchBtn = document.querySelector('#search'),
+      searchField = document.querySelector('#search-name'),
+      closeBtn = document.querySelector('#close'),
       dialog = $('.dialog-form').dialog({
         autoOpen: false,
         height: 400,
         width: 510,
         modal: true
       }),
+      scrollAnimationMs = 1000,
       selectPersonBtn = document.querySelector('#select-person-btn'),
       followUpIdSequence = -1,
       followUpTypeData = {
@@ -37,6 +42,68 @@
         $select.append('<option value=' + typeCd + '>' + type + '</option>');
     });
     $select.val('2');
+  }
+  
+  function addNewPerson() {
+    var text = $.trim(searchField.value);
+    if(text === '')
+      $().toastmessage('showErrorToast', "Must enter Name");
+    else
+      doAddNewPerson(text);
+  }
+  
+  function search() {
+    var text = $.trim(searchField.value);
+    if(text === '')
+      $().toastmessage('showErrorToast', "Must enter Name");
+    else
+      doSearch(text);
+  }
+  
+  function doAddNewPerson(text) {
+    $.ajax({
+      type: 'POST',
+      url: 'ajax/create_person.php',
+      data: { person_display: text }
+    })
+    .done(function(msg) {
+      var data = JSON.parse(msg);
+      if(data.success) {
+	doSelectPerson(data.person_id, data.person_name);
+      } else {
+        if(data.error === 1) {
+          logout();
+        } else {
+          $().toastmessage('showErrorToast', "Error loading visitors");
+        }
+      }
+    })
+    .fail(function() {
+      $().toastmessage('showErrorToast', "Error loading visitors");
+    });
+  }
+  
+  function doSearch(text) {
+    $.ajax({
+      type: 'GET',
+      url: 'ajax/search.php',
+      data: { search: text }
+    })
+    .done(function(msg) {
+      var data = JSON.parse(msg);
+      if(data.success) {
+	processSearchResults(data.people);
+      } else {
+        if(data.error === 1) {
+          logout();
+        } else {
+          $().toastmessage('showErrorToast', "Error loading visitors");
+        }
+      }
+    })
+    .fail(function() {
+      $().toastmessage('showErrorToast', "Error loading visitors");
+    });
   }
   
   function loadVisitors() {
@@ -157,8 +224,9 @@
   
   function clearFollowUpForm() {
     $formTitle.text('Add Follow Up');
-    followUpPerson.innerHTML = '';
+    followUpPerson.innerHTML = '(Select a person)';
     followUpPerson.setAttribute('personid', '');
+    followUpPerson.setAttribute('person_name', '');
     followUpType.value = '2';
     followUpDate.value = '';
     followUpComments.value = '';
@@ -169,7 +237,7 @@
   }
   
   function saveFollowUp() {
-    var name = $.trim(followUpPerson.innerHTML),
+    var name = $.trim(followUpPerson.getAttribute('person_name')),
 	personId = $.trim(followUpPerson.getAttribute('personid')),
 	date = $.trim(followUpDate.value),
         type = $.trim(followUpType.value),
@@ -205,6 +273,61 @@
     };
   }
   
+  function onSelectPerson(e) {
+    var row = e.currentTarget.parentElement.parentElement;
+    
+    var id = row.getAttribute('person_id');
+    var name = row.children[0].getAttribute('person_name');
+    doSelectPerson(id, name);
+  }
+  
+  function doSelectPerson(id, name) {
+    close();
+    followUpPerson.innerHTML = '<a class="person_name" href="manage-person.html?id='+id+'">'+name+'</a>';
+    followUpPerson.setAttribute('personid', id);
+    followUpPerson.setAttribute('person_name', name);
+  }
+  
+  function processSearchResults(results) {
+    $('button.search-button').off('click', onSelectPerson);
+    
+    $('#search-table tbody tr').remove();
+    for(var i=0; i<results.length; i++) {
+      appendPerson(results[i]);
+    }
+    $('button.search-button').on('click', onSelectPerson);
+  }
+  
+  function appendPerson(p) {
+    var name = getDisplayName(p);
+    $('#search-table > tbody:last').append(
+      '<tr person_id="'+p.id+'">' +
+	'<td data-th="Name" person_name="'+name+'"><a class="person_name" href="manage-person.html?id='+p.id+'">'+name+'</a></td>' +
+        '<td data-th="Address">'+getAddress(p)+'</td>' +
+        '<td data-th="" class="search-table-button-col"><button class="search-button button--blue-x-small">Select</button></td>' +
+      '</tr>');
+  }
+  
+  function getAddress(p) {
+    var addr = '';
+    addr += p.street1 || '';
+    if(p.street1)
+      addr += '<br />';
+    addr += p.street2 || '';
+    if(p.street2)
+      addr += '<br />';
+    addr += p.city || '';
+    if(p.city && p.state)
+      addr += ',';
+    
+    addr += ' ';
+    addr += p.state || '';
+    addr += ' ';
+    addr += p.zip || '';
+    
+    return addr.trim();
+  }
+  
   function processFollowUps(followUps) {
     detachClickListeners();
     $('#follow-up-table tbody tr').remove();
@@ -220,13 +343,13 @@
     followUp.date = followUp.date || '';
     followUp.name = followUp.name || '';
     
-    var name = followUp.name;
+    var name = followUp.name, display;
     if(followUp.personId >= 0) {
-      name = '<a class="person_name" href="manage-person.html?id='+followUp.personId+'">'+name+'</a>';
+      display = '<a class="person_name" href="manage-person.html?id='+followUp.personId+'">'+name+'</a>';
     }
     $('#follow-up-table > tbody:last').append(
       '<tr follow_up_id="'+followUp.id+'">' +
-	'<td data-th="Name" personid="'+followUp.personId+'">'+name+'</td>' +
+	'<td data-th="Name" personid="'+followUp.personId+'" person_name="'+name+'">'+display+'</td>' +
         '<td data-th="Type" typeCd="'+followUp.typeCd+'">'+followUp.type+'</td>' +
         '<td data-th="Date" class="follow-up-table-date-col">'+followUp.date+'</td>' +
         '<td data-th="By" visitorsIds="'+followUp.visitorsIds.join(',')+'">'+followUp.visitors.join(', ')+'</td>' +
@@ -238,7 +361,8 @@
   function updateFollowUpRow(followUp) {
     var children = $('#follow-up-table tr[follow_up_id='+followUp.id+']').children();
     children[0].setAttribute('personid', followUp.personId);
-    children[0].innerHTML = followUp.name;
+    children[0].setAttribute('person_name', followUp.name);
+    children[0].innerHTML = '<a class="person_name" href="manage-person.html?id='+followUp.personId+'">'+followUp.name+'</a>';
     children[1].setAttribute('typeCd', followUp.typeCd);
     children[1].innerHTML = followUp.type;
     children[2].innerHTML = followUp.date;
@@ -290,6 +414,7 @@
     var row = e.currentTarget.parentElement.parentElement;
     
     followUpPerson.setAttribute('personid', row.children[0].getAttribute('personid') || '');
+    followUpPerson.setAttribute('person_name', row.children[0].getAttribute('person_name') || '');
     followUpPerson.innerHTML = row.children[0].innerHTML || '';
     followUpType.value = row.children[1].getAttribute('typeCd') || '';
     followUpDate.value = row.children[2].innerHTML || '';
@@ -314,9 +439,20 @@
     dialog.dialog('open');
   }
   
+  function close() {
+    dialog.dialog('close');
+  }
+  
   function onClickLink(e) {
     if(!(noChangesMade || confirm("If you continue you will lose any unsaved changes. Continue?"))) {
       e.preventDefault();
+    }
+  }
+  
+  function onDeleteFollowUpClick(e) {
+    if(confirm("Are you sure you would like to PERMANENTLY delete this Follow Up?")) {
+      var id = e.currentTarget.parentElement.parentElement.getAttribute('follow_up_id');
+      deleteFollowUp(id);
     }
   }
   
@@ -325,13 +461,6 @@
     $('#reports-nav').on('click', onClickLink);
     $('button.edit-follow-up').on('click', onEditFollowUpClick);
     $('button.delete-follow-up').on('click', onDeleteFollowUpClick);
-  }
-  
-  function onDeleteFollowUpClick(e) {
-    if(confirm("Are you sure you would like to PERMANENTLY delete this Follow Up?")) {
-      var id = e.currentTarget.parentElement.parentElement.getAttribute('follow_up_id');
-      deleteFollowUp(id);
-    }
   }
   
   function detachClickListeners() {
@@ -345,10 +474,30 @@
     return --followUpIdSequence;
   }
   
+  function onClickTopBottom(e) {
+    var container = $('#search-table-container'),
+        pos = (e.target.id.indexOf('top') == -1) ?
+                    container[0].scrollHeight
+                    : 0;
+
+    container.stop().animate({ scrollTop: pos }, scrollAnimationMs, 'swing', function() {
+      $('<style></style>').appendTo($(document.body)).remove();
+    });
+  }
+  $('.navigation-links a').on('click', onClickTopBottom);
+  
   addCopyBtn.addEventListener('click', addCopy);
   addClearBtn.addEventListener('click', addClear);
   clearBtn.addEventListener('click', clearFollowUpForm);
   selectPersonBtn.addEventListener('click', openSelectPerson);
+  addNewPersonBtn.addEventListener('click', addNewPerson);
+  searchBtn.addEventListener('click', search);
+  searchField.addEventListener('keydown', function(e) {
+    if(e.keyCode==13){
+      search();
+    }
+  });
+  closeBtn.addEventListener('click', close);
   
   checkLoginStatus(loadVisitors);
 })();
