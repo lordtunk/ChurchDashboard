@@ -26836,3 +26836,121 @@ Stack trace:
                   attendance_dt DESC
 01-22-15 10:39 pm	No parameters
 01-22-15 10:39 pm	Success
+01-22-15 10:47 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-22-15 10:47 pm	:user_id => 1
+01-22-15 10:47 pm	:session_id => 54c1b393570042.76341143
+01-22-15 10:47 pm	Success: TRUE
+01-22-15 10:47 pm	1
+01-22-15 10:47 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-22-15 10:47 pm	:user_id => 1
+01-22-15 10:47 pm	:session_id => 54c1b393570042.76341143
+01-22-15 10:47 pm	Success: TRUE
+01-22-15 10:47 pm	1
+01-22-15 10:47 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+		ORDER BY
+		  f.follow_up_date
+01-22-15 10:47 pm	:id => 241
+01-22-15 10:47 pm	Success
+01-22-15 10:47 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-22-15 10:47 pm	:user_id => 1
+01-22-15 10:47 pm	:session_id => 54c1b393570042.76341143
+01-22-15 10:47 pm	Success: TRUE
+01-22-15 10:47 pm	1
+01-22-15 10:47 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-22-15 10:47 pm	No parameters
+01-22-15 10:47 pm	Success
+01-22-15 11:00 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-22-15 11:00 pm	:user_id => 1
+01-22-15 11:00 pm	:session_id => 54c1b393570042.76341143
+01-22-15 11:00 pm	Success: TRUE
+01-22-15 11:00 pm	1
+01-22-15 11:00 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-22-15 11:00 pm	:user_id => 1
+01-22-15 11:00 pm	:session_id => 54c1b393570042.76341143
+01-22-15 11:00 pm	Success: TRUE
+01-22-15 11:00 pm	1
+01-22-15 11:00 pm	SELECT
+                  DATE_FORMAT(MAX(a.attendance_dt),'%m/%d/%Y') Last_Attendance_Dt,
+                  DATE_FORMAT(MIN(a.attendance_dt),'%m/%d/%Y') First_Attendance_Dt
+                FROM
+                  Attendance a
+                WHERE
+                  a.first = 1 OR a.second = 1
+01-22-15 11:00 pm	No parameters
+01-22-15 11:00 pm	Success
+01-22-15 11:01 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-22-15 11:01 pm	:user_id => 1
+01-22-15 11:01 pm	:session_id => 54c1b393570042.76341143
+01-22-15 11:01 pm	Success: TRUE
+01-22-15 11:01 pm	1
+01-22-15 11:01 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-22-15 11:01 pm	:user_id => 1
+01-22-15 11:01 pm	:session_id => 54c1b393570042.76341143
+01-22-15 11:01 pm	Success: TRUE
+01-22-15 11:01 pm	1
+01-22-15 11:01 pm	SELECT
+                  DATE_FORMAT(MAX(a.attendance_dt),'%m/%d/%Y') Last_Attendance_Dt,
+                  DATE_FORMAT(MIN(a.attendance_dt),'%m/%d/%Y') First_Attendance_Dt
+                FROM
+                  Attendance a
+                WHERE
+                  a.first = 1 OR a.second = 1
+01-22-15 11:01 pm	No parameters
+01-22-15 11:01 pm	Success
