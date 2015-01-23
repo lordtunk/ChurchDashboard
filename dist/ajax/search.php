@@ -45,7 +45,8 @@
 		    p.street2,
 		    p.city,
 		    p.state,
-		    p.zip
+		    p.zip,
+		    COALESCE(p.email, '') email
 		  FROM
 		    People p
 		  WHERE

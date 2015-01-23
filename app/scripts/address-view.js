@@ -10,9 +10,9 @@
       runBtn = document.querySelector('#go-arrow'),
       genMapBtn = document.querySelector('#gen-map'),
       scrollAnimationMs = 1000,
-      mapPanel = document.querySelector('#map-panel'),
+      mapPanel = document.querySelector('#address-map-panel'),
       mapLegend = document.querySelector('#map-legend'),
-      gMapsImgUrl = '//maps.googleapis.com/maps/api/staticmap?zoom=11&size=400x400',
+      gMapsImgUrl = '//maps.googleapis.com/maps/api/staticmap?zoom=11&size=500x500',
       gMapsUrl = 'https://www.google.com/maps/place/',
       gMapsMarker = '&markers=color:red%7Clabel:',
       gMapsLabels = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','1','2','3','4','5','6','7','8','9','0'];
@@ -137,13 +137,15 @@
       url += gMapsMarker+gMapsLabels[i]+'|'+addrStr;
       addr = checkboxes[i].parentElement.parentElement.previousElementSibling.innerHTML;
       name = checkboxes[i].parentElement.parentElement.previousElementSibling.previousElementSibling.getAttribute('person_name');
-      mapLegend.innerHTML += ' <span style="font-weight: bold;">' + gMapsLabels[i] + '</span> : ' + name + '<br /><a href="'+gMapsUrl+addr+'" target="_blank">' + addr +'</a><br /><br />';
-	
+      mapLegend.innerHTML += ' <div class="map-legend-item"><span style="font-weight: bold;">' + gMapsLabels[i] + '</span> : ' + name + '<br /><a href="'+gMapsUrl+addr+'" target="_blank">' + addr +'</a></div>';
     }
-    if(mapLegend.innerHTML !== '')
+    if(mapLegend.innerHTML !== '') {
       mapPanel.innerHTML = '<img border="0" src="'+url+'" />';
-    else
+      $('#map-legend')[0].style.setProperty('display', 'block');
+    } else {
       mapPanel.innerHTML = '';
+      $('#map-legend')[0].style.setProperty('display', 'none');
+    }
   }
   
   function getAddressString(p) {

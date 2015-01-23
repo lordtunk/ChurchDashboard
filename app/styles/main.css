@@ -263,6 +263,10 @@ main {
   -webkit-overflow-scrolling: touch;
 }
 
+#gen-map {
+  margin-left: 20px;
+}
+
 #follow-up-table-container {
   max-height: 500px;
   width: 100%;
@@ -459,6 +463,12 @@ main {
   padding: 10px 10px 5px 0;
 }
 
+#address-view-table label {
+  width: 90px;
+  padding: 0px;
+  text-align: center;
+}
+
 .address-view-form label {
   width: 120px;
   text-align: right;
@@ -541,6 +551,33 @@ main {
 
 .attendance-form .attendance-table-attendance-col label {
   padding: 12px;
+}
+
+#address-view-table td.checkbox-table-col {
+  padding: 0px;
+}
+
+#map-panel {
+  margin: 10px;
+  width: 400px;
+}
+
+#address-map-panel {
+  margin: auto;
+  width: 500px;
+}
+
+#map-legend {
+  border: 1px gray solid;
+  margin: 20px;
+  border-radius: 5px;
+  /* width: 500px; */
+}
+
+.map-legend-item {
+  display: inline-block;
+  padding: 10px;
+  margin: auto;
 }
 
 td.checkbox-table-col {
