@@ -26689,3 +26689,150 @@ Stack trace:
 		    p.description
 01-22-15 10:30 pm	No parameters
 01-22-15 10:30 pm	Success
+01-22-15 10:38 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-22-15 10:38 pm	:user_id => 1
+01-22-15 10:38 pm	:session_id => 54c1b393570042.76341143
+01-22-15 10:38 pm	Success: TRUE
+01-22-15 10:38 pm	1
+01-22-15 10:38 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-22-15 10:38 pm	:user_id => 1
+01-22-15 10:38 pm	:session_id => 54c1b393570042.76341143
+01-22-15 10:38 pm	Success: TRUE
+01-22-15 10:38 pm	1
+01-22-15 10:38 pm	SELECT
+		    p.id,
+		    p.first_name,
+		    p.last_name,
+		    p.description,
+		    p.street1,
+		    p.street2,
+		    p.city,
+		    p.state,
+		    p.zip,
+		    COALESCE(p.email, '') email
+		  FROM
+		    People p
+		  WHERE
+		    first_name LIKE concat('%', :text, '%') 
+		    OR last_name LIKE concat('%', :text, '%')
+01-22-15 10:38 pm	:text => al
+01-22-15 10:38 pm	Success
+01-22-15 10:38 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-22-15 10:38 pm	:user_id => 1
+01-22-15 10:38 pm	:session_id => 54c1b393570042.76341143
+01-22-15 10:38 pm	Success: TRUE
+01-22-15 10:38 pm	1
+01-22-15 10:38 pm	SELECT
+		    p.id,
+		    p.first_name,
+		    p.last_name,
+		    p.description,
+		    p.street1,
+		    p.street2,
+		    p.city,
+		    p.state,
+		    p.zip,
+		    COALESCE(p.email, '') email
+		  FROM
+		    People p
+		  WHERE
+		    first_name LIKE concat('%', :text, '%') 
+		    OR last_name LIKE concat('%', :text, '%')
+01-22-15 10:38 pm	:text => a
+01-22-15 10:38 pm	Success
+01-22-15 10:38 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-22-15 10:38 pm	:user_id => 1
+01-22-15 10:38 pm	:session_id => 54c1b393570042.76341143
+01-22-15 10:38 pm	Success: TRUE
+01-22-15 10:38 pm	1
+01-22-15 10:38 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-22-15 10:38 pm	:user_id => 1
+01-22-15 10:38 pm	:session_id => 54c1b393570042.76341143
+01-22-15 10:38 pm	Success: TRUE
+01-22-15 10:38 pm	1
+01-22-15 10:38 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description,
+                  attendance_dt DESC
+01-22-15 10:38 pm	No parameters
+01-22-15 10:38 pm	Success
+01-22-15 10:38 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-22-15 10:38 pm	:user_id => 1
+01-22-15 10:38 pm	:session_id => 54c1b393570042.76341143
+01-22-15 10:38 pm	Success: TRUE
+01-22-15 10:38 pm	1
+01-22-15 10:38 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-22-15 10:38 pm	:user_id => 1
+01-22-15 10:38 pm	:session_id => 54c1b393570042.76341143
+01-22-15 10:38 pm	Success: TRUE
+01-22-15 10:38 pm	1
+01-22-15 10:38 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description,
+                  attendance_dt DESC
+01-22-15 10:38 pm	No parameters
+01-22-15 10:38 pm	Success
+01-22-15 10:39 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-22-15 10:39 pm	:user_id => 1
+01-22-15 10:39 pm	:session_id => 54c1b393570042.76341143
+01-22-15 10:39 pm	Success: TRUE
+01-22-15 10:39 pm	1
+01-22-15 10:39 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-22-15 10:39 pm	:user_id => 1
+01-22-15 10:39 pm	:session_id => 54c1b393570042.76341143
+01-22-15 10:39 pm	Success: TRUE
+01-22-15 10:39 pm	1
+01-22-15 10:39 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description,
+                  attendance_dt DESC
+01-22-15 10:39 pm	No parameters
+01-22-15 10:39 pm	Success
