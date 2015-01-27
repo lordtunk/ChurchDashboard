@@ -301,10 +301,10 @@
 	if($params->ty_card_not_sent) {
 	  array_push($havingArr, "ty_card_sent =  'false'");
 	}
-	$query .= $where;
+	$query .= $where.$groupBy;
 	
 	if(count($havingArr) > 0) {
-	  $query .= $groupBy.$having;
+	  $query .= $having;
 	  $query .= join(" AND ", $havingArr);
 	}
 	

@@ -1,0 +1,11 @@
+{
+    "jquery": true,
+    "browser": true,
+    "undef": true,
+    "unused": true,
+    "devel": true,
+    "globals": {
+        "logout": true,
+        "checkLoginStatus": true
+    }
+}

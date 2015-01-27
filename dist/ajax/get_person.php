@@ -71,6 +71,8 @@
 		  left outer join People fp on fp.id=v.person_id
 		WHERE
 		  p.id=:id
+        GROUP BY
+          p.id
 		ORDER BY
 		  f.follow_up_date";
       $results = $f->fetchAndExecute($query, array(":id"=>$id));
