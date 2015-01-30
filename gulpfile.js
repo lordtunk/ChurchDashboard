@@ -199,9 +199,10 @@ gulp.task('serve', function () {
     proxy: "localhost/GuideChurchDash/app",
     notify: false
   });
-
+  
   gulp.watch(['app/**/*.html'], reload);
-  gulp.watch(['app/styles/**/*.{css,scss}'], ['styles']);
+  gulp.watch(['app/styles/**/*.scss'], ['styles:scss']);
+  gulp.watch(['app/styles/**/*.css'], ['styles:css']);
   gulp.watch(['.tmp/styles/**/*.css'], reload);
   gulp.watch(['app/scripts/**/*.js'], ['jshint']);
   gulp.watch(['app/images/**/*'], ['images']);

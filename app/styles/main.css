@@ -328,6 +328,7 @@ main {
 .follow-up-table-button-col {
   width: 90px !important;
   padding: 0 0 0 10px !important;
+  text-align: center;
 }
 
 .follow-up-table-date-col {
@@ -453,7 +454,6 @@ main {
 
 .delete-follow-up {
   color: red;
-  margin-left: 5px;
 }
 
 .form-section {
@@ -707,6 +707,9 @@ td.checkbox-table-col {
 
   td.attendance-table-attendance-col {
     text-align: center;
+  }
+  .delete-follow-up {
+    margin-left: 5px;
   }
 }
 

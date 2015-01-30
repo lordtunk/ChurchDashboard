@@ -627,6 +627,7 @@
 
     function getAddressString(p) {
         var addr = '';
+	
         addr += p.street1 || '';
         addr += ' ';
         addr += p.street2 || '';
@@ -636,7 +637,7 @@
         addr += p.state || '';
         addr += ' ';
         addr += p.zip || '';
-
+	
         return addr.trim();
     }
 
