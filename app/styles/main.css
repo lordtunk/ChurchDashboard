@@ -417,17 +417,23 @@ main {
   display: inline-block;
 }
 
+#manage-unknown-date {
+  margin-left: 25px;
+}
+
 .check-field {
   display: inline-block;
 }
 
 .check-field input {
-  margin: 0 5px;
+  margin: 0 5px 0 0;
+}
+.check-field label {
+  padding-right: 15px;
 }
 
 .app-content .check-field label {
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 0px;
 }
 
 .app-content.view-person label {

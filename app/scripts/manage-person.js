@@ -55,6 +55,7 @@
         followUpId = dialog[0].querySelector('#follow-up-id'),
         followUpType = dialog[0].querySelector('#follow-up-type'),
         followUpDate = dialog[0].querySelector('#follow-up-date'),
+        unknownDate = document.querySelector('#manage-unknown-date'),
         followUpVisitors = dialog[0].querySelector('#follow-up-visitors'),
         followUpComments = dialog[0].querySelector('#follow-up-comments'),
         $dialogTitle = $('.ui-dialog-title').text('Edit Follow Up'),
@@ -465,15 +466,23 @@
             type = $.trim(followUpType.value),
             comments = $.trim(followUpComments.value),
             visitors = [],
-            visitorsIds = [];
-        if (date === '' && comments === '') {
-            $().toastmessage('showErrorToast', "Must specify either Date or Comments");
-            return false;
+            visitorsIds = [],
+	    msg = '';
+	    
+        if (comments === '' && (type == 1 || type == 2)) {
+	    msg += 'Must specify comments<br />';
         }
+        if(date === '' && !unknownDate.checked) {
+	    msg += 'Must specify a date or mark it unknown<br />';
+	}
         if (comments.length > 5000) {
-            $().toastmessage('showErrorToast', "Comments cannot exceed 5000 characters");
-            return false;
+	    msg += 'Comments cannot exceed 5000 characters<br />';
         }
+        
+        if(msg) {
+	  $().toastmessage('showErrorToast', msg);
+	  return false;
+	}
 
         var inputs = followUpVisitors.querySelectorAll('input');
         for (var i = 0; i < inputs.length; i++) {
@@ -533,8 +542,8 @@
                 v = visitors[i];
                 followUpVisitors.innerHTML +=
                     '<div class="check-field">' +
-                    '<label for="follow-up-by-' + v.id + '">' + getDisplayName(v) + '</label>' +
                     '<input type="checkbox" personid="' + v.id + '" id="follow-up-by-' + v.id + '"/>' +
+                    '<label for="follow-up-by-' + v.id + '">' + getDisplayName(v) + '</label>' +
                     '</div>';
             }
         }
@@ -601,12 +610,15 @@
     function onEditFollowUpClick(e) {
         dialog.dialog('open');
         setVisitors();
-        var row = e.currentTarget.parentElement.parentElement;
+        var row = e.currentTarget.parentElement.parentElement,
+	    date = row.children[1].innerHTML || '';
 
         followUpType.value = row.children[0].getAttribute('typeCd') || '';
-        followUpDate.value = row.children[1].innerHTML || '';
+        followUpDate.value = date;
         followUpComments.value = row.children[3].innerHTML || '';
         followUpId.value = row.getAttribute('follow_up_id');
+	unknownDate.checked = date === '';
+	followUpDate.disabled = unknownDate.checked;
 
         var visitorIdsString = row.children[2].getAttribute('visitorsIds') || '';
         var visitorIds = visitorIdsString.split(',');
@@ -639,6 +651,10 @@
         addr += p.zip || '';
 	
         return addr.trim();
+    }
+    
+    function onChangeUnknownDate(e) {
+      followUpDate.disabled = e.target.checked;
     }
 
     function onClickLink(e) {
@@ -685,6 +701,7 @@
     addClearBtn.addEventListener('click', addClear);
     addCloseBtn.addEventListener('click', addClose);
     closeBtn.addEventListener('click', closeFollowUp);
+    $('#unknown-date').on('change', onChangeUnknownDate);
 
     checkLoginStatus(loadStates);
 })();

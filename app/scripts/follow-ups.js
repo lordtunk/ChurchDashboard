@@ -10,6 +10,7 @@
         followUpPerson = document.querySelector('#follow-up-person'),
         followUpType = document.querySelector('#follow-up-type'),
         followUpDate = document.querySelector('#follow-up-date'),
+        unknownDate = document.querySelector('#unknown-date'),
         followUpVisitors = document.querySelector('#follow-up-visitors'),
         followUpComments = document.querySelector('#follow-up-comments'),
         addClearBtn = document.querySelector('#add-clear'),
@@ -238,6 +239,8 @@
         followUpType.value = '2';
         followUpDate.value = '';
         followUpComments.value = '';
+	unknownDate.checked = false;
+	followUpDate.disabled = false;
 
         var inputs = followUpVisitors.querySelectorAll('input');
         for (var i = 0; i < inputs.length; i++)
@@ -251,25 +254,31 @@
             type = $.trim(followUpType.value),
             comments = $.trim(followUpComments.value),
             visitors = [],
-            visitorsIds = [];
+            visitorsIds = [],
+	    msg = '';
         
         if(personId === '' || personId < 0) {
-            $().toastmessage('showErrorToast', "Must select a person");
-            return false;
+	    msg += 'Must select a person<br />';
         }
-        if (date === '' && comments === '') {
-            $().toastmessage('showErrorToast', "Must specify either Date or Comments");
-            return false;
+        if(comments === '' && (type == 1 || type == 2)) {
+	    msg += 'Must specify comments<br />';
         }
-        if (comments.length > 5000) {
-            $().toastmessage('showErrorToast', "Comments cannot exceed 5000 characters");
-            return false;
+        if(date === '' && !unknownDate.checked) {
+	    msg += 'Must specify a date or mark it unknown<br />';
+	}
+        if(comments.length > 5000) {
+	    msg += 'Comments cannot exceed 5000 characters<br />';
         }
+        
+        if(msg) {
+	  $().toastmessage('showErrorToast', msg);
+	  return false;
+	}
 
         var inputs = followUpVisitors.querySelectorAll('input');
         for (var i = 0; i < inputs.length; i++) {
             if (!inputs[i].checked) continue;
-            visitors.push($.trim(inputs[i].previousSibling.innerHTML));
+            visitors.push($.trim(inputs[i].nextSibling.innerHTML));
             visitorsIds.push(inputs[i].getAttribute('personid'));
         }
 
@@ -300,24 +309,33 @@
         followUpPerson.setAttribute('personid', id);
         followUpPerson.setAttribute('person_name', name);
     }
+    
+    function onManagePerson(e) {
+      var row = e.currentTarget.parentElement.parentElement;
+      var id = row.getAttribute('person_id');
+      window.location = 'manage-person.html?id=' + id;
+    }
 
     function processSearchResults(results) {
-        $('button.search-button').off('click', onSelectPerson);
+        $('a.person_name').off('click', onSelectPerson);
+	$('button.search-button').off('click', onManagePerson);
 
         $('#search-table tbody tr').remove();
         for (var i = 0; i < results.length; i++) {
             appendPerson(results[i]);
         }
-        $('button.search-button').on('click', onSelectPerson);
+        
+        $('a.person_name').on('click', onSelectPerson);
+        $('button.search-button').on('click', onManagePerson);
     }
 
     function appendPerson(p) {
         var name = getDisplayName(p);
         $('#search-table > tbody:last').append(
             '<tr person_id="' + p.id + '">' +
-            '<td data-th="Name" person_name="' + name + '"><a class="person_name" href="manage-person.html?id=' + p.id + '">' + name + '</a></td>' +
+            '<td data-th="Name" person_name="' + name + '"><a class="person_name" href="javascript:void(0);">' + name + '</a></td>' +
             '<td data-th="Address">' + getAddress(p) + '</td>' +
-            '<td data-th="" class="search-table-button-col"><button class="search-button button--blue-x-small">Select</button></td>' +
+            '<td data-th="" class="search-table-button-col"><button class="search-button button--blue-x-small">Manage</button></td>' +
             '</tr>');
     }
 
@@ -392,8 +410,8 @@
                 v = visitors[i];
                 followUpVisitors.innerHTML +=
                     '<div class="check-field">' +
-                    '<label for="follow-up-by-' + v.id + '">' + getDisplayName(v) + '</label>' +
                     '<input type="checkbox" personid="' + v.id + '" id="follow-up-by-' + v.id + '"/>' +
+                    '<label for="follow-up-by-' + v.id + '">' + getDisplayName(v) + '</label>' +
                     '</div>';
             }
         }
@@ -428,16 +446,19 @@
     }
 
     function onEditFollowUpClick(e) {
-        var row = e.currentTarget.parentElement.parentElement;
+        var row = e.currentTarget.parentElement.parentElement,
+	    date = row.children[2].innerHTML || '';
 
         followUpPerson.setAttribute('personid', row.children[0].getAttribute('personid') || '');
         followUpPerson.setAttribute('person_name', row.children[0].getAttribute('person_name') || '');
         followUpPerson.innerHTML = row.children[0].innerHTML || '';
         followUpType.value = row.children[1].getAttribute('typeCd') || '';
-        followUpDate.value = row.children[2].innerHTML || '';
+        followUpDate.value = date;
         followUpComments.value = row.children[4].innerHTML || '';
         followUpId.value = row.getAttribute('follow_up_id');
-
+	unknownDate.checked = date === '';
+	followUpDate.disabled = unknownDate.checked;
+	
         var visitorIdsString = row.children[3].getAttribute('visitorsIds') || '';
         var visitorIds = visitorIdsString.split(',');
         var inputs = followUpVisitors.querySelectorAll('input');
@@ -476,6 +497,10 @@
             var id = e.currentTarget.parentElement.parentElement.getAttribute('follow_up_id');
             deleteFollowUp(id);
         }
+    }
+    
+    function onChangeUnknownDate(e) {
+      followUpDate.disabled = e.target.checked;
     }
 
     function attachClickListeners() {
@@ -521,6 +546,8 @@
         }
     });
     closeBtn.addEventListener('click', close);
+    $('#unknown-date').on('change', onChangeUnknownDate);
 
+    clearFollowUpForm();
     checkLoginStatus(loadVisitors);
 })();

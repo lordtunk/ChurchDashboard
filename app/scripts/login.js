@@ -1,3 +1,4 @@
+/* jshint ignore:start */
 function checkLoginStatus(cb) {
   $.ajax({
     type: 'POST',
@@ -19,12 +20,12 @@ function logout() {
       type: 'POST',
       url: 'ajax/logout.php'
     })
-    .done(function( msg ) {
+    .done(function() {
       window.location = 'index.html';
     });
   }
 }
-
+/* jshint ignore:end */
 (function () {
   'use strict';
 
