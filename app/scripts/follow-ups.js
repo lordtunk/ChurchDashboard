@@ -239,8 +239,8 @@
         followUpType.value = '2';
         followUpDate.value = '';
         followUpComments.value = '';
-	unknownDate.checked = false;
-	followUpDate.disabled = false;
+        unknownDate.checked = false;
+        followUpDate.disabled = false;
 
         var inputs = followUpVisitors.querySelectorAll('input');
         for (var i = 0; i < inputs.length; i++)
@@ -255,31 +255,35 @@
             comments = $.trim(followUpComments.value),
             visitors = [],
             visitorsIds = [],
-	    msg = '';
-        
-        if(personId === '' || personId < 0) {
-	    msg += 'Must select a person<br />';
+            msg = '';
+
+        if (personId === '' || personId < 0) {
+            msg += 'Must select a person<br />';
         }
-        if(comments === '' && (type == 1 || type == 2)) {
-	    msg += 'Must specify comments<br />';
+        if (comments === '' && (type == 1 || type == 2)) {
+            msg += 'Must specify comments<br />';
         }
-        if(date === '' && !unknownDate.checked) {
-	    msg += 'Must specify a date or mark it unknown<br />';
-	}
-        if(comments.length > 5000) {
-	    msg += 'Comments cannot exceed 5000 characters<br />';
+        if (date === '' && !unknownDate.checked) {
+            msg += 'Must specify a date or mark it unknown<br />';
         }
-        
-        if(msg) {
-	  $().toastmessage('showErrorToast', msg);
-	  return false;
-	}
+        if (comments.length > 5000) {
+            msg += 'Comments cannot exceed 5000 characters<br />';
+        }
 
         var inputs = followUpVisitors.querySelectorAll('input');
         for (var i = 0; i < inputs.length; i++) {
             if (!inputs[i].checked) continue;
             visitors.push($.trim(inputs[i].nextSibling.innerHTML));
             visitorsIds.push(inputs[i].getAttribute('personid'));
+        }
+        
+        if (visitorsIds.length === 0) {
+            msg += 'Must specify a visitor<br />';
+        }
+        
+        if (msg) {
+            $().toastmessage('showErrorToast', msg);
+            return false;
         }
 
         return {
@@ -309,22 +313,22 @@
         followUpPerson.setAttribute('personid', id);
         followUpPerson.setAttribute('person_name', name);
     }
-    
+
     function onManagePerson(e) {
-      var row = e.currentTarget.parentElement.parentElement;
-      var id = row.getAttribute('person_id');
-      window.location = 'manage-person.html?id=' + id;
+        var row = e.currentTarget.parentElement.parentElement;
+        var id = row.getAttribute('person_id');
+        window.location = 'manage-person.html?id=' + id;
     }
 
     function processSearchResults(results) {
         $('a.person_name').off('click', onSelectPerson);
-	$('button.search-button').off('click', onManagePerson);
+        $('button.search-button').off('click', onManagePerson);
 
         $('#search-table tbody tr').remove();
         for (var i = 0; i < results.length; i++) {
             appendPerson(results[i]);
         }
-        
+
         $('a.person_name').on('click', onSelectPerson);
         $('button.search-button').on('click', onManagePerson);
     }
@@ -447,7 +451,7 @@
 
     function onEditFollowUpClick(e) {
         var row = e.currentTarget.parentElement.parentElement,
-	    date = row.children[2].innerHTML || '';
+            date = row.children[2].innerHTML || '';
 
         followUpPerson.setAttribute('personid', row.children[0].getAttribute('personid') || '');
         followUpPerson.setAttribute('person_name', row.children[0].getAttribute('person_name') || '');
@@ -456,9 +460,9 @@
         followUpDate.value = date;
         followUpComments.value = row.children[4].innerHTML || '';
         followUpId.value = row.getAttribute('follow_up_id');
-	unknownDate.checked = date === '';
-	followUpDate.disabled = unknownDate.checked;
-	
+        unknownDate.checked = date === '';
+        followUpDate.disabled = unknownDate.checked;
+
         var visitorIdsString = row.children[3].getAttribute('visitorsIds') || '';
         var visitorIds = visitorIdsString.split(',');
         var inputs = followUpVisitors.querySelectorAll('input');
@@ -498,9 +502,10 @@
             deleteFollowUp(id);
         }
     }
-    
+
     function onChangeUnknownDate(e) {
-      followUpDate.disabled = e.target.checked;
+        followUpDate.disabled = e.target.checked;
+        followUpDate.value = '';
     }
 
     function attachClickListeners() {

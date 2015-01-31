@@ -28,11 +28,11 @@
     
     $('#report-type-container')[0].style.setProperty('display', (reportType === 3) ? 'inline-block' : 'block');
     $('#from-to-dates')[0].style.setProperty('display', (reportType === 3) ? 'none' : 'inline-block');
-    if(reportType === 3) {
+    if(reportType === 3 || reportType === 4) {
       fromDateField.value = '';
       toDateField.value = '';
     }
-      
+    $('#first-last-dates')[0].style.setProperty('display', (reportType === 4) ? 'none' : 'inherit');
     $('#communication-card-header')[0].style.setProperty('display', (reportType === 4) ? 'inherit' : 'none');
     $('#follow-up-options')[0].style.setProperty('display', (reportType === 4) ? 'inline-block' : 'none');
     $('#follow-up-options-spacer')[0].style.setProperty('display', (reportType === 4) ? 'inherit' : 'none');

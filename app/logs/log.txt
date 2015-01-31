@@ -34242,3 +34242,2592 @@ Stack trace:
 		  f.follow_up_date
 01-30-15 6:41 pm	No parameters
 01-30-15 6:41 pm	Success
+01-30-15 6:48 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 6:48 pm	:user_id => 1
+01-30-15 6:48 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 6:48 pm	Success: TRUE
+01-30-15 6:48 pm	1
+01-30-15 6:48 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 6:48 pm	:user_id => 1
+01-30-15 6:48 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 6:48 pm	Success: TRUE
+01-30-15 6:48 pm	1
+01-30-15 6:48 pm	SELECT
+                  DATE_FORMAT(MAX(a.attendance_dt),'%m/%d/%Y') Last_Attendance_Dt,
+                  DATE_FORMAT(MIN(a.attendance_dt),'%m/%d/%Y') First_Attendance_Dt
+                FROM
+                  Attendance a
+                WHERE
+                  a.first = 1 OR a.second = 1
+01-30-15 6:48 pm	No parameters
+01-30-15 6:48 pm	Success
+01-30-15 6:52 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 6:52 pm	:user_id => 1
+01-30-15 6:52 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 6:52 pm	Success: TRUE
+01-30-15 6:52 pm	1
+01-30-15 6:52 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 6:52 pm	:user_id => 1
+01-30-15 6:52 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 6:52 pm	Success: TRUE
+01-30-15 6:52 pm	1
+01-30-15 6:52 pm	SELECT
+                  DATE_FORMAT(MAX(a.attendance_dt),'%m/%d/%Y') Last_Attendance_Dt,
+                  DATE_FORMAT(MIN(a.attendance_dt),'%m/%d/%Y') First_Attendance_Dt
+                FROM
+                  Attendance a
+                WHERE
+                  a.first = 1 OR a.second = 1
+01-30-15 6:52 pm	No parameters
+01-30-15 6:52 pm	Success
+01-30-15 6:53 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 6:53 pm	:user_id => 1
+01-30-15 6:53 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 6:53 pm	Success: TRUE
+01-30-15 6:53 pm	1
+01-30-15 6:53 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 6:53 pm	:user_id => 1
+01-30-15 6:53 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 6:53 pm	Success: TRUE
+01-30-15 6:53 pm	1
+01-30-15 6:53 pm	SELECT
+                  DATE_FORMAT(MAX(a.attendance_dt),'%m/%d/%Y') Last_Attendance_Dt,
+                  DATE_FORMAT(MIN(a.attendance_dt),'%m/%d/%Y') First_Attendance_Dt
+                FROM
+                  Attendance a
+                WHERE
+                  a.first = 1 OR a.second = 1
+01-30-15 6:53 pm	No parameters
+01-30-15 6:53 pm	Success
+01-30-15 6:54 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 6:54 pm	:user_id => 1
+01-30-15 6:54 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 6:54 pm	Success: TRUE
+01-30-15 6:54 pm	1
+01-30-15 6:54 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 6:54 pm	:user_id => 1
+01-30-15 6:54 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 6:54 pm	Success: TRUE
+01-30-15 6:54 pm	1
+01-30-15 6:54 pm	SELECT
+                  DATE_FORMAT(MAX(a.attendance_dt),'%m/%d/%Y') Last_Attendance_Dt,
+                  DATE_FORMAT(MIN(a.attendance_dt),'%m/%d/%Y') First_Attendance_Dt
+                FROM
+                  Attendance a
+                WHERE
+                  a.first = 1 OR a.second = 1
+01-30-15 6:54 pm	No parameters
+01-30-15 6:54 pm	Success
+01-30-15 6:54 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 6:54 pm	:user_id => 1
+01-30-15 6:54 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 6:54 pm	Success: TRUE
+01-30-15 6:54 pm	1
+01-30-15 6:54 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 6:54 pm	:user_id => 1
+01-30-15 6:54 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 6:54 pm	Success: TRUE
+01-30-15 6:54 pm	1
+01-30-15 6:54 pm	SELECT
+                  DATE_FORMAT(MAX(a.attendance_dt),'%m/%d/%Y') Last_Attendance_Dt,
+                  DATE_FORMAT(MIN(a.attendance_dt),'%m/%d/%Y') First_Attendance_Dt
+                FROM
+                  Attendance a
+                WHERE
+                  a.first = 1 OR a.second = 1
+01-30-15 6:54 pm	No parameters
+01-30-15 6:54 pm	Success
+01-30-15 6:54 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 6:54 pm	:user_id => 1
+01-30-15 6:54 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 6:54 pm	Success: TRUE
+01-30-15 6:54 pm	1
+01-30-15 6:54 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 6:54 pm	:user_id => 1
+01-30-15 6:54 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 6:54 pm	Success: TRUE
+01-30-15 6:54 pm	1
+01-30-15 6:54 pm	SELECT
+                  DATE_FORMAT(MAX(a.attendance_dt),'%m/%d/%Y') Last_Attendance_Dt,
+                  DATE_FORMAT(MIN(a.attendance_dt),'%m/%d/%Y') First_Attendance_Dt
+                FROM
+                  Attendance a
+                WHERE
+                  a.first = 1 OR a.second = 1
+01-30-15 6:54 pm	No parameters
+01-30-15 6:54 pm	Success
+01-30-15 6:58 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 6:58 pm	:user_id => 1
+01-30-15 6:58 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 6:58 pm	Success: TRUE
+01-30-15 6:58 pm	1
+01-30-15 6:58 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 6:58 pm	:user_id => 1
+01-30-15 6:58 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 6:58 pm	Success: TRUE
+01-30-15 6:58 pm	1
+01-30-15 6:58 pm	SELECT
+                  DATE_FORMAT(MAX(a.attendance_dt),'%m/%d/%Y') Last_Attendance_Dt,
+                  DATE_FORMAT(MIN(a.attendance_dt),'%m/%d/%Y') First_Attendance_Dt
+                FROM
+                  Attendance a
+                WHERE
+                  a.first = 1 OR a.second = 1
+01-30-15 6:58 pm	No parameters
+01-30-15 6:58 pm	Success
+01-30-15 7:00 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:00 pm	:user_id => 1
+01-30-15 7:00 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:00 pm	Success: TRUE
+01-30-15 7:00 pm	1
+01-30-15 7:00 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:00 pm	:user_id => 1
+01-30-15 7:00 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:00 pm	Success: TRUE
+01-30-15 7:00 pm	1
+01-30-15 7:00 pm	SELECT
+                  DATE_FORMAT(MAX(a.attendance_dt),'%m/%d/%Y') Last_Attendance_Dt,
+                  DATE_FORMAT(MIN(a.attendance_dt),'%m/%d/%Y') First_Attendance_Dt
+                FROM
+                  Attendance a
+                WHERE
+                  a.first = 1 OR a.second = 1
+01-30-15 7:00 pm	No parameters
+01-30-15 7:00 pm	Success
+01-30-15 7:01 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:01 pm	:user_id => 1
+01-30-15 7:01 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:01 pm	Success: TRUE
+01-30-15 7:01 pm	1
+01-30-15 7:01 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:01 pm	:user_id => 1
+01-30-15 7:01 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:01 pm	Success: TRUE
+01-30-15 7:01 pm	1
+01-30-15 7:01 pm	SELECT
+                  DATE_FORMAT(MAX(a.attendance_dt),'%m/%d/%Y') Last_Attendance_Dt,
+                  DATE_FORMAT(MIN(a.attendance_dt),'%m/%d/%Y') First_Attendance_Dt
+                FROM
+                  Attendance a
+                WHERE
+                  a.first = 1 OR a.second = 1
+01-30-15 7:01 pm	No parameters
+01-30-15 7:01 pm	Success
+01-30-15 7:03 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:03 pm	:user_id => 1
+01-30-15 7:03 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:03 pm	Success: TRUE
+01-30-15 7:03 pm	1
+01-30-15 7:03 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:03 pm	:user_id => 1
+01-30-15 7:03 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:03 pm	Success: TRUE
+01-30-15 7:03 pm	1
+01-30-15 7:03 pm	SELECT
+                  DATE_FORMAT(MAX(a.attendance_dt),'%m/%d/%Y') Last_Attendance_Dt,
+                  DATE_FORMAT(MIN(a.attendance_dt),'%m/%d/%Y') First_Attendance_Dt
+                FROM
+                  Attendance a
+                WHERE
+                  a.first = 1 OR a.second = 1
+01-30-15 7:03 pm	No parameters
+01-30-15 7:03 pm	Success
+01-30-15 7:05 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:05 pm	:user_id => 1
+01-30-15 7:05 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:05 pm	Success: TRUE
+01-30-15 7:05 pm	1
+01-30-15 7:05 pm	SELECT 
+		    CASE WHEN vc.visit_count >0 THEN  'true' ELSE  'false' END visited, 
+		    CASE WHEN tyc.ty_card_sent_count >0 THEN  'true' ELSE  'false' END ty_card_sent, 
+		    DATE_FORMAT(f.follow_up_date, '%m/%d/%Y') communication_card_date, 
+		    DATE_FORMAT(tyc.follow_up_date, '%m/%d/%Y') ty_card_date, 
+		    p.id, 
+		    p.first_name, 
+		    p.last_name, 
+		    p.description,
+		    p.primary_phone,
+		    p.street1,
+		    p.street2,
+		    p.city,
+		    p.state,
+		    p.zip,
+		    CASE WHEN p.commitment_baptism = 1 THEN  'true' ELSE  'false' END commitment_baptism
+		  FROM 
+		    People p
+		    LEFT OUTER JOIN FollowUps f ON f.follow_up_to_person_id = p.id AND f.type = 3
+		    LEFT OUTER JOIN (SELECT COUNT(*) visit_count, follow_up_to_person_id FROM FollowUps WHERE TYPE =2)vc ON vc.follow_up_to_person_id = p.id
+		    LEFT OUTER JOIN (SELECT COUNT(*) ty_card_sent_count, follow_up_to_person_id, follow_up_date FROM FollowUps WHERE TYPE =5)tyc ON tyc.follow_up_to_person_id = p.id
+		  WHERE 
+		    p.adult = 1
+		    AND p.active = 1
+		  GROUP BY 
+		    p.id 
+		  ORDER BY
+		    p.last_name IS NOT NULL DESC,
+		    p.description IS NOT NULL DESC,
+		    p.last_name,
+		    p.first_name,
+		    p.description
+01-30-15 7:05 pm	No parameters
+01-30-15 7:05 pm	Success
+01-30-15 7:07 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:07 pm	:user_id => 1
+01-30-15 7:07 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:07 pm	Success: TRUE
+01-30-15 7:07 pm	1
+01-30-15 7:07 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:07 pm	:user_id => 1
+01-30-15 7:07 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:07 pm	Success: TRUE
+01-30-15 7:07 pm	1
+01-30-15 7:07 pm	SELECT
+                  DATE_FORMAT(MAX(a.attendance_dt),'%m/%d/%Y') Last_Attendance_Dt,
+                  DATE_FORMAT(MIN(a.attendance_dt),'%m/%d/%Y') First_Attendance_Dt
+                FROM
+                  Attendance a
+                WHERE
+                  a.first = 1 OR a.second = 1
+01-30-15 7:07 pm	No parameters
+01-30-15 7:07 pm	Success
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:08 pm	No parameters
+01-30-15 7:08 pm	Success
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT
+		  f.follow_up_to_person_id person_id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id visitor_person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  FollowUps f
+		  inner join People p on p.id=f.follow_up_to_person_id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  DATE_FORMAT(f.last_modified_dt,'%m/%d/%Y') = DATE_FORMAT(NOW(),'%m/%d/%Y')
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:08 pm	No parameters
+01-30-15 7:08 pm	Success
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:08 pm	No parameters
+01-30-15 7:08 pm	Success
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:08 pm	:id => 239
+01-30-15 7:08 pm	Success
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description,
+                  attendance_dt DESC
+01-30-15 7:08 pm	No parameters
+01-30-15 7:08 pm	Success
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:08 pm	:id => 236
+01-30-15 7:08 pm	Success
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:08 pm	No parameters
+01-30-15 7:08 pm	Success
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description,
+                  attendance_dt DESC
+01-30-15 7:08 pm	No parameters
+01-30-15 7:08 pm	Success
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:08 pm	:id => 223
+01-30-15 7:08 pm	Success
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:08 pm	No parameters
+01-30-15 7:08 pm	Success
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description,
+                  attendance_dt DESC
+01-30-15 7:08 pm	No parameters
+01-30-15 7:08 pm	Success
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:08 pm	:id => 38
+01-30-15 7:08 pm	Success
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:08 pm	No parameters
+01-30-15 7:08 pm	Success
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description,
+                  attendance_dt DESC
+01-30-15 7:08 pm	No parameters
+01-30-15 7:08 pm	Success
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:08 pm	:id => 308
+01-30-15 7:08 pm	Success
+01-30-15 7:08 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:08 pm	:user_id => 1
+01-30-15 7:08 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:08 pm	Success: TRUE
+01-30-15 7:08 pm	1
+01-30-15 7:08 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:08 pm	No parameters
+01-30-15 7:08 pm	Success
+01-30-15 7:09 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:09 pm	:user_id => 1
+01-30-15 7:09 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:09 pm	Success: TRUE
+01-30-15 7:09 pm	1
+01-30-15 7:09 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:09 pm	:user_id => 1
+01-30-15 7:09 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:09 pm	Success: TRUE
+01-30-15 7:09 pm	1
+01-30-15 7:09 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description,
+                  p.adult,
+                  p.active,
+                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  a.first,
+                  a.second
+                FROM
+                  People p
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                ORDER BY
+                  p.last_name IS NOT NULL DESC,
+                  p.description IS NOT NULL DESC,
+                  p.last_name,
+                  p.first_name,
+                  p.description,
+                  attendance_dt DESC
+01-30-15 7:09 pm	No parameters
+01-30-15 7:09 pm	Success
+01-30-15 7:09 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:09 pm	:user_id => 1
+01-30-15 7:09 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:09 pm	Success: TRUE
+01-30-15 7:09 pm	1
+01-30-15 7:09 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:09 pm	:user_id => 1
+01-30-15 7:09 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:09 pm	Success: TRUE
+01-30-15 7:09 pm	1
+01-30-15 7:09 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:09 pm	:id => 143
+01-30-15 7:09 pm	Success
+01-30-15 7:09 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:09 pm	:user_id => 1
+01-30-15 7:09 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:09 pm	Success: TRUE
+01-30-15 7:09 pm	1
+01-30-15 7:09 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:09 pm	No parameters
+01-30-15 7:09 pm	Success
+01-30-15 7:11 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:11 pm	:user_id => 1
+01-30-15 7:11 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:11 pm	Success: TRUE
+01-30-15 7:11 pm	1
+01-30-15 7:11 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:11 pm	:user_id => 1
+01-30-15 7:11 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:11 pm	Success: TRUE
+01-30-15 7:11 pm	1
+01-30-15 7:11 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:11 pm	:id => 143
+01-30-15 7:11 pm	Success
+01-30-15 7:11 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:11 pm	:user_id => 1
+01-30-15 7:11 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:11 pm	Success: TRUE
+01-30-15 7:11 pm	1
+01-30-15 7:11 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:11 pm	No parameters
+01-30-15 7:11 pm	Success
+01-30-15 7:12 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:12 pm	:user_id => 1
+01-30-15 7:12 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:12 pm	Success: TRUE
+01-30-15 7:12 pm	1
+01-30-15 7:12 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:12 pm	:user_id => 1
+01-30-15 7:12 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:12 pm	Success: TRUE
+01-30-15 7:12 pm	1
+01-30-15 7:12 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:12 pm	:id => 143
+01-30-15 7:12 pm	Success
+01-30-15 7:12 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:12 pm	:user_id => 1
+01-30-15 7:12 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:12 pm	Success: TRUE
+01-30-15 7:12 pm	1
+01-30-15 7:12 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:12 pm	No parameters
+01-30-15 7:12 pm	Success
+01-30-15 7:12 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:12 pm	:user_id => 1
+01-30-15 7:12 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:12 pm	Success: TRUE
+01-30-15 7:12 pm	1
+01-30-15 7:12 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:12 pm	:user_id => 1
+01-30-15 7:12 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:12 pm	Success: TRUE
+01-30-15 7:12 pm	1
+01-30-15 7:12 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:12 pm	:id => 143
+01-30-15 7:12 pm	Success
+01-30-15 7:12 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:12 pm	:user_id => 1
+01-30-15 7:12 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:12 pm	Success: TRUE
+01-30-15 7:12 pm	1
+01-30-15 7:12 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:12 pm	No parameters
+01-30-15 7:12 pm	Success
+01-30-15 7:13 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:13 pm	:user_id => 1
+01-30-15 7:13 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:13 pm	Success: TRUE
+01-30-15 7:13 pm	1
+01-30-15 7:13 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:13 pm	:user_id => 1
+01-30-15 7:13 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:13 pm	Success: TRUE
+01-30-15 7:13 pm	1
+01-30-15 7:13 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:13 pm	:id => 143
+01-30-15 7:13 pm	Success
+01-30-15 7:13 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:13 pm	:user_id => 1
+01-30-15 7:13 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:13 pm	Success: TRUE
+01-30-15 7:13 pm	1
+01-30-15 7:13 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:13 pm	No parameters
+01-30-15 7:13 pm	Success
+01-30-15 7:13 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:13 pm	:user_id => 1
+01-30-15 7:13 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:13 pm	Success: TRUE
+01-30-15 7:13 pm	1
+01-30-15 7:13 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:13 pm	:user_id => 1
+01-30-15 7:13 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:13 pm	Success: TRUE
+01-30-15 7:13 pm	1
+01-30-15 7:13 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:13 pm	:id => 143
+01-30-15 7:13 pm	Success
+01-30-15 7:13 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:13 pm	:user_id => 1
+01-30-15 7:13 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:13 pm	Success: TRUE
+01-30-15 7:13 pm	1
+01-30-15 7:13 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:13 pm	No parameters
+01-30-15 7:13 pm	Success
+01-30-15 7:15 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:15 pm	:user_id => 1
+01-30-15 7:15 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:15 pm	Success: TRUE
+01-30-15 7:15 pm	1
+01-30-15 7:15 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:15 pm	:user_id => 1
+01-30-15 7:15 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:15 pm	Success: TRUE
+01-30-15 7:15 pm	1
+01-30-15 7:15 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:15 pm	:id => 143
+01-30-15 7:15 pm	Success
+01-30-15 7:15 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:15 pm	:user_id => 1
+01-30-15 7:15 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:15 pm	Success: TRUE
+01-30-15 7:15 pm	1
+01-30-15 7:15 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:15 pm	No parameters
+01-30-15 7:15 pm	Success
+01-30-15 7:21 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:21 pm	:user_id => 1
+01-30-15 7:21 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:21 pm	Success: TRUE
+01-30-15 7:21 pm	1
+01-30-15 7:21 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:21 pm	:user_id => 1
+01-30-15 7:21 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:21 pm	Success: TRUE
+01-30-15 7:21 pm	1
+01-30-15 7:21 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:21 pm	No parameters
+01-30-15 7:21 pm	Success
+01-30-15 7:21 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:21 pm	:user_id => 1
+01-30-15 7:21 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:21 pm	Success: TRUE
+01-30-15 7:21 pm	1
+01-30-15 7:21 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:21 pm	:id => 143
+01-30-15 7:21 pm	Success
+01-30-15 7:28 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:28 pm	:user_id => 1
+01-30-15 7:28 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:28 pm	Success: TRUE
+01-30-15 7:28 pm	1
+01-30-15 7:28 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:28 pm	:user_id => 1
+01-30-15 7:28 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:28 pm	Success: TRUE
+01-30-15 7:28 pm	1
+01-30-15 7:28 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:28 pm	No parameters
+01-30-15 7:28 pm	Success
+01-30-15 7:28 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:28 pm	:user_id => 1
+01-30-15 7:28 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:28 pm	Success: TRUE
+01-30-15 7:28 pm	1
+01-30-15 7:28 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:28 pm	:id => 143
+01-30-15 7:28 pm	Success
+01-30-15 7:28 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:28 pm	:user_id => 1
+01-30-15 7:28 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:28 pm	Success: TRUE
+01-30-15 7:28 pm	1
+01-30-15 7:28 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:28 pm	:user_id => 1
+01-30-15 7:28 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:28 pm	Success: TRUE
+01-30-15 7:28 pm	1
+01-30-15 7:28 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:28 pm	No parameters
+01-30-15 7:28 pm	Success
+01-30-15 7:28 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:28 pm	:user_id => 1
+01-30-15 7:28 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:28 pm	Success: TRUE
+01-30-15 7:28 pm	1
+01-30-15 7:28 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:28 pm	:id => 143
+01-30-15 7:28 pm	Success
+01-30-15 7:36 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:36 pm	:user_id => 1
+01-30-15 7:36 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:36 pm	Success: TRUE
+01-30-15 7:36 pm	1
+01-30-15 7:36 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:36 pm	:user_id => 1
+01-30-15 7:36 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:36 pm	Success: TRUE
+01-30-15 7:36 pm	1
+01-30-15 7:36 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:36 pm	:id => 143
+01-30-15 7:36 pm	Success
+01-30-15 7:36 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:36 pm	:user_id => 1
+01-30-15 7:36 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:36 pm	Success: TRUE
+01-30-15 7:36 pm	1
+01-30-15 7:36 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:36 pm	No parameters
+01-30-15 7:36 pm	Success
+01-30-15 7:37 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:37 pm	:user_id => 1
+01-30-15 7:37 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:37 pm	Success: TRUE
+01-30-15 7:37 pm	1
+01-30-15 7:37 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:37 pm	:user_id => 1
+01-30-15 7:37 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:37 pm	Success: TRUE
+01-30-15 7:37 pm	1
+01-30-15 7:37 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:37 pm	No parameters
+01-30-15 7:37 pm	Success
+01-30-15 7:37 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:37 pm	:user_id => 1
+01-30-15 7:37 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:37 pm	Success: TRUE
+01-30-15 7:37 pm	1
+01-30-15 7:37 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:37 pm	:id => 143
+01-30-15 7:37 pm	Success
+01-30-15 7:37 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:37 pm	:user_id => 1
+01-30-15 7:37 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:37 pm	Success: TRUE
+01-30-15 7:37 pm	1
+01-30-15 7:37 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:37 pm	:user_id => 1
+01-30-15 7:37 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:37 pm	Success: TRUE
+01-30-15 7:37 pm	1
+01-30-15 7:37 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:37 pm	:id => 143
+01-30-15 7:37 pm	Success
+01-30-15 7:37 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:37 pm	:user_id => 1
+01-30-15 7:37 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:37 pm	Success: TRUE
+01-30-15 7:37 pm	1
+01-30-15 7:37 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:37 pm	No parameters
+01-30-15 7:37 pm	Success
+01-30-15 7:39 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:39 pm	:user_id => 1
+01-30-15 7:39 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:39 pm	Success: TRUE
+01-30-15 7:39 pm	1
+01-30-15 7:39 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:39 pm	:user_id => 1
+01-30-15 7:39 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:39 pm	Success: TRUE
+01-30-15 7:39 pm	1
+01-30-15 7:39 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:39 pm	No parameters
+01-30-15 7:39 pm	Success
+01-30-15 7:39 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:39 pm	:user_id => 1
+01-30-15 7:39 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:39 pm	Success: TRUE
+01-30-15 7:39 pm	1
+01-30-15 7:39 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:39 pm	:id => 143
+01-30-15 7:39 pm	Success
+01-30-15 7:45 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:45 pm	:user_id => 1
+01-30-15 7:45 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:45 pm	Success: TRUE
+01-30-15 7:45 pm	1
+01-30-15 7:45 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:45 pm	:user_id => 1
+01-30-15 7:45 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:45 pm	Success: TRUE
+01-30-15 7:45 pm	1
+01-30-15 7:45 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:45 pm	:id => 143
+01-30-15 7:45 pm	Success
+01-30-15 7:45 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:45 pm	:user_id => 1
+01-30-15 7:45 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:45 pm	Success: TRUE
+01-30-15 7:45 pm	1
+01-30-15 7:45 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:45 pm	No parameters
+01-30-15 7:45 pm	Success
+01-30-15 7:45 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:45 pm	:user_id => 1
+01-30-15 7:45 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:45 pm	Success: TRUE
+01-30-15 7:45 pm	1
+01-30-15 7:45 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:45 pm	:user_id => 1
+01-30-15 7:45 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:45 pm	Success: TRUE
+01-30-15 7:45 pm	1
+01-30-15 7:45 pm	SELECT 
+		    CASE WHEN vc.visit_count >0 THEN  'true' ELSE  'false' END visited, 
+		    CASE WHEN tyc.ty_card_sent_count >0 THEN  'true' ELSE  'false' END ty_card_sent, 
+		    DATE_FORMAT(f.follow_up_date, '%m/%d/%Y') communication_card_date, 
+		    DATE_FORMAT(tyc.follow_up_date, '%m/%d/%Y') ty_card_date, 
+		    p.id, 
+		    p.first_name, 
+		    p.last_name, 
+		    p.description,
+		    p.primary_phone,
+		    p.street1,
+		    p.street2,
+		    p.city,
+		    p.state,
+		    p.zip,
+		    CASE WHEN p.commitment_baptism = 1 THEN  'true' ELSE  'false' END commitment_baptism
+		  FROM 
+		    People p
+		    LEFT OUTER JOIN FollowUps f ON f.follow_up_to_person_id = p.id AND f.type = 3
+		    LEFT OUTER JOIN (SELECT COUNT(*) visit_count, follow_up_to_person_id FROM FollowUps WHERE TYPE =2)vc ON vc.follow_up_to_person_id = p.id
+		    LEFT OUTER JOIN (SELECT COUNT(*) ty_card_sent_count, follow_up_to_person_id, follow_up_date FROM FollowUps WHERE TYPE =5)tyc ON tyc.follow_up_to_person_id = p.id
+		  WHERE 
+		    p.adult = 1
+		    AND p.active = 1
+		  GROUP BY 
+		    p.id 
+		  ORDER BY
+		    p.last_name IS NOT NULL DESC,
+		    p.description IS NOT NULL DESC,
+		    p.last_name,
+		    p.first_name,
+		    p.description
+01-30-15 7:45 pm	No parameters
+01-30-15 7:45 pm	Success
+01-30-15 7:47 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:47 pm	:user_id => 1
+01-30-15 7:47 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:47 pm	Success: TRUE
+01-30-15 7:47 pm	1
+01-30-15 7:48 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:48 pm	:user_id => 1
+01-30-15 7:48 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:48 pm	Success: TRUE
+01-30-15 7:48 pm	1
+01-30-15 7:49 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:49 pm	:user_id => 1
+01-30-15 7:49 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:49 pm	Success: TRUE
+01-30-15 7:49 pm	1
+01-30-15 7:49 pm	SELECT 
+		    CASE WHEN vc.visit_count >0 THEN  'true' ELSE  'false' END visited, 
+		    CASE WHEN tyc.ty_card_sent_count >0 THEN  'true' ELSE  'false' END ty_card_sent, 
+		    DATE_FORMAT(f.follow_up_date, '%m/%d/%Y') communication_card_date, 
+		    DATE_FORMAT(tyc.follow_up_date, '%m/%d/%Y') ty_card_date, 
+		    p.id, 
+		    p.first_name, 
+		    p.last_name, 
+		    p.description,
+		    p.primary_phone,
+		    p.street1,
+		    p.street2,
+		    p.city,
+		    p.state,
+		    p.zip,
+		    CASE WHEN p.commitment_baptism = 1 THEN  'true' ELSE  'false' END commitment_baptism
+		  FROM 
+		    People p
+		    LEFT OUTER JOIN FollowUps f ON f.follow_up_to_person_id = p.id AND f.type = 3
+		    LEFT OUTER JOIN (SELECT COUNT(*) visit_count, follow_up_to_person_id FROM FollowUps WHERE TYPE =2)vc ON vc.follow_up_to_person_id = p.id
+		    LEFT OUTER JOIN (SELECT COUNT(*) ty_card_sent_count, follow_up_to_person_id, follow_up_date FROM FollowUps WHERE TYPE =5)tyc ON tyc.follow_up_to_person_id = p.id
+		  WHERE 
+		    p.adult = 1
+		    AND p.active = 1
+		  GROUP BY 
+		    p.id 
+		  ORDER BY
+		    p.last_name IS NOT NULL DESC,
+		    p.description IS NOT NULL DESC,
+		    p.last_name,
+		    p.first_name,
+		    p.description
+01-30-15 7:49 pm	No parameters
+01-30-15 7:49 pm	Success
+01-30-15 7:50 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:50 pm	:user_id => 1
+01-30-15 7:50 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:50 pm	Success: TRUE
+01-30-15 7:50 pm	1
+01-30-15 7:50 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:50 pm	:user_id => 1
+01-30-15 7:50 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:50 pm	Success: TRUE
+01-30-15 7:50 pm	1
+01-30-15 7:50 pm	SELECT 
+		    CASE WHEN vc.visit_count >0 THEN  'true' ELSE  'false' END visited, 
+		    CASE WHEN tyc.ty_card_sent_count >0 THEN  'true' ELSE  'false' END ty_card_sent, 
+		    DATE_FORMAT(f.follow_up_date, '%m/%d/%Y') communication_card_date, 
+		    DATE_FORMAT(tyc.follow_up_date, '%m/%d/%Y') ty_card_date, 
+		    p.id, 
+		    p.first_name, 
+		    p.last_name, 
+		    p.description,
+		    p.primary_phone,
+		    p.street1,
+		    p.street2,
+		    p.city,
+		    p.state,
+		    p.zip,
+		    CASE WHEN p.commitment_baptism = 1 THEN  'true' ELSE  'false' END commitment_baptism
+		  FROM 
+		    People p
+		    LEFT OUTER JOIN FollowUps f ON f.follow_up_to_person_id = p.id AND f.type = 3
+		    LEFT OUTER JOIN (SELECT COUNT(*) visit_count, follow_up_to_person_id FROM FollowUps WHERE TYPE =2)vc ON vc.follow_up_to_person_id = p.id
+		    LEFT OUTER JOIN (SELECT COUNT(*) ty_card_sent_count, follow_up_to_person_id, follow_up_date FROM FollowUps WHERE TYPE =5)tyc ON tyc.follow_up_to_person_id = p.id
+		  WHERE 
+		    p.adult = 1
+		    AND p.active = 1
+		  GROUP BY 
+		    p.id 
+		  ORDER BY
+		    p.last_name IS NOT NULL DESC,
+		    p.description IS NOT NULL DESC,
+		    p.last_name,
+		    p.first_name,
+		    p.description
+01-30-15 7:50 pm	No parameters
+01-30-15 7:50 pm	Success
+01-30-15 7:53 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:53 pm	:user_id => 1
+01-30-15 7:53 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:53 pm	Success: TRUE
+01-30-15 7:53 pm	1
+01-30-15 7:53 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:53 pm	:user_id => 1
+01-30-15 7:53 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:53 pm	Success: TRUE
+01-30-15 7:53 pm	1
+01-30-15 7:53 pm	SELECT 
+		    CASE WHEN vc.visit_count >0 THEN  'true' ELSE  'false' END visited, 
+		    CASE WHEN tyc.ty_card_sent_count >0 THEN  'true' ELSE  'false' END ty_card_sent, 
+		    DATE_FORMAT(f.follow_up_date, '%m/%d/%Y') communication_card_date, 
+		    DATE_FORMAT(tyc.follow_up_date, '%m/%d/%Y') ty_card_date, 
+		    p.id, 
+		    p.first_name, 
+		    p.last_name, 
+		    p.description,
+		    p.primary_phone,
+		    p.street1,
+		    p.street2,
+		    p.city,
+		    p.state,
+		    p.zip,
+		    CASE WHEN p.commitment_baptism = 1 THEN  'true' ELSE  'false' END commitment_baptism
+		  FROM 
+		    People p
+		    LEFT OUTER JOIN FollowUps f ON f.follow_up_to_person_id = p.id AND f.type = 3
+		    LEFT OUTER JOIN (SELECT COUNT(*) visit_count, follow_up_to_person_id FROM FollowUps WHERE TYPE =2)vc ON vc.follow_up_to_person_id = p.id
+		    LEFT OUTER JOIN (SELECT COUNT(*) ty_card_sent_count, follow_up_to_person_id, follow_up_date FROM FollowUps WHERE TYPE =5)tyc ON tyc.follow_up_to_person_id = p.id
+		  WHERE 
+		    p.adult = 1
+		    AND p.active = 1
+		  GROUP BY 
+		    p.id 
+		  ORDER BY
+		    p.last_name IS NOT NULL DESC,
+		    p.description IS NOT NULL DESC,
+		    p.last_name,
+		    p.first_name,
+		    p.description
+01-30-15 7:53 pm	No parameters
+01-30-15 7:53 pm	Success
+01-30-15 7:53 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:53 pm	:user_id => 1
+01-30-15 7:53 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:53 pm	Success: TRUE
+01-30-15 7:53 pm	1
+01-30-15 7:53 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:53 pm	:user_id => 1
+01-30-15 7:53 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:53 pm	Success: TRUE
+01-30-15 7:53 pm	1
+01-30-15 7:53 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:53 pm	:id => 239
+01-30-15 7:53 pm	Success
+01-30-15 7:53 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:53 pm	:user_id => 1
+01-30-15 7:53 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:53 pm	Success: TRUE
+01-30-15 7:53 pm	1
+01-30-15 7:53 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:53 pm	No parameters
+01-30-15 7:53 pm	Success
+01-30-15 7:54 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:54 pm	:user_id => 1
+01-30-15 7:54 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:54 pm	Success: TRUE
+01-30-15 7:54 pm	1
+01-30-15 7:54 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:54 pm	:user_id => 1
+01-30-15 7:54 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:54 pm	Success: TRUE
+01-30-15 7:54 pm	1
+01-30-15 7:54 pm	SELECT
+		  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+		  p.id,
+		  p.first_name,
+		  p.last_name,
+		  p.description,
+		  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+		  p.active,
+		  p.adult,
+		  p.saved,
+		  p.baptized,
+		  p.member,
+		  p.visitor,
+		  p.assigned_agent,
+		  p.street1,
+		  p.street2,
+		  p.city,
+		  p.state,
+		  p.zip,
+		  p.email,
+		  p.primary_phone,
+		  p.secondary_phone,
+		  p.commitment_christ,
+		  p.recommitment_christ,
+		  p.commitment_tithe,
+		  p.commitment_ministry,
+		  p.commitment_baptism,
+		  p.info_next,
+		  p.info_gkids,
+		  p.info_ggroups,
+		  p.info_gteams,
+		  p.info_member,
+		  p.info_visit,
+		  f.id follow_up_id,
+		  f.type follow_up_type,
+		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+		  f.comments follow_up_comments,
+		  v.follow_up_id visitor_follow_up_id,
+		  v.person_id,
+		  fp.first_name follow_up_first_name,
+		  fp.last_name follow_up_last_name,
+		  fp.description follow_up_description
+		FROM
+		  (select min(attendance_dt) attendance_dt from Attendance a where a.attended_by=:id) at,
+		  People p
+		  left outer join FollowUps f on f.follow_up_to_person_id=p.id
+		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
+		  left outer join People fp on fp.id=v.person_id
+		WHERE
+		  p.id=:id
+        GROUP BY
+          p.id
+		ORDER BY
+		  f.follow_up_date
+01-30-15 7:54 pm	:id => 239
+01-30-15 7:54 pm	Success
+01-30-15 7:54 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:54 pm	:user_id => 1
+01-30-15 7:54 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:54 pm	Success: TRUE
+01-30-15 7:54 pm	1
+01-30-15 7:54 pm	SELECT
+                  p.id,
+                  p.first_name,
+                  p.last_name,
+                  p.description
+                FROM
+                  People p
+                WHERE
+                  p.visitor=true
+01-30-15 7:54 pm	No parameters
+01-30-15 7:54 pm	Success
+01-30-15 7:54 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:54 pm	:user_id => 1
+01-30-15 7:54 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:54 pm	Success: TRUE
+01-30-15 7:54 pm	1
+01-30-15 7:54 pm	UPDATE
+                  People
+                SET
+                  first_name=:first_name,
+                  last_name=:last_name,
+                  description=:description,
+                  first_visit=:first_visit,
+                  adult=:adult,
+                  active=:active,
+                  baptized=:baptized,
+                  saved=:saved,
+                  member=:member,
+                  visitor=:visitor,
+                  assigned_agent=:assigned_agent,
+                  street1=:street1,
+                  street2=:street2,
+                  city=:city,
+                  state=:state,
+                  zip=:zip,
+                  email=:email,
+                  primary_phone=:primary_phone,
+                  secondary_phone=:secondary_phone,
+                  commitment_christ=:commitment_christ,
+                  recommitment_christ=:recommitment_christ,
+                  commitment_tithe=:commitment_tithe,
+                  commitment_ministry=:commitment_ministry,
+                  commitment_baptism=:commitment_baptism,
+                  info_next=:info_next,
+                  info_gkids=:info_gkids,
+                  info_ggroups=:info_ggroups,
+                  info_gteams=:info_gteams,
+                  info_member=:info_member,
+                  info_visit=:info_visit,
+                  last_modified_dt=NOW(),
+                  modified_by=:modified_by
+                WHERE
+                  id=:id
+01-30-15 7:54 pm	:first_name => Hanadi
+01-30-15 7:54 pm	:last_name => Al Tawil
+01-30-15 7:54 pm	:description => 
+01-30-15 7:54 pm	:first_visit => 
+01-30-15 7:54 pm	:adult => 1
+01-30-15 7:54 pm	:active => 1
+01-30-15 7:54 pm	:baptized => 0
+01-30-15 7:54 pm	:saved => 0
+01-30-15 7:54 pm	:member => 0
+01-30-15 7:54 pm	:visitor => 0
+01-30-15 7:54 pm	:assigned_agent => 0
+01-30-15 7:54 pm	:street1 => 
+01-30-15 7:54 pm	:street2 => 
+01-30-15 7:54 pm	:city => 
+01-30-15 7:54 pm	:state => 
+01-30-15 7:54 pm	:zip => 
+01-30-15 7:54 pm	:email => 
+01-30-15 7:54 pm	:primary_phone => 
+01-30-15 7:54 pm	:secondary_phone => 
+01-30-15 7:54 pm	:commitment_christ => 0
+01-30-15 7:54 pm	:recommitment_christ => 0
+01-30-15 7:54 pm	:commitment_tithe => 0
+01-30-15 7:54 pm	:commitment_ministry => 0
+01-30-15 7:54 pm	:commitment_baptism => 1
+01-30-15 7:54 pm	:info_next => 0
+01-30-15 7:54 pm	:info_gkids => 1
+01-30-15 7:54 pm	:info_ggroups => 0
+01-30-15 7:54 pm	:info_gteams => 0
+01-30-15 7:54 pm	:info_member => 0
+01-30-15 7:54 pm	:info_visit => 1
+01-30-15 7:54 pm	:modified_by => 1
+01-30-15 7:54 pm	:id => 239
+01-30-15 7:54 pm	Success: TRUE
+01-30-15 7:54 pm	UPDATE FollowUps SET 
+		      follow_up_to_person_id = :person_id,
+		      type = :type,
+		      follow_up_date = STR_TO_DATE(:follow_up_date,'%m/%d/%Y'),
+		      comments = :comments,
+		      last_modified_dt = NOW(),
+		      modified_by = :user_id
+		    WHERE
+		      id=:follow_up_id
+01-30-15 7:54 pm	:person_id => 239
+01-30-15 7:54 pm	:type => 3
+01-30-15 7:54 pm	:follow_up_date => 01/02/2015
+01-30-15 7:54 pm	:comments => 
+01-30-15 7:54 pm	:user_id => 1
+01-30-15 7:54 pm	:follow_up_id => 5
+01-30-15 7:54 pm	Success: TRUE
+01-30-15 7:54 pm	DELETE FROM FollowUpVisitors WHERE follow_up_id=:id
+01-30-15 7:54 pm	:id => 5
+01-30-15 7:54 pm	Success: TRUE
+01-30-15 7:54 pm	INSERT INTO FollowUpVisitors 
+			(follow_up_id, person_id)
+		      VALUES
+			(:follow_up_id, :person_id)
+01-30-15 7:54 pm	:follow_up_id => 5
+01-30-15 7:54 pm	:person_id => 177
+01-30-15 7:54 pm	Success: TRUE
+01-30-15 7:54 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:54 pm	:user_id => 1
+01-30-15 7:54 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:54 pm	Success: TRUE
+01-30-15 7:54 pm	1
+01-30-15 7:54 pm	SELECT id FROM Users WHERE id=:user_id AND session_id=:session_id
+01-30-15 7:54 pm	:user_id => 1
+01-30-15 7:54 pm	:session_id => 54caed69de35a0.09207467
+01-30-15 7:54 pm	Success: TRUE
+01-30-15 7:54 pm	1
+01-30-15 7:54 pm	SELECT 
+		    CASE WHEN vc.visit_count >0 THEN  'true' ELSE  'false' END visited, 
+		    CASE WHEN tyc.ty_card_sent_count >0 THEN  'true' ELSE  'false' END ty_card_sent, 
+		    DATE_FORMAT(f.follow_up_date, '%m/%d/%Y') communication_card_date, 
+		    DATE_FORMAT(tyc.follow_up_date, '%m/%d/%Y') ty_card_date, 
+		    p.id, 
+		    p.first_name, 
+		    p.last_name, 
+		    p.description,
+		    p.primary_phone,
+		    p.street1,
+		    p.street2,
+		    p.city,
+		    p.state,
+		    p.zip,
+		    CASE WHEN p.commitment_baptism = 1 THEN  'true' ELSE  'false' END commitment_baptism
+		  FROM 
+		    People p
+		    LEFT OUTER JOIN FollowUps f ON f.follow_up_to_person_id = p.id AND f.type = 3
+		    LEFT OUTER JOIN (SELECT COUNT(*) visit_count, follow_up_to_person_id FROM FollowUps WHERE TYPE =2)vc ON vc.follow_up_to_person_id = p.id
+		    LEFT OUTER JOIN (SELECT COUNT(*) ty_card_sent_count, follow_up_to_person_id, follow_up_date FROM FollowUps WHERE TYPE =5)tyc ON tyc.follow_up_to_person_id = p.id
+		  WHERE 
+		    p.adult = 1
+		    AND p.active = 1
+		  GROUP BY 
+		    p.id 
+		  ORDER BY
+		    p.last_name IS NOT NULL DESC,
+		    p.description IS NOT NULL DESC,
+		    p.last_name,
+		    p.first_name,
+		    p.description
+01-30-15 7:54 pm	No parameters
+01-30-15 7:54 pm	Success

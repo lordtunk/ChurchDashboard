@@ -504,8 +504,9 @@ main {
 }
 
 #follow-up-options > label {
-  width: 280px;
+  width: 270px;
   text-align: left;
+  padding-left: 10px;
 }
 
 .address-form-section {
@@ -535,12 +536,24 @@ main {
 .commitments-form-section {
   margin: 0 0 10px 40px;
 }
+.commitments-form-section > input {
+  margin: 0 10px;
+}
+.commitments-form-section > label {
+  padding-left: 5px;
+}
 
 .interested-form-section-title {
   padding: 0 0 0 40px;
 }
 .interested-form-section {
   margin: 0 0 0 40px;
+}
+.interested-form-section > input {
+  margin: 0 10px;
+}
+.interested-form-section > label {
+  padding-left: 5px;
 }
 
 .col-1 {
@@ -784,4 +797,18 @@ td.checkbox-table-col {
 }
 .checkbox-form-seciton {
     margin: 10px 0 10px 40px;
+}
+.form-section.checkbox-form-seciton > input {
+    margin-left: 10px;
+}
+.form-section.checkbox-form-seciton > label {
+    text-align: left;
+    padding-left: 5px;
+}
+
+#map-note {
+    margin: 20px;
+    font-weight: bold;
+    font-style: italic;
+    text-align: right;
 }

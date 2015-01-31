@@ -53,12 +53,13 @@
       <h1 id="reports">Reports</h1>
 
       <div class="app-content app-form reports-form">
-        <label>First Service:</label>
-        <span id="first-date"></span>
-        <br />
-        <label>Last Service:</label>
-        <span id="last-date"></span>
-        <br />
+        <div id="first-last-dates">
+            <label>First Service:</label>
+            <span id="first-date"></span>
+            <br />
+            <label>Last Service:</label>
+            <span id="last-date"></span>
+        </div>
         <div id="report-type-container" style="display: block;">
           <label for="report-type">Report Type:</label>
           <select id="report-type">
@@ -77,30 +78,30 @@
         </div>
         <div id="follow-up-options-spacer" style="display: none;"></div>
         <div id="follow-up-options" style="display: none;">
-          <label for="not-visited">Not yet visited</label>
           <input type="checkbox" id="not-visited"/>
-          <label for="ty-card-not-sent">Thank you card not sent</label>
-          <input type="checkbox" id="ty-card-not-sent"/><br />
-          <label for="signed-up-for-baptism">Signed up for baptism</label>
+          <label for="not-visited">Not yet visited</label>
+          <input type="checkbox" id="ty-card-not-sent"/>
+          <label for="ty-card-not-sent">Thank you card not sent</label><br />
           <input type="checkbox" id="signed-up-for-baptism"/>
-          <label for="baptized">Baptized</label>
-          <input type="checkbox" id="baptized"/><br />
-          <label for="interested-in-gkids">Interested in gKids</label>
+          <label for="signed-up-for-baptism">Signed up for baptism</label>
+          <input type="checkbox" id="baptized"/>
+          <label for="baptized">Baptized</label><br />
           <input type="checkbox" id="interested-in-gkids"/>
-          <label for="interested-in-next">Interested in Next</label>
-          <input type="checkbox" id="interested-in-next"/><br />
-          <label for="interested-in-ggroups">Interested in gGroups</label>
+          <label for="interested-in-gkids">Interested in gKids</label>
+          <input type="checkbox" id="interested-in-next"/>
+          <label for="interested-in-next">Interested in Next</label><br />
           <input type="checkbox" id="interested-in-ggroups"/>
-          <label for="interested-in-gteams">Interested in gTeams</label>
-          <input type="checkbox" id="interested-in-gteams"/><br />
-          <label for="interested-in-joining">Interested in joining GC</label>
+          <label for="interested-in-ggroups">Interested in gGroups</label>
+          <input type="checkbox" id="interested-in-gteams"/>
+          <label for="interested-in-gteams">Interested in gTeams</label><br />
           <input type="checkbox" id="interested-in-joining"/>
-          <label for="would-like-visit">Would like a visit from a GC Pastor</label>
-          <input type="checkbox" id="would-like-visit"/><br />
-          <label for="no-agent">Not assigned an agent</label>
+          <label for="interested-in-joining">Interested in joining GC</label>
+          <input type="checkbox" id="would-like-visit"/>
+          <label for="would-like-visit">Would like a visit from a GC Pastor</label><br />
           <input type="checkbox" id="no-agent"/>
-          <label for="active">Active</label>
-          <input type="checkbox" id="active" checked/><br />
+          <label for="no-agent">Not assigned an agent</label>
+          <input type="checkbox" id="active" checked/>
+          <label for="active">Active</label><br />
         </div>
         <button id="go-arrow" class="button--secondary-small">Run <i class="fa fa-arrow-right"></i></button>
         <br />

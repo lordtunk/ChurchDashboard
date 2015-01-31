@@ -112,7 +112,7 @@
         lastName.value = p.last_name;
         description.value = p.description;
         firstVisit.value = p.first_visit;
-        firstRecordedVisit.innerHTML = p.first_attendance_dt || '';
+        firstRecordedVisit.innerHTML = p.first_attendance_dt || '<span style="font-style: italic;">(None)</span>';
         adult.checked = p.adult;
         active.checked = p.active;
         baptized.checked = p.baptized;
@@ -193,6 +193,9 @@
             info_visit: infoVisit.checked,
             follow_ups: getFollowUps()
         };
+        
+        if($.trim(getAddressString(p)) === 'OH')
+            p.state = '';
 
         if (validateUpdate(p)) {
             savePerson(p);
@@ -239,11 +242,11 @@
             warning += 'Email is not valid<br />';
         if (p.primary_phone.length > 15)
             msg += 'Primary Phone cannot exceed 15 characters<br />';
-        else if(phoneNumberRegex.test(p.primary_phone))
+        else if (p.primary_phone.length > 0 && !phoneNumberRegex.test(p.primary_phone))
             msg += 'Primary Phone is not a valid phone number format<br />';
         if (p.secondary_phone.length > 15)
             msg += 'Secondary Phone cannot exceed 15 characters<br />';
-        else if(phoneNumberRegex.test(p.secondary_phone))
+        else if (p.secondary_phone.length > 0 && !phoneNumberRegex.test(p.secondary_phone))
             msg += 'Secondary Phone is not a valid phone number format<br />';
         if (p.street1.length > 100)
             msg += 'Street 1 cannot exceed 100 characters<br />';
@@ -467,28 +470,32 @@
             comments = $.trim(followUpComments.value),
             visitors = [],
             visitorsIds = [],
-	    msg = '';
-	    
+            msg = '';
+
         if (comments === '' && (type == 1 || type == 2)) {
-	    msg += 'Must specify comments<br />';
+            msg += 'Must specify comments<br />';
         }
-        if(date === '' && !unknownDate.checked) {
-	    msg += 'Must specify a date or mark it unknown<br />';
-	}
+        if (date === '' && !unknownDate.checked) {
+            msg += 'Must specify a date or mark it unknown<br />';
+        }
         if (comments.length > 5000) {
-	    msg += 'Comments cannot exceed 5000 characters<br />';
+            msg += 'Comments cannot exceed 5000 characters<br />';
         }
         
-        if(msg) {
-	  $().toastmessage('showErrorToast', msg);
-	  return false;
-	}
-
         var inputs = followUpVisitors.querySelectorAll('input');
         for (var i = 0; i < inputs.length; i++) {
             if (!inputs[i].checked) continue;
-            visitors.push($.trim(inputs[i].previousSibling.innerHTML));
+            visitors.push($.trim(inputs[i].nextSibling.innerHTML));
             visitorsIds.push(inputs[i].getAttribute('personid'));
+        }
+        
+        if (visitorsIds.length === 0) {
+            msg += 'Must specify a visitor<br />';
+        }
+        
+        if (msg) {
+            $().toastmessage('showErrorToast', msg);
+            return false;
         }
 
         return {
@@ -611,14 +618,14 @@
         dialog.dialog('open');
         setVisitors();
         var row = e.currentTarget.parentElement.parentElement,
-	    date = row.children[1].innerHTML || '';
+            date = row.children[1].innerHTML || '';
 
         followUpType.value = row.children[0].getAttribute('typeCd') || '';
         followUpDate.value = date;
         followUpComments.value = row.children[3].innerHTML || '';
         followUpId.value = row.getAttribute('follow_up_id');
-	unknownDate.checked = date === '';
-	followUpDate.disabled = unknownDate.checked;
+        unknownDate.checked = date === '';
+        followUpDate.disabled = unknownDate.checked;
 
         var visitorIdsString = row.children[2].getAttribute('visitorsIds') || '';
         var visitorIds = visitorIdsString.split(',');
@@ -639,7 +646,7 @@
 
     function getAddressString(p) {
         var addr = '';
-	
+
         addr += p.street1 || '';
         addr += ' ';
         addr += p.street2 || '';
@@ -649,12 +656,13 @@
         addr += p.state || '';
         addr += ' ';
         addr += p.zip || '';
-	
+
         return addr.trim();
     }
-    
+
     function onChangeUnknownDate(e) {
-      followUpDate.disabled = e.target.checked;
+        followUpDate.disabled = e.currentTarget.checked;
+        followUpDate.value = '';
     }
 
     function onClickLink(e) {
@@ -701,7 +709,7 @@
     addClearBtn.addEventListener('click', addClear);
     addCloseBtn.addEventListener('click', addClose);
     closeBtn.addEventListener('click', closeFollowUp);
-    $('#unknown-date').on('change', onChangeUnknownDate);
+    $('#manage-unknown-date').on('change', onChangeUnknownDate);
 
     checkLoginStatus(loadStates);
 })();
