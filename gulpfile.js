@@ -31,6 +31,8 @@ var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var cache = require('gulp-cache');
 var reload = browserSync.reload;
+var bump = require('gulp-bump');
+var shell = require('gulp-shell');
 
 cache.clearAll();
 
@@ -145,7 +147,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('files:ajax', function() {
-    return gulp.src('app/ajax/*.php')
+    return gulp.src('app/ajax/*.{php,json}')
         .pipe(gulp.dest('dist/ajax'));
 });
 
@@ -156,6 +158,36 @@ gulp.task('files:config', function() {
 
 gulp.task('files', ['files:ajax', 'files:config']);
 
+gulp.task('bump-patch', function(){
+  gulp.src(['./app/manifest.webapp'])
+  .pipe(bump({type:'patch'}))
+  .pipe(gulp.dest('./app/'));
+  
+  gulp.src(['./package.json'])
+  .pipe(bump({type:'patch'}))
+  .pipe(gulp.dest('./'));
+});
+
+gulp.task('bump-minor', function(){
+  gulp.src(['./app/manifest.webapp'])
+  .pipe(bump({type:'minor'}))
+  .pipe(gulp.dest('./app/'));
+  
+  gulp.src(['./package.json'])
+  .pipe(bump({type:'minor'}))
+  .pipe(gulp.dest('./'));
+});
+
+gulp.task('bump-major', function(){
+  gulp.src(['./app/manifest.webapp'])
+  .pipe(bump({type:'major'}))
+  .pipe(gulp.dest('./app/'));
+  
+  gulp.src(['./package.json'])
+  .pipe(bump({type:'major'}))
+  .pipe(gulp.dest('./'));
+});
+
 // Clean Output Directory
 gulp.task('clean', function (cb) {
   rimraf('dist', rimraf.bind({}, '.tmp', cb));
@@ -164,14 +196,13 @@ gulp.task('clean', function (cb) {
 // Watch Files For Changes & Reload
 gulp.task('serve', function () {
   browserSync.init({
-    server: {
-      baseDir: ['app', '.tmp']
-    },
+    proxy: "localhost/GuideChurchDash/app",
     notify: false
   });
-
+  
   gulp.watch(['app/**/*.html'], reload);
-  gulp.watch(['app/styles/**/*.{css,scss}'], ['styles']);
+  gulp.watch(['app/styles/**/*.scss'], ['styles:scss']);
+  gulp.watch(['app/styles/**/*.css'], ['styles:css']);
   gulp.watch(['.tmp/styles/**/*.css'], reload);
   gulp.watch(['app/scripts/**/*.js'], ['jshint']);
   gulp.watch(['app/images/**/*'], ['images']);

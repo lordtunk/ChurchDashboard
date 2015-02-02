@@ -160,3 +160,46 @@ td:last-child:after {
     }
   }
 }
+
+.table-5 {
+  col {
+    width: $mediumContainer / 5;
+    @include wide {
+      width: $wideContainer / 5;
+    }
+  }
+
+  th,
+  td {
+    @include medium {
+      &:nth-child(2),
+      &:nth-child(3),
+      &:nth-child(4) {
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #ffffff;
+      }
+    }
+  }
+}
+
+.table-6 {
+  col {
+    width: $mediumContainer / 6;
+    @include wide {
+      width: $wideContainer / 6;
+    }
+  }
+
+  th,
+  td {
+    @include medium {
+      &:nth-child(2),
+      &:nth-child(3),
+      &:nth-child(4),
+      &:nth-child(5){
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #ffffff;
+      }
+    }
+  }
+}

@@ -225,6 +225,10 @@ main {
   margin: 10px 10px 10px 0;
 }
 
+.first-button {
+  margin-left: 10px !important;
+}
+
 .spacer {
   -webkit-flex: 1;
   flex: 1;
@@ -240,13 +244,6 @@ main {
 }
 
 #go-arrow {
-  background-image: url('../images/go-arrow.png');
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  display: inline-block;
-  background-repeat: no-repeat;
-  vertical-align: middle;
   margin-left: 7px;
 }
 
@@ -258,19 +255,89 @@ main {
   -webkit-overflow-scrolling: touch;
 }
 
+#address-view-table-container {
+  max-height: 500px;
+  width: 100%;
+  display: block;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+#gen-map {
+  margin-left: 20px;
+}
+
+#follow-up-table-container {
+  max-height: 500px;
+  width: 100%;
+  display: block;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+#follow-up-table td {
+  padding: 5px 10px;
+}
+
 #attendance-date-display {
   text-align: center;
 }
 
-.top-bottom-links {
+.navigation-links {
   display: inline-block;
   float: right;
   margin: 20px;
 }
 
+.jump-to {
+  margin-right: 10px;
+}
+
+.dialog-form #search-table-container {
+  overflow-y: scroll;
+  height: 198px;
+  width: 464px;
+}
+
+.dialog-form .navigation-links {
+  margin: 0 20px 0 0;
+}
+
+.search-form #search-table-container {
+  overflow-y: scroll;
+  max-height: 500px;
+}
+
+.dialog-form #search-table-container table {
+  margin-top: 5px;
+}
+
+.dialog-form #search-table-container table td {
+  padding: 8px 10px;
+}
+
+.search-table-button-col {
+  padding: 5px;
+}
+
 #person-attendance-table-container {
   overflow-y: scroll;
   height: 300px;
+}
+
+.follow-up-table-button-col {
+  width: 90px !important;
+  padding: 0 0 0 10px !important;
+  text-align: center;
+}
+
+.follow-up-table-date-col {
+  width: 80px !important;
+  padding: 0 10px 0 10px;
+}
+
+.follow-up-table-comments-col {
+  width: 200px !important;
 }
 
 .attendance-table-attendance-col {
@@ -290,11 +357,88 @@ main {
   padding-right: 10px;
 }
 
-.app-content.view-person label,
 .app-content.login-form label,
-.app-content.reports-form label{
+.app-content.reports-form label {
   display: inline-block;
   width:150px;
+  text-align: right;
+}
+
+#follow-ups-form-title {
+  margin-left: 20px;
+}
+
+#follow-up-person-container {
+  display: -webkit-flex;
+  display: flex;
+}
+#follow-up-person-container>label {
+  padding-top: 10px;
+  width: 110px;
+  text-align: right;
+}
+#follow-up-person-container>button {
+  margin-top: 0;
+}
+
+#follow-up-person-container>div {
+  display: inline-block;
+  padding-right: 20px;
+  padding-top: 10px;
+  font-style: italic;
+}
+
+.follow-ups-form #follow-up-comments {
+  margin-left: 110px;
+}
+
+.follow-ups-form-inner>label {
+  display: inline-block;
+  width: 110px;
+  text-align: right;
+}
+
+.dialog-form-inner>label {
+  display: inline-block;
+  width: 50px;
+}
+
+.dialog-form-inner {
+  height: 256px;
+  overflow-y: scroll;
+}
+
+#follow-up-visitors {
+  font-style: italic;
+  display: inline;
+}
+
+#first-recorded-visit {
+  display: inline-block;
+}
+
+#manage-unknown-date {
+  margin-left: 25px;
+}
+
+.check-field {
+  display: inline-block;
+}
+
+.check-field input {
+  margin: 0 5px 0 0;
+}
+.check-field label {
+  padding-right: 15px;
+}
+
+.app-content .check-field label {
+  padding-left: 0px;
+}
+
+.app-content.view-person label {
+  display: inline-block;
+  width: 175px;
   text-align: right;
 }
 
@@ -307,15 +451,156 @@ main {
   display: inline-block;
 }
 
-.app-content.view-person input[type=text],
-.app-content.login-form input[type=text],
-.app-content.reports-form input[type=text],
-.app-content.reports-form select{
+.app-form input[type=text],
+.app-form input[type=tel],
+.app-form input[type=email],
+.app-form select {
   margin-bottom: 5px;
+}
+
+.delete-follow-up {
+  color: red;
+}
+
+.form-section {
+  display: inline-block;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 10px 10px 5px 0;
+}
+
+#address-view-table label {
+  width: 90px;
+  padding: 0px;
+  text-align: center;
+}
+
+.address-view-form label {
+  width: 120px;
+  text-align: right;
+  display: inline-block;
+}
+
+#communication-card-header {
+  padding: 10px 0 5px 20px;
+}
+
+.follow-ups-form {
+  margin: 20px;
+  border: 1px gray solid;
+  border-radius: 5px;
+}
+
+.follow-ups-form-inner {
+  padding: 10px;
+}
+
+#follow-up-options {
+  margin: 5px 0 0 50px;
+  border: 1px gray solid;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 10px;
+}
+
+#follow-up-options > label {
+  width: 270px;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.address-form-section {
+  margin: 0 0 10px 65px;
+}
+
+.address-form-section > label {
+  width: 100px !important;
+}
+
+.contact-form-section-title {
+  padding: 0 0 0 40px;
+}
+.contact-form-section {
+  margin: 0 0 0 40px;
+}
+
+.form-section.interested-form-section>label,
+.form-section.commitments-form-section>label {
+  width:500px;
+  text-align: left;
+}
+
+.commitments-form-section-title {
+  padding: 0 0 0 40px;
+}
+.commitments-form-section {
+  margin: 0 0 10px 40px;
+}
+.commitments-form-section > input {
+  margin: 0 10px;
+}
+.commitments-form-section > label {
+  padding-left: 5px;
+}
+
+.interested-form-section-title {
+  padding: 0 0 0 40px;
+}
+.interested-form-section {
+  margin: 0 0 0 40px;
+}
+.interested-form-section > input {
+  margin: 0 10px;
+}
+.interested-form-section > label {
+  padding-left: 5px;
+}
+
+.col-1 {
+  margin-top: 10px;
+}
+
+.col-2 {
+  margin: 10px 0 0 40px;
+}
+
+#email {
+  width: 273px;
 }
 
 .attendance-form .attendance-table-attendance-col label {
   padding: 12px;
+}
+
+#address-view-table td.checkbox-table-col {
+  padding: 0px;
+}
+
+#map-panel {
+  margin: 10px;
+  width: 400px;
+}
+
+#address-map-panel {
+  margin: auto;
+  width: 500px;
+}
+
+#map-legend {
+  border: 1px gray solid;
+  margin: 20px;
+  border-radius: 5px;
+  /* width: 500px; */
+}
+
+.map-legend-item {
+  display: inline-block;
+  padding: 10px;
+  margin: auto;
+}
+
+td.checkbox-table-col {
+  text-align: center;
 }
 
 .attendance-form input[type=radio]{
@@ -352,8 +637,8 @@ main {
   width: 120px;
 }
 
-/** Larger Screens - desktops and tablets **/
-@media all and (min-device-width: 1200px) {
+/* Larger Screens - desktops and tablets */
+@media all and (min-device-width:1200px) {
   .app-bar {
     position: relative;
   }
@@ -442,9 +727,12 @@ main {
   td.attendance-table-attendance-col {
     text-align: center;
   }
+  .delete-follow-up {
+    margin-left: 5px;
+  }
 }
 
-@media all and (min-device-width: 1200px) and (max-width: 800px) {
+@media all and (min-device-width:1200px) and (max-width:800px) {
   .app-bar .logo {
     float: none;
     width: 100%;
@@ -473,18 +761,54 @@ main {
   }
 }
 
-@media all and (min-device-width: 800px) {
+@media all and (min-device-width:800px) {
   td.attendance-table-attendance-col {
     text-align: center;
   }
 }
 
-@media all and (max-width: 600px) {
+@media all and (max-width:600px) {
   
 }
 
-@media all and (min-width: 800px) {
+@media all and (min-width:800px) {
   .app-content .active-input {
     display: inline-block;
   }
+  
+  .col-1, .col-2 {
+    display: inline-block;
+  }
+  .col-2 {
+    vertical-align: top;
+  }
+  .address-form-section-title {
+    padding: 0 0 0 50px;
+  }
+  .address-form-section {
+    margin: 0 0 10px 50px;
+  }
+}
+
+@media all and (max-width:799px) {
+  .address-form-section-title {
+    padding: 10px 0 0 65px;
+  }
+}
+.checkbox-form-seciton {
+    margin: 10px 0 10px 40px;
+}
+.form-section.checkbox-form-seciton > input {
+    margin-left: 10px;
+}
+.form-section.checkbox-form-seciton > label {
+    text-align: left;
+    padding-left: 5px;
+}
+
+#map-note {
+    margin: 20px;
+    font-weight: bold;
+    font-style: italic;
+    text-align: right;
 }

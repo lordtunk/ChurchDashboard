@@ -50,7 +50,37 @@
   @include style-button(#ffffff, $colorGreen);
 }
 
+.button--secondary-small {
+  @extend .button;
+  padding: (($lineHeight / 3) - 1) 16px;
+  margin-bottom: $lineHeight / 3;
+  margin-top: $lineHeight / 3;
+  min-height: $lineHeight;
+  @include style-button(#ffffff, $colorGreen);
+}
+
 .button--secondary-variation {
   @extend .button;
   @include style-button(#ffffff, $colorGreen, true);
+}
+
+.button--blue {
+  @extend .button;
+  @include style-button($colorBlue, #ffffff);
+}
+.button--blue-small {
+  @extend .button;
+  padding: (($lineHeight / 3) - 1) 16px;
+  margin-bottom: $lineHeight / 3;
+  margin-top: $lineHeight / 3;
+  min-height: $lineHeight;
+  @include style-button($colorBlue, #ffffff);
+}
+.button--blue-x-small {
+  @extend .button;
+  padding: 5px;
+  margin-bottom: 0;
+  margin-top: 0;
+  min-height: $lineHeight;
+  @include style-button($colorBlue, #ffffff);
 }

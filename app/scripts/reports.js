@@ -25,31 +25,63 @@
   
   function onReportTypeChange() {
     var reportType = parseInt(reportTypeField.value);
-    if(reportType === 3) {
-      $('#report-type-container')[0].style.setProperty('display', 'inline-block');
-      $('#from-to-dates')[0].style.setProperty('display', 'none');
-    } else {
-      $('#report-type-container')[0].style.setProperty('display', 'block');
-      $('#from-to-dates')[0].style.setProperty('display', 'inline-block');
+    
+    $('#report-type-container')[0].style.setProperty('display', (reportType === 3) ? 'inline-block' : 'block');
+    $('#from-to-dates')[0].style.setProperty('display', (reportType === 3) ? 'none' : 'inline-block');
+    if(reportType === 3 || reportType === 4) {
+      fromDateField.value = '';
+      toDateField.value = '';
     }
+    $('#first-last-dates')[0].style.setProperty('display', (reportType === 4) ? 'none' : 'inherit');
+    $('#communication-card-header')[0].style.setProperty('display', (reportType === 4) ? 'inherit' : 'none');
+    $('#follow-up-options')[0].style.setProperty('display', (reportType === 4) ? 'inline-block' : 'none');
+    $('#follow-up-options-spacer')[0].style.setProperty('display', (reportType === 4) ? 'inherit' : 'none');
   }
 
   function onRunClick() {
-    if(validateDates(fromDateField.value, toDateField.value)) {
-      var reportType = parseInt(reportTypeField.value);
+    var reportType = parseInt(reportTypeField.value);
+    if(validateDates(fromDateField.value, toDateField.value, (reportType === 1 || reportType === 2))) {
       hideAllReportContainers();
+      var params;
       switch(reportType) {
         case 1:
           $('#attendance-by-date-container')[0].style.setProperty('display', 'inherit');
+	  params = {
+	    fromDate: fromDateField.value,
+	    toDate: toDateField.value
+	  };
           break;
         case 2:
           $('#attendance-by-person-container')[0].style.setProperty('display', 'inherit');
+	  params = {
+	    fromDate: fromDateField.value,
+	    toDate: toDateField.value
+	  };
           break;
         case 3:
           $('#attendance-by-mia-container')[0].style.setProperty('display', 'inherit');
           break;
+	case 4:
+          $('#follow-up-container')[0].style.setProperty('display', 'inherit');
+	  params = {
+	    fromDate: fromDateField.value,
+	    toDate: toDateField.value,
+	    active: $('#active').is(':checked'),
+	    not_visited: $('#not-visited').is(':checked'),
+	    ty_card_not_sent: $('#ty-card-not-sent').is(':checked'),
+	    signed_up_for_baptism: $('#signed-up-for-baptism').is(':checked'),
+	    baptized: $('#baptized').is(':checked'),
+	    interested_in_gkids: $('#interested-in-gkids').is(':checked'),
+	    interested_in_next: $('#interested-in-next').is(':checked'),
+	    interested_in_ggroups: $('#interested-in-ggroups').is(':checked'),
+	    interested_in_gteams: $('#interested-in-gteams').is(':checked'),
+	    interested_in_joining: $('#interested-in-joining').is(':checked'),
+	    would_like_visit: $('#would-like-visit').is(':checked'),
+	    no_agent: $('#no-agent').is(':checked')
+	  };
+          break;
       }
-      loadReport(reportType, fromDateField.value, toDateField.value);
+      loadReport(reportType, params);
     }
   }
 
@@ -57,20 +89,24 @@
     $('#attendance-by-person-container')[0].style.setProperty('display', 'none');
     $('#attendance-by-date-container')[0].style.setProperty('display', 'none');
     $('#attendance-by-mia-container')[0].style.setProperty('display', 'none');
+    $('#follow-up-container')[0].style.setProperty('display', 'none');
   }
 
-  function validateDates(fDate, tDate) {
+  function validateDates(fDate, tDate, requireDate) {
     var msg = '';
     
-    if(!isDate(fDate)) {
+    if(!isDate(fDate, true)) {
       msg += 'From Date must be a valid date<br />';
     }
-    if(!isDate(tDate)) {
+    if(!isDate(tDate, true)) {
       msg += 'To Date must be a valid date<br />';
     }
     
     if(msg) {
       $().toastmessage('showErrorToast', msg);
+      return false;
+    } else if(requireDate && !fDate && !tDate) {
+      $().toastmessage('showErrorToast', 'From Date or To Date must be specified');
       return false;
     }
     return true;
@@ -164,6 +200,15 @@
     $('#mia-attendance-table > tbody:last').append(rows);
   }
   
+  function populateFollowUps(people) {
+    $('#follow-up-table > tbody:last').empty();
+    var rows= '';
+    for(var i=0; i<people.length; i++) {
+      rows += buildFollowUpRow(people[i]);
+    }
+    $('#follow-up-table > tbody:last').append(rows);
+  }
+  
   function buildMiaRow(person) {
     var display = '';
 
@@ -199,6 +244,31 @@
               '<td class="report-attendance-table-attendance-col" data-th="Total">'+
               person.Total_Attendance+'</td></tr>';
   }
+  
+  function buildFollowUpRow(person) {
+    var display = '', phone = person.primary_phone || '';
+
+    if(person.first_name || person.last_name) {
+      if(person.first_name) display += person.first_name + ' ';
+      if(person.last_name) display += person.last_name;
+    } else {
+      display = person.description;
+    }
+    
+    display = '<a class="person_name" href="manage-person.html?id='+person.id+'">'+display+'</a>';
+
+    phone = formatPhoneNumber(phone);
+
+    return    '<tr personId="'+person.id+'"><td data-th="Name">'+display+'</td>'+
+              '<td class="checkbox-table-col" data-th="Visited?"><input type="checkbox" disabled '+
+              (person.visited === 'true' ? 'checked ' : '')+'/></td>'+
+              '<td class="checkbox-table-col" data-th="Phone Number">'+
+              phone+'</td>'+
+              '<td data-th="Thank You<br />Card Sent">'+
+              (person.ty_card_date || '')+'</td>'+
+	      '<td data-th="Communication Card<br />Received">'+
+              (person.communication_card_date || '')+'</td></tr>';
+  }
 
   function onClickTopBottom(e) {
     var containerId = '#'+e.target.parentElement.previousElementSibling.id;
@@ -210,15 +280,14 @@
     });
   }
 
-  function loadReport(reportType, fromDate, toDate) {
+  function loadReport(reportType, params) {
     $('.reports-form').mask('Loading...');
     $.ajax({
-      type: 'GET',
+      type: 'POST',
       url: 'ajax/get_report.php',
       data: {
         type: reportType,
-        fromDate: fromDate,
-        toDate: toDate
+        params: JSON.stringify(params)
       }
     })
     .done(function(msg) {
@@ -235,6 +304,9 @@
           case 3:
             populateAttendanceByMia(data.people);
             break;
+	  case 4:
+	    populateFollowUps(data.people);
+	    break;
         }
       } else {
         if(data.error === 1) {
@@ -275,10 +347,10 @@
     });
   }
 
-  function isDate(txtDate) {
+  function isDate(txtDate, allowBlank) {
     var currVal = txtDate;
     if(currVal === '')
-      return false;
+      return !!allowBlank;
 
     //Declare Regex
     var rxDatePattern = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/;
@@ -306,6 +378,22 @@
     }
     return true;
   }
+  
+  function formatPhoneNumber(phone) {
+    phone = phone || '';
+    if(phone.match(/\D/g,'') === null) {
+      var tmp = phone.replace(/\D/g);
+      if(tmp.length === 7) {
+	phone = tmp.substr(0,3) + '-' + tmp.substr(3);
+      } else if(tmp.length === 10) {
+	phone = '(' + tmp.substr(0,3) + ') ' + tmp.substr(3,3) + '-' + tmp.substr(6);
+      }
+    }
+    return phone;
+  }
+  
+  reportTypeField.value = '1';
+  
   runBtn.addEventListener('click', onRunClick);
   reportTypeField.addEventListener('change', onReportTypeChange);
   $('.top-bottom-links a').on('click', onClickTopBottom);
