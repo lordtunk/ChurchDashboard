@@ -495,6 +495,12 @@
             e.preventDefault();
         }
     }
+    
+    function onClearClick() {
+        if (confirm("If you continue you will lose any unsaved changes. Continue?")) {
+            clearFollowUpForm();
+        }
+    }
 
     function onDeleteFollowUpClick(e) {
         if (confirm("Are you sure you would like to PERMANENTLY delete this Follow Up?")) {
@@ -541,7 +547,7 @@
 
     addCopyBtn.addEventListener('click', addCopy);
     addClearBtn.addEventListener('click', addClear);
-    clearBtn.addEventListener('click', clearFollowUpForm);
+    clearBtn.addEventListener('click', onClearClick);
     selectPersonBtn.addEventListener('click', openSelectPerson);
     addNewPersonBtn.addEventListener('click', addNewPerson);
     searchBtn.addEventListener('click', search);

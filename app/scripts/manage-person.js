@@ -219,7 +219,6 @@
 
     function validateUpdate(p) {
         var msg = '',
-            warning = '',
             firstNameSpecified = !! p.first_name,
             lastNameSpecified = !! p.last_name,
             descriptionSpecified = !! p.description;
@@ -239,7 +238,7 @@
         if (p.email.length > 100)
             msg += 'Email cannot exceed 100 characters<br />';
         if (!email.checkValidity())
-            warning += 'Email is not valid<br />';
+            msg += 'Email is not valid<br />';
         if (p.primary_phone.length > 15)
             msg += 'Primary Phone cannot exceed 15 characters<br />';
         else if (p.primary_phone.length > 0 && !phoneNumberRegex.test(p.primary_phone))
@@ -262,9 +261,6 @@
         if (msg) {
             $().toastmessage('showErrorToast', msg);
             return false;
-        }
-        if (warning) {
-            $().toastmessage('showWarningToast', warning);
         }
         return true;
     }
