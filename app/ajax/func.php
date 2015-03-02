@@ -2,6 +2,7 @@
   class Func {
     private $db = NULL;
     private $logFileName = "../logs/log.txt";
+      private $logFileNamePrefix = "../logs/log-";
     private $configFileName = "../config.ini";
     private $dbHost = "";
     private $dbName = "";
@@ -90,9 +91,12 @@
 
     function logMessage($msg, $severity=1) {
       if($severity < $this->minSeverity) return;
+      $log_file_name = $this->logFileNamePrefix.date("y-m-d").".txt";
       
-      if (is_writable($this->logFileName)) {
-        if (!$handle = fopen($this->logFileName, 'a'))
+      if (!file_exists($log_file_name))
+          fopen($log_file_name, 'w');
+      if (is_writable($log_file_name)) {
+        if (!$handle = fopen($log_file_name, 'a'))
           return;
         if (fwrite($handle, date("m-d-y g:i a")."\t$msg\n") === FALSE)
           return;
