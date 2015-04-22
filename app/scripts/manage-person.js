@@ -365,6 +365,7 @@
                     person = p;
                     noChangesMade = true;
                     updateMap(p);
+                    processFollowUps(data.follow_ups);
                     $().toastmessage('showSuccessToast', "Save successful");
                 } else {
                     if (data.error === 1) {

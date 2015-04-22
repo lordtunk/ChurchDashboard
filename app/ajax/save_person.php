@@ -93,7 +93,7 @@
 	$msg .= 'Street 1 cannot exceed 100 characters<br />';
 	
       if(strlen($msg) > 0)
-	throw new Exception($msg);
+	   throw new Exception($msg);
       
       if($person->first_name === ""){
         $person->first_name = NULL;
@@ -179,56 +179,57 @@
 		":id"=>$person->id));
       
       foreach($person->follow_ups as $key => $follow_up) {
-	if($follow_up->date === ""){
-	  $follow_up->date = NULL;
-	}
-	if($follow_up->id < 0) {
-	  $query = "INSERT INTO FollowUps 
-		      (follow_up_to_person_id, type, follow_up_date, comments, last_modified_dt, modified_by, creation_dt, created_by)
-		    VALUES
-		      (:person_id, :type, STR_TO_DATE(:follow_up_date,'%m/%d/%Y'), :comments, NOW(), :user_id, NOW(), :user_id)";
-	  $follow_up->id = $f->queryLastInsertId($query, 
-	      array(":person_id"=>$person->id,
-		    ":type"=>$follow_up->typeCd,
-		    ":follow_up_date"=>$follow_up->date,
-		    ":comments"=>$follow_up->comments,
-		    ":user_id"=>$user_id));
-	} else {
-	  $query = "UPDATE FollowUps SET 
-		      follow_up_to_person_id = :person_id,
-		      type = :type,
-		      follow_up_date = STR_TO_DATE(:follow_up_date,'%m/%d/%Y'),
-		      comments = :comments,
-		      last_modified_dt = NOW(),
-		      modified_by = :user_id
-		    WHERE
-		      id=:follow_up_id";
-	  $results = $f->executeAndReturnResult($query, 
-	      array(":person_id"=>$person->id,
-		    ":type"=>$follow_up->typeCd,
-		    ":follow_up_date"=>$follow_up->date,
-		    ":comments"=>$follow_up->comments,
-		    ":user_id"=>$user_id,
-		    ":follow_up_id"=>$follow_up->id));
-		    
-	  $query = "DELETE FROM FollowUpVisitors WHERE follow_up_id=:id";
-	  $results = $f->executeAndReturnResult($query, array(":id"=>$follow_up->id));
-	}
-	
-	if(count($follow_up->visitorsIds) > 0) {
-	  foreach($follow_up->visitorsIds as $k => $visitor_id) {
-	    $query = "INSERT INTO FollowUpVisitors 
-			(follow_up_id, person_id)
-		      VALUES
-			(:follow_up_id, :person_id)";
-	    $results = $f->executeAndReturnResult($query, 
-		array(":follow_up_id"=>$follow_up->id,
-		      ":person_id"=>$visitor_id));
-	  }
-	}
+        if($follow_up->date === ""){
+          $follow_up->date = NULL;
+        }
+        if($follow_up->id < 0) {
+          $query = "INSERT INTO FollowUps 
+                  (follow_up_to_person_id, type, follow_up_date, comments, last_modified_dt, modified_by, creation_dt, created_by)
+                VALUES
+                  (:person_id, :type, STR_TO_DATE(:follow_up_date,'%m/%d/%Y'), :comments, NOW(), :user_id, NOW(), :user_id)";
+          $follow_up->id = $f->queryLastInsertId($query, 
+              array(":person_id"=>$person->id,
+                ":type"=>$follow_up->typeCd,
+                ":follow_up_date"=>$follow_up->date,
+                ":comments"=>$follow_up->comments,
+                ":user_id"=>$user_id));
+        } else {
+          $query = "UPDATE FollowUps SET 
+                  follow_up_to_person_id = :person_id,
+                  type = :type,
+                  follow_up_date = STR_TO_DATE(:follow_up_date,'%m/%d/%Y'),
+                  comments = :comments,
+                  last_modified_dt = NOW(),
+                  modified_by = :user_id
+                WHERE
+                  id=:follow_up_id";
+          $results = $f->executeAndReturnResult($query, 
+              array(":person_id"=>$person->id,
+                ":type"=>$follow_up->typeCd,
+                ":follow_up_date"=>$follow_up->date,
+                ":comments"=>$follow_up->comments,
+                ":user_id"=>$user_id,
+                ":follow_up_id"=>$follow_up->id));
+
+          $query = "DELETE FROM FollowUpVisitors WHERE follow_up_id=:id";
+          $results = $f->executeAndReturnResult($query, array(":id"=>$follow_up->id));
+        }
+
+        if(count($follow_up->visitorsIds) > 0) {
+          foreach($follow_up->visitorsIds as $k => $visitor_id) {
+            $query = "INSERT INTO FollowUpVisitors 
+                (follow_up_id, person_id)
+                  VALUES
+                (:follow_up_id, :person_id)";
+            $results = $f->executeAndReturnResult($query, 
+            array(":follow_up_id"=>$follow_up->id,
+                  ":person_id"=>$visitor_id));
+          }
+        }
       }
       $f->commit();
       $dict['success'] = TRUE;
+      $dict['follow_ups'] = $person->follow_ups;
     } catch (Exception $e) {
       $dict['success'] = FALSE;
       $dict['msg']= $e->getMessage();
