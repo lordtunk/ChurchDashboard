@@ -78,10 +78,15 @@
         </div>
         <div id="follow-up-options-spacer" style="display: none;"></div>
         <div id="follow-up-options" style="display: none;">
-          <input type="checkbox" id="not-visited"/>
-          <label for="not-visited">Not yet visited</label>
+          <h4 style="padding-top: 0;">Include Only:</h4>
           <input type="checkbox" id="ty-card-not-sent"/>
-          <label for="ty-card-not-sent">Thank you card not sent</label><br />
+          <label for="ty-card-not-sent">Thank you card not sent</label>
+          <input type="checkbox" id="not-visited"/>
+          <label for="not-visited">Not yet visited</label><br />
+          <input type="checkbox" id="active" checked/>
+          <label for="active">Active</label>
+          <br />
+          <h4 style="padding-top: 0;">Include All:</h4>
           <input type="checkbox" id="signed-up-for-baptism"/>
           <label for="signed-up-for-baptism">Signed up for baptism</label>
           <input type="checkbox" id="baptized"/>
@@ -100,8 +105,14 @@
           <label for="would-like-visit">Would like a visit from a GC Pastor</label><br />
           <input type="checkbox" id="no-agent"/>
           <label for="no-agent">Not assigned an agent</label>
-          <input type="checkbox" id="active" checked/>
-          <label for="active">Active</label><br />
+          <input type="checkbox" id="commitment-christ"/>
+          <label for="commitment-christ">Committing life to Christ</label><br />
+          <input type="checkbox" id="recommitment-christ"/>
+          <label for="recommitment-christ">Recommitting life to Christ</label>
+          <input type="checkbox" id="commitment-tithe"/>
+          <label for="commitment-tithe">Committing to tithe</label><br />
+          <input type="checkbox" id="commitment-ministry"/>
+          <label for="commitment-ministry">Committing to serving in ministry</label>
         </div>
         <button id="go-arrow" class="button--secondary-small">Run <i class="fa fa-arrow-right"></i></button>
         <br />

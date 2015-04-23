@@ -3,6 +3,10 @@
     if ($('.follow-ups-form').length === 0) return;
 
     $('#follow-up-date').datepicker();
+    $('#follow-ups-for-date').datepicker({
+        dateFormat: 'm/d/yy'
+    });
+    $('#follow-ups-for-date').datepicker("setDate", new Date());
     var visitors = [],
         noChangesMade = true,
         $formTitle = $('#follow-ups-form-title'),
@@ -10,6 +14,8 @@
         followUpPerson = document.querySelector('#follow-up-person'),
         followUpType = document.querySelector('#follow-up-type'),
         followUpDate = document.querySelector('#follow-up-date'),
+        followUpsForDate = document.querySelector('#follow-ups-for-date'),
+        getFollowUpsBtn = document.querySelector('#get-follow-ups'),
         unknownDate = document.querySelector('#unknown-date'),
         followUpVisitors = document.querySelector('#follow-up-visitors'),
         followUpComments = document.querySelector('#follow-up-comments'),
@@ -36,7 +42,7 @@
             4: "Entered in The City",
             5: "Thank You Card Sent"
         };
-
+    
     function populateTypes() {
         var $select = $('#follow-up-type');
         $.each(followUpTypeData, function(typeCd, type) {
@@ -138,8 +144,11 @@
 
     function loadFollowUps() {
         $.ajax({
-            type: 'GET',
-            url: 'ajax/get_follow_ups.php'
+            type: 'POST',
+            url: 'ajax/get_follow_ups.php',
+            data: {
+                date: followUpsForDate.value
+            }
         })
             .done(function(msg) {
                 var data = JSON.parse(msg);
@@ -557,6 +566,7 @@
         }
     });
     closeBtn.addEventListener('click', close);
+    getFollowUpsBtn.addEventListener('click', loadFollowUps);
     $('#unknown-date').on('change', onChangeUnknownDate);
 
     clearFollowUpForm();

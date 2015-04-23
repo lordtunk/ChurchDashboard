@@ -3,6 +3,7 @@
   include("func.php");
   $f = new Func();
   $dict = array();
+  $followUpDate = $_POST['date'];
   if(!isset($_SESSION['user_id']) || !isset($_SESSION['session_id'])) {
     $dict['success'] = FALSE;
     $f->logMessage('Session information missing');
@@ -40,10 +41,10 @@
 		  left outer join FollowUpVisitors v on f.id=v.follow_up_id
 		  left outer join People fp on fp.id=v.person_id
 		WHERE
-		  DATE_FORMAT(f.last_modified_dt,'%m/%d/%Y') = DATE_FORMAT(NOW(),'%m/%d/%Y')
+		  DATE_FORMAT(f.creation_dt,'%c/%e/%Y') = :date
 		ORDER BY
 		  f.follow_up_date";
-      $results = $f->fetchAndExecute($query, array());
+      $results = $f->fetchAndExecute($query, array(":date"=>$followUpDate));
       $follow_ups = array();
       foreach($results as $key => $row) {
 	$l = NULL;
