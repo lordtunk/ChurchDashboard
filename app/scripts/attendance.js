@@ -3,7 +3,10 @@
 
     if ($('#attendance').length === 0) return;
 
-    $('#attendance-date').datepicker();
+    //$('#attendance-date').datepicker();
+    $('#attendance-date').datepicker({
+        dateFormat: 'm/d/yy'
+    });
     var attendanceDate = document.querySelector('#attendance-date'),
         adultTotalAttendance = document.querySelector('#adult-total-attendance'),
         adultFirstServiceAttendance = document.querySelector('#adult-first-service-attendance'),
@@ -147,11 +150,14 @@
     }
 
     function reset() {
+        clear();
+        processPeople(people);
+    }
+    
+    function clear() {
         noChangesMade = true;
-        // This will restore the table data back to its original state
         $('#adult-attendance-table > tbody:last').children().remove();
         $('#kid-attendance-table > tbody:last').children().remove();
-        processPeople(people);
     }
 
     function addAdult() {
@@ -188,7 +194,8 @@
         var curr = new Date(); // get current date
         var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
         var sunday = new Date(curr.setDate(first));
-        attendanceDate.value = getDateString(sunday);
+        $('#attendance-date').datepicker("setDate", sunday);
+        //attendanceDate.value = getDateString(sunday);
         currAttendanceDate = attendanceDate.value;
         prevAttendanceDate = sunday;
 
@@ -199,9 +206,11 @@
         if (noChangesMade || confirm("If you change the date you will lose any unsaved changes. Continue?")) {
             prevAttendanceDate = new Date(attendanceDate.value);
             currAttendanceDate = attendanceDate.value;
-            reset();
+            clear();
+            loadPeople();
         } else {
-            attendanceDate.value = getDateString(prevAttendanceDate);
+            $('#attendance-date').datepicker("setDate", prevAttendanceDate);
+            //attendanceDate.value = getDateString(prevAttendanceDate);
         }
         attendanceDateDisplay.innerHTML = attendanceDate.value;
     }
@@ -468,8 +477,12 @@
     function loadPeople() {
         $('.attendance-form').mask('Loading...');
         $.ajax({
-            type: 'GET',
-            url: 'ajax/get_attendance.php'
+            type: 'POST',
+            url: 'ajax/get_attendance.php',
+            data: {
+                date: attendanceDate.value,
+                active: activeTrue.checked
+            }
         })
             .done(function(msg) {
                 $('.attendance-form').unmask();
@@ -591,17 +604,17 @@
         return -1;
     }
 
-    function getDateString(dt) {
-        var curr_date = dt.getDate();
-        var curr_month = dt.getMonth();
-        var curr_year = dt.getFullYear();
-
-        curr_date = (curr_date < 10) ? '0' + curr_date : '' + curr_date;
-        curr_month++;
-        curr_month = (curr_month < 10) ? '0' + curr_month : '' + curr_month;
-
-        return curr_month + "/" + curr_date + "/" + curr_year;
-    }
+//    function getDateString(dt) {
+//        var curr_date = dt.getDate();
+//        var curr_month = dt.getMonth();
+//        var curr_year = dt.getFullYear();
+//
+//        curr_date = (curr_date < 10) ? '0' + curr_date : '' + curr_date;
+//        curr_month++;
+//        curr_month = (curr_month < 10) ? '0' + curr_month : '' + curr_month;
+//
+//        return curr_month + "/" + curr_date + "/" + curr_year;
+//    }
 
     function getPerson(id) {
         for (var i = 0; i < people.length; i++) {

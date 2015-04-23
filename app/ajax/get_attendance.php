@@ -3,6 +3,8 @@
   include("func.php");
   $f = new Func();
   $dict = array();
+  $attendanceDate = $_POST['date'];
+  $active = $_POST['active'] == "true";
   if(!isset($_SESSION['user_id']) || !isset($_SESSION['session_id'])) {
     $dict['success'] = FALSE;
     $f->logMessage('Session information missing');
@@ -32,12 +34,14 @@
                   p.description,
                   p.adult,
                   p.active,
-                  DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                  DATE_FORMAT(a.attendance_dt,'%c/%e/%Y') attendance_dt,
                   a.first,
                   a.second
                 FROM
                   People p
-                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by AND DATE_FORMAT(a.attendance_dt,'%c/%e/%Y') = :date
+                WHERE
+                  p.active = :active
                 ORDER BY
                   p.last_name IS NOT NULL DESC,
                   p.description IS NOT NULL DESC,
@@ -45,7 +49,7 @@
                   p.first_name,
                   p.description,
                   attendance_dt DESC";
-      $results = $f->fetchAndExecute($query);
+      $results = $f->fetchAndExecute($query, array(":date"=>$attendanceDate, ":active"=>$active));
       $people = array();
       foreach($results as $key => $row) {
         $p = NULL;
