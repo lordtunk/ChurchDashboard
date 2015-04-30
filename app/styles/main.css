@@ -22,6 +22,8 @@ body {
   box-sizing: border-box;
   overflow: hidden;
   min-height: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .app-bar {
@@ -240,11 +242,29 @@ main {
 
 .app-content {
   border: 1px solid gray;
-  padding-top: 20px;
+  /* padding-top: 20px; */
 }
 
 #go-arrow {
   margin-left: 7px;
+}
+
+.attendance-search {
+  display: inline-block;
+  float: left;
+  padding-top: 70px;
+}
+
+.attendance-stats {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  float: right;
+  margin: 0 20px 10px 0;
+}
+
+.attendance-stats > table {
+  margin-top: 10px;
 }
 
 .attendance-table-container {
@@ -267,9 +287,19 @@ main {
   margin-left: 20px;
 }
 
+.dialog-form-inner>label[for=add-to-spouse] {
+  width: 120px;
+}
+
 #follow-up-table-container {
   max-height: 500px;
   width: 100%;
+  display: block;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+#relationship-table-container {
+  max-height: 500px;
   display: block;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
@@ -281,12 +311,19 @@ main {
 
 #attendance-date-display {
   text-align: center;
+  /* border-bottom: 1px solid; */
+  /* border-top: 1px solid; */
+  padding: 0px;
 }
 
 .navigation-links {
   display: inline-block;
   float: right;
   margin: 20px;
+}
+
+.navigation-links > div {
+  display: inline-block;
 }
 
 .jump-to {
@@ -323,6 +360,12 @@ main {
 #person-attendance-table-container {
   overflow-y: scroll;
   height: 300px;
+}
+
+.relationship-table-button-col {
+  width: 90px !important;
+  padding: 0 0 0 10px !important;
+  text-align: center;
 }
 
 .follow-up-table-button-col {
@@ -368,7 +411,8 @@ main {
   margin-left: 20px;
 }
 
-#follow-up-person-container {
+#follow-up-person-container,
+#relationship-person-container {
   display: -webkit-flex;
   display: flex;
 }
@@ -377,11 +421,21 @@ main {
   width: 110px;
   text-align: right;
 }
-#follow-up-person-container>button {
+#relationship-person-container>label {
+  padding-top: 10px;
+  width: 70px;
+}
+.manage-person-relationship-form .dialog-form-inner>label {
+  width: 70px;
+}
+
+#follow-up-person-container>button,
+#relationship-person-container>button {
   margin-top: 0;
 }
 
-#follow-up-person-container>div {
+#follow-up-person-container>div,
+#relationship-person-container>div{
   display: inline-block;
   padding-right: 20px;
   padding-top: 10px;
@@ -448,7 +502,7 @@ main {
 }
 
 .app-content .active-input {
-  display: inline-block;
+/*  display: inline-block;*/
 }
 
 .app-form input[type=text],
@@ -458,7 +512,7 @@ main {
   margin-bottom: 5px;
 }
 
-.delete-follow-up {
+.delete-follow-up, .delete-relationship {
   color: red;
 }
 
@@ -547,7 +601,7 @@ main {
   padding: 0 0 0 40px;
 }
 .interested-form-section {
-  margin: 0 0 0 40px;
+  margin: 0 0 20px 40px;
 }
 .interested-form-section > input {
   margin: 0 10px;
@@ -715,10 +769,6 @@ td.checkbox-table-col {
     min-height: initial;
   }
 
-  body {
-    overflow-y: scroll;
-  }
-
   .navdrawer-container {
     position: relative;
     margin-top: 0;
@@ -727,7 +777,7 @@ td.checkbox-table-col {
   td.attendance-table-attendance-col {
     text-align: center;
   }
-  .delete-follow-up {
+  .delete-follow-up, .delete-relationship {
     margin-left: 5px;
   }
 }
@@ -748,7 +798,7 @@ td.checkbox-table-col {
   .app-bar-actions {
     width: 100%;
   }
-
+  
   .navdrawer-container {
     padding: 0 16px;
     overflow-y: auto;
@@ -773,7 +823,7 @@ td.checkbox-table-col {
 
 @media all and (min-width:800px) {
   .app-content .active-input {
-    display: inline-block;
+/*    display: inline-block;*/
   }
   
   .col-1, .col-2 {
@@ -793,6 +843,17 @@ td.checkbox-table-col {
 @media all and (max-width:799px) {
   .address-form-section-title {
     padding: 10px 0 0 65px;
+  }
+  .navigation-links {
+    float: none;
+  }
+  .navigation-links > div {
+    display: block;
+  }
+  .attendance-stats {
+    width: 100%;
+    margin-right: 0px;
+    margin-bottom: 20px;
   }
 }
 .checkbox-form-seciton {

@@ -8,27 +8,15 @@
         dateFormat: 'm/d/yy'
     });
     var attendanceDate = document.querySelector('#attendance-date'),
-        adultTotalAttendance = document.querySelector('#adult-total-attendance'),
-        adultFirstServiceAttendance = document.querySelector('#adult-first-service-attendance'),
-        adultSecondServiceAttendance = document.querySelector('#adult-second-service-attendance'),
-        kidTotalAttendance = document.querySelector('#kid-total-attendance'),
-        kidFirstServiceAttendance = document.querySelector('#kid-first-service-attendance'),
-        kidSecondServiceAttendance = document.querySelector('#kid-second-service-attendance'),
         activeTrue = document.querySelector('#active-true'),
+        adultTrue = document.querySelector('#adults-true'),
         updateBtn = document.querySelector('#update'),
         cancelBtn = document.querySelector('#cancel'),
         exportBtn = document.querySelector('#export'),
         selectDateBtn = document.querySelector('#go-arrow'),
-        addAdultBtn = document.querySelector('#add-adult'),
-        addKidBtn = document.querySelector('#add-kid'),
+        addPersonBtn = document.querySelector('#add-person'),
         attendanceDateDisplay = document.querySelector('#attendance-date-display'),
         people = [],
-        adultTotalAttendanceCount = 0,
-        adultFirstServiceAttendanceCount = 0,
-        adultSecondServiceAttendanceCount = 0,
-        kidTotalAttendanceCount = 0,
-        kidFirstServiceAttendanceCount = 0,
-        kidSecondServiceAttendanceCount = 0,
         idSequence = 0,
         personIdSequence = -1,
         prevAttendanceDate,
@@ -40,7 +28,37 @@
             height: 400,
             width: 450,
             modal: true
-        });
+        }),
+        months = [
+            'January',
+            'February',
+            'March',
+            'April',
+            'May',
+            'June',
+            'July',
+            'August',
+            'September',
+            'October',
+            'November',
+            'December'
+        ],
+        isAdults = true,
+        originalTotals,
+        totals = {},
+        totalsEls = {
+            total_first_count: document.querySelector('#total-first-count'),
+            total_second_count: document.querySelector('#total-second-count'),
+            total_total_count: document.querySelector('#total-total-count'),
+            
+            adult_first_count: document.querySelector('#adult-first-count'),
+            adult_second_count: document.querySelector('#adult-second-count'),
+            adult_total_count: document.querySelector('#adult-total-count'),
+            
+            kid_first_count: document.querySelector('#kid-first-count'),
+            kid_second_count: document.querySelector('#kid-second-count'),
+            kid_total_count: document.querySelector('#kid-total-count')
+        };
 
     function exportAttendance() {
         window.location = 'ajax/export_attendance.php';
@@ -59,7 +77,7 @@
         var updatedPeople = [],
             i, j, rows, personId, display, displayField, attendanceDateFound,
             first, second, p;
-        rows = $('#adult-attendance-table > tbody:last').children();
+        rows = $('#attendance-table > tbody:last').children();
         for (i = 0; i < rows.length; i++) {
             // Only update modified rows
             if (rows[i].getAttribute('modified') === null) continue;
@@ -102,38 +120,11 @@
             }
             updatedPeople.push({
                 id: personId,
-                adult: true,
+                adult: isAdults,
                 display: display,
                 attendanceDate: currAttendanceDate,
                 first: first,
                 second: second
-            });
-        }
-        rows = $('#kid-attendance-table > tbody:last').children();
-        for (i = 0; i < rows.length; i++) {
-            // Only update modified rows
-            if (rows[i].getAttribute('modified') === null) continue;
-
-            personId = rows[i].getAttribute('personId');
-            displayField = rows[i].querySelector('[name=name_description]');
-
-            // An input field should be found for added people
-            if (displayField) {
-                display = $.trim(displayField.value);
-                // If the display field is empty then do not save the person
-                if (!display)
-                    continue;
-            } else {
-                display = undefined;
-            }
-
-            updatedPeople.push({
-                id: personId,
-                adult: false,
-                display: display,
-                attendanceDate: currAttendanceDate,
-                first: isAttendingFirstService(personId),
-                second: isAttendingSecondService(personId)
             });
         }
         if (updatedPeople.length > 0) {
@@ -156,37 +147,21 @@
     
     function clear() {
         noChangesMade = true;
-        $('#adult-attendance-table > tbody:last').children().remove();
-        $('#kid-attendance-table > tbody:last').children().remove();
+        $('#attendance-table > tbody:last').children().remove();
     }
 
-    function addAdult() {
-        addAdultBtn.blur();
+    function addPerson() {
+        addPersonBtn.blur();
         noChangesMade = false;
         var person = {
             id: genPersonid(),
             adult: true
         };
         var row = buildNewPersonRow(person, currAttendanceDate);
-        $('#adult-attendance-table > tbody:last').append(row);
+        $('#attendance-table > tbody:last').append(row);
         $('[personid=' + person.id + '] input:checkbox').on('change', updateAttendance);
-        $('#adult-attendance-table-container').animate({
-            scrollTop: $('#adult-attendance-table-container')[0].scrollHeight
-        }, scrollAnimationMs);
-    }
-
-    function addKid() {
-        addKidBtn.blur();
-        noChangesMade = false;
-        var person = {
-            id: genPersonid(),
-            adult: false
-        };
-        var row = buildNewPersonRow(person, currAttendanceDate);
-        $('#kid-attendance-table > tbody:last').append(row);
-        $('[personid=' + person.id + '] input:checkbox').on('change', updateAttendance);
-        $('#kid-attendance-table-container').animate({
-            scrollTop: $('#kid-attendance-table-container')[0].scrollHeight
+        $('#attendance-table-container').animate({
+            scrollTop: $('#attendance-table-container')[0].scrollHeight
         }, scrollAnimationMs);
     }
 
@@ -198,8 +173,11 @@
         //attendanceDate.value = getDateString(sunday);
         currAttendanceDate = attendanceDate.value;
         prevAttendanceDate = sunday;
-
-        attendanceDateDisplay.innerHTML = attendanceDate.value;
+        
+        attendanceDateDisplay.innerHTML = getDateString(sunday);
+    }
+    function getDateString(date) {
+        return months[date.getMonth()]+' '+date.getDate()+', '+date.getFullYear();
     }
 
     function onSelectAttendanceDate() {
@@ -212,11 +190,11 @@
             $('#attendance-date').datepicker("setDate", prevAttendanceDate);
             //attendanceDate.value = getDateString(prevAttendanceDate);
         }
-        attendanceDateDisplay.innerHTML = attendanceDate.value;
+        attendanceDateDisplay.innerHTML = getDateString($('#attendance-date').datepicker("getDate"));
     }
 
     function onClickTopBottom(e) {
-        var containerId = '#' + ((e.target.id.indexOf('adult') == -1) ? 'kid' : 'adult') + '-attendance-table-container',
+        var containerId = '#attendance-table-container',
             container = $(containerId),
             pos = (e.target.id.indexOf('top') == -1) ?
                 container[0].scrollHeight : 0;
@@ -232,28 +210,17 @@
         clearNavigation();
         detachLinkClickListeners();
         $('.attendance-table-attendance-col input:checkbox').off('change');
-        adultTotalAttendanceCount = 0;
-        adultFirstServiceAttendanceCount = 0;
-        adultSecondServiceAttendanceCount = 0;
-        kidTotalAttendanceCount = 0;
-        kidFirstServiceAttendanceCount = 0;
-        kidSecondServiceAttendanceCount = 0;
+        clearAttendance();
         people = data;
         var dt = currAttendanceDate;
-        var adultRows = '',
-            kidRows = '';
+        var rows = '';
         for (var i = 0; i < people.length; i++) {
             if (people[i].active == activeTrue.checked) {
-                if (people[i].adult) {
-                    adultRows += buildPersonRow(people[i], dt);
-                } else {
-                    kidRows += buildPersonRow(people[i], dt);
-                }
+                rows += buildPersonRow(people[i], dt);
             }
         }
-        setAttendance(adultTotalAttendanceCount, adultFirstServiceAttendanceCount, adultSecondServiceAttendanceCount, kidTotalAttendanceCount, kidFirstServiceAttendanceCount, kidSecondServiceAttendanceCount);
-        $('#adult-attendance-table > tbody:last').append(adultRows);
-        $('#kid-attendance-table > tbody:last').append(kidRows);
+        setAttendance(totals);
+        $('#attendance-table > tbody:last').append(rows);
         $('.attendance-table-attendance-col input:checkbox').on('change', updateAttendance);
         attachLinkClickListeners();
     }
@@ -273,16 +240,7 @@
 
         display = getDisplayName(person);
         display = '<a class="person_name" href="manage-person.html?id=' + person.id + '">' + display + '</a>';
-
-        if (person.adult) {
-            if (firstChecked)++adultFirstServiceAttendanceCount;
-            if (secondChecked)++adultSecondServiceAttendanceCount;
-            if (firstChecked || secondChecked)++adultTotalAttendanceCount;
-        } else {
-            if (firstChecked)++kidFirstServiceAttendanceCount;
-            if (secondChecked)++kidSecondServiceAttendanceCount;
-            if (firstChecked || secondChecked)++kidTotalAttendanceCount;
-        }
+        
         return '<tr adult="' + person.adult + '" personId="' + person.id + '"><td data-th="Name">' +
             '<button class="attendance-history-button"><i class="fa fa-archive" /></button>' + display + '</td>' +
             '<td class="attendance-table-attendance-col" service="first" data-th="First?">' +
@@ -364,77 +322,37 @@
     function updateAttendance(e) {
         var me = e.target,
             personId = me.parentElement.parentElement.parentElement.getAttribute('personId'),
-            adult = me.parentElement.parentElement.parentElement.getAttribute('adult');
+            isFirst = me.parentElement.parentElement.getAttribute('service') === 'first',
+            totalName = (isAdults ? 'adult' : 'kid') + '_total_count',
+            firstSecondName = (isAdults ? 'adult' : 'kid') + '_' + (isFirst ? 'first' : 'second') + '_count',
+            isAttendingOtherService = isFirst ? isAttendingSecondService : isAttendingFirstService;
 
         noChangesMade = false;
         me.parentElement.parentElement.parentElement.setAttribute('modified', true);
-        if (adult == 'true') {
-            if (me.parentElement.parentElement.getAttribute('service') === 'first') {
-                if (me.checked) {
-                    ++adultFirstServiceAttendanceCount;
+        if (me.checked) {
+            totals[firstSecondName]++;
 
-                    if (!isAttendingSecondService(personId))
-                    ++adultTotalAttendanceCount;
-                } else {
-                    --adultFirstServiceAttendanceCount;
-
-                    if (!isAttendingSecondService(personId))
-                    --adultTotalAttendanceCount;
-                }
-                adultFirstServiceAttendance.innerHTML = adultFirstServiceAttendanceCount;
-            } else if (me.parentElement.parentElement.getAttribute('service') === 'second') {
-                if (me.checked) {
-                    ++adultSecondServiceAttendanceCount;
-
-                    if (!isAttendingFirstService(personId))
-                    ++adultTotalAttendanceCount;
-                } else {
-                    --adultSecondServiceAttendanceCount;
-
-                    if (!isAttendingFirstService(personId))
-                    --adultTotalAttendanceCount;
-                }
-                adultSecondServiceAttendance.innerHTML = adultSecondServiceAttendanceCount;
-            }
-
-            adultTotalAttendance.innerHTML = adultTotalAttendanceCount;
+            if (!isAttendingOtherService(personId))
+                totals[totalName]++;
         } else {
-            if (me.parentElement.parentElement.getAttribute('service') === 'first') {
-                if (me.checked) {
-                    ++kidFirstServiceAttendanceCount;
+            totals[firstSecondName]--;
 
-                    if (!isAttendingSecondService(personId))
-                    ++kidTotalAttendanceCount;
-                } else {
-                    --kidFirstServiceAttendanceCount;
-
-                    if (!isAttendingSecondService(personId))
-                    --kidTotalAttendanceCount;
-                }
-                kidFirstServiceAttendance.innerHTML = kidFirstServiceAttendanceCount;
-            } else if (me.parentElement.parentElement.getAttribute('service') === 'second') {
-                if (me.checked) {
-                    ++kidSecondServiceAttendanceCount;
-
-                    if (!isAttendingFirstService(personId))
-                    ++kidTotalAttendanceCount;
-                } else {
-                    --kidSecondServiceAttendanceCount;
-
-                    if (!isAttendingFirstService(personId))
-                    --kidTotalAttendanceCount;
-                }
-                kidSecondServiceAttendance.innerHTML = kidSecondServiceAttendanceCount;
-            }
-
-            kidTotalAttendance.innerHTML = kidTotalAttendanceCount;
+            if (!isAttendingOtherService(personId))
+                totals[totalName]--;
         }
+        totalsEls[firstSecondName].innerHTML = totals[firstSecondName];
+        totalsEls[totalName].innerHTML = totals[totalName];
+        
+        totals.total_first_count = totals.adult_first_count + totals.kid_first_count;
+        totals.total_second_count = totals.adult_second_count + totals.kid_second_count;
+        totals.total_total_count = totals.adult_total_count + totals.kid_total_count;
+        
+        totalsEls.total_first_count.innerHTML = totals.total_first_count;
+        totalsEls.total_second_count.innerHTML = totals.total_second_count;
+        totalsEls.total_total_count.innerHTML = totals.total_total_count;
     }
 
-    function showPersonAttendance(personId) {
-        var p = getPerson(personId);
-        if (!p) return;
-
+    function showPersonAttendance(p) {
         $('#person-attendance-history-table > tbody:last').children().remove();
 
         dialog.dialog('open');
@@ -455,23 +373,63 @@
             '<td class="attendance-table-attendance-col" service="second" data-th="Second?">' +
             '<input type="checkbox" ' + secondChecked + ' disabled/></td></tr>';
     }
-
-    function setAttendance(totalAdult, firstAdult, secondAdult, totalKid, firstKid, secondKid) {
-        adultTotalAttendanceCount = totalAdult;
-        adultFirstServiceAttendanceCount = firstAdult;
-        adultSecondServiceAttendanceCount = secondAdult;
-
-        adultTotalAttendance.innerHTML = totalAdult;
-        adultFirstServiceAttendance.innerHTML = firstAdult;
-        adultSecondServiceAttendance.innerHTML = secondAdult;
-
-        kidTotalAttendanceCount = totalKid;
-        kidFirstServiceAttendanceCount = firstKid;
-        kidSecondServiceAttendanceCount = secondKid;
-
-        kidTotalAttendance.innerHTML = totalKid;
-        kidFirstServiceAttendance.innerHTML = firstKid;
-        kidSecondServiceAttendance.innerHTML = secondKid;
+    
+    function sanitizeAttendance() {
+        for(var t in totals) {
+            if(totals.hasOwnProperty(t)) {
+                totals[t] = parseInt(totals[t]);
+            }
+        }
+    }
+    
+    function clearAttendance() {
+        totals = jQuery.extend({}, originalTotals);
+        for(var t in totals) {
+            if(totals.hasOwnProperty(t)) {
+                totalsEls[t].innerHTML = totals[t];
+            }
+        }
+    }
+    
+    function setAttendance(ts) {
+        totals.total_first_count = totals.adult_first_count + totals.kid_first_count;
+        totals.total_second_count = totals.adult_second_count + totals.kid_second_count;
+        totals.total_total_count = totals.adult_total_count + totals.kid_total_count;
+        
+        for(var t in ts) {
+            if(ts.hasOwnProperty(t)) {
+                totals[t] = ts[t];
+                totalsEls[t].innerHTML = ts[t];
+            }
+        }
+    }
+    
+    function loadPersonAttendance(personId) {
+        $('.attendance-form').mask('Loading...');
+        $.ajax({
+            type: 'GET',
+            url: 'ajax/get_person_attendance.php',
+            data: {
+                id: personId
+            }
+        })
+            .done(function(msg) {
+                $('.attendance-form').unmask();
+                var data = JSON.parse(msg);
+                if (data.success) {
+                    showPersonAttendance(data.person);
+                } else {
+                    if (data.error === 1) {
+                        logout();
+                    } else {
+                        $().toastmessage('showErrorToast', "Error loading person's attendance history");
+                    }
+                }
+            })
+            .fail(function() {
+                $('.attendance-form').unmask();
+                $().toastmessage('showErrorToast', "Error loading person's attendance history");
+            });
     }
 
     function loadPeople() {
@@ -481,19 +439,24 @@
             url: 'ajax/get_attendance.php',
             data: {
                 date: attendanceDate.value,
-                active: activeTrue.checked
+                active: activeTrue.checked,
+                adult: adultTrue.checked
             }
         })
             .done(function(msg) {
                 $('.attendance-form').unmask();
                 var data = JSON.parse(msg);
                 if (data.success) {
+                    isAdults = adultTrue.checked;
+                    $('#name-table-header').text(isAdults ? 'Adults' : 'Kids');
+                    totals = data.totals;
+                    sanitizeAttendance();
+                    originalTotals = jQuery.extend({}, totals);
                     processPeople(data.people);
                     if (data.scroll_to_id && data.scroll_to_id >= 0) {
                         var scrollTo = $('[personid=' + data.scroll_to_id + ']')[0];
                         if (scrollTo) {
-                            var adult = scrollTo.getAttribute('adult') == 'true' ? 'adult' : 'kid',
-                                containerId = '#' + adult + '-attendance-table-container',
+                            var containerId = '#attendance-table-container',
                                 screenOff = $(containerId).offset().top,
                                 scrollOff = scrollTo.offsetTop;
                             $('body').animate({
@@ -530,6 +493,7 @@
                 $('.attendance-form').unmask();
                 var data = JSON.parse(msg);
                 if (data.success) {
+                    originalTotals = jQuery.extend({}, totals);
                     updateNewPeople(data.people);
                     //people = data.people;
                     //reset();
@@ -647,17 +611,16 @@
 
     function onClickAttendanceHistoryButton() {
         var personId = this.parentElement.parentElement.getAttribute('personId'); // jshint ignore:line
-        showPersonAttendance(personId);
+        loadPersonAttendance(personId);
     }
 
     function clearNavigation() {
-        document.querySelector('#adult-jump-to').innerHTML = '<option>--Jump To Letter--</option>';
-        document.querySelector('#kid-jump-to').innerHTML = '<option>--Jump To Letter--</option>';
+        document.querySelector('#jump-to').innerHTML = '<option>--Jump To Letter--</option>';
     }
 
-    function appendNavigationOption(id, lastName, isAdult) {
+    function appendNavigationOption(id, lastName) {
         if (!lastName) return;
-        var containerId = '#' + (isAdult ? 'adult' : 'kid') + '-jump-to';
+        var containerId = '#jump-to';
         var letter = lastName.substr(0, 1).toUpperCase();
         if ($(containerId + ' option:contains("' + letter + '")').length > 0) return;
         var s = document.querySelector(containerId);
@@ -673,7 +636,7 @@
 
         var scrollTo = $('[personid=' + o.getAttribute('scroll_to_id') + ']')[0];
         if (!scrollTo) return;
-        var containerId = '#' + ((e.target.id.indexOf('adult') == -1) ? 'kid' : 'adult') + '-attendance-table-container',
+        var containerId = '#attendance-table-container',
             screenOff = $(containerId).offset().top,
             scrollOff = scrollTo.offsetTop;
         $('body').animate({
@@ -696,8 +659,7 @@
     cancelBtn.addEventListener('click', cancel);
     exportBtn.addEventListener('click', exportAttendance);
     selectDateBtn.addEventListener('click', onSelectAttendanceDate);
-    addAdultBtn.addEventListener('click', addAdult);
-    addKidBtn.addEventListener('click', addKid);
+    addPersonBtn.addEventListener('click', addPerson);
     $('.jump-to').on('change', jumpTo);
     $('.navigation-links a').on('click', onClickTopBottom);
 

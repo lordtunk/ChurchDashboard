@@ -42,16 +42,47 @@
         cancelBtn = document.querySelector('#cancel'),
         deleteBtn = document.querySelector('#delete'),
         addFollowUpBtn = document.querySelector('#add-follow-up'),
-        addClearBtn = document.querySelector('#add-clear'),
-        addCopyBtn = document.querySelector('#add-copy'),
-        addCloseBtn = document.querySelector('#add-close'),
-        closeBtn = document.querySelector('#close'),
-        dialog = $('.dialog-form').dialog({
+        
+        relationshipDialog = $('.manage-person-relationship-form').dialog({
             autoOpen: false,
             height: 400,
             width: 510,
             modal: true
         }),
+        relationshipId = relationshipDialog[0].querySelector('#relationship-id'),
+        relationshipType = relationshipDialog[0].querySelector('#relationship-type'),
+        addRelationshipBtn = document.querySelector('#add-relationship'),
+        addCloseRelationshipBtn = document.querySelector('#add-close-relationship'),
+        closeRelationshipBtn = document.querySelector('#close-relationship'),
+        relationshipRelation = document.querySelector('#relationship-relation'),
+        addToSpouseContainerRelationship = relationshipDialog[0].querySelector('#add-to-spouse-container-relationship'),
+        addToSpouseRelationship = relationshipDialog[0].querySelector('#add-to-spouse-relationship'),
+        
+        selectPersonDialog = $('.select-person-form').dialog({
+            autoOpen: false,
+            height: 400,
+            width: 510,
+            modal: true
+        }),
+        addNewPersonBtn = document.querySelector('#add-new-person'),
+        searchBtn = document.querySelector('#search'),
+        searchField = document.querySelector('#search-name'),
+        closeSelectPersonBtn = document.querySelector('#close-select-person'),
+        selectPersonBtn = document.querySelector('#select-person-btn'),
+        relationshipIdSequence = -1,
+        
+        addClearBtn = document.querySelector('#add-clear'),
+        addCopyBtn = document.querySelector('#add-copy'),
+        addCloseBtn = document.querySelector('#add-close'),
+        closeBtn = document.querySelector('#close'),
+        dialog = $('.manage-person-follow-up-form').dialog({
+            autoOpen: false,
+            height: 400,
+            width: 510,
+            modal: true
+        }),
+        addToSpouseContainerFollowUp = dialog[0].querySelector('#add-to-spouse-container-follow-up'),
+        addToSpouseFollowUp = dialog[0].querySelector('#add-to-spouse-follow-up'),
         followUpId = dialog[0].querySelector('#follow-up-id'),
         followUpType = dialog[0].querySelector('#follow-up-type'),
         followUpDate = dialog[0].querySelector('#follow-up-date'),
@@ -59,6 +90,7 @@
         followUpVisitors = dialog[0].querySelector('#follow-up-visitors'),
         followUpComments = dialog[0].querySelector('#follow-up-comments'),
         $dialogTitle = $('.ui-dialog-title').text('Edit Follow Up'),
+        $relationshipDialogTitle = $('.ui-dialog-title').text('Edit Relationship'),
         followUpIdSequence = -1,
         noChangesMade = true,
         phoneNumberRegex = /^((\(?([2-9][0-8][0-9])\))|([2-9][0-8][0-9]))?[-. ]?([2-9][0-9]{2})[-. ]?([0-9]{4})$/,
@@ -71,6 +103,11 @@
             3: "Communication Card",
             4: "Entered in The City",
             5: "Thank You Card Sent"
+        },
+        relationshipTypeData = {
+            1: 'Spouse',
+            2: 'Child',
+            3: 'Parent'
         };
 
     (window.onpopstate = function() {
@@ -105,6 +142,12 @@
             $select.append('<option value=' + typeCd + '>' + type + '</option>');
         });
         $select.val('2');
+        
+        $select = $('#relationship-type');
+        $.each(relationshipTypeData, function(typeCd, type) {
+            $select.append('<option value=' + typeCd + '>' + type + '</option>');
+        });
+        $select.val('1');
     }
 
     function populateForm(p) {
@@ -147,6 +190,7 @@
 
         updateMap(p);
         processFollowUps(p.follow_ups);
+        processRelationships(p.relationships);
     }
 
     function updateMap(p) {
@@ -281,6 +325,72 @@
     updateBtn.addEventListener('click', onUpdateClick);
     cancelBtn.addEventListener('click', onCancelClick);
     deleteBtn.addEventListener('click', onDeleteClick);
+    
+    function addNewPerson() {
+        var text = $.trim(searchField.value);
+        if (text === '')
+            $().toastmessage('showErrorToast', "Must enter Name");
+        else
+            doAddNewPerson(text);
+    }
+
+    function search() {
+        var text = $.trim(searchField.value);
+        if (text === '')
+            $().toastmessage('showErrorToast', "Must enter Name");
+        else
+            doSearch(text);
+    }
+
+    function doAddNewPerson(text) {
+        $.ajax({
+            type: 'POST',
+            url: 'ajax/create_person.php',
+            data: {
+                person_display: text
+            }
+        })
+            .done(function(msg) {
+                var data = JSON.parse(msg);
+                if (data.success) {
+                    doSelectPerson(data.person_id, data.person_name);
+                } else {
+                    if (data.error === 1) {
+                        logout();
+                    } else {
+                        $().toastmessage('showErrorToast', "Error loading visitors");
+                    }
+                }
+            })
+            .fail(function() {
+                $().toastmessage('showErrorToast', "Error loading visitors");
+            });
+    }
+
+    function doSearch(text) {
+        $.ajax({
+            type: 'GET',
+            url: 'ajax/search.php',
+            data: {
+                search: text
+            }
+        })
+            .done(function(msg) {
+                var data = JSON.parse(msg);
+                if (data.success) {
+                    processSearchResults(data.people);
+                } else {
+                    if (data.error === 1) {
+                        logout();
+                    } else {
+                        $().toastmessage('showErrorToast', "Error loading visitors");
+                    }
+                }
+            })
+            .fail(function() {
+                $().toastmessage('showErrorToast', "Error loading visitors");
+            });
+    }
 
     function loadStates() {
         $.ajax({
@@ -404,6 +514,33 @@
                 $().toastmessage('showErrorToast', "Error deleting person");
             });
     }
+    
+    function saveFollowUp(f, cb) {
+        $.ajax({
+            type: 'POST',
+            url: 'ajax/save_follow_up.php',
+            data: {
+                follow_up: JSON.stringify(f)
+            }
+        })
+            .done(function(msg) {
+                var data = JSON.parse(msg);
+                if (data.success) {
+                    f.id = data.follow_up_id;
+                    cb.call(this, f);
+                    $().toastmessage('showSuccessToast', "Follow up save successful");
+                } else {
+                    if (data.error === 1) {
+                        logout();
+                    } else {
+                        $().toastmessage('showErrorToast', "Error saving follow up");
+                    }
+                }
+            })
+            .fail(function() {
+                $().toastmessage('showErrorToast', "Error saving follow up");
+            });
+    }
 
     function deleteFollowUp(id) {
         $.ajax({
@@ -428,6 +565,131 @@
             .fail(function() {
                 $().toastmessage('showErrorToast', "Error deleting Follow Up");
             });
+    }
+    
+    function saveRelationship(r, cb) {
+        $.ajax({
+            type: 'POST',
+            url: 'ajax/save_relationship.php',
+            data: {
+                relationship: JSON.stringify(r)
+            }
+        })
+            .done(function(msg) {
+                var data = JSON.parse(msg);
+                if (data.success) {
+                    r.id = data.relationship_id;
+                    cb.call(this, r);
+                    $().toastmessage('showSuccessToast', "Relationship save successful");
+                } else {
+                    if (data.error === 1) {
+                        logout();
+                    } else {
+                        $().toastmessage('showErrorToast', "Error saving relationship");
+                    }
+                }
+            })
+            .fail(function() {
+                $().toastmessage('showErrorToast', "Error saving relationship");
+            });
+    }
+    
+    function deleteRelationship(id) {
+        $.ajax({
+            type: 'POST',
+            url: 'ajax/delete_relationship.php',
+            data: {
+                id: id
+            }
+        })
+            .done(function(msg) {
+                var data = JSON.parse(msg);
+                if (data.success) {
+                    $('#relationship-table tr[relationship_id=' + id + ']').remove();
+                } else {
+                    if (data.error === 1) {
+                        logout();
+                    } else {
+                        $().toastmessage('showErrorToast', "Error deleting relationship");
+                    }
+                }
+            })
+            .fail(function() {
+                $().toastmessage('showErrorToast', "Error deleting relationship");
+            });
+    }
+    
+    
+    function onSelectPerson(e) {
+        var row = e.currentTarget.parentElement.parentElement;
+
+        var id = row.getAttribute('person_id');
+        var name = row.children[0].getAttribute('person_name');
+        doSelectPerson(id, name);
+    }
+
+    function doSelectPerson(id, name) {
+        closeSelectPerson();
+        relationshipRelation.innerHTML = '<a class="person_name" href="manage-person.html?id=' + id + '">' + name + '</a>';
+        relationshipRelation.setAttribute('relationid', id);
+        relationshipRelation.setAttribute('person_name', name);
+    }
+
+    function onManagePerson(e) {
+        var row = e.currentTarget.parentElement.parentElement;
+        var id = row.getAttribute('person_id');
+        window.location = 'manage-person.html?id=' + id;
+    }
+
+    function processSearchResults(results) {
+        $('a.person_name').off('click', onSelectPerson);
+        $('button.search-button').off('click', onManagePerson);
+
+        $('#search-table tbody tr').remove();
+        for (var i = 0; i < results.length; i++) {
+            appendPerson(results[i]);
+        }
+
+        $('a.person_name').on('click', onSelectPerson);
+        $('button.search-button').on('click', onManagePerson);
+    }
+
+    function appendPerson(p) {
+        var name = getDisplayName(p);
+        $('#search-table > tbody:last').append(
+            '<tr person_id="' + p.id + '">' +
+            '<td data-th="Name" person_name="' + name + '"><a class="person_name" href="javascript:void(0);">' + name + '</a></td>' +
+            '<td data-th="Address">' + getAddress(p) + '</td>' +
+            '<td data-th="" class="search-table-button-col"><button class="search-button button--blue-x-small">Manage</button></td>' +
+            '</tr>');
+    }
+    
+    function openSelectPerson() {
+        selectPersonDialog.dialog('open');
+    }
+
+    function closeSelectPerson() {
+        selectPersonDialog.dialog('close');
+    }
+
+    function getAddress(p) {
+        var addr = '';
+        addr += p.street1 || '';
+        if (p.street1)
+            addr += '<br />';
+        addr += p.street2 || '';
+        if (p.street2)
+            addr += '<br />';
+        addr += p.city || '';
+        if (p.city && p.state)
+            addr += ',';
+
+        addr += ' ';
+        addr += p.state || '';
+        addr += ' ';
+        addr += p.zip || '';
+
+        return addr.trim();
     }
 
     function getDisplayName(person, withComma) {
@@ -455,19 +717,24 @@
         followUpType.value = '2';
         followUpDate.value = '';
         followUpComments.value = '';
+        
+        var spouse = $('#relationship-table td[typecd=1]');
+        addToSpouseContainerFollowUp.style.display = (spouse.length > 0) ? 'inherit' : 'none';
+        addToSpouseFollowUp.checked = true;
 
         var inputs = followUpVisitors.querySelectorAll('input');
         for (var i = 0; i < inputs.length; i++)
             inputs[i].checked = false;
     }
 
-    function saveFollowUp() {
+    function buildFollowUp() {
         var date = $.trim(followUpDate.value),
             type = $.trim(followUpType.value),
             comments = $.trim(followUpComments.value),
             visitors = [],
             visitorsIds = [],
-            msg = '';
+            msg = '',
+            spouseId = '';
 
         if (comments === '' && (type == 1 || type == 2)) {
             msg += 'Must specify comments<br />';
@@ -494,9 +761,16 @@
             $().toastmessage('showErrorToast', msg);
             return false;
         }
+        
+        var spouse = $('#relationship-table td[typecd=1]');
+        if(spouse.length > 0 && addToSpouseFollowUp.checked) {
+            spouseId = spouse.next()[0].getAttribute('relationid');
+        }
 
         return {
             id: ($dialogTitle.text().indexOf('Edit') === -1) ? genFollowUpId() : followUpId.value,
+            personId: person.id,
+            spouseId: spouseId,
             date: date,
             typeCd: type,
             type: followUpType.selectedOptions[0].text,
@@ -539,6 +813,33 @@
         children[3].innerHTML = followUp.comments;
     }
 
+    function processRelationships(relationships) {
+        detachClickListeners();
+        $('#relationship-table tbody tr').remove();
+        for (var i = 0; i < relationships.length; i++) {
+            appendRelationship(relationships[i]);
+        }
+        attachClickListeners();
+    }
+
+    function appendRelationship(relationship) {
+        if (!relationship.type && relationship.typeCd)
+            relationship.type = relationshipTypeData[relationship.typeCd] || '';
+        $('#relationship-table > tbody:last').append(
+            '<tr relationship_id="' + relationship.id + '">' +
+            '<td data-th="Type" typeCd="' + relationship.typeCd + '">' + relationship.type + '</td>' +
+            '<td data-th="Name" relationId="'+relationship.relation_id+'" relationname="' + relationship.name + '"><a class="person_name" href="manage-person.html?id=' + relationship.relation_id + '">' + relationship.name + '</a></td>' +
+            '<td data-th="" class="relationship-table-button-col"><button class="edit-relationship"><i class="fa fa-edit"></i></button><button class="delete-relationship"><i class="fa fa-minus-circle"></i></button></td>' +
+            '</tr>');
+    }
+
+    function updateRelationshipRow(relationship) {
+        var children = $('#relationship-table tr[relationship_id=' + relationship.id + ']').children();
+        children[0].setAttribute('typeCd', relationship.typeCd);
+        children[0].innerHTML = relationship.type;
+        children[1].innerHTML = relationship.name;
+    }
+
     function setVisitors() {
         if (followUpVisitors.innerHTML.trim() === '') {
             var v;
@@ -552,7 +853,104 @@
             }
         }
     }
+    
+    function addRelationship() {
+        relationshipDialog.dialog('open');
+        clearRelationshipForm();
+        $relationshipDialogTitle.text('Add Relationship');
+    }
 
+    function closeRelationship() {
+        relationshipDialog.dialog('close');
+    }
+    
+    function clearRelationshipForm() {
+        relationshipType.value = '1';
+        relationshipRelation.innerHTML = '(Select a person)';
+        relationshipRelation.setAttribute('relationid', '');
+        relationshipRelation.setAttribute('person_name', '');
+        addToSpouseContainerRelationship.style.display = 'none';
+    }
+
+    function doAddRelationship() {
+        var relationship = buildRelationship();
+        if (relationship === false) return false;
+        
+        saveRelationship(relationship, function(r) {
+            appendRelationship(r);
+            $('button.edit-relationship:last').on('click', onEditRelationshipClick);
+            $('button.delete-relationship:last').on('click', onDeleteRelationshipClick);
+            relationshipDialog.dialog('close');
+        });
+    }
+
+    function doEditRelationship() {
+        var relationship = buildRelationship();
+        if (relationship === false) return false;
+        
+        saveRelationship(relationship, function(r) {
+            updateRelationshipRow(r);
+            relationshipDialog.dialog('close');
+        });
+    }
+    
+    function addCloseRelationship() {
+        if ($relationshipDialogTitle.text().indexOf('Edit') === -1)
+            doAddRelationship();
+        else
+            doEditRelationship();
+    }
+    
+    function buildRelationship() {
+        var type = $.trim(relationshipType.value),
+            relationId = relationshipRelation.getAttribute('relationid'),
+            msg = '',
+            spouseId = '';
+
+        if (!relationId) {
+            msg += 'Must select a person<br />';
+        } else if(relationId == person.id) {
+            msg += 'Person cannot have a relationship with themself<br />';            
+        }
+        
+        if (msg) {
+            $().toastmessage('showErrorToast', msg);
+            return false;
+        }
+        
+        var spouse = $('#relationship-table td[typecd=1]');
+        if(spouse.length > 0 && type === '2' && addToSpouseRelationship.checked) {
+            spouseId = spouse.next()[0].getAttribute('relationid');
+        }
+        
+        return {
+            id: ($relationshipDialogTitle.text().indexOf('Edit') === -1) ? genRelationshipId() : relationshipId.value,
+            spouseId: spouseId,
+            typeCd: type,
+            type: relationshipType.selectedOptions[0].text,
+            person_id: person.id,
+            relation_id: relationId,
+            name: relationshipRelation.getAttribute('person_name')
+        };
+    }
+
+    function onEditRelationshipClick(e) {
+        relationshipDialog.dialog('open');
+        var row = e.currentTarget.parentElement.parentElement;
+
+        relationshipType.value = row.children[0].getAttribute('typeCd') || '';
+        relationshipId.value = row.getAttribute('relationship_id');
+        doSelectPerson(row.children[1].getAttribute('relationid'), row.children[1].getAttribute('relationname'));
+        $relationshipDialogTitle.text('Edit Follow Up');
+    }
+
+    function onDeleteRelationshipClick(e) {
+        if (confirm("Are you sure you would like to PERMANENTLY delete this Relationship?")) {
+            var id = e.currentTarget.parentElement.parentElement.getAttribute('relationship_id');
+            deleteRelationship(id);
+        }
+    }
+    
     function addFollowUp() {
         dialog.dialog('open');
         clearFollowUpForm();
@@ -564,22 +962,26 @@
         dialog.dialog('close');
     }
 
-    function doAddFollowUp() {
-        var followUp = saveFollowUp();
+    function doAddFollowUp(cb) {
+        var followUp = buildFollowUp();
         if (followUp === false) return false;
-        appendFollowUp(followUp);
-        $('button.edit-follow-up:last').on('click', onEditFollowUpClick);
-        $('button.delete-follow-up:last').on('click', onDeleteFollowUpClick);
-        noChangesMade = false;
-        return followUp;
+        saveFollowUp(followUp, function(f) {
+            appendFollowUp(f);
+            $('button.edit-follow-up:last').on('click', onEditFollowUpClick);
+            $('button.delete-follow-up:last').on('click', onDeleteFollowUpClick);
+            noChangesMade = false;
+            cb.call(this);
+        });
     }
 
-    function doEditFollowUp() {
-        var followUp = saveFollowUp();
+    function doEditFollowUp(cb) {
+        var followUp = buildFollowUp();
         if (followUp === false) return false;
-        updateFollowUpRow(followUp);
-        noChangesMade = false;
-        return followUp;
+        saveFollowUp(followUp, function(f) {
+            updateFollowUpRow(f);
+            noChangesMade = false;
+            cb.call(this);
+        });
     }
 
     function addCopy() {
@@ -590,29 +992,22 @@
     }
 
     function addClear() {
-        var res;
         if ($dialogTitle.text().indexOf('Edit') === -1)
-            res = doAddFollowUp();
+            doAddFollowUp(clearFollowUpForm);
         else
-            res = doEditFollowUp();
-
-        if (res)
-            clearFollowUpForm();
+            doEditFollowUp(clearFollowUpForm);
     }
 
     function addClose() {
-        var res;
         if ($dialogTitle.text().indexOf('Edit') === -1)
-            res = doAddFollowUp();
+            doAddFollowUp(closeFollowUp);
         else
-            res = doEditFollowUp();
-
-        if (res)
-            dialog.dialog('close');
+            doEditFollowUp(closeFollowUp);
     }
 
     function onEditFollowUpClick(e) {
         dialog.dialog('open');
+        addToSpouseContainerFollowUp.style.display = 'none';
         setVisitors();
         var row = e.currentTarget.parentElement.parentElement,
             date = row.children[1].innerHTML || '';
@@ -661,6 +1056,19 @@
         followUpDate.disabled = e.currentTarget.checked;
         followUpDate.value = '';
     }
+    
+    function onRelationshipTypeChange() {
+        var type = $.trim(relationshipType.value);
+        
+        // If changing to child then show the 'Add to spouse' checkbox if there is a spouse
+        if(type === '2') {
+            var spouse = $('#relationship-table td[typecd=1]');
+            addToSpouseContainerRelationship.style.display = (spouse.length > 0) ? 'inherit' : 'none';
+            addToSpouseRelationship.checked = true;
+        } else {
+            addToSpouseContainerRelationship.style.display = 'none';
+        }
+    }
 
     function onClickLink(e) {
         if (!(noChangesMade || confirm("If you continue you will lose any unsaved changes. Continue?"))) {
@@ -673,6 +1081,8 @@
         $('#reports-nav').on('click', onClickLink);
         $('button.edit-follow-up').on('click', onEditFollowUpClick);
         $('button.delete-follow-up').on('click', onDeleteFollowUpClick);
+        $('button.edit-relationship').on('click', onEditRelationshipClick);
+        $('button.delete-relationship').on('click', onDeleteRelationshipClick);
     }
 
     function detachClickListeners() {
@@ -680,10 +1090,16 @@
         $('#reports-nav').off('click', onClickLink);
         $('button.edit-follow-up').off('click', onEditFollowUpClick);
         $('button.delete-follow-up').off('click', onDeleteFollowUpClick);
+        $('button.edit-relationship').off('click', onEditRelationshipClick);
+        $('button.delete-relationship').off('click', onDeleteRelationshipClick);
     }
 
     function genFollowUpId() {
-        return --followUpIdSequence;
+        return followUpIdSequence--;
+    }
+    
+    function genRelationshipId() {
+        return relationshipIdSequence--;
     }
 
     // Format the phone number if there is no formatting already and if the number
@@ -706,6 +1122,22 @@
     addClearBtn.addEventListener('click', addClear);
     addCloseBtn.addEventListener('click', addClose);
     closeBtn.addEventListener('click', closeFollowUp);
+    
+    addRelationshipBtn.addEventListener('click', addRelationship);
+    addCloseRelationshipBtn.addEventListener('click', addCloseRelationship);
+    closeRelationshipBtn.addEventListener('click', closeRelationship);
+    $('#relationship-type').on('change', onRelationshipTypeChange);
+    
+    selectPersonBtn.addEventListener('click', openSelectPerson);
+    addNewPersonBtn.addEventListener('click', addNewPerson);
+    searchBtn.addEventListener('click', search);
+    searchField.addEventListener('keydown', function(e) {
+        if (e.keyCode == 13) {
+            search();
+        }
+    });
+    closeSelectPersonBtn.addEventListener('click', close);
+    
     $('#manage-unknown-date').on('change', onChangeUnknownDate);
 
     checkLoginStatus(loadStates);

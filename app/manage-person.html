@@ -58,43 +58,6 @@
         </ul>
     </nav>
 
-    <div class="dialog-form app-form manage-person-follow-up-form" title="Add Follow Up">
-        <div class="dialog-form-inner">
-            <input type="hidden" id="follow-up-id" value="-1" />
-            <label for="follow-up-type">Type:</label>
-            <select id="follow-up-type">
-            </select>
-            <br />
-            <label for="follow-up-date">Date:</label>
-            <input type="text" id="follow-up-date" class="date-field" />
-            <label for="manage-unknown-date">Unknown</label>
-            <input type="checkbox" id="manage-unknown-date" />
-            <br />
-            <label for="follow-up-by">By:</label>
-            <div id="follow-up-visitors">
-            </div>
-            <br />
-            <label for="follow-up-comments">Comments:</label>
-            <br />
-            <textarea rows="4" cols="40" id="follow-up-comments"></textarea>
-        </div>
-        <div class="form-bar background color--gray-keyline">
-            <!--Add and Clear-->
-            <button id="add-clear" type="button" class="button--primary first-button"><i class="fa fa-plus"></i>/<i class="fa fa-refresh"></i>
-            </button>
-            <!--Add and Copy-->
-            <button id="add-copy" type="button" class="button--primary"><i class="fa fa-plus"></i>/<i class="fa fa-copy"></i>
-            </button>
-            <!--Add and Close-->
-            <button id="add-close" type="button" class="button--primary"><i class="fa fa-plus"></i>/<i class="fa fa-close"></i>
-            </button>
-            <div class="spacer"></div>
-            <!--Close-->
-            <button id="close" type="button" class="button--secondary"><i class="fa fa-close"></i>
-            </button>
-        </div>
-    </div>
-
     <main>
         <h1 id="manage-person">Manage Person</h1>
 
@@ -217,23 +180,6 @@
                 <label for="info-visit">I would like a visit from a Guide Church Pastor</label>
             </div>
 
-            <p class="large attendance-header">Follow Ups</p>
-            <div id="follow-up-table-container">
-                <table class="table-5" id="follow-up-table">
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>Date</th>
-                            <th>By</th>
-                            <th>Comments</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-            <button id="add-follow-up" type="button" class="button--secondary first-button"><i class="fa fa-plus"></i> Add Follow Up</button>
             <div class="form-bar background color--gray-keyline">
                 <div class="spacer"></div>
                 <button id="update" type="button" class="button--primary"><i class="fa fa-floppy-o"></i> Save</button>
@@ -242,7 +188,142 @@
             </div>
         </form>
 
+        <p class="large attendance-header">Follow Ups</p>
+        <div id="follow-up-table-container">
+            <table class="table-5" id="follow-up-table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>By</th>
+                        <th>Comments</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <button id="add-follow-up" type="button" class="button--secondary first-button"><i class="fa fa-plus"></i> Add Follow Up</button>
+
+        <div id="relationship-table-container">
+            <p class="large attendance-header">Relationships</p>
+            <table class="table-3" id="relationship-table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <button id="add-relationship" type="button" class="button--secondary first-button"><i class="fa fa-plus"></i> Add Relationship</button>
+        </div>
     </main>
+
+    <div class="dialog-form app-form manage-person-follow-up-form" title="Add Follow Up">
+        <div class="dialog-form-inner">
+            <input type="hidden" id="follow-up-id" value="-1" />
+            <div id="add-to-spouse-container-follow-up">
+                <label for="add-to-spouse-follow-up">Add to spouse:</label>
+                <input type="checkbox" id="add-to-spouse-follow-up" />
+            </div>
+            <label for="follow-up-type">Type:</label>
+            <select id="follow-up-type">
+            </select>
+            <br />
+            <label for="follow-up-date">Date:</label>
+            <input type="text" id="follow-up-date" class="date-field" />
+            <label for="manage-unknown-date">Unknown</label>
+            <input type="checkbox" id="manage-unknown-date" />
+            <br />
+            <label for="follow-up-by">By:</label>
+            <div id="follow-up-visitors">
+            </div>
+            <br />
+            <label for="follow-up-comments">Comments:</label>
+            <br />
+            <textarea rows="4" cols="40" id="follow-up-comments"></textarea>
+        </div>
+        <div class="form-bar background color--gray-keyline">
+            <!--Add and Clear-->
+            <button id="add-clear" type="button" class="button--primary first-button"><i class="fa fa-plus"></i>/<i class="fa fa-refresh"></i>
+            </button>
+            <!--Add and Copy-->
+            <button id="add-copy" type="button" class="button--primary"><i class="fa fa-plus"></i>/<i class="fa fa-copy"></i>
+            </button>
+            <!--Add and Close-->
+            <button id="add-close" type="button" class="button--primary"><i class="fa fa-plus"></i>/<i class="fa fa-close"></i>
+            </button>
+            <div class="spacer"></div>
+            <!--Close-->
+            <button id="close" type="button" class="button--secondary"><i class="fa fa-close"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="dialog-form app-form manage-person-relationship-form" title="Add Relationship">
+        <div class="dialog-form-inner">
+            <input type="hidden" id="relationship-id" value="-1" />
+            <div id="relationship-person-container">
+                <label for="relationship-person">Person:</label>
+                <div id="relationship-relation" relationid="-1">(Select a person)</div>
+                <button id="select-person-btn" class="button--blue-small">Select Person</button>
+            </div>
+            <label for="relationship-type">Type:</label>
+            <select id="relationship-type">
+            </select>
+            <div id="add-to-spouse-container-relationship">
+                <label for="add-to-spouse-relationship">Add to spouse:</label>
+                <input type="checkbox" id="add-to-spouse-relationship" />
+            </div>
+        </div>
+        <div class="form-bar background color--gray-keyline">
+            <!--Add and Close-->
+            <button id="add-close-relationship" type="button" class="button--primary"><i class="fa fa-plus"></i>/<i class="fa fa-close"></i>
+            </button>
+            <div class="spacer"></div>
+            <!--Close-->
+            <button id="close-relationship" type="button" class="button--secondary"><i class="fa fa-close"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="dialog-form app-form select-person-form" title="Select Person">
+        <label for="search-name">Name</label>
+        <input type="text" id="search-name" />
+        <div id="search-container">
+            <div class="search-table-container" id="search-table-container">
+                <table class="table-4 search-table" id="search-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="navigation-links">
+                <a href="javascript:void(0);" id="table-top">Top</a>
+                <a href="javascript:void(0);" id="table-bottom">Bottom</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="form-bar background color--gray-keyline">
+            <button id="add-new-person" type="button" class="button--primary first-button"><i class="fa fa-plus"></i>
+            </button>
+            <div class="spacer"></div>
+            <button id="search" type="button" class="button--primary"><i class="fa fa-search"></i></i>
+            </button>
+            <button id="close-select-person" type="button" class="button--secondary"><i class="fa fa-close"></i>
+            </button>
+        </div>
+    </div>
 
     <!-- build:js scripts/main.min.js -->
     <script src="jquery/jquery-1.11.1.min.js"></script>
