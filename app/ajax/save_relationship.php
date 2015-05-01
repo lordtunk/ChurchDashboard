@@ -36,6 +36,11 @@
                         array(":person_id"=>$relationship->spouseId,
                               ":relation_id"=>$relationship->relation_id,
                               ":type"=>$relationship->typeCd));
+                } else if($relationship->typeCd == "1") {
+                    $f->queryLastInsertId($query, 
+                        array(":person_id"=>$relationship->relation_id,
+                              ":relation_id"=>$relationship->person_id,
+                              ":type"=>$relationship->typeCd));
                 }
             } else {
                 $query = "
