@@ -396,7 +396,7 @@ main {
 }
 
 .app-content label {
-  /* padding-left: 20px; */
+  padding-left: 20px;
   padding-right: 10px;
 }
 
@@ -409,7 +409,7 @@ main {
 .app-content.reports-form label {
   display: inline-block;
   width:150px;
-  /* text-align: right; */
+  text-align: right;
 }
 
 #follow-ups-form-title {
@@ -884,4 +884,8 @@ td.checkbox-table-col {
     font-weight: bold;
     font-style: italic;
     text-align: right;
+}
+body {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
