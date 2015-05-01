@@ -396,15 +396,20 @@ main {
 }
 
 .app-content label {
-  padding-left: 20px;
+  /* padding-left: 20px; */
   padding-right: 10px;
+}
+
+.app-content.login-form {
+  padding-top: 20px;
+  /* margin-left: 20px; */
 }
 
 .app-content.login-form label,
 .app-content.reports-form label {
   display: inline-block;
   width:150px;
-  text-align: right;
+  /* text-align: right; */
 }
 
 #follow-ups-form-title {
@@ -854,6 +859,13 @@ td.checkbox-table-col {
     width: 100%;
     margin-right: 0px;
     margin-bottom: 20px;
+  }
+  .app-content.login-form label {
+    text-align: left;
+    padding-left: 20px;
+  }
+  .app-content.login-form input {
+    margin-left: 20px;
   }
 }
 .checkbox-form-seciton {
