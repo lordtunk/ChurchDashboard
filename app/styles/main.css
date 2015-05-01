@@ -873,6 +873,11 @@ td.checkbox-table-col {
     margin-left: 20px;
   }
 }
+@media all and (max-width:799px) and (orientation:portrait) {
+  .btn-text {
+    display: none;
+  }
+}
 .checkbox-form-seciton {
     margin: 10px 0 10px 40px;
 }
@@ -893,4 +898,10 @@ td.checkbox-table-col {
 body {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
+}
+.ui-datepicker-calendar td {
+  display: table-cell;
+}
+.ui-datepicker-calendar td:before {
+  display: none;
 }
