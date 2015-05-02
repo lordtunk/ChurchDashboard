@@ -899,7 +899,8 @@ body {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 }
-.ui-datepicker-calendar td {
+.ui-datepicker-calendar td,
+.ui-datepicker-calendar th {
   display: table-cell;
 }
 .ui-datepicker-calendar td:before {
