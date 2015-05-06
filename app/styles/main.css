@@ -701,6 +701,11 @@ td.checkbox-table-col {
   width: 120px;
 }
 
+.checkbox-form-section {
+    margin: 10px 0 10px 40px;
+    width: 425px;
+}
+
 /* Larger Screens - desktops and tablets */
 @media all and (min-device-width:1200px) {
   .app-bar {
@@ -843,7 +848,7 @@ td.checkbox-table-col {
     vertical-align: top;
   }
   .address-form-section-title {
-    padding: 0 0 0 50px;
+    padding: 10px 0 0 50px;
   }
   .address-form-section {
     margin: 0 0 10px 50px;
@@ -865,28 +870,81 @@ td.checkbox-table-col {
     margin-right: 0px;
     margin-bottom: 20px;
   }
-  .app-content.login-form label {
-    text-align: left;
-    padding-left: 20px;
-  }
-  .app-content.login-form input {
-    margin-left: 20px;
-  }
 }
 @media all and (max-width:799px) and (orientation:portrait) {
   .btn-text {
     display: none;
   }
+  .checkbox-form-section {
+    margin: 10px 0 10px 20px;
+    width: 225px;
+  }
+  .checkbox {
+    display: block;
+  }
+  .app-content.login-form label,
+  .app-content.view-person label{
+    text-align: left;
+    padding-left: 20px;
+  }
+  .app-content.login-form input,
+  .app-content.view-person input,
+  .address-form-section select,
+  #first-recorded-visit,
+  .contact-form-section-title,
+  .contact-form-section,
+  .address-form-section-title,
+  .commitments-form-section-title,
+  .interested-form-section-title  {
+    margin-left: 20px;
+  }
+  #first-recorded-visit {
+    display: block;
+  }
+  .contact-form-section-title,
+  .address-form-section-title,
+  .commitments-form-section-title,
+  .interested-form-section-title {
+    padding: 10px 0 0 0;
+  }
+  .contact-form-section {
+    width: 255px;
+  }
+  #email {
+    width: 210px;
+  }
+  .phone-panel > input {
+    width: 135px;
+  }
+  .address-form-section {
+    margin: 0 0 10px 20px;
+    width: 255px;
+  }
+  #map-panel {
+    width: 300px;
+  }
+  .commitments-form-section,
+  .interested-form-section {
+    margin: 0 0 10px 20px;
+    width: 255px;
+  }
+  .app-content.view-person .commitments-form-section label,
+  .app-content.view-person .interested-form-section label{
+    padding-left: 0px;
+    padding-bottom: 5px;
+    width: 185px;
+  }
 }
-.checkbox-form-seciton {
-    margin: 10px 0 10px 40px;
-}
-.form-section.checkbox-form-seciton > input {
+.form-section.checkbox-form-section input {
     margin-left: 10px;
 }
-.form-section.checkbox-form-seciton > label {
+.form-section.checkbox-form-section label {
     text-align: left;
     padding-left: 5px;
+}
+
+.checkbox {
+  display: inline-block;
 }
 
 #map-note {

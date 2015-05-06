@@ -77,24 +77,35 @@
             <label>First Recorded Visit:</label>
             <div id="first-recorded-visit"></div>
             <br />
-            <div class="form-section checkbox-form-seciton">
-                <input type="checkbox" id="adult" />
-                <label for="adult">Adult?</label>
-                <input type="checkbox" id="baptized" />
-                <label for="baptized">Baptized?</label>
-                <br />
-                <input type="checkbox" id="active" />
-                <label for="active">Active?</label>
-                <input type="checkbox" id="saved" />
-                <label for="saved">Saved?</label>
-                <br />
-                <input type="checkbox" id="member" />
-                <label for="member">Member?</label>
-                <input type="checkbox" id="visitor" />
-                <label for="visitor">Performs Visits?</label>
-                <br />
-                <input type="checkbox" id="assigned-agent" />
-                <label for="assigned-agent">Assigned an Agent?</label>
+            <div class="form-section checkbox-form-section">
+                <div class="checkbox">
+                    <input type="checkbox" id="adult" />
+                    <label for="adult">Adult?</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="baptized" />
+                    <label for="baptized">Baptized?</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="active" />
+                    <label for="active">Active?</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="saved" />
+                    <label for="saved">Saved?</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="member" />
+                    <label for="member">Member?</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="visitor" />
+                    <label for="visitor">Performs Visits?</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="assigned-agent" />
+                    <label for="assigned-agent">Assigned an Agent?</label>
+                </div>
             </div>
             <br />
             <h4 class="form-section-title contact-form-section-title">Contact</h4>
@@ -121,24 +132,22 @@
                     </select>
                 </div>
             </div>
-            <div class="col-1">
-                <h4 class="form-section-title address-form-section-title">Address</h4>
-                <div class="form-section address-form-section">
-                    <label for="street1">Street 1:</label>
-                    <input type="text" id="street1" />
-                    <br />
-                    <label for="street2">Street 2:</label>
-                    <input type="text" id="street2" />
-                    <br />
-                    <label for="city">City:</label>
-                    <input type="text" id="city" />
-                    <br />
-                    <label for="state">State:</label>
-                    <select id="state"></select>
-                    <br />
-                    <label for="zip">Zip Code:</label>
-                    <input type="text" id="zip" title="5 digit Zip Code" />
-                </div>
+            <h4 class="form-section-title address-form-section-title">Address</h4>
+            <div class="form-section address-form-section">
+                <label for="street1">Street 1:</label>
+                <input type="text" id="street1" />
+                <br />
+                <label for="street2">Street 2:</label>
+                <input type="text" id="street2" />
+                <br />
+                <label for="city">City:</label>
+                <input type="text" id="city" />
+                <br />
+                <label for="state">State:</label>
+                <select id="state"></select>
+                <br />
+                <label for="zip">Zip Code:</label>
+                <input type="text" id="zip" title="5 digit Zip Code" />
             </div>
             <div class="col-2" id="map-panel">
             </div>
@@ -182,9 +191,9 @@
 
             <div class="form-bar background color--gray-keyline">
                 <div class="spacer"></div>
-                <button id="update" type="button" class="button--primary"><i class="fa fa-floppy-o"></i> Save</button>
-                <button id="delete" type="button" class="button button--red"><i class="fa fa-minus-circle"></i> Delete</button>
-                <button id="cancel" type="button" class="button--secondary"><i class="fa fa-refresh"></i> Refresh</button>
+              <button id="update" type="button" class="button--primary"><i class="fa fa-floppy-o"></i> <span class="btn-text">Save</span></button>
+              <button id="delete" type="button" class="button button--red"><i class="fa fa-minus-circle"></i> <span class="btn-text">Delete</span></button>
+              <button id="cancel" type="button" class="button--secondary"><i class="fa fa-refresh"></i> <span class="btn-text">Refresh</span></button>
             </div>
         </form>
 
