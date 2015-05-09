@@ -88,6 +88,18 @@
         followUpDate = dialog[0].querySelector('#follow-up-date'),
         unknownDate = document.querySelector('#manage-unknown-date'),
         followUpVisitors = dialog[0].querySelector('#follow-up-visitors'),
+        communicationCardOptions = dialog[0].querySelector('.communication-card-options'),
+        followUpCommitmentChrist = dialog[0].querySelector('#follow-up-commitment-christ'),
+        followUpRecommitmentChrist = dialog[0].querySelector('#follow-up-recommitment-christ'),
+        followUpCommitmentTithe = dialog[0].querySelector('#follow-up-commitment-tithe'),
+        followUpCommitmentMinistry = dialog[0].querySelector('#follow-up-commitment-ministry'),
+        followUpCommitmentBaptism = dialog[0].querySelector('#follow-up-commitment-baptism'),
+        followUpInfoNext = dialog[0].querySelector('#follow-up-info-next'),
+        followUpInfoGKids = dialog[0].querySelector('#follow-up-info-gkids'),
+        followUpInfoGGroups = dialog[0].querySelector('#follow-up-info-ggroups'),
+        followUpInfoGTeams = dialog[0].querySelector('#follow-up-info-gteams'),
+        followUpInfoMember = dialog[0].querySelector('#follow-up-info-member'),
+        followUpInfoVisit = dialog[0].querySelector('#follow-up-info-visit'),
         followUpComments = dialog[0].querySelector('#follow-up-comments'),
         $dialogTitle = $('.ui-dialog-title').text('Edit Follow Up'),
         $relationshipDialogTitle = $('.ui-dialog-title').text('Edit Relationship'),
@@ -175,6 +187,14 @@
         primaryPhone.value = formatPhoneNumber(p.primary_phone);
         secondaryPhone.value = formatPhoneNumber(p.secondary_phone);
 
+        populateCommunicationCardOptions(p);
+
+        updateMap(p);
+        processFollowUps(p.follow_ups);
+        processRelationships(p.relationships);
+    }
+    
+    function populateCommunicationCardOptions(p) {
         commitmentChrist.checked = p.commitment_christ;
         recommitmentChrist.checked = p.recommitment_christ;
         commitmentTithe.checked = p.commitment_tithe;
@@ -187,10 +207,6 @@
         infoGTeams.checked = p.info_gteams;
         infoMember.checked = p.info_member;
         infoVisit.checked = p.info_visit;
-
-        updateMap(p);
-        processFollowUps(p.follow_ups);
-        processRelationships(p.relationships);
     }
 
     function updateMap(p) {
@@ -527,13 +543,18 @@
                 var data = JSON.parse(msg);
                 if (data.success) {
                     f.id = data.follow_up_id;
+                    convertTrueFalse(data.communication_card_options[0]);
+                    populateCommunicationCardOptions(data.communication_card_options[0]);
                     cb.call(this, f);
                     $().toastmessage('showSuccessToast', "Follow up save successful");
                 } else {
                     if (data.error === 1) {
                         logout();
                     } else {
-                        $().toastmessage('showErrorToast', "Error saving follow up");
+                        if(data.warning)
+                            $().toastmessage('showErrorToast', data.warning);
+                        else
+                            $().toastmessage('showErrorToast', "Error saving follow up");
                     }
                 }
             })
@@ -547,24 +568,38 @@
             type: 'POST',
             url: 'ajax/delete_follow_up.php',
             data: {
-                id: id
+                id: id,
+                personId: person.id
             }
         })
             .done(function(msg) {
                 var data = JSON.parse(msg);
                 if (data.success) {
                     $('#follow-up-table tr[follow_up_id=' + id + ']').remove();
+                    convertTrueFalse(data.communication_card_options[0]);
+                    populateCommunicationCardOptions(data.communication_card_options[0]);
                 } else {
                     if (data.error === 1) {
                         logout();
                     } else {
-                        $().toastmessage('showErrorToast', "Error deleting Follow Up");
+                        if(data.warning)
+                            $().toastmessage('showErrorToast', data.warning);
+                        else
+                            $().toastmessage('showErrorToast', "Error deleting follow up");
                     }
                 }
             })
             .fail(function() {
-                $().toastmessage('showErrorToast', "Error deleting Follow Up");
+                $().toastmessage('showErrorToast', "Error deleting follow up");
             });
+    }
+    
+    function convertTrueFalse(p) {
+        for(var prop in p) {
+            if(p.hasOwnProperty(prop)) {
+                p[prop] = p[prop] === "true";
+            }
+        }
     }
     
     function saveRelationship(r, cb) {
@@ -716,7 +751,24 @@
     function clearFollowUpForm() {
         followUpType.value = '2';
         followUpDate.value = '';
+        followUpDate.disabled = false;
+        unknownDate.checked = false;
         followUpComments.value = '';
+        
+        followUpCommitmentChrist.checked = false;
+        followUpRecommitmentChrist.checked = false;
+        followUpCommitmentTithe.checked = false;
+        followUpCommitmentMinistry.checked = false;
+        followUpCommitmentBaptism.checked = false;
+
+        followUpInfoNext.checked = false;
+        followUpInfoGKids.checked = false;
+        followUpInfoGGroups.checked = false;
+        followUpInfoGTeams.checked = false;
+        followUpInfoMember.checked = false;
+        followUpInfoVisit.checked = false;
+        
+        onFollowUpTypeChange();
         
         var spouse = $('#relationship-table td[typecd=1]');
         addToSpouseContainerFollowUp.style.display = (spouse.length > 0) ? 'inherit' : 'none';
@@ -733,6 +785,19 @@
             comments = $.trim(followUpComments.value),
             visitors = [],
             visitorsIds = [],
+            communication_card_options = {
+                commitment_christ: false,
+                recommitment_christ: false,
+                commitment_tithe: false,
+                commitment_ministry: false,
+                commitment_baptism: false,
+                info_next: false,
+                info_gkids: false,
+                info_ggroups: false,
+                info_gteams: false,
+                info_member: false,
+                info_visit: false
+            },
             msg = '',
             spouseId = '';
 
@@ -763,8 +828,24 @@
         }
         
         var spouse = $('#relationship-table td[typecd=1]');
-        if(spouse.length > 0 && addToSpouseFollowUp.checked) {
+        if(spouse.length > 0 && addToSpouseFollowUp.checked && $dialogTitle.text().indexOf('Edit') === -1) {
             spouseId = spouse.next()[0].getAttribute('relationid');
+        }
+
+        if(type == 3) {
+            communication_card_options = {
+                commitment_christ: followUpCommitmentChrist.checked,
+                recommitment_christ: followUpRecommitmentChrist.checked,
+                commitment_tithe: followUpCommitmentTithe.checked,
+                commitment_ministry: followUpCommitmentMinistry.checked,
+                commitment_baptism: followUpCommitmentBaptism.checked,
+                info_next: followUpInfoNext.checked,
+                info_gkids: followUpInfoGKids.checked,
+                info_ggroups: followUpInfoGGroups.checked,
+                info_gteams: followUpInfoGTeams.checked,
+                info_member: followUpInfoMember.checked,
+                info_visit: followUpInfoVisit.checked
+            };
         }
 
         return {
@@ -776,7 +857,8 @@
             type: followUpType.selectedOptions[0].text,
             comments: comments,
             visitors: visitors,
-            visitorsIds: visitorsIds
+            visitorsIds: visitorsIds,
+            communication_card_options: communication_card_options
         };
     }
 
@@ -793,8 +875,13 @@
         if (!followUp.type && followUp.typeCd)
             followUp.type = followUpTypeData[followUp.typeCd] || '';
         followUp.date = followUp.date || '';
+        var options = [];
+        for(var o in followUp.communication_card_options) {
+            if(followUp.communication_card_options.hasOwnProperty(o) && followUp.communication_card_options[o] === true)
+                options.push(o);
+        }
         $('#follow-up-table > tbody:last').append(
-            '<tr follow_up_id="' + followUp.id + '">' +
+            '<tr follow_up_id="' + followUp.id + '" communication_card_options="' + options.join(',') + '">' +
             '<td data-th="Type" typeCd="' + followUp.typeCd + '">' + followUp.type + '</td>' +
             '<td data-th="Date" class="follow-up-table-date-col">' + followUp.date + '</td>' +
             '<td data-th="By" visitorsIds="' + followUp.visitorsIds.join(',') + '">' + followUp.visitors.join(', ') + '</td>' +
@@ -804,7 +891,15 @@
     }
 
     function updateFollowUpRow(followUp) {
-        var children = $('#follow-up-table tr[follow_up_id=' + followUp.id + ']').children();
+        var row = $('#follow-up-table tr[follow_up_id=' + followUp.id + ']'),
+            children = row.children(),
+            options = [];
+        
+        for(var o in followUp.communication_card_options) {
+            if(followUp.communication_card_options.hasOwnProperty(o) && followUp.communication_card_options[o] === true)
+                options.push(o);
+        }
+        row[0].setAttribute('communication_card_options', options.join(','));
         children[0].setAttribute('typeCd', followUp.typeCd);
         children[0].innerHTML = followUp.type;
         children[1].innerHTML = followUp.date;
@@ -1010,22 +1105,52 @@
         addToSpouseContainerFollowUp.style.display = 'none';
         setVisitors();
         var row = e.currentTarget.parentElement.parentElement,
-            date = row.children[1].innerHTML || '';
+            date = row.children[1].innerHTML || '',
+            optionsArr = (row.getAttribute('communication_card_options') || '').split(','),
+            options = {
+                commitment_christ: false,
+                recommitment_christ: false,
+                commitment_tithe: false,
+                commitment_ministry: false,
+                commitment_baptism: false,
+                info_next: false,
+                info_gkids: false,
+                info_ggroups: false,
+                info_gteams: false,
+                info_member: false,
+                info_visit: false
+            }, i;
+        for(i=0; i<optionsArr.length; i++) {
+            options[optionsArr[i]] = true;
+        }
 
         followUpType.value = row.children[0].getAttribute('typeCd') || '';
         followUpDate.value = date;
         followUpComments.value = row.children[3].innerHTML || '';
         followUpId.value = row.getAttribute('follow_up_id');
         unknownDate.checked = date === '';
+        followUpCommitmentChrist.checked = options.commitment_christ;
+        followUpRecommitmentChrist.checked = options.recommitment_christ;
+        followUpCommitmentTithe.checked = options.commitment_tithe;
+        followUpCommitmentMinistry.checked = options.commitment_ministry;
+        followUpCommitmentBaptism.checked = options.commitment_baptism;
+
+        followUpInfoNext.checked = options.info_next;
+        followUpInfoGKids.checked = options.info_gkids;
+        followUpInfoGGroups.checked = options.info_ggroups;
+        followUpInfoGTeams.checked = options.info_gteams;
+        followUpInfoMember.checked = options.info_member;
+        followUpInfoVisit.checked = options.info_visit;
         followUpDate.disabled = unknownDate.checked;
 
         var visitorIdsString = row.children[2].getAttribute('visitorsIds') || '';
         var visitorIds = visitorIdsString.split(',');
         var inputs = followUpVisitors.querySelectorAll('input');
-        for (var i = 0; i < inputs.length; i++) {
+        for (i = 0; i < inputs.length; i++) {
             inputs[i].checked = visitorIds.indexOf(inputs[i].getAttribute('personid')) >= 0;
         }
-
+        onFollowUpTypeChange();
+        
         $dialogTitle.text('Edit Follow Up');
     }
 
@@ -1068,6 +1193,10 @@
         } else {
             addToSpouseContainerRelationship.style.display = 'none';
         }
+    }
+    
+    function onFollowUpTypeChange() {
+        communicationCardOptions.style.display = (followUpType.value == 3) ? 'inherit' : 'none';
     }
 
     function onClickLink(e) {
@@ -1122,6 +1251,7 @@
     addClearBtn.addEventListener('click', addClear);
     addCloseBtn.addEventListener('click', addClose);
     closeBtn.addEventListener('click', closeFollowUp);
+    $('#follow-up-type').on('change', onFollowUpTypeChange);
     
     addRelationshipBtn.addEventListener('click', addRelationship);
     addCloseRelationshipBtn.addEventListener('click', addCloseRelationship);

@@ -59,6 +59,17 @@
                   f.type follow_up_type,
                   DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
                   f.comments follow_up_comments,
+                  f.commitment_christ follow_up_commitment_christ,
+                  f.recommitment_christ follow_up_recommitment_christ,
+                  f.commitment_tithe follow_up_commitment_tithe,
+                  f.commitment_ministry follow_up_commitment_ministry,
+                  f.commitment_baptism follow_up_commitment_baptism,
+                  f.info_next follow_up_info_next,
+                  f.info_gkids follow_up_info_gkids,
+                  f.info_ggroups follow_up_info_ggroups,
+                  f.info_gteams follow_up_info_gteams,
+                  f.info_member follow_up_info_member,
+                  f.info_visit follow_up_info_visit,
                   v.follow_up_id visitor_follow_up_id,
                   v.person_id,
                   fp.first_name follow_up_first_name,
@@ -170,6 +181,21 @@
                             $fo['comments'] = $row['follow_up_comments'];
                             $fo['visitors'] = array();
                             $fo['visitorsIds'] = array();
+                            
+                            $options = array();
+                            $options['commitment_christ'] = $row['follow_up_commitment_christ'] ? TRUE : FALSE;
+                            $options['recommitment_christ'] = $row['follow_up_recommitment_christ'] ? TRUE : FALSE;
+                            $options['commitment_tithe'] = $row['follow_up_commitment_tithe'] ? TRUE : FALSE;
+                            $options['commitment_ministry'] = $row['follow_up_commitment_ministry'] ? TRUE : FALSE;
+                            $options['commitment_baptism'] = $row['follow_up_commitment_baptism'] ? TRUE : FALSE;
+                            $options['info_next'] = $row['follow_up_info_next'] ? TRUE : FALSE;
+                            $options['info_gkids'] = $row['follow_up_info_gkids'] ? TRUE : FALSE;
+                            $options['info_ggroups'] = $row['follow_up_info_ggroups'] ? TRUE : FALSE;
+                            $options['info_gteams'] = $row['follow_up_info_gteams'] ? TRUE : FALSE;
+                            $options['info_member'] = $row['follow_up_info_member'] ? TRUE : FALSE;
+                            $options['info_visit'] = $row['follow_up_info_visit'] ? TRUE : FALSE;
+
+                            $fo['communication_card_options'] = $options;
 
                             array_push($people[$j]['follow_ups'], $fo);
                             $l = count($people[$j]['follow_ups']) - 1;
