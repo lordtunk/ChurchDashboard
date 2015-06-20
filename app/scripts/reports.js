@@ -26,9 +26,9 @@
   function onReportTypeChange() {
     var reportType = parseInt(reportTypeField.value);
     
-    $('#report-type-container')[0].style.setProperty('display', (reportType === 3) ? 'inline-block' : 'block');
-    $('#from-to-dates')[0].style.setProperty('display', (reportType === 3) ? 'none' : 'inline-block');
-    if(reportType === 3 || reportType === 4) {
+    $('#report-type-container')[0].style.setProperty('display', (reportType === 3 || reportType === 5) ? 'inline-block' : 'block');
+    $('#from-to-dates')[0].style.setProperty('display', (reportType === 3 || reportType === 5) ? 'none' : 'inline-block');
+    if(reportType === 3 || reportType === 4 || reportType === 5) {
       fromDateField.value = '';
       toDateField.value = '';
     }
@@ -46,44 +46,46 @@
       switch(reportType) {
         case 1:
           $('#attendance-by-date-container')[0].style.setProperty('display', 'inherit');
-	  params = {
-	    fromDate: fromDateField.value,
-	    toDate: toDateField.value
-	  };
+          params = {
+            fromDate: fromDateField.value,
+            toDate: toDateField.value
+          };
           break;
         case 2:
           $('#attendance-by-person-container')[0].style.setProperty('display', 'inherit');
-	  params = {
-	    fromDate: fromDateField.value,
-	    toDate: toDateField.value
-	  };
+          params = {
+            fromDate: fromDateField.value,
+            toDate: toDateField.value
+          };
           break;
         case 3:
           $('#attendance-by-mia-container')[0].style.setProperty('display', 'inherit');
           break;
-	case 4:
+	   case 4:
           $('#follow-up-container')[0].style.setProperty('display', 'inherit');
-	  params = {
-	    fromDate: fromDateField.value,
-	    toDate: toDateField.value,
-	    active: $('#active').is(':checked'),
-	    not_visited: $('#not-visited').is(':checked'),
-	    ty_card_not_sent: $('#ty-card-not-sent').is(':checked'),
-	    signed_up_for_baptism: $('#signed-up-for-baptism').is(':checked'),
-	    baptized: $('#baptized').is(':checked'),
-	    interested_in_gkids: $('#interested-in-gkids').is(':checked'),
-	    interested_in_next: $('#interested-in-next').is(':checked'),
-	    interested_in_ggroups: $('#interested-in-ggroups').is(':checked'),
-	    interested_in_gteams: $('#interested-in-gteams').is(':checked'),
-	    interested_in_joining: $('#interested-in-joining').is(':checked'),
-	    would_like_visit: $('#would-like-visit').is(':checked'),
-	    no_agent: $('#no-agent').is(':checked'),
-	    commitment_christ: $('#commitment-christ').is(':checked'),
-	    recommitment_christ: $('#recommitment-christ').is(':checked'),
-	    commitment_tithe: $('#commitment-tithe').is(':checked'),
-	    commitment_ministry: $('#commitment-ministry').is(':checked')
-	  };
+          params = {
+            fromDate: fromDateField.value,
+            toDate: toDateField.value,
+            active: $('#active').is(':checked'),
+            not_visited: $('#not-visited').is(':checked'),
+            ty_card_not_sent: $('#ty-card-not-sent').is(':checked'),
+            signed_up_for_baptism: $('#signed-up-for-baptism').is(':checked'),
+            baptized: $('#baptized').is(':checked'),
+            interested_in_gkids: $('#interested-in-gkids').is(':checked'),
+            interested_in_next: $('#interested-in-next').is(':checked'),
+            interested_in_ggroups: $('#interested-in-ggroups').is(':checked'),
+            interested_in_gteams: $('#interested-in-gteams').is(':checked'),
+            interested_in_joining: $('#interested-in-joining').is(':checked'),
+            would_like_visit: $('#would-like-visit').is(':checked'),
+            no_agent: $('#no-agent').is(':checked'),
+            commitment_christ: $('#commitment-christ').is(':checked'),
+            recommitment_christ: $('#recommitment-christ').is(':checked'),
+            commitment_tithe: $('#commitment-tithe').is(':checked'),
+            commitment_ministry: $('#commitment-ministry').is(':checked')
+          };
           break;
+        case 5:
+          $('#people-by-attender-status-container')[0].style.setProperty('display', 'inherit');
       }
       loadReport(reportType, params);
     }
@@ -212,6 +214,17 @@
     }
     $('#follow-up-table > tbody:last').append(rows);
   }
+    
+    
+  function populatePeopleByAttenderStatus(people) {
+    $('#people-by-attender-status-table > tbody:last').empty();
+    var rows= '';
+    for(var i=0; i<people.length; i++) {
+      if(people[i].adult == 'true')
+        rows += buildMiaRow(people[i]);
+    }
+    $('#people-by-attender-status-table > tbody:last').append(rows);
+  }
   
   function buildMiaRow(person) {
     var display = '';
@@ -308,9 +321,12 @@
           case 3:
             populateAttendanceByMia(data.people);
             break;
-	  case 4:
-	    populateFollowUps(data.people);
-	    break;
+          case 4:
+            populateFollowUps(data.people);
+            break;
+          case 5:
+            populatePeopleByAttenderStatus(data.people);
+            break;
         }
       } else {
         if(data.error === 1) {

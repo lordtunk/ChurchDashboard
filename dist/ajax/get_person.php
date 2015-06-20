@@ -29,6 +29,7 @@
                   p.last_name,
                   p.description,
                   DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
+                  p.attender_status,
                   p.active,
                   p.adult,
                   p.saved,
@@ -43,7 +44,9 @@
                   p.zip,
                   p.email,
                   p.primary_phone,
+                  p.primary_phone_type,
                   p.secondary_phone,
+                  p.secondary_phone_type,
                   p.commitment_christ,
                   p.recommitment_christ,
                   p.commitment_tithe,
@@ -119,6 +122,7 @@
                         $p['last_name'] = $row['last_name'];
                         $p['description'] = $row['description'];
                         $p['first_visit'] = $row['first_visit'];
+                        $p['attender_status'] = $row['attender_status'];
                         $p['adult'] = $row['adult'] ? TRUE : FALSE;
                         $p['active'] = $row['active'] ? TRUE : FALSE;
                         $p['saved'] = $row['saved'] ? TRUE : FALSE;
@@ -133,7 +137,9 @@
                         $p['zip'] = $row['zip'];
                         $p['email'] = $row['email'];
                         $p['primary_phone'] = $row['primary_phone'];
+                        $p['primary_phone_type'] = $row['primary_phone_type'];
                         $p['secondary_phone'] = $row['secondary_phone'];
+                        $p['secondary_phone_type'] = $row['secondary_phone_type'];
                         $p['commitment_christ'] = $row['commitment_christ'] ? TRUE : FALSE;
                         $p['recommitment_christ'] = $row['recommitment_christ'] ? TRUE : FALSE;
                         $p['commitment_tithe'] = $row['commitment_tithe'] ? TRUE : FALSE;

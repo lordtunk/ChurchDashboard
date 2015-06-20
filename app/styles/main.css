@@ -83,9 +83,14 @@ body {
   z-index: 2;
 }
 
+.app-bar input {
+  padding-left: 5px;
+}
+
 .app-bar button {
-  width: 60px;
-  height: 60px;
+  width: 45px;
+  height: 45px;
+  color: white;
   background-image: none;
   background-color: transparent;
   border: none;
@@ -242,7 +247,7 @@ main {
 
 .app-content {
   border: 1px solid gray;
-  /* padding-top: 20px; */
+  padding-top: 20px;
 }
 
 #go-arrow {
@@ -714,6 +719,33 @@ td.checkbox-table-col {
     width: 425px;
 }
 
+#number-of-attempts {
+  width: 40px;
+}
+#files {
+  margin: 10px;
+}
+
+#progress_bar {
+  width: 90%;
+  margin: 10px auto;
+  padding: 3px;
+  font-size: 14px;
+  clear: both;
+  opacity: 0;
+  -moz-transition: opacity 1s linear;
+  -o-transition: opacity 1s linear;
+  -webkit-transition: opacity 1s linear;
+}
+#progress_bar.loading {
+  opacity: 1.0;
+}
+#progress_bar .percent {
+  background-color: #99ccff;
+  height: auto;
+  width: 0;
+}
+
 /* Larger Screens - desktops and tablets */
 @media all and (min-device-width:1200px) {
   .app-bar {
@@ -736,9 +768,10 @@ td.checkbox-table-col {
     line-height: 130px;
     font-size: 46px;
   }
-
+  
   .app-bar-actions {
     float: right;
+    margin: 42px 0;
   }
 
   .app-bar:after {
@@ -880,6 +913,9 @@ td.checkbox-table-col {
   }
 }
 @media all and (max-width:799px) and (orientation:portrait) {
+  .app-bar input {
+    display: none;
+  }
   .btn-text {
     display: none;
   }
@@ -890,10 +926,16 @@ td.checkbox-table-col {
   .checkbox {
     display: block;
   }
+  
   .app-content.login-form label,
   .app-content.view-person label{
     text-align: left;
     padding-left: 20px;
+    vertical-align: top;
+  }
+  #attender-status {
+    margin-left: 20px;
+    margin-right: 105px;
   }
   .app-content.login-form input,
   .app-content.view-person input,

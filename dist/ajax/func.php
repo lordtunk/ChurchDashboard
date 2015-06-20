@@ -1,13 +1,18 @@
 <?php
+  require("autoload.php");
+  use Vimeo\Vimeo;
   class Func {
     private $db = NULL;
     private $logFileName = "../logs/log.txt";
-      private $logFileNamePrefix = "../logs/log-";
+    private $logFileNamePrefix = "../logs/log-";
     private $configFileName = "../config.ini";
     private $dbHost = "";
     private $dbName = "";
     private $dbUser = "";
     private $dbPass = "";
+    private $client_id = "";
+    private $client_secret = "";
+    private $access_token = "";
 
     // INFO = 1
     // DEBUG = 2
@@ -50,6 +55,51 @@
 
     function rollback() {
       $this->db->rollback();
+    }
+      
+    function getUser() {
+        $lib = new Vimeo($this->client_id, $this->client_secret);
+        if (!empty($this->access_token)) {
+            $lib->setToken($this->access_token);
+            $user = $lib->request('/me');
+        } else {
+            $user = $lib->request('/users/dashron');
+        }
+        if ($user['status'] != 200) {
+            $this->logMessage('Could not locate the requested resource uri [/me]'.$user);
+            throw new Exception('Could not locate the requested resource uri [/me]');
+        }
+        return $user;
+    }
+      
+    function generateUploadTicket() {
+        $lib = new Vimeo($this->client_id, $this->client_secret);
+        $ticket = null;
+        if (!empty($this->access_token)) {
+            $lib->setToken($this->access_token);
+            $ticket = $lib->request('/me/videos', array('type'=>'streaming'), 'POST');
+        } else {
+            throw new Exception('Must have access token');
+        }
+        return $ticket;
+    }
+      
+    function getQuota() {
+        $lib = new Vimeo($this->client_id, $this->client_secret);
+        $resource = null;
+        if (!empty($this->access_token)) {
+            $lib->setToken($this->access_token);
+            $resource = $lib->request('/me');
+        } else {
+            throw new Exception('Must have access token');
+        }
+        if ($resource['status'] != 200) {
+            $this->logMessage('Could not locate the requested resource uri [/me]'.$resource);
+            throw new Exception('Could not locate the requested resource uri [/me]');
+        }
+        if(empty($resource['body']['upload_quota']))
+            throw new Exception('The resource loaded does not have the upload_quota');
+        return $resource['body']['upload_quota'];
     }
 
     function CWD() {

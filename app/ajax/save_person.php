@@ -28,7 +28,7 @@
             $person->active = $person->active ? 1 : 0;
             $person->baptized = $person->baptized ? 1 : 0;
             $person->saved = $person->saved ? 1 : 0;
-            $person->member = $person->member ? 1 : 0;
+            //$person->member = $person->member ? 1 : 0;
             $person->visitor = $person->visitor ? 1 : 0;
             $person->assigned_agent = $person->assigned_agent ? 1 : 0;
             $person->first_name = trim($person->first_name);
@@ -43,17 +43,6 @@
             $person->email = trim($person->email);
             $person->primary_phone = trim($person->primary_phone);
             $person->secondary_phone = trim($person->secondary_phone);
-//            $person->commitment_christ = $person->commitment_christ ? 1 : 0;
-//            $person->recommitment_christ = $person->recommitment_christ ? 1 : 0;
-//            $person->commitment_tithe = $person->commitment_tithe ? 1 : 0;
-//            $person->commitment_ministry = $person->commitment_ministry ? 1 : 0;
-//            $person->commitment_baptism = $person->commitment_baptism ? 1 : 0;
-//            $person->info_next = $person->info_next ? 1 : 0;
-//            $person->info_gkids = $person->info_gkids ? 1 : 0;
-//            $person->info_ggroups = $person->info_ggroups ? 1 : 0;
-//            $person->info_gteams = $person->info_gteams ? 1 : 0;
-//            $person->info_member = $person->info_member ? 1 : 0;
-//            $person->info_visit = $person->info_visit ? 1 : 0;
 
 
             // Make sure their is a valid person id and
@@ -129,17 +118,6 @@
 //                          email=:email,
 //                          primary_phone=:primary_phone,
 //                          secondary_phone=:secondary_phone,
-//                          commitment_christ=:commitment_christ,
-//                          recommitment_christ=:recommitment_christ,
-//                          commitment_tithe=:commitment_tithe,
-//                          commitment_ministry=:commitment_ministry,
-//                          commitment_baptism=:commitment_baptism,
-//                          info_next=:info_next,
-//                          info_gkids=:info_gkids,
-//                          info_ggroups=:info_ggroups,
-//                          info_gteams=:info_gteams,
-//                          info_member=:info_member,
-//                          info_visit=:info_visit,
 //                          last_modified_dt=NOW(),
 //                          modified_by=:modified_by
 //                        WHERE
@@ -151,11 +129,11 @@
                           last_name=:last_name,
                           description=:description,
                           first_visit=:first_visit,
+                          attender_status=:attender_status,
                           adult=:adult,
                           active=:active,
                           baptized=:baptized,
                           saved=:saved,
-                          member=:member,
                           visitor=:visitor,
                           assigned_agent=:assigned_agent,
                           street1=:street1,
@@ -165,7 +143,9 @@
                           zip=:zip,
                           email=:email,
                           primary_phone=:primary_phone,
+                          primary_phone_type=:primary_phone_type,
                           secondary_phone=:secondary_phone,
+                          secondary_phone_type=:secondary_phone_type,
                           last_modified_dt=NOW(),
                           modified_by=:modified_by
                         WHERE
@@ -174,12 +154,13 @@
                 array(":first_name"=>$person->first_name, 
                     ":last_name"=>$person->last_name, 
                     ":description"=>$person->description,
-                    ":first_visit"=>$person->first_visit, 
+                    ":first_visit"=>$person->first_visit,
+                    ":attender_status"=>$person->attender_status,
                     ":adult"=>$person->adult, 
                     ":active"=>$person->active,
                     ":baptized"=>$person->baptized,
                     ":saved"=>$person->saved,
-                    ":member"=>$person->member,
+                    //":member"=>$person->member,
                     ":visitor"=>$person->visitor,
                     ":assigned_agent"=>$person->assigned_agent,
                     ":street1"=>$person->street1,
@@ -189,24 +170,14 @@
                     ":zip"=>$person->zip,
                     ":email"=>$person->email,
                     ":primary_phone"=>$person->primary_phone,
+                    ":primary_phone_type"=>$person->primary_phone_type,
                     ":secondary_phone"=>$person->secondary_phone,
-//                    ":commitment_christ"=>$person->commitment_christ,
-//                    ":recommitment_christ"=>$person->recommitment_christ,
-//                    ":commitment_tithe"=>$person->commitment_tithe,
-//                    ":commitment_ministry"=>$person->commitment_ministry,
-//                    ":commitment_baptism"=>$person->commitment_baptism,
-//                    ":info_next"=>$person->info_next,
-//                    ":info_gkids"=>$person->info_gkids,
-//                    ":info_ggroups"=>$person->info_ggroups,
-//                    ":info_gteams"=>$person->info_gteams,
-//                    ":info_member"=>$person->info_member,
-//                    ":info_visit"=>$person->info_visit,
+                    ":secondary_phone_type"=>$person->secondary_phone_type,
                     ":modified_by"=>$user_id, 
                     ":id"=>$person->id));
 
             $f->commit();
             $dict['success'] = TRUE;
-            $dict['follow_ups'] = $person->follow_ups;
         } catch (Exception $e) {
           $dict['success'] = FALSE;
           $dict['msg']= $e->getMessage();

@@ -12,11 +12,12 @@
         description = document.querySelector('#description'),
         firstVisit = document.querySelector('#first-visit'),
         firstRecordedVisit = document.querySelector('#first-recorded-visit'),
+        attenderStatus = document.querySelector('#attender-status'),
         adult = document.querySelector('#adult'),
         active = document.querySelector('#active'),
         baptized = document.querySelector('#baptized'),
         saved = document.querySelector('#saved'),
-        member = document.querySelector('#member'),
+        //member = document.querySelector('#member'),
         visitor = document.querySelector('#visitor'),
         assignedAgent = document.querySelector('#assigned-agent'),
         street1 = document.querySelector('#street1'),
@@ -26,6 +27,8 @@
         email = document.querySelector('#email'),
         primaryPhone = document.querySelector('#primary-phone'),
         secondaryPhone = document.querySelector('#secondary-phone'),
+        primaryPhoneType = document.querySelector('#primary-phone-type'),
+        secondaryPhoneType = document.querySelector('#secondary-phone-type'),
         stateSelect = document.querySelector('#state'),
         commitmentChrist = document.querySelector('#commitment-christ'),
         recommitmentChrist = document.querySelector('#recommitment-christ'),
@@ -120,6 +123,11 @@
             1: 'Spouse',
             2: 'Child',
             3: 'Parent'
+        },
+        attenderStatusData = {
+            1: 'Member',
+            2: 'Regular',
+            3: 'Irregular'
         };
 
     (window.onpopstate = function() {
@@ -160,6 +168,12 @@
             $select.append('<option value=' + typeCd + '>' + type + '</option>');
         });
         $select.val('1');
+        
+        $select = $('#attender-status');
+        $.each(attenderStatusData, function(typeCd, type) {
+            $select.append('<option value=' + typeCd + '>' + type + '</option>');
+        });
+        $select.val('3');
     }
 
     function populateForm(p) {
@@ -168,11 +182,12 @@
         description.value = p.description;
         firstVisit.value = p.first_visit;
         firstRecordedVisit.innerHTML = p.first_attendance_dt || '<span style="font-style: italic;">(None)</span>';
+        attenderStatus.value = p.attender_status;
         adult.checked = p.adult;
         active.checked = p.active;
         baptized.checked = p.baptized;
         saved.checked = p.saved;
-        member.checked = p.member;
+        //member.checked = p.member;
         visitor.checked = p.visitor;
         assignedAgent.checked = p.assigned_agent;
 
@@ -185,7 +200,9 @@
 
         email.value = p.email;
         primaryPhone.value = formatPhoneNumber(p.primary_phone);
+        primaryPhoneType.value = p.primary_phone_type;
         secondaryPhone.value = formatPhoneNumber(p.secondary_phone);
+        secondaryPhoneType.value = p.secondary_phone_type;
 
         populateCommunicationCardOptions(p);
 
@@ -225,11 +242,12 @@
             last_name: $.trim(lastName.value),
             description: $.trim(description.value),
             first_visit: $.trim(firstVisit.value),
+            attender_status: attenderStatus.value,
             adult: adult.checked,
             active: active.checked,
             baptized: baptized.checked,
             saved: saved.checked,
-            member: member.checked,
+            //member: member.checked,
             visitor: visitor.checked,
             assigned_agent: assignedAgent.checked,
             street1: $.trim(street1.value),
@@ -239,7 +257,9 @@
             state: $.trim(stateSelect.value),
             email: $.trim(email.value),
             primary_phone: $.trim(primaryPhone.value),
+            primary_phone_type: primaryPhoneType.value,
             secondary_phone: $.trim(secondaryPhone.value),
+            secondary_phone_type: secondaryPhoneType.value,
             commitment_christ: commitmentChrist.checked,
             recommitment_christ: recommitmentChrist.checked,
             commitment_tithe: commitmentTithe.checked,
@@ -250,8 +270,7 @@
             info_ggroups: infoGGroups.checked,
             info_gteams: infoGTeams.checked,
             info_member: infoMember.checked,
-            info_visit: infoVisit.checked,
-            follow_ups: getFollowUps()
+            info_visit: infoVisit.checked
         };
         
         if($.trim(getAddressString(p)) === 'OH')
@@ -265,9 +284,11 @@
     function getFollowUps() {
         var followUps = [];
         $('#follow-up-table tbody tr').each(function(ind, row) {
+            var typeCd = row.children[0].getAttribute('typeCd') || '';
             followUps.push({
                 id: row.getAttribute('follow_up_id'),
-                typeCd: row.children[0].getAttribute('typeCd') || '',
+                typeCd: typeCd,
+                type: followUpTypeData[typeCd],
                 date: row.children[1].innerHTML || '',
                 comments: row.children[3].innerHTML || '',
                 visitorsIds: row.children[2].getAttribute('visitorsIds').split(',') || '',
@@ -275,6 +296,22 @@
             });
         });
         return followUps;
+    }
+    
+    function getRelationships() {
+        var relationships = [];
+        $('#relationship-table tbody tr').each(function(ind, row) {
+            var typeCd = row.children[0].getAttribute('typeCd') || '';
+            relationships.push({
+                id: row.getAttribute('relationship_id'),
+                typeCd: typeCd,
+                type: relationshipTypeData[typeCd],
+                person_id: person.id,
+                relation_id: row.children[1].getAttribute('relationid'),
+                name: row.children[1].getAttribute('relationname')
+            });
+        });
+        return relationships;
     }
 
     function validateUpdate(p) {
@@ -488,10 +525,11 @@
             .done(function(msg) {
                 var data = JSON.parse(msg);
                 if (data.success) {
+                    p.follow_ups = getFollowUps();
+                    p.relationships = getRelationships();
                     person = p;
                     noChangesMade = true;
                     updateMap(p);
-                    processFollowUps(data.follow_ups);
                     $().toastmessage('showSuccessToast', "Save successful");
                 } else {
                     if (data.error === 1) {
