@@ -7,7 +7,6 @@
         ticket_id = '',
         access_token = '';
     hup.input.on('fileListLoaded', function(event, data) {
-            console.log(data);
             progress.style.width = '0%';
             progress.textContent = '0%';
             document.getElementById('progress_bar').className = 'loading';
@@ -21,6 +20,11 @@
                 progress.style.width = percentLoaded + '%';
                 progress.textContent = percentLoaded + '%';
             }
+        }).on('fileReadError', function(event, data) {
+            $('#status').text(data.error);
+            document.getElementById('status').className = 'loading';
+            setTimeout(function() { document.getElementById('progress_bar').className=''; }, 2000);
+            setTimeout(function() { document.getElementById('status').className=''; }, 2000);
         }).on('fileReadFinished', function(event, data) {
             console.log(data);
             // Ensure that the progress bar displays 100% at the end.
@@ -50,7 +54,7 @@
     var progress = document.querySelector('.percent');
 
     function abortRead() {
-        debugger;
+        //debugger;
         if(hup.reader)
             hup.reader.abort();
     }

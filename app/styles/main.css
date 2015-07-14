@@ -726,7 +726,12 @@ td.checkbox-table-col {
   margin: 10px;
 }
 
-#progress_bar {
+#status {
+  color: red;
+}
+
+#progress_bar,
+#status {
   width: 90%;
   margin: 10px auto;
   padding: 3px;
@@ -737,7 +742,8 @@ td.checkbox-table-col {
   -o-transition: opacity 1s linear;
   -webkit-transition: opacity 1s linear;
 }
-#progress_bar.loading {
+#progress_bar.loading,
+#status.loading{
   opacity: 1.0;
 }
 #progress_bar .percent {

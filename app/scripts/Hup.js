@@ -219,7 +219,7 @@
             else
                 this.reader = fprocess;
 
-            fprocess.progress(function(progress){
+            fprocess.start().progress(function(progress){
                 that.input.trigger(progress.state, progress);
             }).done(function(res){
                 that.input.trigger(res.state, res);
@@ -431,12 +431,16 @@
 
         this.listen();
         this.reader[read_method](file);
-
-        return this.defer.promise();
+        
+        //return this.defer.promise();
     }
     
     DeferReader.prototype.abort = function(){
         this.reader.abort();
+    };
+    
+    DeferReader.prototype.start = function(){
+        return this.defer.promise();
     };
 
     /**
@@ -449,7 +453,7 @@
         this.reader.addEventListener('error', function(event){
             var err = event.target.error,
                 errCode = event.target.error.code,
-                errMsg = 'Error attempting to read file "'+this.file.name+'": ';
+                errMsg = 'Error attempting to read file "'+that.file.name+'": ';
             switch(errCode)
             {
                 case err.NOT_FOUND_ERR:
