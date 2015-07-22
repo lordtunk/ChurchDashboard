@@ -2,137 +2,224 @@
     'use strict';
     if($('.upload-form').length === 0) return;
     
-    var hups = $('#files').hup({ read_method: 'readAsText', type: 'PUT' }),
-        hup = hups[0],
-        ticket_id = '',
-        access_token = '';
-    hup.input.on('fileListLoaded', function(event, data) {
-            progress.style.width = '0%';
-            progress.textContent = '0%';
-            document.getElementById('progress_bar').className = 'loading';
-        }).on('fileTypeError', function(event, data) {
-            console.log(data);
-        }).on('fileSizeError', function(event, data) {
-            console.log(data);
-        }).on('fileReadProgress', function(event, data) {
-            var percentLoaded = Math.round((data.progress * 100) * 100) / 100;
-            if (percentLoaded < 100) {
-                progress.style.width = percentLoaded + '%';
-                progress.textContent = percentLoaded + '%';
+    var ticket_id = '',
+        access_token = '',
+        ticket_uri = '',
+        upload_link = '',
+        complete_uri = '',
+        fileSize = 0,
+        fileType = 'video/mp4',
+        fileName = 'Temp',
+        progress = document.querySelector('.percent'),
+        cancel = false;
+
+    function parseFile (file) {
+        var chunkSize  = 64 * 1024; // bytes
+        var offset     = 0;
+        var self       = this; // we need a reference to the current object
+        var block      = null;
+        var start      = 0;
+        prepUpload();
+        function onRead (evt) {
+            if (evt.target.error == null) {
+                start = offset;
+                offset += evt.target.result.length;
+
+                if (offset >= fileSize) {
+                    $('#percent').text('100%');
+                    $('#status').text('Done!');
+                    return;
+                } else {
+                    var percent = ((offset/fileSize)*100).toFixed(2);
+                    $('#percent').text(percent+'%');
+                    $('#percent').css('width', percent+'%')
+                }
+                if(cancel === true) {
+                    $('#status').text('Cancelled');
+                    hideProgressBar();
+                } else {
+                    var cb = function() {
+                        block(offset, chunkSize, file);
+                    };
+                    // If the first read
+                    if(start === 0)
+                        uploadFirstChunk(evt.target.result, cb);
+                    else
+                        uploadChunk(start, offset, evt.target.result, cb);
+                }
+            } else {
+                console.log("Read error: " + evt.target.error);
+                return;
             }
-        }).on('fileReadError', function(event, data) {
-            $('#status').text(data.error);
-            document.getElementById('status').className = 'loading';
-            setTimeout(function() { document.getElementById('progress_bar').className=''; }, 2000);
-            setTimeout(function() { document.getElementById('status').className=''; }, 2000);
-        }).on('fileReadFinished', function(event, data) {
-            console.log(data);
-            // Ensure that the progress bar displays 100% at the end.
-            progress.style.width = '100%';
-            progress.textContent = '100%';
-            setTimeout(function() { document.getElementById('progress_bar').className=''; }, 2000);
-        }).on('fileReadAll', function(event, data) {
-            console.log(data);
-        }).on('fileUploadProgress', function(event, data) {
-            console.log(data);
-        }).on('fileUploadPause', function(event, data) {
-            console.log(data);
-        }).on('fileUploadResume', function(event, data) {
-            console.log(data);
-        }).on('fileUploadFinished', function(event, data) {
-            console.log(data);
-            // Ensure that the progress bar displays 100% at the end.
-            progress.style.width = '100%';
-            progress.textContent = '100%';
-            setTimeout(function() { document.getElementById('progress_bar').className=''; }, 2000);
-        }).on('fileUploadAll', function(event, data) {
-            console.log(data);
+        }
+
+        block = function (_offset, length, _file) {
+            var r = new FileReader();
+            var blob = _file.slice(_offset, length + _offset);
+            r.onload = onRead;
+            r.readAsText(blob);
+        };
+
+        block(offset, chunkSize, file);
+    }
+
+    function upload () {
+        var f = $('#files')[0];
+        if(f.files.length === 0) return;
+        fileSize = f.files[0].size;
+        fileType = f.files[0].type;
+        fileName = $('#file-name').text();
+        
+        $('#upload-btn')[0].style.setProperty('display', 'none');
+        generateTicket(fileSize, function() {
+            parseFile(f.files[0]);
         });
-    
+    }
 
-    
-    var progress = document.querySelector('.percent');
+    function cancelUpload () {
+        cancel = true;
+        $('#status').text('Cancelling...');
+    }
 
-    function abortRead() {
-        //debugger;
-        if(hup.reader)
-            hup.reader.abort();
+    function prepUpload () {
+        cancel = false;
+        document.getElementById('progress-bar').className = 'loading';
+        document.getElementById('status').className = 'loading';
+        $('#cancel-btn')[0].style.setProperty('display', 'inline-block');
+        $('#percent').text('0%');
+        $('#status').text('Uploading...');
+        $('#percent').css('width', '0%');
+        $("#upload-settings *").attr("disabled", "disabled").off('click');
+    }
+
+    function hideProgressBar () {
+        $('#upload-btn')[0].style.setProperty('display', 'inline-block');
+        $('#cancel-btn')[0].style.setProperty('display', 'none');
+        $("#upload-settings *").attr("disabled", false).on('click');
+        setTimeout(function() { 
+            document.getElementById('progress-bar').className=''; 
+            document.getElementById('status').className='';
+        }, 2000);
     }
     
-    function finishUpload() {
+    function uploadFirstChunk (data, length, cb) {
+        var me = this;
         $.ajax({
-          url: "https://api.vimeo.com/users/guidechurch/tickets/"+ticket_id,
+          type: 'PUT',
+          url: upload_link,
+          contentType: fileType || 'application/octet-stream',
+          processData: false,
+          data: data,
+          beforeSend: function( xhr ) {
+              //xhr.setRequestHeader( 'X-File-Name', fileName );
+              //xhr.setRequestHeader( 'Authorization', 'Bearer '+access_token );
+              //xhr.setRequestHeader( 'Content-Length', fileSize );
+              xhr.setRequestHeader( 'Content-Type', fileType );
+          }
+        })
+        .done(function(msg) {
+            console.log(msg);
+            verifyUpload(length, cb);
+        })
+        .fail(function(xhr, status, error) {
+            console.log(status, error);
+            $().toastmessage('showErrorToast', status+": Error verifying the upload: "+error);
+        });
+    }
+    
+    function uploadChunk (startByte, endByte, data, cb) {
+        var me = this;
+        $.ajax({
+          type: 'PUT',
+          url: upload_link,
+          contentType: fileType || 'application/octet-stream',
+          processData: false,
+          data: data,
+          beforeSend: function( xhr ) {
+              //xhr.setRequestHeader( 'Authorization', 'Bearer '+access_token );
+              xhr.setRequestHeader( 'Content-Range', 'bytes '+startByte+'-'+endByte+'/'+fileSize );
+          }
+        })
+        .done(function(msg) {
+            console.log(msg);
+            verifyUpload(endByte-startByte, cb);
+        })
+        .fail(function(xhr, status, error) {
+            console.log(status, error);
+            $().toastmessage('showErrorToast', status+": Error verifying the upload: "+error);
+        });
+    }
+    
+    function generateTicket (size, cb) {
+        var me = this;
+        $('.upload-form').mask("Connecting to Vimeo...");
+        $.ajax({
+          type: 'POST',
+          url: 'ajax/generate_ticket.php',
+          data: { size: size }
+        })
+        .done(function(msg) {
+          $('.upload-form').unmask();
+          var data = JSON.parse(msg);
+          if(data.success) {
+              ticket_uri = data.ticket_uri;
+              ticket_id = data.ticket_id;
+              upload_link = data.upload_link;
+              complete_uri = data.complete_uri;
+              access_token = data.access_token;
+              cb.call(me);
+          } else {
+            if(data.msg) {
+              $().toastmessage('showErrorToast', data.msg);
+            } else {
+              $().toastmessage('showErrorToast', "Error establishing connection to Vimeo");
+            }
+          }
+        })
+        .fail(function() {
+              $('.upload-form').unmask();
+          $().toastmessage('showErrorToast', "Error searching people");
+        });
+    }
+    
+    function verifyUpload (offset, cb) {
+        var me = this;
+        $.ajax({
+          type: 'PUT',
+          url: upload_link,
+          beforeSend: function( xhr ) {
+              //xhr.setRequestHeader( 'Authorization', 'Bearer '+access_token );
+              //xhr.setRequestHeader( 'Content-Length', '0' );
+              xhr.setRequestHeader( 'Content-Range', 'bytes */*' );
+          }
+        })
+        .done(function(msg) {
+             console.log(msg);
+            // Verify that the Content-Range is from 0-offset
+            cb.call(me);
+        })
+        .fail(function(xhr, status, error) {
+            console.log(status, error);
+            $().toastmessage('showErrorToast', status+": Error verifying the upload: "+error);
+        });
+    }
+
+    function finishUpload () {
+        $.ajax({
+          url: upload_link,
           type: 'DELETE',
           beforeSend: function( xhr ) {
-            xhr.setRequestHeader( "Authorization", 'Bearer '+access_token );
+            xhr.setRequestHeader( 'Authorization', 'Bearer '+access_token );
           }
         }).success(function() {
-            console.log('Successfully finished uploading the video');
+            $('#status').text('Successfully finished uploading the video');
         }).failure(function() {
-            console.log('Error finishing the upload video process');
+            $('#status').text('Error finishing the upload video process');
         });
     }
 
-//    function errorHandler(evt) {
-//        switch(evt.target.error.code) {
-//          case evt.target.error.NOT_FOUND_ERR:
-//            alert('File Not Found!');
-//            break;
-//          case evt.target.error.NOT_READABLE_ERR:
-//            alert('File is not readable');
-//            break;
-//          case evt.target.error.ABORT_ERR:
-//            break; // noop
-//          default:
-//            alert('An error occurred reading this file.');
-//        }
-//    }
-    
-//    function updateProgress(evt) {
-//        // evt is an ProgressEvent.
-//        if (evt.lengthComputable) {
-//          var percentLoaded = Math.round((evt.loaded / evt.total) * 100);
-//          //contents += evt.target.result.substring(lastLength, evt.loaded);
-//          lastLength = evt.loaded;
-//          // Increase the progress bar length.
-//          if (percentLoaded < 100) {
-//            progress.style.width = percentLoaded + '%';
-//            progress.textContent = percentLoaded + '%';
-//          }
-//        }
-//    }
-
-//    function handleFileSelect(evt) {
-//        // Reset progress indicator on new file selection.
-//        progress.style.width = '0%';
-//        progress.textContent = '0%';
-//
-//        reader = new FileReader();
-//        reader.onerror = errorHandler;
-//        reader.onprogress = updateProgress;
-//        reader.onabort = function(e) {
-//          console.log(e);
-//          alert('File read cancelled');
-//        };
-//        reader.onloadstart = function(e) {
-//          console.log(e);
-//          document.getElementById('progress_bar').className = 'loading';
-//        };
-//        reader.onload = function(e) {
-//          console.log(e, contents);
-//          // Ensure that the progress bar displays 100% at the end.
-//          progress.style.width = '100%';
-//          progress.textContent = '100%';
-//          setTimeout(function() { document.getElementById('progress_bar').className=''; }, 2000);
-//        };
-//        lastLength = 0;
-//        contents = '';
-//        // Read in the image file as a binary string.
-//        reader.readAsText(evt.target.files[0]);
-//        //reader.readAsBinaryString(evt.target.files[0]);
-//    }
-    
-    document.getElementById('abort-btn').addEventListener('click', abortRead);
+    document.getElementById('upload-btn').addEventListener('click', upload);
+    document.getElementById('cancel-btn').addEventListener('click', cancelUpload);
     
     checkLoginStatus();
 })();

@@ -12,7 +12,7 @@
     private $dbPass = "";
     private $client_id = "";
     private $client_secret = "";
-    private $access_token = "";
+    public $access_token = "";
 
     // INFO = 1
     // DEBUG = 2

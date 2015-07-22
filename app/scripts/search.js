@@ -24,8 +24,8 @@
     .done(function(msg) {
       var data = JSON.parse(msg);
       if(data.success) {
-	processSearchResults(data.people);
-	$('.search-form').unmask();
+        processSearchResults(data.people);
+        $('.search-form').unmask();
       } else {
         if(data.error === 1) {
           logout();
