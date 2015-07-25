@@ -54,24 +54,39 @@
 
       <div class="app-content app-form upload-form">
         <div id="upload-settings" style="display: inline-block;">
+<!--
           <label for="success-notification">Send success notification?</label>
           <input type="checkbox" id="success-notification" /><br />
           <label for="failure-notification">Send upload fail notification?</label>
           <input type="checkbox" id="failure-notification" /><br />
           <label for="number-of-attempts">Upload attempts before notification:</label>
           <input type="text" id="number-of-attempts" /><br />
+-->
           <label for="email">Email:</label>
           <input type="email" id="email" /><br />
           <label for="file-name">File Name:</label>
           <input type="text" id="file-name" /><br />
 
-          <input type="file" id="files" name="file" />
-          <button id="upload-btn">Upload</button>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" id="upgrade_to_1080" name="upgrade_to_1080" value="yes"> Upgrade to 1080 </input>
+            </label>
+          </div>
+          </div>
+          <br>
+          <div id="progress-bar"><div id="percent">0%</div></div>
+          <div id="status"></div>
+          <div id="drop_zone">Drop files here</div>
+          <br>
+          <div id="results"></div>
+<!--          <button id="upload-btn">Upload</button>-->
         </div>
         
+<!--
         <button id="cancel-btn" style="display: none;">Cancel</button>
         <div id="progress-bar"><div id="percent">0%</div></div>
         <div id="status"></div>
+-->
       </div>
 
     </main>
@@ -84,6 +99,7 @@
     <script src="scripts/login.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/upload.js"></script>
+    <script src="scripts/vimeo-upload.js"></script>
     <!-- endbuild -->
 
     <!-- Built with love using Web Starter Kit -->

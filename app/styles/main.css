@@ -727,7 +727,20 @@ td.checkbox-table-col {
 }
 
 #status {
-  color: red;
+  opacity: 1 !important;
+  font-style: italic;
+  font-weight: bold;
+}
+
+#drop_zone {
+  border: 2px dashed #bbb;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding: 25px;
+  text-align: center;
+  font: 20pt bold 'Helvetica';
+  color: #bbb;
 }
 
 #progress-bar,
