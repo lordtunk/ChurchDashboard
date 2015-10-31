@@ -6,7 +6,8 @@
         video_name = '',
         email_address = '',
         video_uri = '',
-        uploading = false;
+        uploading = false,
+        fileField = document.getElementById('files');
 //        video_name = 'Test',
 //        email_address = 'stevvensa.550@gmail.com',
 //        video_uri = 'https://api.vimeo.com/videos/134261442';
@@ -15,13 +16,11 @@
      * Called when files are dropped on to the drop target. For each file,
      * uploads the content to Drive & displays the results when complete.
      */
-    function handleFileSelect(evt) {
-        evt.stopPropagation();
-        evt.preventDefault();
+    function handleFileSelect() {
         if(uploading) return;
         if(!validateFields()) return;
         
-        var files = evt.dataTransfer.files; // FileList object.
+        var files = fileField.files; // FileList object.
         
         email = $('#email').val();
         video_name = $('#file-name').val();
@@ -39,7 +38,7 @@
             // Rest the progress bar
             updateProgress(0);
 
-            var uploader = new MediaUploader({
+            var uploader = new MediaUploader({      // jshint ignore:line
                 file: files[0],
                 token: access_token,
                 upgrade_to_1080: upgrade_to_1080,
@@ -47,7 +46,7 @@
                     uploading = false;
                     hideProgressBar();
                     var errorResponse = JSON.parse(data);
-                    message = errorResponse.error;
+                    var message = errorResponse.error;
                     var element = document.createElement("div");
                     element.setAttribute('class', "alert alert-danger");
                     element.appendChild(document.createTextNode(message));
@@ -88,7 +87,9 @@
         if(!document.getElementById('email').validity.valid)
             msg += 'Email address is invalid <br />';
         if(!$('#file-name').val())
-            msg += 'File name cannot be empty';
+            msg += 'File name cannot be empty<br />';
+        if(fileField.files.length === 0)
+            msg += 'Must select a file to upload';
         if(msg) {
             $().toastmessage('showErrorToast', msg);
             return false;
@@ -97,24 +98,7 @@
     }
     
     /**
-     * Dragover handler to set the drop effect.
-     */
-    function handleDragOver(evt) {
-        evt.stopPropagation();
-        evt.preventDefault();
-        evt.dataTransfer.dropEffect = (uploading) ? 'none' : 'copy'; 
-    }
-    /**
-     * Wire up drag & drop listeners once page loads
-     */
-    document.addEventListener('DOMContentLoaded', function () {
-        var dropZone = document.getElementById('drop_zone');
-        dropZone.addEventListener('dragover', handleDragOver, false);
-        dropZone.addEventListener('drop', handleFileSelect, false);
-    });
-    ;
-    /**
-     * Updat progress bar.
+     * Update progress bar.
      */
     function updateProgress(progress) {
         progress = Math.floor(progress * 100);
@@ -124,7 +108,7 @@
     
     function hideProgressBar () {
         $('#percent').text('0%');
-        $('#percent').css('width', '0%')
+        $('#percent').css('width', '0%');
         setTimeout(function() { 
             document.getElementById('progress-bar').className='';
         }, 2000);
@@ -135,7 +119,7 @@
     }
     
     function checkQuota (size, cb) {
-        var me = this;
+        var me = this;  // jshint ignore:line
         $('.upload-form').mask("Connecting to Vimeo...");
         $.ajax({
           type: 'POST',
@@ -163,7 +147,6 @@
     }
     
     function checkConversionStatus () {
-        var me = this;
         $.ajax({
           type: 'GET',
           url: video_uri,
@@ -188,7 +171,6 @@
     }
 
     function updateTitle () {
-        var me = this;
         $.ajax({
           type: 'PATCH',
           url: video_uri,
@@ -199,7 +181,7 @@
               name: video_name
           }
         })
-        .done(function(data) {
+        .done(function() {
           checkConversionStatus();
         })
         .fail(function() {
@@ -216,7 +198,7 @@
           url: 'ajax/send_email.php',
           data: { email: email_address, video_status: status }
         })
-        .done(function(data) {
+        .done(function() {
             $().toastmessage('showErrorToast', "Error sending status email");
         })
         .fail(function() {
@@ -224,7 +206,7 @@
         });
     }
 
-    //document.getElementById('upload-btn').addEventListener('click', upload);
+    document.getElementById('upload-btn').addEventListener('click', handleFileSelect);
     //document.getElementById('cancel-btn').addEventListener('click', cancelUpload);
     
     checkLoginStatus();

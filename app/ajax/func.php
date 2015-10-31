@@ -106,6 +106,12 @@
       return getCWD();
     }
 
+    function sendEmail($email, $subject, $body) {
+        $headers =  'From: auto@gcb.my-tasks.info' . "\r\n" .
+                'Reply-To: auto@gcb.my-tasks.info';
+        mail($email, $subject, $body, $headers);
+    }
+
     function writableFile() {
       if (is_writable($this->logFileName)) {
         if (!$handle = fopen($this->logFileName, 'a'))

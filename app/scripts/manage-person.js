@@ -20,6 +20,7 @@
         //member = document.querySelector('#member'),
         visitor = document.querySelector('#visitor'),
         assignedAgent = document.querySelector('#assigned-agent'),
+        startingPoint = document.querySelector('#starting-point-notified'),
         street1 = document.querySelector('#street1'),
         street2 = document.querySelector('#street2'),
         city = document.querySelector('#city'),
@@ -190,7 +191,8 @@
         //member.checked = p.member;
         visitor.checked = p.visitor;
         assignedAgent.checked = p.assigned_agent;
-
+        startingPoint.checked = p.starting_point_notified;
+        
         street1.value = p.street1;
         street2.value = p.street2;
         city.value = p.city;

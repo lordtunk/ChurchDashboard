@@ -12,7 +12,7 @@
     private $dbPass = "";
     private $client_id = "";
     private $client_secret = "";
-    private $access_token = "";
+    public $access_token = "";
 
     // INFO = 1
     // DEBUG = 2
@@ -104,6 +104,12 @@
 
     function CWD() {
       return getCWD();
+    }
+
+    function sendEmail($email, $subject, $body) {
+        $headers =  'From: auto@gcb.my-tasks.info' . "\r\n" .
+                'Reply-To: auto@gcb.my-tasks.info';
+        mail($email, $subject, $body, $headers);
     }
 
     function writableFile() {

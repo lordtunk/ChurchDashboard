@@ -24,6 +24,7 @@ ADD recommitment_christ tinyint(1) NOT NULL DEFAULT 0 AFTER commitment_christ,
 ADD commitment_tithe tinyint(1) NOT NULL DEFAULT 0 AFTER recommitment_christ,
 ADD commitment_ministry tinyint(1) NOT NULL DEFAULT 0 AFTER commitment_tithe,
 ADD commitment_baptism tinyint(1) NOT NULL DEFAULT 0 AFTER commitment_ministry;
+ALTER TABLE People ADD `starting_point_notified` tinyint(1) NOT NULL DEFAULT '0';
 
 
 CREATE TABLE FollowUps (

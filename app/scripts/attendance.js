@@ -16,6 +16,7 @@
         selectDateBtn = document.querySelector('#go-arrow'),
         addPersonBtn = document.querySelector('#add-person'),
         attendanceDateDisplay = document.querySelector('#attendance-date-display'),
+        //visitors = document.querySelector('#visitors'),
         people = [],
         idSequence = 0,
         personIdSequence = -1,
@@ -660,6 +661,7 @@
     exportBtn.addEventListener('click', exportAttendance);
     selectDateBtn.addEventListener('click', onSelectAttendanceDate);
     addPersonBtn.addEventListener('click', addPerson);
+    //$('#visitors').on('change', updateVisitorAttendance);
     $('.jump-to').on('change', jumpTo);
     $('.navigation-links a').on('click', onClickTopBottom);
 

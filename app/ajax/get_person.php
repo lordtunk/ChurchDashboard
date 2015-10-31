@@ -58,6 +58,7 @@
                   p.info_gteams,
                   p.info_member,
                   p.info_visit,
+                  p.starting_point_notified,
                   f.id follow_up_id,
                   f.type follow_up_type,
                   DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
@@ -130,6 +131,7 @@
                         $p['member'] = $row['member'] ? TRUE : FALSE;
                         $p['visitor'] = $row['visitor'] ? TRUE : FALSE;
                         $p['assigned_agent'] = $row['assigned_agent'] ? TRUE : FALSE;
+                        $p['starting_point_notified'] = $row['starting_point_notified'] ? TRUE : FALSE;
                         $p['street1'] = $row['street1'];
                         $p['street2'] = $row['street2'];
                         $p['city'] = $row['city'];

@@ -25,6 +25,9 @@
     try {
       $f->useTransaction = FALSE;
       $f->beginTransaction();
+      $paramsSql = "";
+      $paramsArr = array();
+      $readyForStartingPoint = array();
       
 //       if(count($people) > 0) {
 //         $query = "DELETE FROM Attendance WHERE attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')";
@@ -68,9 +71,37 @@
         if($person->first || $person->second) {
           $query = "INSERT INTO Attendance (`attendance_dt`, `attended_by`, `first`, `second`) VALUES(STR_TO_DATE(:attendance_dt,'%m/%d/%Y'), :attended_by, :first, :second)";
           $results = $f->executeAndReturnResult($query, array(":attendance_dt"=>$person->attendanceDate, ":attended_by"=>$person->id, ":first"=>$person->first, ":second"=>$person->second));
+
+          $paramCount = count($paramsArr)+1;
+          $paramsArr[":id$paramCount"] = $person->id;
+          if($paramCount > 1)
+            $paramsSql = $paramsSql.",";
+          $paramsSql = $paramsSql.":id".$paramCount;
         }
       }
+      if(count($paramsArr) > 0) {
+          $query = "SELECT 
+                        p.id, p.first_name, p.last_name, p.description, p.primary_phone, count(*) attendance_count 
+                    FROM 
+                        Attendance a 
+                        INNER JOIN People p ON p.id=a.attended_by
+                    WHERE
+                        a.attended_by IN ($paramsSql)
+                        AND (a.first=1 OR a.second=1)
+                        AND p.starting_point_notified = 0
+                    GROUP BY 
+                        p.id, p.first_name, p.last_name, p.description, p.primary_phone
+                    HAVING
+                        attendance_count=3";
+          $results = $f->fetchAndExecute($query, $paramsArr);
+          
+          $f->sendEmail("stevvensa.550@gmail.com", "Ready for Starting Point", getEmailBody($results));
+
+          $query = "UPDATE People SET starting_point_notified=1 WHERE id IN ($paramsSql)";
+          $f->executeAndReturnResult($query, $paramsArr);
+      }
       $f->commit();
+      
       $dict['success'] = TRUE;
     } catch (Exception $e) {
       $dict['success'] = FALSE;
@@ -155,4 +186,25 @@
     $dict['error'] = 1;
   }
   echo json_encode($dict);
+
+  function getDisplayName($person, $prefix="") {
+    if($person === null) return '';
+    
+    if($person[$prefix.'last_name'] && $person[$prefix.'first_name']) {
+      return $person[$prefix.'first_name'] . " " . $person[$prefix.'last_name'];
+    } else if($person[$prefix.'first_name']) {
+      return $person[$prefix.'first_name'];
+    } else if($person[$prefix.'last_name']) {
+      return $person[$prefix.'last_name'];
+    }
+    return $person[$prefix.'description'];
+  }
+  function getEmailBody($people) {
+      if(count($people) == 0) return;
+      $body = "The following people are ready for Starting Point:\n";
+      foreach($people as $key => $person) {
+        $body = $body.(getDisplayName($person))." ".$person['primary_phone'];
+      }
+      return $body;
+  }
 ?>
