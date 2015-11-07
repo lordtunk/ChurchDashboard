@@ -109,7 +109,7 @@ var MediaUploader = function(options) {
  * Initiate the upload (Get vimeo ticket number and upload url)
  */
 MediaUploader.prototype.upload = function() {
-  var self = this;
+  var self = this;  // jshint ignore:line
   var xhr = new XMLHttpRequest();
   var upgrade_to_1080 = (this.upgrade_to_1080 == 'yes') ? true : false;
 

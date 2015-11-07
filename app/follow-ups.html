@@ -53,7 +53,7 @@
             </li>
             <li><a id="address-view-nav" href="address-view.html">Address View</a>
             </li>
-            <li><a id="follow-ups-nav" href="#follow-ups">Follow Up Entry</a>
+            <li><a id="follow-ups-nav" href="#follow-ups">Follow Ups</a>
             </li>
             <li><a id="search-nav" href="search.html">Search</a>
             </li>
@@ -63,7 +63,7 @@
     </nav>
 
     <main>
-        <h1 id="follow-ups">Mass Follow Up Entry</h1>
+        <h1 id="follow-ups">Follow Ups</h1>
 
         <div class="app-content app-form">
             <div class="follow-ups-form app-form">
@@ -88,6 +88,11 @@
                     <div id="follow-up-visitors">
                     </div>
                     <br />
+                    <div id="follow-up-frequency-container">
+                        <label for="follow-up-frequency">Frequency:</label>
+                        <select id="follow-up-frequency">
+                        </select>
+                    </div>
                     <div class="communication-card-options" style="display: none;">
                         <h4 class="form-section-title commitments-form-section-title">Committing To...</h4>
                         <div class="form-section commitments-form-section">
@@ -149,6 +154,12 @@
             <button id="get-follow-ups" class="button--secondary-small"><i class="fa fa-arrow-right"></i>
             </button>
             <div id="follow-up-table-container">
+                <div class="legend">
+                    <div class="item">
+                        <div class="legend-icon first-time-visitor"></div>
+                        <div class="text">First Time Visitor</div>
+                    </div>
+                </div>
                 <table class="table-6" id="follow-up-table">
                     <thead>
                         <tr>
@@ -168,7 +179,7 @@
 
     </main>
 
-    <div class="dialog-form app-form" title="Select Person">
+    <div class="dialog-form app-form" id="search-form" title="Select Person">
         <label for="search-name">Name</label>
         <input type="text" id="search-name" />
         <div id="search-container">

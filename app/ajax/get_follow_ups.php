@@ -29,6 +29,7 @@
 		  f.id follow_up_id,
 		  f.type follow_up_type,
 		  DATE_FORMAT(f.follow_up_date,'%m/%d/%Y') follow_up_date,
+          f.attendance_frequency,
           f.commitment_christ,
           f.recommitment_christ,
           f.commitment_tithe,
@@ -83,6 +84,7 @@
 	  $fo['visitorsIds'] = array();
         
       $options = array();
+      $options['frequency'] = $row['attendance_frequency'];
       $options['commitment_christ'] = $row['commitment_christ'] ? TRUE : FALSE;
       $options['recommitment_christ'] = $row['recommitment_christ'] ? TRUE : FALSE;
       $options['commitment_tithe'] = $row['commitment_tithe'] ? TRUE : FALSE;

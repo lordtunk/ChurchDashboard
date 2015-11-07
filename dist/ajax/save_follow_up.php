@@ -32,15 +32,16 @@
             if($follow_up->id < 0) {
                 if(isset($follow_up->communication_card_options)) {
                     $query = "INSERT INTO FollowUps 
-                                (follow_up_to_person_id, type, follow_up_date, comments, last_modified_dt, modified_by, creation_dt, created_by, commitment_christ, recommitment_christ, commitment_tithe, commitment_ministry, commitment_baptism, info_next, info_gkids, info_ggroups, info_gteams, info_member, info_visit)
+                                (follow_up_to_person_id, type, follow_up_date, comments, last_modified_dt, modified_by, creation_dt, created_by, commitment_christ, recommitment_christ, commitment_tithe, commitment_ministry, commitment_baptism, info_next, info_gkids, info_ggroups, info_gteams, info_member, info_visit, attendance_frequency)
                               VALUES
-                                (:person_id, :type, STR_TO_DATE(:follow_up_date,'%m/%d/%Y'), :comments, NOW(), :user_id, NOW(), :user_id, :commitment_christ, :recommitment_christ, :commitment_tithe, :commitment_ministry, :commitment_baptism, :info_next, :info_gkids, :info_ggroups, :info_gteams, :info_member, :info_visit)";
+                                (:person_id, :type, STR_TO_DATE(:follow_up_date,'%m/%d/%Y'), :comments, NOW(), :user_id, NOW(), :user_id, :commitment_christ, :recommitment_christ, :commitment_tithe, :commitment_ministry, :commitment_baptism, :info_next, :info_gkids, :info_ggroups, :info_gteams, :info_member, :info_visit, :attendance_frequency)";
                     $follow_up->id = $f->queryLastInsertId($query, 
                         array(":person_id"=>$follow_up->personId,
                               ":type"=>$follow_up->typeCd,
                               ":follow_up_date"=>$follow_up->date,
                               ":comments"=>$follow_up->comments,
                               ":user_id"=>$user_id,
+                              ":attendance_frequency"=>$options->frequency == '' ? NULL : $options->frequency,
                               ":commitment_christ"=>$options->commitment_christ,
                               ":recommitment_christ"=>$options->recommitment_christ,
                               ":commitment_tithe"=>$options->commitment_tithe,
@@ -59,6 +60,7 @@
                                   ":follow_up_date"=>$follow_up->date,
                                   ":comments"=>$follow_up->comments,
                                   ":user_id"=>$user_id,
+                                  ":attendance_frequency"=>$options->frequency == '' ? NULL : $options->frequency,
                                   ":commitment_christ"=>$options->commitment_christ,
                                   ":recommitment_christ"=>$options->recommitment_christ,
                                   ":commitment_tithe"=>$options->commitment_tithe,
@@ -78,6 +80,7 @@
                             type = :type,
                             follow_up_date = STR_TO_DATE(:follow_up_date,'%m/%d/%Y'),
                             comments = :comments,
+                            attendance_frequency = :attendance_frequency,
                             commitment_christ=:commitment_christ,
                             recommitment_christ=:recommitment_christ,
                             commitment_tithe=:commitment_tithe,
@@ -98,6 +101,7 @@
                           ":type"=>$follow_up->typeCd,
                           ":follow_up_date"=>$follow_up->date,
                           ":comments"=>$follow_up->comments,
+                          ":attendance_frequency"=>$options->frequency == '' ? NULL : $options->frequency,
                           ":commitment_christ"=>$options->commitment_christ,
                           ":recommitment_christ"=>$options->recommitment_christ,
                           ":commitment_tithe"=>$options->commitment_tithe,

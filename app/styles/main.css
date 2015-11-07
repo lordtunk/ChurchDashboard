@@ -493,6 +493,34 @@ main {
   display: inline-block;
 }
 
+.legend {
+    margin-top: 25px;
+}
+
+.legend > .item * {
+    vertical-align: middle;
+}
+
+.legend > .item > .text {
+    display: inline-block;
+}
+
+.legend-icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    border: 1px solid gray;
+    margin-left: 10px;
+}
+
+#email-summary {
+    margin-right: 10px;
+}
+
+.first-time-visitor {
+    background-color: #8FFD3B;
+}
+
 #manage-unknown-date {
   margin-left: 25px;
 }
@@ -650,7 +678,13 @@ main {
 }
 
 #email {
+  margin-top: 12px;
+  margin-right: 5px;
   width: 273px;
+}
+
+#email-label {
+  width: 100px;
 }
 
 .attendance-form .attendance-table-attendance-col label {

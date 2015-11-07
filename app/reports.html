@@ -43,7 +43,7 @@
         <li><a id="attendance-nav" href="attendance.html">Attendance</a></li>
         <li><a id="reports-nav" href="#reports">Reports</a></li>
         <li><a id="address-view-nav" href="address-view.html">Address View</a></li>
-        <li><a id="follow-ups-nav" href="follow-ups.html">Follow Up Entry</a></li>
+        <li><a id="follow-ups-nav" href="follow-ups.html">Follow Ups</a></li>
         <li><a id="search-nav" href="search.html">Search</a></li>
         <li><a href="javascript:logout()">Log Out</a></li>
       </ul>
@@ -114,6 +114,8 @@
           <label for="commitment-tithe">Committing to tithe</label><br />
           <input type="checkbox" id="commitment-ministry"/>
           <label for="commitment-ministry">Committing to serving in ministry</label>
+          <input type="checkbox" id="first-time-visitor"/>
+          <label for="first-time-visitor">First time visitor</label>
         </div>
         <button id="go-arrow" class="button--secondary-small">Run <i class="fa fa-arrow-right"></i></button>
         <br />
@@ -215,6 +217,9 @@
             <a href="javascript:void(0);" id="mia-top">Top</a>
             <a href="javascript:void(0);" id="mia-bottom">Bottom</a>
           </div>
+          <label id="email-label" for="email">Email: </label>
+          <input type="email" id="email" />
+          <button id="email-summary" class="button--primary-small"><i class="fa fa-envelope"></i> Email Summary</button>
           <div class="clear"></div>
         </div>
         <div id="people-by-attender-status-container" style="display: none;">

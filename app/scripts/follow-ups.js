@@ -15,6 +15,7 @@
         followUpType = document.querySelector('#follow-up-type'),
         followUpDate = document.querySelector('#follow-up-date'),
         followUpsForDate = document.querySelector('#follow-ups-for-date'),
+        followUpAttendanceFrequency = document.querySelector('#follow-up-frequency'),
         communicationCardOptions = document.querySelector('.communication-card-options'),
         followUpCommitmentChrist = document.querySelector('#follow-up-commitment-christ'),
         followUpRecommitmentChrist = document.querySelector('#follow-up-recommitment-christ'),
@@ -38,7 +39,7 @@
         searchBtn = document.querySelector('#search'),
         searchField = document.querySelector('#search-name'),
         closeBtn = document.querySelector('#close'),
-        dialog = $('.dialog-form').dialog({
+        dialog = $('#search-form').dialog({
             autoOpen: false,
             height: 400,
             width: 510,
@@ -53,7 +54,22 @@
             3: "Communication Card",
             4: "Entered in The City",
             5: "Thank You Card Sent"
+        },
+        followUpAttendanceFrequencyData = {
+            1: "1st Time",
+            2: "2nd Time",
+            3: "Often",
+            4: "Member",
+            "": "--None Provided--"
         };
+    
+    function populateAttendanceFrequency() {
+        var $select = $('#follow-up-frequency');
+        $.each(followUpAttendanceFrequencyData, function(frequencyCd, frequency) {
+            $select.append('<option value=' + frequencyCd + '>' + frequency + '</option>');
+        });
+        $select.val('');
+    }
     
     function populateTypes() {
         var $select = $('#follow-up-type');
@@ -140,6 +156,7 @@
                     visitors = data.people;
                     setVisitors();
                     populateTypes();
+                    populateAttendanceFrequency();
                     loadFollowUps();
                 } else {
                     if (data.error === 1) {
@@ -266,6 +283,8 @@
         followUpPerson.setAttribute('person_name', '');
         followUpType.value = '2';
         followUpDate.value = '';
+
+        followUpAttendanceFrequency.value = '';
         
         followUpCommitmentChrist.checked = false;
         followUpRecommitmentChrist.checked = false;
@@ -298,6 +317,7 @@
             type = $.trim(followUpType.value),
             comments = $.trim(followUpComments.value),
             communication_card_options = {
+                frequency: followUpAttendanceFrequency.value,
                 commitment_christ: false,
                 recommitment_christ: false,
                 commitment_tithe: false,
@@ -347,6 +367,7 @@
         
         if(type == 3) {
             communication_card_options = {
+                frequency: followUpAttendanceFrequency.value,
                 commitment_christ: followUpCommitmentChrist.checked,
                 recommitment_christ: followUpRecommitmentChrist.checked,
                 commitment_tithe: followUpCommitmentTithe.checked,
@@ -466,7 +487,7 @@
                 options.push(o);
         }
         $('#follow-up-table > tbody:last').append(
-            '<tr follow_up_id="' + followUp.id + '" communication_card_options="' + options.join(',') + '">' +
+            '<tr class="' + (followUp.communication_card_options.frequency=='1' ? 'first-time-visitor' : '') + '" follow_up_id="' + followUp.id + '" communication_card_options="' + options.join(',') + '" frequency="' + followUp.communication_card_options.frequency + '">' +
             '<td data-th="Name" personid="' + followUp.personId + '" person_name="' + name + '">' + display + '</td>' +
             '<td data-th="Type" typeCd="' + followUp.typeCd + '">' + followUp.type + '</td>' +
             '<td data-th="Date" class="follow-up-table-date-col">' + followUp.date + '</td>' +
@@ -480,11 +501,12 @@
         var row = $('#follow-up-table tr[follow_up_id=' + followUp.id + ']'),
             children = row.children(),
             options = [];
-        
+        row[0].setAttribute('class', followUp.communication_card_options.frequency=='1' ? 'first-time-visitor' : '');
         for(var o in followUp.communication_card_options) {
             if(followUp.communication_card_options.hasOwnProperty(o) && followUp.communication_card_options[o] === true)
                 options.push(o);
         }
+        row[0].setAttribute('frequency', followUp.communication_card_options.frequency);
         row[0].setAttribute('communication_card_options', options.join(','));
         children[0].setAttribute('personid', followUp.personId);
         children[0].setAttribute('person_name', followUp.name);
@@ -566,6 +588,7 @@
         followUpType.value = row.children[1].getAttribute('typeCd') || '';
         followUpDate.value = date;
         
+        followUpAttendanceFrequency.value = row.getAttribute('frequency') || '';
         followUpCommitmentChrist.checked = options.commitment_christ;
         followUpRecommitmentChrist.checked = options.recommitment_christ;
         followUpCommitmentTithe.checked = options.commitment_tithe;
@@ -641,6 +664,7 @@
     }
     
     function onFollowUpTypeChange() {
+        $('#follow-up-frequency-container').css('display', (followUpType.value == 3) ? 'inherit' : 'none');
         communicationCardOptions.style.display = (followUpType.value == 3) ? 'inherit' : 'none';
     }
 
@@ -690,7 +714,7 @@
     getFollowUpsBtn.addEventListener('click', loadFollowUps);
     $('#unknown-date').on('change', onChangeUnknownDate);
     $('#follow-up-type').on('change', onFollowUpTypeChange);
-
+    
     clearFollowUpForm();
     checkLoginStatus(loadVisitors);
 })();

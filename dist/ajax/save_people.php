@@ -94,11 +94,13 @@
                     HAVING
                         attendance_count=3";
           $results = $f->fetchAndExecute($query, $paramsArr);
-          
-          $f->sendEmail("stevvensa.550@gmail.com", "Ready for Starting Point", getEmailBody($results));
 
-          $query = "UPDATE People SET starting_point_notified=1 WHERE id IN ($paramsSql)";
-          $f->executeAndReturnResult($query, $paramsArr);
+          if(count($results) > 0) {
+              $f->sendEmail("stevvensa.550@gmail.com", "Ready for Starting Point", getEmailBody($results));
+
+              $query = "UPDATE People SET starting_point_notified=1 WHERE id IN ($paramsSql)";
+              $f->executeAndReturnResult($query, $paramsArr);
+          }
       }
       $f->commit();
       
@@ -203,7 +205,7 @@
       if(count($people) == 0) return;
       $body = "The following people are ready for Starting Point:\n";
       foreach($people as $key => $person) {
-        $body = $body.(getDisplayName($person))." ".$person['primary_phone'];
+        $body = $body.(getDisplayName($person))." ".$person['primary_phone']."\n";
       }
       return $body;
   }

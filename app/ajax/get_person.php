@@ -74,6 +74,7 @@
                   f.info_gteams follow_up_info_gteams,
                   f.info_member follow_up_info_member,
                   f.info_visit follow_up_info_visit,
+                  f.attendance_frequency follow_up_attendance_frequency,
                   v.follow_up_id visitor_follow_up_id,
                   v.person_id,
                   fp.first_name follow_up_first_name,
@@ -191,6 +192,7 @@
                             $fo['visitorsIds'] = array();
                             
                             $options = array();
+                            $options['frequency'] = $row['follow_up_attendance_frequency'];
                             $options['commitment_christ'] = $row['follow_up_commitment_christ'] ? TRUE : FALSE;
                             $options['recommitment_christ'] = $row['follow_up_recommitment_christ'] ? TRUE : FALSE;
                             $options['commitment_tithe'] = $row['follow_up_commitment_tithe'] ? TRUE : FALSE;

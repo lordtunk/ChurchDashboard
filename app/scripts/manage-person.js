@@ -92,6 +92,7 @@
         followUpDate = dialog[0].querySelector('#follow-up-date'),
         unknownDate = document.querySelector('#manage-unknown-date'),
         followUpVisitors = dialog[0].querySelector('#follow-up-visitors'),
+        followUpAttendanceFrequency = dialog[0].querySelector('#follow-up-frequency'),
         communicationCardOptions = dialog[0].querySelector('.communication-card-options'),
         followUpCommitmentChrist = dialog[0].querySelector('#follow-up-commitment-christ'),
         followUpRecommitmentChrist = dialog[0].querySelector('#follow-up-recommitment-christ'),
@@ -129,6 +130,13 @@
             1: 'Member',
             2: 'Regular',
             3: 'Irregular'
+        },
+        followUpAttendanceFrequencyData = {
+            1: "1st Time",
+            2: "2nd Time",
+            3: "Often",
+            4: "Member",
+            "": "--None Provided--"
         };
 
     (window.onpopstate = function() {
@@ -155,6 +163,14 @@
             $select.append('<option value=' + state.abbreviation + '>' + state.name + '</option>');
         });
         $select.val('OH');
+    }
+    
+    function populateAttendanceFrequency() {
+        var $select = $('#follow-up-frequency');
+        $.each(followUpAttendanceFrequencyData, function(frequencyCd, frequency) {
+            $select.append('<option value=' + frequencyCd + '>' + frequency + '</option>');
+        });
+        $select.val('');
     }
 
     function populateTypes() {
@@ -460,6 +476,7 @@
                     populateStates(data);
                 }
                 populateTypes();
+                populateAttendanceFrequency();
                 loadPerson();
                 loadVisitors();
             })
@@ -826,6 +843,7 @@
             visitors = [],
             visitorsIds = [],
             communication_card_options = {
+                frequency: followUpAttendanceFrequency.value,
                 commitment_christ: false,
                 recommitment_christ: false,
                 commitment_tithe: false,
@@ -874,6 +892,7 @@
 
         if(type == 3) {
             communication_card_options = {
+                frequency: followUpAttendanceFrequency.value,
                 commitment_christ: followUpCommitmentChrist.checked,
                 recommitment_christ: followUpRecommitmentChrist.checked,
                 commitment_tithe: followUpCommitmentTithe.checked,
@@ -921,7 +940,7 @@
                 options.push(o);
         }
         $('#follow-up-table > tbody:last').append(
-            '<tr follow_up_id="' + followUp.id + '" communication_card_options="' + options.join(',') + '">' +
+            '<tr follow_up_id="' + followUp.id + '" communication_card_options="' + options.join(',') + '" frequency="' + followUp.communication_card_options.frequency + '">' +
             '<td data-th="Type" typeCd="' + followUp.typeCd + '">' + followUp.type + '</td>' +
             '<td data-th="Date" class="follow-up-table-date-col">' + followUp.date + '</td>' +
             '<td data-th="By" visitorsIds="' + followUp.visitorsIds.join(',') + '">' + followUp.visitors.join(', ') + '</td>' +
@@ -939,6 +958,7 @@
             if(followUp.communication_card_options.hasOwnProperty(o) && followUp.communication_card_options[o] === true)
                 options.push(o);
         }
+        row[0].setAttribute('frequency', followUp.communication_card_options.frequency);
         row[0].setAttribute('communication_card_options', options.join(','));
         children[0].setAttribute('typeCd', followUp.typeCd);
         children[0].innerHTML = followUp.type;
@@ -1164,6 +1184,7 @@
             options[optionsArr[i]] = true;
         }
 
+        followUpAttendanceFrequency.value = row.getAttribute('frequency') || '';
         followUpType.value = row.children[0].getAttribute('typeCd') || '';
         followUpDate.value = date;
         followUpComments.value = row.children[3].innerHTML || '';
@@ -1236,6 +1257,7 @@
     }
     
     function onFollowUpTypeChange() {
+        $('#follow-up-frequency-container').css('display', (followUpType.value == 3) ? 'inherit' : 'none');
         communicationCardOptions.style.display = (followUpType.value == 3) ? 'inherit' : 'none';
     }
 

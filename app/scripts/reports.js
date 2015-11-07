@@ -81,7 +81,8 @@
             commitment_christ: $('#commitment-christ').is(':checked'),
             recommitment_christ: $('#recommitment-christ').is(':checked'),
             commitment_tithe: $('#commitment-tithe').is(':checked'),
-            commitment_ministry: $('#commitment-ministry').is(':checked')
+            commitment_ministry: $('#commitment-ministry').is(':checked'),
+            attendance_frequency: $('#first-time-visitor').is(':checked')
           };
           break;
         case 5:
