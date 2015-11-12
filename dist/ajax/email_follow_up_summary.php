@@ -166,7 +166,7 @@
 				}
 				$body .= "</ul></td></tr>";
             }
-			$body .= "</tbody><table>";
+			$body .= "</tbody></table>";
 			
 			if($firstTimeVisitors !== "") {
 				$body .= getGroupText("First time visitor", $firstTimeVisitors);

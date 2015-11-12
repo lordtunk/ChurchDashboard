@@ -56,4 +56,17 @@ ALTER TABLE FollowUps
 ADD last_modified_dt datetime AFTER comments,
 ADD modified_by int(11) AFTER last_modified_dt,
 ADD creation_dt datetime AFTER modified_by,
-ADD created_by int(11) AFTER creation_dt
+ADD created_by int(11) AFTER creation_dt,
+ADD attendance_frequency tinyint(1) DEFAULT NULL
+
+
+CREATE TABLE IF NOT EXISTS `Settings` (
+  `starting_point_emails` varchar(500) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`starting_point_emails`) VALUES
+('buck3y3girl13@gmail.com,stevvensa.550@gmail.com');
