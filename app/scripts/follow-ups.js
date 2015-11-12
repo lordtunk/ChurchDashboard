@@ -41,7 +41,7 @@
         closeBtn = document.querySelector('#close'),
         dialog = $('#search-form').dialog({
             autoOpen: false,
-            height: 400,
+            height: 430,
             width: 510,
             modal: true
         }),

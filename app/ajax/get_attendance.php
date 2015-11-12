@@ -6,6 +6,7 @@
     $attendanceDate = $_POST['date'];
     $active = $_POST['active'] == "true";
     $adult = $_POST['adult'] == "true";
+    $isDefaultLoad = $_POST['isDefaultLoad'] == "true";
     if(!isset($_SESSION['user_id']) || !isset($_SESSION['session_id'])) {
         $dict['success'] = FALSE;
         $f->logMessage('Session information missing');
@@ -26,6 +27,24 @@
         if(isset($_SESSION['scroll_to_id']) && $_SESSION['scroll_to_id'] >= 0) {
             $dict['scroll_to_id'] = $_SESSION['scroll_to_id'];
             $_SESSION['scroll_to_id'] = -1;
+        }
+        if($isDefaultLoad == TRUE) {
+            if(isset($_SESSION['attendance_dt']) && $_SESSION['attendance_dt'] != "") {
+                $dict['attendance_dt'] = $_SESSION['attendance_dt'];
+                $attendanceDate = $_SESSION['attendance_dt'];
+            }
+            if(isset($_SESSION['attendance_active']) && $_SESSION['attendance_active'] != "") {
+                $dict['attendance_active'] = $_SESSION['attendance_active'];
+                $active = $_SESSION['attendance_active'] == "true";
+            }
+            if(isset($_SESSION['attendance_adults']) && $_SESSION['attendance_adults'] != "") {
+                $dict['attendance_adults'] = $_SESSION['attendance_adults'];
+                $adult = $_SESSION['attendance_adults'] == "true";
+            }
+        } else {
+            $_SESSION['attendance_dt'] = $attendanceDate;
+            $_SESSION['attendance_active'] = $_POST['active'];
+            $_SESSION['attendance_adults'] = $_POST['adult'];
         }
         try {
             $query = "SELECT

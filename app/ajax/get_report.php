@@ -205,7 +205,7 @@
                 $dict['people'] = $results;
                 break;
             case 4:
-                $results = $f->getFollowUpReport($params);
+                $results = $f->getFollowUpReport($params, false);
                 $dict['people'] = $results;
                 break;
             case 5:

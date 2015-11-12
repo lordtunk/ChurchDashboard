@@ -404,6 +404,12 @@ main {
   text-align: center;
 }
 
+.row-header {
+  text-align: center;
+  background-color: #009344 !important;
+  color: white;
+}
+
 .attendance-history-button {
   margin-right: 10px;
 }
@@ -433,6 +439,7 @@ main {
 #relationship-person-container {
   display: -webkit-flex;
   display: flex;
+  margin-bottom: 10px;
 }
 #follow-up-person-container>label {
   padding-top: 10px;
@@ -612,10 +619,22 @@ main {
   padding: 10px;
 }
 
-#follow-up-options > label {
+#follow-up-options label {
   width: 270px;
   text-align: left;
   padding-left: 10px;
+}
+
+#include-all-checkboxes {
+  margin-bottom: 10px;
+}
+
+#starting-point-emails {
+  width: 90%;
+}
+.setting {
+  text-align: center;
+  width: 100%;
 }
 
 .address-form-section {

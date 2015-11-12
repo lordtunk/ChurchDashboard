@@ -333,13 +333,10 @@
         <div class="dialog-form-inner">
             <input type="hidden" id="relationship-id" value="-1" />
             <div id="relationship-person-container">
-                <label for="relationship-person">Person:</label>
                 <div id="relationship-relation" relationid="-1">(Select a person)</div>
                 <button id="select-person-btn" class="button--blue-small">Select Person</button>
             </div>
-            <label for="relationship-type">Type:</label>
-            <select id="relationship-type">
-            </select>
+            <div>is the <select id="relationship-type"></select> of <span id="relationship-person-name"></span></div>
             <div id="add-to-spouse-container-relationship">
                 <label for="add-to-spouse-relationship">Add to spouse:</label>
                 <input type="checkbox" id="add-to-spouse-relationship" />
@@ -359,6 +356,8 @@
     <div class="dialog-form app-form select-person-form" title="Select Person">
         <label for="search-name">Name</label>
         <input type="text" id="search-name" />
+        <button id="search" type="button" class="button--primary-small"><i class="fa fa-search"></i></i>
+        </button>
         <div id="search-container">
             <div class="search-table-container" id="search-table-container">
                 <table class="table-4 search-table" id="search-table">
@@ -383,8 +382,6 @@
             <button id="add-new-person" type="button" class="button--primary first-button"><i class="fa fa-plus"></i>
             </button>
             <div class="spacer"></div>
-            <button id="search" type="button" class="button--primary"><i class="fa fa-search"></i></i>
-            </button>
             <button id="close-select-person" type="button" class="button--secondary"><i class="fa fa-close"></i>
             </button>
         </div>

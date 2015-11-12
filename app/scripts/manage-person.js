@@ -55,6 +55,7 @@
         }),
         relationshipId = relationshipDialog[0].querySelector('#relationship-id'),
         relationshipType = relationshipDialog[0].querySelector('#relationship-type'),
+        relationshipPersonName = relationshipDialog[0].querySelector('#relationship-person-name'),
         addRelationshipBtn = document.querySelector('#add-relationship'),
         addCloseRelationshipBtn = document.querySelector('#add-close-relationship'),
         closeRelationshipBtn = document.querySelector('#close-relationship'),
@@ -64,14 +65,14 @@
         
         selectPersonDialog = $('.select-person-form').dialog({
             autoOpen: false,
-            height: 400,
+            height: 430,
             width: 510,
             modal: true
         }),
         addNewPersonBtn = document.querySelector('#add-new-person'),
         searchBtn = document.querySelector('#search'),
         searchField = document.querySelector('#search-name'),
-        closeSelectPersonBtn = document.querySelector('#close-select-person'),
+        closeSelectPersonBtn = selectPersonDialog[0].querySelector('#close-select-person'),
         selectPersonBtn = document.querySelector('#select-person-btn'),
         relationshipIdSequence = -1,
         
@@ -677,7 +678,10 @@
                     if (data.error === 1) {
                         logout();
                     } else {
-                        $().toastmessage('showErrorToast', "Error saving relationship");
+                        var message = "Error saving relationship";
+                        if(data.msg)
+                            message = data.msg;
+                        $().toastmessage('showErrorToast', message);
                     }
                 }
             })
@@ -1013,6 +1017,7 @@
         relationshipDialog.dialog('open');
         clearRelationshipForm();
         $relationshipDialogTitle.text('Add Relationship');
+        relationshipPersonName.innerHTML = getDisplayName(person);
     }
 
     function closeRelationship() {
@@ -1328,7 +1333,7 @@
             search();
         }
     });
-    closeSelectPersonBtn.addEventListener('click', close);
+    closeSelectPersonBtn.addEventListener('click', closeSelectPerson);
     
     $('#manage-unknown-date').on('change', onChangeUnknownDate);
 

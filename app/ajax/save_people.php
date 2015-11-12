@@ -94,9 +94,16 @@
                     HAVING
                         attendance_count=3";
           $results = $f->fetchAndExecute($query, $paramsArr);
-
+          
           if(count($results) > 0) {
-              $f->sendEmail("stevvensa.550@gmail.com", "Ready for Starting Point", getEmailBody($results));
+              $body = getEmailBody($results);
+              $query = "SELECT
+                      starting_point_emails
+                    FROM
+                      Settings";
+              $results = $f->fetchAndExecute($query);
+              $startingPointEmails = $results[0]['starting_point_emails'];
+              $f->sendEmail($startingPointEmails, "Ready for Starting Point", $body);
 
               $query = "UPDATE People SET starting_point_notified=1 WHERE id IN ($paramsSql)";
               $f->executeAndReturnResult($query, $paramsArr);
@@ -203,10 +210,13 @@
   }
   function getEmailBody($people) {
       if(count($people) == 0) return;
-      $body = "The following people are ready for Starting Point:\n";
+      $body = "";
       foreach($people as $key => $person) {
-        $body = $body.(getDisplayName($person))." ".$person['primary_phone']."\n";
+        $body .= getListItem(getDisplayName($person)." ".$person['primary_phone']);
       }
-      return $body;
+      return "The following people are ready for Starting Point:<ul>$body</ul>";
+  }
+  function getListItem($text) {
+      return "<li>$text</li>";
   }
 ?>

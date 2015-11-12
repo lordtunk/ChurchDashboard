@@ -12,6 +12,14 @@
       lastDateField = document.querySelector('#last-date'),
       reportTypeField = document.querySelector('#report-type'),
       runBtn = document.querySelector('#go-arrow'),
+	  emailField = document.querySelector('#email'),
+	  emailBtn = document.querySelector('#email-summary'),
+	  runParams = null,
+      attenderStatusData = {
+          1: 'Member',
+          2: 'Regular',
+          3: 'Irregular'
+      },
       scrollAnimationMs = 300;
 
   function populateForm(first_dt, last_dt) {
@@ -42,18 +50,17 @@
     var reportType = parseInt(reportTypeField.value);
     if(validateDates(fromDateField.value, toDateField.value, (reportType === 1 || reportType === 2))) {
       hideAllReportContainers();
-      var params;
       switch(reportType) {
         case 1:
           $('#attendance-by-date-container')[0].style.setProperty('display', 'inherit');
-          params = {
+          runParams = {
             fromDate: fromDateField.value,
             toDate: toDateField.value
           };
           break;
         case 2:
           $('#attendance-by-person-container')[0].style.setProperty('display', 'inherit');
-          params = {
+          runParams = {
             fromDate: fromDateField.value,
             toDate: toDateField.value
           };
@@ -63,33 +70,37 @@
           break;
 	   case 4:
           $('#follow-up-container')[0].style.setProperty('display', 'inherit');
-          params = {
-            fromDate: fromDateField.value,
-            toDate: toDateField.value,
-            active: $('#active').is(':checked'),
-            not_visited: $('#not-visited').is(':checked'),
-            ty_card_not_sent: $('#ty-card-not-sent').is(':checked'),
-            signed_up_for_baptism: $('#signed-up-for-baptism').is(':checked'),
-            baptized: $('#baptized').is(':checked'),
-            interested_in_gkids: $('#interested-in-gkids').is(':checked'),
-            interested_in_next: $('#interested-in-next').is(':checked'),
-            interested_in_ggroups: $('#interested-in-ggroups').is(':checked'),
-            interested_in_gteams: $('#interested-in-gteams').is(':checked'),
-            interested_in_joining: $('#interested-in-joining').is(':checked'),
-            would_like_visit: $('#would-like-visit').is(':checked'),
-            no_agent: $('#no-agent').is(':checked'),
-            commitment_christ: $('#commitment-christ').is(':checked'),
-            recommitment_christ: $('#recommitment-christ').is(':checked'),
-            commitment_tithe: $('#commitment-tithe').is(':checked'),
-            commitment_ministry: $('#commitment-ministry').is(':checked'),
-            attendance_frequency: $('#first-time-visitor').is(':checked')
-          };
+          runParams = buildParameters();
           break;
         case 5:
           $('#people-by-attender-status-container')[0].style.setProperty('display', 'inherit');
       }
-      loadReport(reportType, params);
+      loadReport(reportType, runParams);
     }
+  }
+  
+  function buildParameters() {
+	  return {
+		fromDate: fromDateField.value,
+		toDate: toDateField.value,
+		active: $('#active').is(':checked'),
+		not_visited: $('#not-visited').is(':checked'),
+		ty_card_not_sent: $('#ty-card-not-sent').is(':checked'),
+		signed_up_for_baptism: $('#signed-up-for-baptism').is(':checked'),
+		baptized: $('#baptized').is(':checked'),
+		interested_in_gkids: $('#interested-in-gkids').is(':checked'),
+		interested_in_next: $('#interested-in-next').is(':checked'),
+		interested_in_ggroups: $('#interested-in-ggroups').is(':checked'),
+		interested_in_gteams: $('#interested-in-gteams').is(':checked'),
+		interested_in_joining: $('#interested-in-joining').is(':checked'),
+		would_like_visit: $('#would-like-visit').is(':checked'),
+		no_agent: $('#no-agent').is(':checked'),
+		commitment_christ: $('#commitment-christ').is(':checked'),
+		recommitment_christ: $('#recommitment-christ').is(':checked'),
+		commitment_tithe: $('#commitment-tithe').is(':checked'),
+		commitment_ministry: $('#commitment-ministry').is(':checked'),
+		attendance_frequency: $('#first-time-visitor').is(':checked')
+	  };
   }
 
   function hideAllReportContainers() {
@@ -97,6 +108,7 @@
     $('#attendance-by-date-container')[0].style.setProperty('display', 'none');
     $('#attendance-by-mia-container')[0].style.setProperty('display', 'none');
     $('#follow-up-container')[0].style.setProperty('display', 'none');
+    $('#people-by-attender-status-container')[0].style.setProperty('display', 'none');
   }
 
   function validateDates(fDate, tDate, requireDate) {
@@ -219,12 +231,23 @@
     
   function populatePeopleByAttenderStatus(people) {
     $('#people-by-attender-status-table > tbody:last').empty();
+    if(people.length === 0) return;
     var rows= '';
+    var currentStatus = '';
     for(var i=0; i<people.length; i++) {
-      if(people[i].adult == 'true')
+      if(people[i].adult == 'true') {
+        if(people[i].attender_status != currentStatus) {
+            rows += buildHeaderRow(attenderStatusData[people[i].attender_status]);
+            currentStatus = people[i].attender_status;
+        }
         rows += buildMiaRow(people[i]);
+      }
     }
     $('#people-by-attender-status-table > tbody:last').append(rows);
+  }
+  
+  function buildHeaderRow(headerText) {
+      return '<tr class="row-header"><td>'+headerText+'</td></tr>';
   }
   
   function buildMiaRow(person) {
@@ -413,11 +436,60 @@
     return phone;
   }
   
+  function onEmailClick() {
+	  var email = $.trim(emailField.value);
+	  if(!email || !emailField.checkValidity()) {
+		  $().toastmessage('showErrorToast', "Must specify a valid email");
+		  return;
+	  }
+	  $('.reports-form').mask('Sending...');
+	  $.ajax({
+		  type: 'POST',
+		  url: 'ajax/email_follow_up_summary.php',
+		  data: {
+			email: email,
+			params: JSON.stringify(runParams)
+		  }
+		})
+		.done(function(msg) {
+		  $('.reports-form').unmask();
+		  var data = JSON.parse(msg);
+		  if(data.success) {
+			$().toastmessage('showSuccessToast', "Summary sent successfully");
+		  } else {
+			if(data.error === 1) {
+			  logout();
+			} else {
+			  $().toastmessage('showErrorToast', "Error sending summary");
+			}
+		  }
+		})
+		.fail(function() {
+		  $('.reports-form').unmask();
+		  $().toastmessage('showErrorToast', "Error sending summary");
+		});
+  }
+  
+  function toggleSelection() {
+      var checkboxes = $('#include-all-checkboxes input[type=checkbox]');
+      if($('#toggle-check').is(':checked')) {
+          checkboxes.each(function(ind, el) { 
+              el.checked = true; 
+          });
+      } else {
+          checkboxes.each(function(ind, el) { 
+              el.checked = false; 
+          });
+      }
+  }
+  
   reportTypeField.value = '1';
   
   runBtn.addEventListener('click', onRunClick);
+  emailBtn.addEventListener('click', onEmailClick);
   reportTypeField.addEventListener('change', onReportTypeChange);
   $('.top-bottom-links a').on('click', onClickTopBottom);
+  $('#toggle-check').on('change', toggleSelection);
   
   checkLoginStatus(loadFirstLastServiceDates);
 })();

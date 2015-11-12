@@ -9,7 +9,9 @@
     });
     var attendanceDate = document.querySelector('#attendance-date'),
         activeTrue = document.querySelector('#active-true'),
+        activeFalse = document.querySelector('#active-false'),
         adultTrue = document.querySelector('#adults-true'),
+        adultFalse = document.querySelector('#adults-false'),
         updateBtn = document.querySelector('#update'),
         cancelBtn = document.querySelector('#cancel'),
         exportBtn = document.querySelector('#export'),
@@ -166,16 +168,18 @@
         }, scrollAnimationMs);
     }
 
-    function setAttendanceDate() {
-        var curr = new Date(); // get current date
-        var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
-        var sunday = new Date(curr.setDate(first));
-        $('#attendance-date').datepicker("setDate", sunday);
+    function setAttendanceDate(dt) {
+        if(!dt) {
+            var curr = new Date(); // get current date
+            var first = curr.getDate() - curr.getDay(); // First day is the day of the month - the day of the week
+            dt = new Date(curr.setDate(first));
+        }
+        $('#attendance-date').datepicker("setDate", dt);
         //attendanceDate.value = getDateString(sunday);
         currAttendanceDate = attendanceDate.value;
-        prevAttendanceDate = sunday;
+        prevAttendanceDate = dt;
         
-        attendanceDateDisplay.innerHTML = getDateString(sunday);
+        attendanceDateDisplay.innerHTML = getDateString(dt);
     }
     function getDateString(date) {
         return months[date.getMonth()]+' '+date.getDate()+', '+date.getFullYear();
@@ -186,7 +190,7 @@
             prevAttendanceDate = new Date(attendanceDate.value);
             currAttendanceDate = attendanceDate.value;
             clear();
-            loadPeople();
+            loadPeople(false);
         } else {
             $('#attendance-date').datepicker("setDate", prevAttendanceDate);
             //attendanceDate.value = getDateString(prevAttendanceDate);
@@ -433,7 +437,9 @@
             });
     }
 
-    function loadPeople() {
+    function loadPeople(isDefault) {
+        if(typeof isDefault === 'undefined')
+            isDefault = true;
         $('.attendance-form').mask('Loading...');
         $.ajax({
             type: 'POST',
@@ -441,13 +447,26 @@
             data: {
                 date: attendanceDate.value,
                 active: activeTrue.checked,
-                adult: adultTrue.checked
+                adult: adultTrue.checked,
+                isDefaultLoad: isDefault
             }
         })
             .done(function(msg) {
                 $('.attendance-form').unmask();
                 var data = JSON.parse(msg);
                 if (data.success) {
+                    if(data.attendance_dt)
+                        setAttendanceDate(new Date(data.attendance_dt));
+                    if(typeof data.attendance_adults !== "undefined") {
+                        var isLoadAdults = data.attendance_adults == "true";
+                        adultTrue.checked = isLoadAdults;                            
+                        adultFalse.checked = !isLoadAdults;                            
+                    }
+                    if(typeof data.attendance_active !== "undefined"){
+                        var isLoadActive = data.attendance_active == "true";
+                        activeTrue.checked = isLoadActive;                            
+                        activeFalse.checked = !isLoadActive;                            
+                    }
                     isAdults = adultTrue.checked;
                     $('#name-table-header').text(isAdults ? 'Adults' : 'Kids');
                     totals = data.totals;
