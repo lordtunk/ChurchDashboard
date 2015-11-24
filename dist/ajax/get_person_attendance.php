@@ -1,9 +1,14 @@
 <?php
     session_start();
     include("func.php");
-    $id = $_GET['id'];
+    include("attendance.php");
     $f = new Func();
+    $att = new Attendance();
+    $id = $_GET['id'];
     $dict = array();
+    $campus = $_GET['campus'];
+    $label1 = $_GET['label1'];
+    $label2 = $_GET['label2'];
     if(!isset($_SESSION['user_id']) || !isset($_SESSION['session_id'])) {
         $dict['success'] = FALSE;
         $f->logMessage('Session information missing');
@@ -21,38 +26,7 @@
     }
     if($dict['success'] == TRUE) {
         try {
-            $query = "
-              SELECT
-                    p.first_name,
-                    p.last_name,
-                    p.description,
-                    DATE_FORMAT(a.attendance_dt,'%c/%e/%Y') attendance_dt,
-                    a.first, 
-                    a.second 
-                FROM 
-                    People p
-                    left outer join Attendance a on a.attended_by=p.id
-                WHERE 
-                    p.id=:id
-                ORDER BY
-                    a.attendance_dt DESC";
-            $results = $f->fetchAndExecute($query, array(":id"=>$id));
-            $person = array();
-            $person['attendance'] = array();
-            foreach($results as $key => $row) {
-                $person['first_name'] = $row['first_name'];
-                $person['last_name'] = $row['last_name'];
-                $person['description'] = $row['description'];
-
-                if(isset($row['attendance_dt'])) {
-                  $att = array();
-                  $att['date'] = $row['attendance_dt'];
-                  $att['first'] = $row['first'] ? TRUE : FALSE;
-                  $att['second'] = $row['second'] ? TRUE : FALSE;
-                  array_push($person['attendance'], $att);
-                }
-            }
-            $dict['person'] = $person;
+            $dict['person'] = $att->getAttendanceByPersonId($id, $label1, $label2, $campus);
             $dict['success'] = TRUE;
         } catch (Exception $e) {
             $dict['success'] = false;

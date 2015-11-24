@@ -371,8 +371,8 @@
                   FROM 
                     People p
                     LEFT OUTER JOIN FollowUps f ON f.follow_up_to_person_id = p.id AND f.type = 3
-                    LEFT OUTER JOIN (SELECT COUNT(*) visit_count, follow_up_to_person_id FROM FollowUps WHERE type = 2 GROUP BY  follow_up_to_person_id)vc ON vc.follow_up_to_person_id = p.id
-                    LEFT OUTER JOIN (SELECT COUNT(*) ty_card_sent_count, follow_up_to_person_id, follow_up_date FROM FollowUps WHERE type = 5 GROUP BY follow_up_to_person_id)tyc ON tyc.follow_up_to_person_id = p.id";
+                    LEFT OUTER JOIN (SELECT COUNT(*) visit_count, follow_up_to_person_id FROM FollowUps WHERE TYPE =2 GROUP BY follow_up_to_person_id)vc ON vc.follow_up_to_person_id = p.id
+                    LEFT OUTER JOIN (SELECT COUNT(*) ty_card_sent_count, follow_up_to_person_id, follow_up_date FROM FollowUps WHERE TYPE =5 GROUP BY follow_up_to_person_id, follow_up_date)tyc ON tyc.follow_up_to_person_id = p.id";
         } else {
             $query = "SELECT 
                     CASE WHEN vc.visit_count > 0 THEN  'true' ELSE  'false' END visited, 

@@ -1,8 +1,7 @@
 <?php
-    class ValidationException extends Exception { }
-    
     session_start();
     include("func.php");
+    include("validation_exception.php");
     $f = new Func();
     $relationship = json_decode($_POST['relationship']);
     $dict = array();

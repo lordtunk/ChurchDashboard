@@ -53,9 +53,20 @@
       <h1 id="settings-h">Settings</h1>
 
       <div class="app-content app-form settings-form">
-        <label for="starting-point-emails">Email(s) to send Starting Point notifications (separate with commas)</label><br />
+        <label for="starting-point-emails">Email(s) to send Starting Point notifications (comma-separated)</label><br />
         <div class="setting"><textarea type="text" id="starting-point-emails" ></textarea></div>
+        <label for="campuses">Campuses (id|label format, comma-separated. Ex: 1|Main,2|South Hilliard)</label><br />
+        <div class="setting"><textarea type="text" id="campuses" ></textarea></div>
         
+        <label for="service-labels">Service Labels (id|label format, comma-separated. Ex: 1|9:00 AM,2|10:30 AM)</label><br />
+        <div class="setting"><textarea type="text" id="service-labels" ></textarea></div>
+        <label for="default-campus">Default Campus (enter id of campus)</label><br />
+        <input type="number" class="setting" id="default-campus" min="1" /><br />
+        <label for="default-service-label">Default First Service Label (enter id of service label)</label><br />
+        <input type="number" class="setting" id="default-service-label-first" min="1" /><br />
+        <label for="default-service-label">Default Second Service Label (enter id of service label)</label><br />
+        <input type="number" class="setting" id="default-service-label-second" min="1" /><br />
+        <br />
         <div class="form-bar background color--gray-keyline">
             <div class="spacer"></div>
             <button id="update" type="button" class="button--primary"><i class="fa fa-floppy-o"></i>  <span class="btn-text">Save</span>

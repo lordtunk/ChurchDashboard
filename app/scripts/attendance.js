@@ -15,10 +15,21 @@
         updateBtn = document.querySelector('#update'),
         cancelBtn = document.querySelector('#cancel'),
         exportBtn = document.querySelector('#export'),
+        serviceLabel1Field = document.querySelector('#service-label-1'),
+        serviceLabel2Field = document.querySelector('#service-label-2'),
+        campusField = document.querySelector('#campus'),
+        currentLabel1 = -1,
+        currentLabel2 = -1,
+        currentCampus = -1,
         selectDateBtn = document.querySelector('#go-arrow'),
         addPersonBtn = document.querySelector('#add-person'),
         attendanceDateDisplay = document.querySelector('#attendance-date-display'),
-        //visitors = document.querySelector('#visitors'),
+        visitorsFirstServiceField = document.querySelector('#visitors-first-service'),
+        visitorsSecondServiceField = document.querySelector('#visitors-second-service'),
+        visitorsFirstCount = 0,
+        visitorsSecondCount = 0,
+        originalVisitorsFirstCount = 0,
+        originalVisitorsSecondCount = 0,
         people = [],
         idSequence = 0,
         personIdSequence = -1,
@@ -28,7 +39,7 @@
         scrollAnimationMs = 1000,
         dialog = $('.dialog-form').dialog({
             autoOpen: false,
-            height: 400,
+            height: 450,
             width: 450,
             modal: true
         }),
@@ -46,6 +57,8 @@
             'November',
             'December'
         ],
+        options = {},
+        tempId = -1,
         isAdults = true,
         originalTotals,
         totals = {},
@@ -66,11 +79,31 @@
     function exportAttendance() {
         window.location = 'ajax/export_attendance.php';
     }
+    
+    function populateTypes() {
+        var $select = $('#service-label-1'),
+            $select2 = $('#service-label-2');
+        $.each(options.service_labels, function(typeCd, type) {
+            $select.append('<option value="' + typeCd + '">' + type + '</option>');
+            $select2.append('<option value="' + typeCd + '">' + type + '</option>');
+        });
+        $select2.append('<option value="">--None--</option>');
+        $select.val(options.default_first_service_label);
+        $select2.val(options.default_second_service_label);
+        
+        $select = $('#campus');
+        $.each(options.campuses, function(typeCd, type) {
+            $select.append('<option value="' + typeCd + '">' + type + '</option>');
+        });
+        $select.val(options.default_campus);
+    }
 
     function update() {
         try {
-            $('.attendance-form').mask('Loading...');
-            setTimeout(doUpdate, 50);
+            if(refreshTotals()) {
+                $('.attendance-form').mask('Loading...');
+                setTimeout(doUpdate, 50);
+            }
         } catch (e) {
             $('.attendance-form').unmask();
         }
@@ -78,7 +111,7 @@
 
     function doUpdate() {
         var updatedPeople = [],
-            i, j, rows, personId, display, displayField, attendanceDateFound,
+            i, rows, personId, display, displayField,
             first, second, p;
         rows = $('#attendance-table > tbody:last').children();
         for (i = 0; i < rows.length; i++) {
@@ -104,21 +137,8 @@
                 // Update the cached person information
                 p = getPerson(personId);
                 if (p) {
-                    attendanceDateFound = false;
-                    for (j = 0; j < p.attendance.length; j++) {
-                        if (p.attendance[j].date === currAttendanceDate) {
-                            p.attendance[j].first = first;
-                            p.attendance[j].second = second;
-                            attendanceDateFound = true;
-                        }
-                    }
-                    if (!attendanceDateFound) {
-                        p.attendance.push({
-                            date: currAttendanceDate,
-                            first: first,
-                            second: second
-                        });
-                    }
+                    p.first = first;
+                    p.second = second;
                 }
             }
             updatedPeople.push({
@@ -130,7 +150,7 @@
                 second: second
             });
         }
-        if (updatedPeople.length > 0) {
+        if (updatedPeople.length > 0 || visitorsFirstCount != originalVisitorsFirstCount || visitorsSecondCount != originalVisitorsSecondCount) {
             savePeople(updatedPeople);
         } else {
             $('.attendance-form').unmask();
@@ -186,7 +206,11 @@
     }
 
     function onSelectAttendanceDate() {
-        if (noChangesMade || confirm("If you change the date you will lose any unsaved changes. Continue?")) {
+        if (noChangesMade || confirm("If you change the date you will lose any unsaved changes. Continue?")) {            
+            if(serviceLabel1Field.value == serviceLabel2Field.value) {
+                $().toastmessage('showErrorToast', "First and Second Service cannot be the same");
+                return;
+            }
             prevAttendanceDate = new Date(attendanceDate.value);
             currAttendanceDate = attendanceDate.value;
             clear();
@@ -230,39 +254,38 @@
         attachLinkClickListeners();
     }
 
-    function buildPersonRow(person, dt) {
+    function buildPersonRow(person) {
         appendNavigationOption(person.id, person.last_name, person.adult);
-        var firstChecked = '',
-            secondChecked = '',
+        var firstChecked = person.first ? 'checked' : '',
+            secondChecked = person.second ? 'checked' : '',
             display = '',
-            firstId = genId(),
-            secondId = genId(),
-            ind;
-        if ((ind = getDateIndex(person, dt)) != -1) {
-            firstChecked = person.attendance[ind].first ? 'checked' : '';
-            secondChecked = person.attendance[ind].second ? 'checked' : '';
-        }
+            secondServiceCol = '';
 
-        display = getDisplayName(person);
-        display = '<a class="person_name" href="manage-person.html?id=' + person.id + '">' + display + '</a>';
-        
+        display = '<a class="person_name" href="manage-person.html?id=' + person.id + '">' + person.display + '</a>';
+        if(currentLabel2) {
+            tempId = genId();
+            secondServiceCol = '<label for="' + tempId + '"><input id="' + tempId + '" type="checkbox" ' + secondChecked + '/></label>';
+        }
+        tempId = genId();
         return '<tr adult="' + person.adult + '" personId="' + person.id + '"><td data-th="Name">' +
             '<button class="attendance-history-button"><i class="fa fa-archive" /></button>' + display + '</td>' +
             '<td class="attendance-table-attendance-col" service="first" data-th="First?">' +
-            '<label for="' + firstId + '"><input id="' + firstId + '" type="checkbox" ' + firstChecked + '/></label></td>' +
-            '<td class="attendance-table-attendance-col" service="second" data-th="Second?">' +
-            '<label for="' + secondId + '"><input id="' + secondId + '" type="checkbox" ' + secondChecked + '/></label></td></tr>';
+            '<label for="' + tempId + '"><input id="' + tempId + '" type="checkbox" ' + firstChecked + '/></label></td>' +
+            '<td class="attendance-table-attendance-col" service="second" data-th="Second?">' + secondServiceCol + '</td></tr>';
     }
 
     function buildNewPersonRow(person) {
-        var firstId = genId(),
-            secondId = genId();
+        var secondServiceCol = '';
+        if(currentLabel2) {
+            tempId = genId();
+            secondServiceCol = '<label for="' + tempId + '"><input id="' + tempId + '" type="checkbox" /></label>';
+        }
+        tempId = genId();
         return '<tr adult="' + person.adult + '" personId="' + person.id + '" modified="true"><td data-th="Name">' +
             '<input name="name_description" type="text" placeholder="Last, First or Description" /></td>' +
             '<td class="attendance-table-attendance-col" service="first" data-th="First?">' +
-            '<label for="' + firstId + '"><input id="' + firstId + '" type="checkbox" /></label></td>' +
-            '<td class="attendance-table-attendance-col" service="second" data-th="Second?">' +
-            '<label for="' + secondId + '"><input id="' + secondId + '" type="checkbox" /></label></td></tr>';
+            '<label for="' + tempId + '"><input id="' + tempId + '" type="checkbox" /></label></td>' +
+            '<td class="attendance-table-attendance-col" service="second" data-th="Second?">' + secondServiceCol + '</td></tr>';
     }
 
     function updateNewPeople(data) {
@@ -325,6 +348,8 @@
     }
 
     function updateAttendance(e) {
+        noChangesMade = false;
+        
         var me = e.target,
             personId = me.parentElement.parentElement.parentElement.getAttribute('personId'),
             isFirst = me.parentElement.parentElement.getAttribute('service') === 'first',
@@ -332,7 +357,6 @@
             firstSecondName = (isAdults ? 'adult' : 'kid') + '_' + (isFirst ? 'first' : 'second') + '_count',
             isAttendingOtherService = isFirst ? isAttendingSecondService : isAttendingFirstService;
 
-        noChangesMade = false;
         me.parentElement.parentElement.parentElement.setAttribute('modified', true);
         if (me.checked) {
             totals[firstSecondName]++;
@@ -356,6 +380,42 @@
         totalsEls.total_second_count.innerHTML = totals.total_second_count;
         totalsEls.total_total_count.innerHTML = totals.total_total_count;
     }
+    
+    function updateVisitorAttendance() {
+        var totalName = (isAdults ? 'adult' : 'kid') + '_total_count',
+            firstName = (isAdults ? 'adult' : 'kid') + '_first_count',
+            secondName = (isAdults ? 'adult' : 'kid') + '_second_count';
+            
+        totalsEls[firstName].innerHTML = totals[firstName] + visitorsFirstCount;
+        totalsEls[secondName].innerHTML = totals[secondName] + visitorsSecondCount;
+        totalsEls[totalName].innerHTML = totals[totalName] + visitorsFirstCount + visitorsSecondCount;
+        
+        totals.total_first_count = totals.adult_first_count + totals.kid_first_count;
+        totals.total_second_count = totals.adult_second_count + totals.kid_second_count;
+        totals.total_total_count = totals.adult_total_count + totals.kid_total_count;
+        
+        totalsEls.total_first_count.innerHTML = totals.total_first_count + visitorsFirstCount;
+        totalsEls.total_second_count.innerHTML = totals.total_second_count + visitorsSecondCount;
+        totalsEls.total_total_count.innerHTML = totals.total_total_count + visitorsFirstCount + visitorsSecondCount;
+    }
+    
+    function refreshTotals() {
+        var visitorsFirst = parseInt(visitorsFirstServiceField.value || 0),
+            visitorsSecond = parseInt(visitorsSecondServiceField.value || 0),
+            msg = '';
+        if(isNaN(visitorsFirst) || isNaN(visitorsSecond))
+            msg += 'Visitor count must be a number';
+        if(visitorsFirst < 0 || visitorsSecond < 0)
+            msg += 'Number of visitors cannot be negative';
+        if(msg) {
+            $().toastmessage('showErrorToast', msg);
+            return false;
+        }
+        visitorsFirstCount = visitorsFirst;
+        visitorsSecondCount = visitorsSecond;
+        updateVisitorAttendance();
+        return true;
+    }
 
     function showPersonAttendance(p) {
         $('#person-attendance-history-table > tbody:last').children().remove();
@@ -371,12 +431,16 @@
 
     function buildAttendanceRow(a) {
         var firstChecked = a.first ? 'checked' : '';
-        var secondChecked = a.second ? 'checked' : '';
+        var secondServiceCol = '';
+        if(currentLabel2) {
+            secondServiceCol = '<input type="checkbox" ' + (a.second ? 'checked' : '') + ' disabled/>';
+        }
         return '<tr><td data-th="Date">' + a.date + '</td>' +
             '<td class="attendance-table-attendance-col" service="first" data-th="First?">' +
             '<input type="checkbox" ' + firstChecked + ' disabled/></td>' +
             '<td class="attendance-table-attendance-col" service="second" data-th="Second?">' +
-            '<input type="checkbox" ' + secondChecked + ' disabled/></td></tr>';
+            secondServiceCol+
+            '</td></tr>';
     }
     
     function sanitizeAttendance() {
@@ -388,12 +452,17 @@
     }
     
     function clearAttendance() {
+        visitorsFirstServiceField.value = visitorsFirstCount = originalVisitorsFirstCount;
+        visitorsSecondServiceField.value = visitorsSecondCount = originalVisitorsSecondCount;
+        
         totals = jQuery.extend({}, originalTotals);
         for(var t in totals) {
             if(totals.hasOwnProperty(t)) {
                 totalsEls[t].innerHTML = totals[t];
             }
         }
+        
+        refreshTotals();
     }
     
     function setAttendance(ts) {
@@ -415,6 +484,9 @@
             type: 'GET',
             url: 'ajax/get_person_attendance.php',
             data: {
+                campus: currentCampus,
+                label1: currentLabel1,
+                label2: currentLabel2,
                 id: personId
             }
         })
@@ -423,6 +495,11 @@
                 var data = JSON.parse(msg);
                 if (data.success) {
                     showPersonAttendance(data.person);
+                    if(currentLabel2) {
+                        $('.attendance-table-attendance-col[service=second]').css('display', '');
+                    } else {
+                        $('.attendance-table-attendance-col[service=second]').css('display', 'none');
+                    }
                 } else {
                     if (data.error === 1) {
                         logout();
@@ -436,11 +513,38 @@
                 $().toastmessage('showErrorToast', "Error loading person's attendance history");
             });
     }
+    
+    function loadServiceOptions() {
+        $('.attendance-form').mask('Loading...');
+        $.ajax({
+            type: 'POST',
+            url: 'ajax/get_service_options.php'
+        })
+        .done(function(msg) {
+            var data = JSON.parse(msg);
+            if (data.success && data.options) {
+                options = data.options;
+                populateTypes();
+                loadPeople();
+            } else {
+                if (data.error === 1) {
+                    logout();
+                } else {
+                    $().toastmessage('showErrorToast', "Error loading settings");
+                }
+            }
+        })
+        .fail(function() {
+            $('.attendance-form').unmask();
+            $().toastmessage('showErrorToast', "Error loading settings");
+        });
+    }
 
     function loadPeople(isDefault) {
-        if(typeof isDefault === 'undefined')
+        if(typeof isDefault === 'undefined') {
             isDefault = true;
-        $('.attendance-form').mask('Loading...');
+        }
+        
         $.ajax({
             type: 'POST',
             url: 'ajax/get_attendance.php',
@@ -448,6 +552,9 @@
                 date: attendanceDate.value,
                 active: activeTrue.checked,
                 adult: adultTrue.checked,
+                campus: campusField.value,
+                label1: serviceLabel1Field.value,
+                label2: serviceLabel2Field.value,
                 isDefaultLoad: isDefault
             }
         })
@@ -467,12 +574,50 @@
                         activeTrue.checked = isLoadActive;                            
                         activeFalse.checked = !isLoadActive;                            
                     }
+                    if(typeof data.campus !== "undefined") {
+                        campusField.value = data.campus;
+                    }
+                    if(typeof data.label1 !== "undefined") {
+                        serviceLabel1Field.value = data.label1;
+                    }
+                    if(typeof data.label2 !== "undefined") {
+                        serviceLabel2Field.value = data.label2;
+                    }
                     isAdults = adultTrue.checked;
-                    $('#name-table-header').text(isAdults ? 'Adults' : 'Kids');
+                    currentCampus = campusField.value;
+                    currentLabel1 = serviceLabel1Field.value;
+                    currentLabel2 = serviceLabel2Field.value;
+                    originalVisitorsFirstCount = visitorsFirstCount = parseInt(data.visitors1);
+                    originalVisitorsSecondCount = visitorsSecondCount = parseInt(data.visitors2);
                     totals = data.totals;
                     sanitizeAttendance();
                     originalTotals = jQuery.extend({}, totals);
                     processPeople(data.people);
+                    refreshTotals();
+                    $('#name-table-header').text(isAdults ? 'Adults' : 'Kids');
+                    var firstServiceText = options.service_labels[$('#service-label-1').val()];
+                    $('.first-service-header').text(firstServiceText);
+                    $('#first-service-total-header').text(firstServiceText+' Attendance');
+                    $('#visitors-first-service-label').text(firstServiceText+' Visitors');
+                    var secondService = $('#service-label-2').val();
+                    if(secondService) {
+                        $('.second-service-header').text(options.service_labels[secondService]);
+                        $('#second-service-total-header').text(options.service_labels[secondService] + ' Attendance');
+                        $('.second-service-header').css('display', '');
+                        $('#first-service-total-row').css('display', '');
+                        $('#second-service-total-row').css('display', '');
+                        $('.attendance-table-attendance-col[service=second]').css('display', '');
+                        $('#visitors-second-service-label').css('display', '').text(options.service_labels[secondService]+' Visitors');
+                        $('#visitors-second-service').css('display', '');
+                    } else {
+                        $('.second-service-header').css('display', 'none');
+                        $('#first-service-total-row').css('display', 'none');
+                        $('#second-service-total-row').css('display', 'none');
+                        $('.attendance-table-attendance-col[service=second]').css('display', 'none');
+                        $('#visitors-second-service-label').css('display', 'none');
+                        $('#visitors-second-service').css('display', 'none');
+                    }
+                    $('.campus-text').text(options.campuses[$('#campus').val()]);
                     if (data.scroll_to_id && data.scroll_to_id >= 0) {
                         var scrollTo = $('[personid=' + data.scroll_to_id + ']')[0];
                         if (scrollTo) {
@@ -506,7 +651,14 @@
             type: 'POST',
             url: 'ajax/save_people.php',
             data: {
-                people: JSON.stringify(newPeople)
+                people: JSON.stringify(newPeople),
+                campus: currentCampus,
+                label1: currentLabel1,
+                label2: currentLabel2,
+                visitors1: visitorsFirstCount,
+                visitors2: visitorsSecondCount,
+                adult: isAdults,
+                date: currAttendanceDate
             }
         })
             .done(function(msg) {
@@ -580,25 +732,6 @@
         }
         return display;
     }
-
-    function getDateIndex(person, dt) {
-        for (var i = 0; i < person.attendance.length; i++) {
-            if (person.attendance[i].date === dt) return i;
-        }
-        return -1;
-    }
-
-//    function getDateString(dt) {
-//        var curr_date = dt.getDate();
-//        var curr_month = dt.getMonth();
-//        var curr_year = dt.getFullYear();
-//
-//        curr_date = (curr_date < 10) ? '0' + curr_date : '' + curr_date;
-//        curr_month++;
-//        curr_month = (curr_month < 10) ? '0' + curr_month : '' + curr_month;
-//
-//        return curr_month + "/" + curr_date + "/" + curr_year;
-//    }
 
     function getPerson(id) {
         for (var i = 0; i < people.length; i++) {
@@ -683,7 +816,7 @@
     //$('#visitors').on('change', updateVisitorAttendance);
     $('.jump-to').on('change', jumpTo);
     $('.navigation-links a').on('click', onClickTopBottom);
-
-
-    checkLoginStatus(loadPeople);
+    $('#refresh-visitors').on('click', refreshTotals);
+    
+    checkLoginStatus(loadServiceOptions);
 })();
