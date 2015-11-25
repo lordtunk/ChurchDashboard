@@ -77,7 +77,7 @@
             $_SESSION['label2'] = $label2;
         }
         try {
-            $dict['people'] = $att->getAttendance($attendanceDate, $active, $adult, $campus, $label1, $label2);
+            $dict['people'] = $att->getAttendance($attendanceDate, $active, $adult, $campus, $label1, $label2, null);
             $dict['totals'] = $att->getAttendanceTotals($attendanceDate, $adult, $campus, $label1, $label2);
             $dict['visitors1'] = $att->getVisitorCount($attendanceDate, $adult, $campus, $label1);
             if($label2)

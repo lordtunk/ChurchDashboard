@@ -127,65 +127,66 @@
         for($i=1; $i < count($new_people); $i++) {
           $idIn = $idIn.",".$new_people[$i];
         }
-        $query = "SELECT
-                    p.id,
-                    p.first_name,
-                    p.last_name,
-                    p.description,
-                    p.adult,
-                    p.active,
-                    DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
-                    a.first,
-                    a.second
-                  FROM
-                    People p
-                    LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
-                  WHERE
-                    p.id IN ($idIn)
-                  ORDER BY
-                    p.last_name IS NOT NULL DESC,
-                    p.description IS NOT NULL DESC,
-                    p.last_name,
-                    p.first_name,
-                    p.description";
-        $results = $f->fetchAndExecute($query);
-        $people = array();
-        foreach($results as $key => $row) {
-        $p = NULL;
-        $j = NULL;
-        $foundPerson = FALSE;
-        // Check to see if we have already added the person
-        foreach($people as $k => $person) {
-          if(!isset($person['id'])) continue;
-          if($person['id'] == $row['id']) {
-            $j = $k;
-            $foundPerson = TRUE;
-            break;
-          }
-        }
+        $people = $att->getAttendance($attendanceDate, true, $adult, $campus, $label1, $label2, $idIn);
+        // $query = "SELECT
+                    // p.id,
+                    // p.first_name,
+                    // p.last_name,
+                    // p.description,
+                    // p.adult,
+                    // p.active,
+                    // DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
+                    // a.first,
+                    // a.second
+                  // FROM
+                    // People p
+                    // LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
+                  // WHERE
+                    // p.id IN ($idIn)
+                  // ORDER BY
+                    // p.last_name IS NOT NULL DESC,
+                    // p.description IS NOT NULL DESC,
+                    // p.last_name,
+                    // p.first_name,
+                    // p.description";
+        // $results = $f->fetchAndExecute($query);
+        // $people = array();
+        // foreach($results as $key => $row) {
+        // $p = NULL;
+        // $j = NULL;
+        // $foundPerson = FALSE;
+        ////Check to see if we have already added the person
+        // foreach($people as $k => $person) {
+          // if(!isset($person['id'])) continue;
+          // if($person['id'] == $row['id']) {
+            // $j = $k;
+            // $foundPerson = TRUE;
+            // break;
+          // }
+        // }
 
-        // Set the person data if we have not encountered this person before
-        if($foundPerson == FALSE) {
-          $p = array();
-          $p['id'] = $row['id'];
-          $p['first_name'] = $row['first_name'];
-          $p['last_name'] = $row['last_name'];
-          $p['description'] = $row['description'];
-          $p['adult'] = $row['adult'] ? TRUE : FALSE;
-          $p['active'] = $row['active'] ? TRUE : FALSE;
-          $p['attendance'] = array();
-          array_push($people, $p);
-          $j = count($people) - 1;
-        }
+        ////Set the person data if we have not encountered this person before
+        // if($foundPerson == FALSE) {
+          // $p = array();
+          // $p['id'] = $row['id'];
+          // $p['first_name'] = $row['first_name'];
+          // $p['last_name'] = $row['last_name'];
+          // $p['description'] = $row['description'];
+          // $p['adult'] = $row['adult'] ? TRUE : FALSE;
+          // $p['active'] = $row['active'] ? TRUE : FALSE;
+          // $p['attendance'] = array();
+          // array_push($people, $p);
+          // $j = count($people) - 1;
+        // }
 
-        if(isset($row['attendance_dt'])) {
-          $att = array();
-          $att['date'] = $row['attendance_dt'];
-          $att['first'] = $row['first'] ? TRUE : FALSE;
-          $att['second'] = $row['second'] ? TRUE : FALSE;
-          array_push($people[$j]['attendance'], $att);
-        }
-      }
+        // if(isset($row['attendance_dt'])) {
+          // $att = array();
+          // $att['date'] = $row['attendance_dt'];
+          // $att['first'] = $row['first'] ? TRUE : FALSE;
+          // $att['second'] = $row['second'] ? TRUE : FALSE;
+          // array_push($people[$j]['attendance'], $att);
+        // }
+      // }
         $dict['people'] = $people;
         $dict['success'] = TRUE;
       } catch (Exception $e) {

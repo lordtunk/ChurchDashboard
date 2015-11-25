@@ -53,7 +53,7 @@
             return $options;
         }
         
-        public function getAttendance($service_dt, $active, $adult, $campus, $label1, $label2) {
+        public function getAttendance($service_dt, $active, $adult, $campus, $label1, $label2, $ids) {
             $results = $this->getServiceIds($service_dt, $campus);
             $serviceId1 = -1;
             $serviceId2 = -1;
@@ -64,7 +64,10 @@
                 else if($row['label'] == $label2)
                     $serviceId2 = $row['id'];
             }
-
+            $idsString = "";
+            if($ids != NULL && $ids != "") {
+                $idsString = "AND p.id IN($ids)";
+            }
             if($serviceId2 !== -1) {
                 $hasServiceId = TRUE;
                 $query = "SELECT DISTINCT
@@ -110,12 +113,13 @@
                         WHERE
                           p.active = :active
                           AND p.adult = :adult
+                          $idsString
                         ORDER BY
                           p.last_name IS NOT NULL DESC,
                           p.description IS NOT NULL DESC,
                           p.last_name,
                           p.first_name,
-                          p.description DESC";
+                          p.description";
             } else {
                 $query = "SELECT DISTINCT
                           p.id,
@@ -151,12 +155,13 @@
                         WHERE
                           p.active = :active
                           AND p.adult = :adult
+                          $idsString
                         ORDER BY
                           p.last_name IS NOT NULL DESC,
                           p.description IS NOT NULL DESC,
                           p.last_name,
                           p.first_name,
-                          p.description DESC";
+                          p.description";
             }
             $results = $this->f->fetchAndExecute($query, array(":active"=>$active, ":adult"=>$adult));
             return $results;
@@ -189,8 +194,6 @@
                             dual";
             } else {
                 $haveSecondService = TRUE;
-                $visitorsFirst = $this->getVisitorCount($service_dt, !$adult, $campus, $label1);
-                $visitorsSecond = $this->getVisitorCount($service_dt, !$adult, $campus, $label2);
                 $query = "
                         select
                             (SELECT count(*) FROM attendance_test WHERE service_id = $serviceId1) total_first_count,
@@ -210,32 +213,33 @@
             }
             $results = $this->f->fetchAndExecute($query);
             $totals = array();
+            
             foreach($results as $key => $row) {
-                $totals['total_first_count'] = $row['total_first_count'] + $visitorsFirst;
+                $totals['total_first_count'] = $row['total_first_count'];
                 if($haveSecondService == TRUE) {
-                    $totals['total_second_count'] = $row['total_second_count'] + $visitorsSecond;
-                    $totals['total_total_count'] = $row['total_total_count'] + $visitorsFirst + $visitorsSecond;
+                    $totals['total_second_count'] = $row['total_second_count'];
+                    $totals['total_total_count'] = $row['total_total_count'];
                 } else {
                     $totals['total_second_count'] = 0;
-                    $totals['total_total_count'] = $row['total_first_count'] + $visitorsFirst;
+                    $totals['total_total_count'] = $row['total_first_count'];
                 }
                 
-                $totals['adult_first_count'] = $row['adult_first_count'] + ($adult ? 0 : $visitorsFirst);
+                $totals['adult_first_count'] = $row['adult_first_count'];
                 if($haveSecondService == TRUE) {
-                    $totals['adult_second_count'] = $row['adult_second_count'] + ($adult ? 0 : $visitorsSecond);
-                    $totals['adult_total_count'] = $row['adult_total_count'] + ($adult ? 0 : $visitorsFirst + $visitorsSecond);
+                    $totals['adult_second_count'] = $row['adult_second_count'];
+                    $totals['adult_total_count'] = $row['adult_total_count'];
                 } else {
                     $totals['adult_second_count'] = 0;
-                    $totals['adult_total_count'] = $row['adult_first_count'] + ($adult ? 0 : $visitorsFirst);
+                    $totals['adult_total_count'] = $row['adult_first_count'];
                 }
                 
-                $totals['kid_first_count'] = $row['kid_first_count'] + ($adult ? $visitorsFirst : 0);
+                $totals['kid_first_count'] = $row['kid_first_count'];
                 if($haveSecondService == TRUE) {
-                    $totals['kid_second_count'] = $row['kid_second_count'] + ($adult ? $visitorsSecond : 0);
-                    $totals['kid_total_count'] = $row['kid_total_count'] + ($adult ? 0 : $visitorsFirst + $visitorsSecond);
+                    $totals['kid_second_count'] = $row['kid_second_count'];
+                    $totals['kid_total_count'] = $row['kid_total_count'];
                 } else {
                     $totals['kid_second_count'] = 0;
-                    $totals['kid_total_count'] = $row['kid_first_count'] + ($adult ? $visitorsFirst : 0);
+                    $totals['kid_total_count'] = $row['kid_first_count'];
                 }
             }
             return $totals;
@@ -292,7 +296,7 @@
                           s.service_dt attendance_dt
                         FROM
                           attendance_test a
-                          inner join services s on a.service_id=s.id and s.label=:label1 and s.campus=:campus
+                          inner join Services s on a.service_id=s.id and s.label=:label1 and s.campus=:campus
                       ) a1 ON a1.attended_by=p.id
                       LEFT OUTER JOIN (
                         SELECT
@@ -300,7 +304,7 @@
                           s.service_dt attendance_dt
                         FROM
                           attendance_test a
-                          inner join services s on a.service_id=s.id and s.label=:label2 and s.campus=:campus
+                          inner join Services s on a.service_id=s.id and s.label=:label2 and s.campus=:campus
                       ) a2 ON a2.attended_by=p.id and a2.attendance_dt=a1.attendance_dt
                     WHERE
                       p.id = :id
@@ -324,7 +328,7 @@
                           s.service_dt attendance_dt
                         FROM
                           attendance_test a
-                          inner join services s on a.service_id=s.id and s.label=:label1 and s.campus=:campus
+                          inner join Services s on a.service_id=s.id and s.label=:label1 and s.campus=:campus
                       ) a1 ON a1.attended_by=p.id
                     WHERE
                       p.id = :id
@@ -355,17 +359,17 @@
         
         public function updateVisitorCount($service_id, $count, $adult) {
             if($adult)
-                $query = "UPDATE services SET adult_visitors=:count WHERE id=:service_id";
+                $query = "UPDATE Services SET adult_visitors=:count WHERE id=:service_id";
             else
-                $query = "UPDATE services SET kid_visitors=:count WHERE id=:service_id";
+                $query = "UPDATE Services SET kid_visitors=:count WHERE id=:service_id";
             $results = $this->f->executeAndReturnResult($query, array(":count"=>$count, ":service_id"=>$service_id));
         }
         
         public function getVisitorCount($service_dt, $adult, $campus, $label) {
             if($adult)
-                $query = "SELECT COALESCE(adult_visitors, 0) visitors FROM services WHERE DATE_FORMAT(service_dt,'%c/%e/%Y') = :date AND campus = :campus AND label=:label";
+                $query = "SELECT COALESCE(adult_visitors, 0) visitors FROM Services WHERE DATE_FORMAT(service_dt,'%c/%e/%Y') = :date AND campus = :campus AND label=:label";
             else
-                $query = "SELECT COALESCE(kid_visitors, 0) visitors FROM services WHERE DATE_FORMAT(service_dt,'%c/%e/%Y') = :date AND campus = :campus AND label=:label";
+                $query = "SELECT COALESCE(kid_visitors, 0) visitors FROM Services WHERE DATE_FORMAT(service_dt,'%c/%e/%Y') = :date AND campus = :campus AND label=:label";
             $results = $this->f->fetchAndExecute($query, array(":date"=>$service_dt, ":campus"=>$campus, ":label"=>$label));
             return count($results) > 0 ? $results[0]['visitors'] : 0;
         }
@@ -380,7 +384,7 @@
                     (COALESCE(s.adult_visitors, 0) + COALESCE(s.kid_visitors, 0)) visitors,
                     s.label
                 FROM
-                    services s
+                    Services s
                 WHERE 
                     s.campus=:campus
                     AND s.label in (:label1";

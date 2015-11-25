@@ -60,35 +60,38 @@ ADD created_by int(11) AFTER creation_dt,
 ADD attendance_frequency tinyint(1) DEFAULT NULL
 
 
-CREATE TABLE IF NOT EXISTS `services` (
+CREATE TABLE IF NOT EXISTS `Services` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `service_dt` date NOT NULL,
-  `label` tinyint(4) unsigned NOT NULL,
-  `campus` tinyint(3) unsigned NOT NULL DEFAULT '1',
-  `visitors` int(10) unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `label` int(10) unsigned NOT NULL,
+  `campus` int(10) unsigned NOT NULL DEFAULT '1',
+  `adult_visitors` int(10) unsigned DEFAULT NULL,
+  `kid_visitors` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `U_SERVICE` (`service_dt`,`label`,`campus`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-ALTER TABLE `gcbdash`.`services` ADD UNIQUE `U_SERVICE` (`service_dt`, `label`, `campus`)COMMENT '';
+ALTER TABLE `gcbdash`.`Services` ADD UNIQUE `U_SERVICE` (`service_dt`, `label`, `campus`)COMMENT '';
 
 
-CREATE TABLE IF NOT EXISTS `settings` (
+CREATE TABLE IF NOT EXISTS `Settings` (
   `starting_point_emails` varchar(500) DEFAULT NULL,
   `campuses` varchar(500) NOT NULL,
   `service_labels` varchar(500) NOT NULL,
   `default_campus` int(10) unsigned NOT NULL,
-  `default_service_label` int(10) unsigned NOT NULL
+  `default_first_service_label` int(10) unsigned NOT NULL,
+  `default_second_service_label` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`starting_point_emails`, `campuses`, `service_labels`, `default_campus`, `default_service_label`) VALUES
-('buck3y3girl13@gmail.com,stevvensa.550@gmail.com', '1|Main', '1|9:00 AM,2|10:00 AM', 1, 1);
+INSERT INTO `Settings` (`starting_point_emails`, `campuses`, `service_labels`, `default_campus`, `default_first_service_label`, `default_second_service_label`) VALUES
+('buck3y3girl13@gmail.com,stevvensa.550@gmail.com', '1|Main', '1|9:00 AM,2|10:30 AM', 1, 1, 2);
 
 
-INSERT INTO services (service_dt, campus, label)
+INSERT INTO Services (service_dt, campus, label)
 (SELECT distinct
 	`attendance_dt` as `service_dt`,
     1 as campus,
@@ -99,7 +102,7 @@ ORDER BY
 	attendance_dt
  )
  
-INSERT INTO services (service_dt, campus, label)
+INSERT INTO Services (service_dt, campus, label)
 (SELECT distinct
 	`attendance_dt` as `service_dt`,
     1 as campus,
@@ -137,7 +140,7 @@ INSERT INTO attendance_test (`attended_by`, `service_id`)
  	s.id
 FROM 
 	`attendance` a
- 	INNER JOIN services s on a.`attendance_dt`=s.service_dt
+ 	INNER JOIN Services s on a.`attendance_dt`=s.service_dt
 WHERE
  	a.second=1
     AND s.label=2
@@ -153,6 +156,6 @@ ALTER TABLE `attendance_test` DROP `second`;
  
 
 
-ALTER TABLE `gcbdash`.`attendance_test` ADD UNIQUE (`attended_by`, `service_id`)COMMENT '';
+ALTER TABLE `attendance_test` ADD UNIQUE (`attended_by`, `service_id`);
 
 

@@ -117,7 +117,7 @@
         for (i = 0; i < rows.length; i++) {
             // Only update modified rows
             if (rows[i].getAttribute('modified') === null) continue;
-
+            
             personId = rows[i].getAttribute('personId');
             displayField = rows[i].querySelector('[name=name_description]');
             first = isAttendingFirstService(personId);
@@ -186,6 +186,7 @@
         $('#attendance-table-container').animate({
             scrollTop: $('#attendance-table-container')[0].scrollHeight
         }, scrollAnimationMs);
+        $('.attendance-table-attendance-col[service=second]').css('display', (currentLabel2) ? '' : 'none');
     }
 
     function setAttendanceDate(dt) {
@@ -348,15 +349,14 @@
     }
 
     function updateAttendance(e) {
-        noChangesMade = false;
-        
         var me = e.target,
             personId = me.parentElement.parentElement.parentElement.getAttribute('personId'),
             isFirst = me.parentElement.parentElement.getAttribute('service') === 'first',
             totalName = (isAdults ? 'adult' : 'kid') + '_total_count',
             firstSecondName = (isAdults ? 'adult' : 'kid') + '_' + (isFirst ? 'first' : 'second') + '_count',
-            isAttendingOtherService = isFirst ? isAttendingSecondService : isAttendingFirstService;
+            isAttendingOtherService = (!currentLabel2) ? function() { return false; } : (isFirst ? isAttendingSecondService : isAttendingFirstService);
 
+        noChangesMade = false;
         me.parentElement.parentElement.parentElement.setAttribute('modified', true);
         if (me.checked) {
             totals[firstSecondName]++;
@@ -369,16 +369,17 @@
             if (!isAttendingOtherService(personId))
                 totals[totalName]--;
         }
-        totalsEls[firstSecondName].innerHTML = totals[firstSecondName];
-        totalsEls[totalName].innerHTML = totals[totalName];
+        updateVisitorAttendance();
+        // totalsEls[firstSecondName].innerHTML = totals[firstSecondName];
+        // totalsEls[totalName].innerHTML = totals[totalName];
         
-        totals.total_first_count = totals.adult_first_count + totals.kid_first_count;
-        totals.total_second_count = totals.adult_second_count + totals.kid_second_count;
-        totals.total_total_count = totals.adult_total_count + totals.kid_total_count;
+        // totals.total_first_count = totals.adult_first_count + totals.kid_first_count;
+        // totals.total_second_count = totals.adult_second_count + totals.kid_second_count;
+        // totals.total_total_count = totals.adult_total_count + totals.kid_total_count;
         
-        totalsEls.total_first_count.innerHTML = totals.total_first_count;
-        totalsEls.total_second_count.innerHTML = totals.total_second_count;
-        totalsEls.total_total_count.innerHTML = totals.total_total_count;
+        // totalsEls.total_first_count.innerHTML = totals.total_first_count;
+        // totalsEls.total_second_count.innerHTML = totals.total_second_count;
+        // totalsEls.total_total_count.innerHTML = totals.total_total_count;
     }
     
     function updateVisitorAttendance() {
@@ -667,6 +668,7 @@
                 if (data.success) {
                     originalTotals = jQuery.extend({}, totals);
                     updateNewPeople(data.people);
+                    $('.attendance-table-attendance-col[service=second]').css('display', (currentLabel2) ? '' : 'none');
                     //people = data.people;
                     //reset();
                     $().toastmessage('showSuccessToast', "Save successful");
