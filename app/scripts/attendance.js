@@ -525,6 +525,9 @@
         if(typeof isDefault === 'undefined') {
             isDefault = true;
         }
+        if(!isDefault) {
+            $('.attendance-form').mask('Loading...');
+        }
         
         $.ajax({
             type: 'POST',
