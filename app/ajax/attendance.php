@@ -308,9 +308,39 @@
                       ) a2 ON a2.attended_by=p.id and a2.attendance_dt=a1.attendance_dt
                     WHERE
                       p.id = :id
+                    
+                    UNION
+                    
+                    SELECT DISTINCT
+                      p.id,
+                      p.first_name,
+                      p.last_name,
+                      p.description,
+                      DATE_FORMAT(COALESCE(a1.attendance_dt, a2.attendance_dt),'%c/%e/%Y') attendance_dt,
+                      CASE WHEN a1.attended_by IS NULL THEN '' ELSE 1 END first,
+                      CASE WHEN a2.attended_by IS NULL THEN '' ELSE 1 END second
+                    FROM
+                      People p
+                      LEFT OUTER JOIN (
+                        SELECT
+                          a.attended_by,
+                          s.service_dt attendance_dt
+                        FROM
+                          attendance_test a
+                          inner join Services s on a.service_id=s.id and s.label=:label2 and s.campus=:campus
+                      ) a2 ON a2.attended_by=p.id
+                      LEFT OUTER JOIN (
+                        SELECT
+                          a.attended_by,
+                          s.service_dt attendance_dt
+                        FROM
+                          attendance_test a
+                          inner join Services s on a.service_id=s.id and s.label=:label1 and s.campus=:campus
+                      ) a1 ON a1.attended_by=p.id and a2.attendance_dt=a1.attendance_dt
+                    WHERE
+                      p.id = :id
                     ORDER BY
-                      a1.attendance_dt DESC,
-                      a2.attendance_dt DESC";
+                      attendance_dt DESC";
             } else {
                 $query = "
                     SELECT DISTINCT

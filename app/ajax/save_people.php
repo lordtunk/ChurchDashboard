@@ -82,16 +82,22 @@
       }
       if(count($paramsArr) > 0) {
           $query = "SELECT 
-                        p.id, p.first_name, p.last_name, p.description, p.primary_phone, count(*) attendance_count 
+                        att.attended_by, p.first_name, p.last_name, p.description, p.primary_phone, count(*) attendance_count 
                     FROM 
-                        Attendance a 
-                        INNER JOIN People p ON p.id=a.attended_by
+                        (
+                            SELECT DISTINCT
+                                s.service_dt, a.attended_by
+                            FROM 
+                                attendance_test a
+                                INNER JOIN Services s ON s.id=a.service_id
+                            WHERE
+                                a.attended_by IN ($paramsSql)
+                        ) att
+                        INNER JOIN People p ON p.id=att.attended_by
                     WHERE
-                        a.attended_by IN ($paramsSql)
-                        AND (a.first=1 OR a.second=1)
-                        AND p.starting_point_notified = 0
-                    GROUP BY 
-                        p.id, p.first_name, p.last_name, p.description, p.primary_phone
+                        p.starting_point_notified = 0
+                    GROUP BY
+                        att.attended_by
                     HAVING
                         attendance_count=3";
           $results = $f->fetchAndExecute($query, $paramsArr);
@@ -127,67 +133,8 @@
         for($i=1; $i < count($new_people); $i++) {
           $idIn = $idIn.",".$new_people[$i];
         }
-        $people = $att->getAttendance($attendanceDate, true, $adult, $campus, $label1, $label2, $idIn);
-        // $query = "SELECT
-                    // p.id,
-                    // p.first_name,
-                    // p.last_name,
-                    // p.description,
-                    // p.adult,
-                    // p.active,
-                    // DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
-                    // a.first,
-                    // a.second
-                  // FROM
-                    // People p
-                    // LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
-                  // WHERE
-                    // p.id IN ($idIn)
-                  // ORDER BY
-                    // p.last_name IS NOT NULL DESC,
-                    // p.description IS NOT NULL DESC,
-                    // p.last_name,
-                    // p.first_name,
-                    // p.description";
-        // $results = $f->fetchAndExecute($query);
-        // $people = array();
-        // foreach($results as $key => $row) {
-        // $p = NULL;
-        // $j = NULL;
-        // $foundPerson = FALSE;
-        ////Check to see if we have already added the person
-        // foreach($people as $k => $person) {
-          // if(!isset($person['id'])) continue;
-          // if($person['id'] == $row['id']) {
-            // $j = $k;
-            // $foundPerson = TRUE;
-            // break;
-          // }
-        // }
-
-        ////Set the person data if we have not encountered this person before
-        // if($foundPerson == FALSE) {
-          // $p = array();
-          // $p['id'] = $row['id'];
-          // $p['first_name'] = $row['first_name'];
-          // $p['last_name'] = $row['last_name'];
-          // $p['description'] = $row['description'];
-          // $p['adult'] = $row['adult'] ? TRUE : FALSE;
-          // $p['active'] = $row['active'] ? TRUE : FALSE;
-          // $p['attendance'] = array();
-          // array_push($people, $p);
-          // $j = count($people) - 1;
-        // }
-
-        // if(isset($row['attendance_dt'])) {
-          // $att = array();
-          // $att['date'] = $row['attendance_dt'];
-          // $att['first'] = $row['first'] ? TRUE : FALSE;
-          // $att['second'] = $row['second'] ? TRUE : FALSE;
-          // array_push($people[$j]['attendance'], $att);
-        // }
-      // }
-        $dict['people'] = $people;
+        
+        $dict['people'] = $att->getAttendance($attendanceDate, true, $adult, $campus, $label1, $label2, $idIn);
         $dict['success'] = TRUE;
       } catch (Exception $e) {
         $dict['success'] = FALSE;
