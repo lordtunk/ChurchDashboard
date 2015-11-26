@@ -265,36 +265,37 @@
         display = '<a class="person_name" href="manage-person.html?id=' + person.id + '">' + person.display + '</a>';
         if(currentLabel2) {
             tempId = genId();
-            secondServiceCol = '<label for="' + tempId + '"><input id="' + tempId + '" type="checkbox" ' + secondChecked + '/></label>';
+            secondServiceCol = '<td class="attendance-table-attendance-col" service="second" data-th="Second?"><label for="' + tempId + '"><input id="' + tempId + '" type="checkbox" ' + secondChecked + '/></label></td>';
         }
         tempId = genId();
         return '<tr adult="' + person.adult + '" personId="' + person.id + '"><td data-th="Name">' +
             '<button class="attendance-history-button"><i class="fa fa-archive" /></button>' + display + '</td>' +
             '<td class="attendance-table-attendance-col" service="first" data-th="First?">' +
             '<label for="' + tempId + '"><input id="' + tempId + '" type="checkbox" ' + firstChecked + '/></label></td>' +
-            '<td class="attendance-table-attendance-col" service="second" data-th="Second?">' + secondServiceCol + '</td></tr>';
+            secondServiceCol + '</tr>';
+            //'<td class="attendance-table-attendance-col" service="second" data-th="Second?">' + secondServiceCol + '</td></tr>';
     }
 
     function buildNewPersonRow(person) {
         var secondServiceCol = '';
         if(currentLabel2) {
             tempId = genId();
-            secondServiceCol = '<label for="' + tempId + '"><input id="' + tempId + '" type="checkbox" /></label>';
+            secondServiceCol = '<td class="attendance-table-attendance-col" service="second" data-th="Second?"><label for="' + tempId + '"><input id="' + tempId + '" type="checkbox" /></label></td>';
         }
         tempId = genId();
         return '<tr adult="' + person.adult + '" personId="' + person.id + '" modified="true"><td data-th="Name">' +
             '<input name="name_description" type="text" placeholder="Last, First or Description" /></td>' +
             '<td class="attendance-table-attendance-col" service="first" data-th="First?">' +
             '<label for="' + tempId + '"><input id="' + tempId + '" type="checkbox" /></label></td>' +
-            '<td class="attendance-table-attendance-col" service="second" data-th="Second?">' + secondServiceCol + '</td></tr>';
+            secondServiceCol + '</tr>';
+            //'<td class="attendance-table-attendance-col" service="second" data-th="Second?">' + secondServiceCol + '</td></tr>';
     }
 
     function updateNewPeople(data) {
         noChangesMade = true;
         if (!data || data.length === 0) return;
         var personRows = [],
-            lastAdultInd = 0,
-            lastKidInd = 0,
+            lastPersonInd = 0,
             i, j, person, newPerson, inserted, pEl;
         // Remove any 'new person' rows from the table
         $('[personid^=-]').remove();
@@ -311,14 +312,7 @@
             inserted = false;
             for (j = 0; j < people.length; j++) {
                 person = people[j];
-
-                if (person.adult === true)
-                    lastAdultInd = j;
-                else
-                    lastKidInd = j;
-
-                // Only compare the two if they are both adults or both kids
-                if (person.adult !== newPerson.adult) continue;
+                lastPersonInd = j;
 
                 if (personCompareTo(newPerson, person) === -1) {
                     $(personRows[i]).insertBefore('[personid=' + person.id + ']');
@@ -329,13 +323,8 @@
             }
             // If the person was not inserted into the table in the loop then add to the end
             if (inserted === false) {
-                if (newPerson.adult === true) {
-                    $('#adult-attendance-table > tbody:last').append(personRows[i]);
-                    people.splice(lastAdultInd + 1, 0, newPerson);
-                } else {
-                    $('#kid-attendance-table > tbody:last').append(personRows[i]);
-                    people.splice(lastKidInd + 1, 0, newPerson);
-                }
+                $('#attendance-table > tbody:last').append(personRows[i]);
+                people.splice(lastPersonInd + 1, 0, newPerson);
             }
 
             // Attach listeners to inserted rows
@@ -370,16 +359,6 @@
                 totals[totalName]--;
         }
         updateVisitorAttendance();
-        // totalsEls[firstSecondName].innerHTML = totals[firstSecondName];
-        // totalsEls[totalName].innerHTML = totals[totalName];
-        
-        // totals.total_first_count = totals.adult_first_count + totals.kid_first_count;
-        // totals.total_second_count = totals.adult_second_count + totals.kid_second_count;
-        // totals.total_total_count = totals.adult_total_count + totals.kid_total_count;
-        
-        // totalsEls.total_first_count.innerHTML = totals.total_first_count;
-        // totalsEls.total_second_count.innerHTML = totals.total_second_count;
-        // totalsEls.total_total_count.innerHTML = totals.total_total_count;
     }
     
     function updateVisitorAttendance() {
@@ -434,14 +413,15 @@
         var firstChecked = a.first ? 'checked' : '';
         var secondServiceCol = '';
         if(currentLabel2) {
-            secondServiceCol = '<input type="checkbox" ' + (a.second ? 'checked' : '') + ' disabled/>';
+            secondServiceCol = '<td class="attendance-table-attendance-col" service="second" data-th="Second?"><input type="checkbox" ' + (a.second ? 'checked' : '') + ' disabled/></td>';
         }
         return '<tr><td data-th="Date">' + a.date + '</td>' +
             '<td class="attendance-table-attendance-col" service="first" data-th="First?">' +
             '<input type="checkbox" ' + firstChecked + ' disabled/></td>' +
-            '<td class="attendance-table-attendance-col" service="second" data-th="Second?">' +
+            //'' +
             secondServiceCol+
-            '</td></tr>';
+            '</tr>';
+            //'</td></tr>';
     }
     
     function sanitizeAttendance() {
@@ -560,7 +540,6 @@
             }
         })
             .done(function(msg) {
-                $('.attendance-form').unmask();
                 var data = JSON.parse(msg);
                 if (data.success) {
                     if(data.attendance_dt)
@@ -633,7 +612,9 @@
                             }, scrollAnimationMs);
                         }
                     }
+                    $('.attendance-form').unmask();
                 } else {
+                    $('.attendance-form').unmask();
                     if (data.error === 1) {
                         logout();
                     } else {
@@ -699,7 +680,7 @@
             p2Display = getDisplayName(p2, true);
         if (p1.first_name || p1.last_name) {
             if (p2.first_name || p2.last_name) {
-                if (p1Display === p2Display) return 0;
+                if (p1Display == p2Display) return 0;
                 if (p1Display.toLowerCase() < p2Display.toLowerCase()) return -1;
                 if (p1Display.toLowerCase() > p2Display.toLowerCase()) return 1;
             } else {
@@ -708,7 +689,7 @@
         } else if (p2.first_name || p2.last_name) {
             return 1;
         } else {
-            if (p1Display === p2Display) return 0;
+            if (p1Display == p2Display) return 0;
             if (p1Display.toLowerCase() < p2Display.toLowerCase()) return -1;
             if (p1Display.toLowerCase() > p2Display.toLowerCase()) return 1;
         }

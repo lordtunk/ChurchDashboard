@@ -285,7 +285,8 @@
                       p.first_name,
                       p.last_name,
                       p.description,
-                      DATE_FORMAT(COALESCE(a1.attendance_dt, a2.attendance_dt),'%c/%e/%Y') attendance_dt,
+                      COALESCE(a1.attendance_dt, a2.attendance_dt) service_dt,
+                      DATE_FORMAT(COALESCE(a1.attendance_dt, a2.attendance_dt),'%m/%d/%Y') attendance_dt,
                       CASE WHEN a1.attended_by IS NULL THEN '' ELSE 1 END first,
                       CASE WHEN a2.attended_by IS NULL THEN '' ELSE 1 END second
                     FROM
@@ -316,7 +317,8 @@
                       p.first_name,
                       p.last_name,
                       p.description,
-                      DATE_FORMAT(COALESCE(a1.attendance_dt, a2.attendance_dt),'%c/%e/%Y') attendance_dt,
+                      COALESCE(a1.attendance_dt, a2.attendance_dt) service_dt,
+                      DATE_FORMAT(COALESCE(a1.attendance_dt, a2.attendance_dt),'%m/%d/%Y') attendance_dt,
                       CASE WHEN a1.attended_by IS NULL THEN '' ELSE 1 END first,
                       CASE WHEN a2.attended_by IS NULL THEN '' ELSE 1 END second
                     FROM
@@ -340,7 +342,7 @@
                     WHERE
                       p.id = :id
                     ORDER BY
-                      attendance_dt DESC";
+                      service_dt DESC";
             } else {
                 $query = "
                     SELECT DISTINCT
@@ -348,7 +350,8 @@
                       p.first_name,
                       p.last_name,
                       p.description,
-                      DATE_FORMAT(a1.attendance_dt,'%c/%e/%Y') attendance_dt,
+                      a1.attendance_dt service_dt,
+                      DATE_FORMAT(a1.attendance_dt,'%m/%d/%Y') attendance_dt,
                       CASE WHEN a1.attended_by IS NULL THEN '' ELSE 1 END first
                     FROM
                       People p
@@ -363,7 +366,7 @@
                     WHERE
                       p.id = :id
                     ORDER BY
-                      a1.attendance_dt DESC";
+                      service_dt DESC";
             }
             
             $results = $this->f->fetchAndExecute($query, $queryParams);
