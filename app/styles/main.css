@@ -219,6 +219,12 @@ main {
   min-height: 100%;
 }
 
+#error-container {
+  color: red;
+  margin: 0 auto;
+  width: 400px;
+}
+
 .background.color--gray-keyline {
   background-color: #e0e0e0;
 }

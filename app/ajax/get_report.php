@@ -133,89 +133,7 @@
                             attendance_dt IS NOT NULL
                         GROUP BY
                             attendance_dt DESC";
-                    // $aggQuery = "
-                        // SELECT
-                            // AVG(totals.Total_Attendance) Avg_Total_Attendance,
-                            // AVG(totals.First_Service_Attendance) Avg_First_Service_Attendance,
-                            // AVG(totals.Second_Service_Attendance) Avg_Second_Service_Attendance,
-                            // MAX(totals.Total_Attendance) Max_Total_Attendance,
-                            // MAX(totals.First_Service_Attendance) Max_First_Service_Attendance,
-                            // MAX(totals.Second_Service_Attendance) Max_Second_Service_Attendance,
-                            // MIN(totals.Total_Attendance) Min_Total_Attendance,
-                            // MIN(totals.First_Service_Attendance) Min_First_Service_Attendance,
-                            // MIN(totals.Second_Service_Attendance) Min_Second_Service_Attendance
-                        // FROM (
-                            // SELECT
-                                // summary.attendance_dt,
-                                // COUNT(*) Total_Attendance,
-                                // SUM(summary.first) First_Service_Attendance,
-                                // SUM(summary.second) Second_Service_Attendance
-                            // FROM 
-                                // (
-                                    // select distinct 
-                                        // COALESCE(u.attendance_dt1, u.attendance_dt2) attendance_dt,
-                                        // u.id,
-                                        // u.first,
-                                        // u.second
-                                    // from (
-                                        // SELECT DISTINCT
-                                          // a1.attendance_dt attendance_dt1,
-                                          // a2.attendance_dt attendance_dt2,
-                                          // p.id,
-                                          // CASE WHEN a1.attended_by IS NULL THEN 0 ELSE 1 END first,
-                                          // CASE WHEN a2.attended_by IS NULL THEN 0 ELSE 1 END second
-                                        // FROM
-                                          // People p
-                                          // LEFT OUTER JOIN (
-                                            // SELECT
-                                              // s.service_dt attendance_dt,
-                                              // a.attended_by
-                                            // FROM
-                                              // attendance_test a
-                                              // inner join Services s on a.service_id=s.id and s.label=:label1 $where
-                                          // ) a1 ON a1.attended_by=p.id
-                                          // LEFT OUTER JOIN (
-                                            // SELECT
-                                              // s.service_dt attendance_dt,
-                                              // a.attended_by
-                                            // FROM
-                                              // attendance_test a
-                                              // inner join Services s on a.service_id=s.id and s.label=:label2 $where
-                                          // ) a2 ON a2.attended_by=p.id and a2.attendance_dt=a1.attendance_dt
-                                          
-                                        // UNION
-                                        
-                                        // SELECT DISTINCT
-                                          // a1.attendance_dt attendance_dt1,
-                                          // a2.attendance_dt attendance_dt2,
-                                          // p.id,
-                                          // CASE WHEN a1.attended_by IS NULL THEN 0 ELSE 1 END first,
-                                          // CASE WHEN a2.attended_by IS NULL THEN 0 ELSE 1 END second
-                                        // FROM
-                                          // People p
-                                          // LEFT OUTER JOIN (
-                                            // SELECT
-                                              // s.service_dt attendance_dt,
-                                              // a.attended_by
-                                            // FROM
-                                              // attendance_test a
-                                              // inner join Services s on a.service_id=s.id and s.label=:label2 $where
-                                          // ) a2 ON a2.attended_by=p.id
-                                          // LEFT OUTER JOIN (
-                                            // SELECT
-                                              // s.service_dt attendance_dt,
-                                              // a.attended_by
-                                            // FROM
-                                              // attendance_test a
-                                              // inner join Services s on a.service_id=s.id and s.label=:label1 $where
-                                          // ) a1 ON a1.attended_by=p.id and a2.attendance_dt=a1.attendance_dt
-                                    // ) u
-                                // ) summary
-                            // WHERE
-                                // attendance_dt IS NOT NULL
-                            // GROUP BY
-                                // attendance_dt DESC
-                          // ) totals";
+                    
                     $results = $f->fetchAndExecute($totalsQuery, $queryParams);
                     $visitorResults = $att->getVisitorCounts($params->fromDate, $params->toDate, $params->campus, $params->label1, $params->label2);
 
@@ -267,9 +185,11 @@
                         if($results[$i]['Second_Service_Attendance'] < $aggregates['Min_Second_Service_Attendance'])
                             $aggregates['Min_Second_Service_Attendance'] = $results[$i]['Second_Service_Attendance'];
                     }
-                    $aggregates['Avg_Total_Attendance'] = $aggregates['Avg_Total_Attendance']/$len;
-                    $aggregates['Avg_First_Service_Attendance'] = $aggregates['Avg_First_Service_Attendance']/$len;
-                    $aggregates['Avg_Second_Service_Attendance'] = $aggregates['Avg_Second_Service_Attendance']/$len;
+                    if($len > 0) {
+                        $aggregates['Avg_Total_Attendance'] = $aggregates['Avg_Total_Attendance']/$len;
+                        $aggregates['Avg_First_Service_Attendance'] = $aggregates['Avg_First_Service_Attendance']/$len;
+                        $aggregates['Avg_Second_Service_Attendance'] = $aggregates['Avg_Second_Service_Attendance']/$len;
+                    }
                 } else {
                     $totalsQuery = "
                         SELECT
@@ -280,21 +200,7 @@
                             inner join Services s on a.service_id=s.id and s.label=:label1 $where
                         GROUP BY
                             s.service_dt DESC";
-                    // $aggQuery = "
-                        // SELECT
-                            // AVG(totals.Total_Attendance) Avg_Total_Attendance,
-                            // MAX(totals.Total_Attendance) Max_Total_Attendance,
-                            // MIN(totals.Total_Attendance) Min_Total_Attendance
-                        // FROM (
-                            // SELECT
-                                // s.service_dt attendance_dt,
-                                // COUNT(*) Total_Attendance
-                            // FROM 
-                                // attendance_test a
-                                // inner join Services s on a.service_id=s.id and s.label=:label1 $where
-                            // GROUP BY
-                                // s.service_dt DESC
-                          // ) totals";
+                    
                     $results = $f->fetchAndExecute($totalsQuery, $queryParams);
                     $visitorResults = $att->getVisitorCounts($params->fromDate, $params->toDate, $params->campus, $params->label1, $params->label2);
                     
@@ -322,11 +228,12 @@
                         if($results[$i]['Total_Attendance'] < $aggregates['Min_Total_Attendance'])
                             $aggregates['Min_Total_Attendance'] = $results[$i]['Total_Attendance'];
                     }
-                    $aggregates['Avg_Total_Attendance'] = $aggregates['Avg_Total_Attendance']/$len;
+                    if($len > 0) {
+                        $aggregates['Avg_Total_Attendance'] = $aggregates['Avg_Total_Attendance']/$len;
+                    }
                 }
                 
                 $dict['totals'] = $results;
-                //$dict['aggregates'] = $f->fetchAndExecute($aggQuery, $queryParams);
                 $dict['aggregates'] = $aggregates;
                 break;
             case 2:
