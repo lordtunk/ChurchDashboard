@@ -1,5 +1,6 @@
 (function() {
-    var errorMsg = '';
+    var errorMsg = '',
+        errorBtn = document.querySelector('#email-error');
     function displayMessage(msg) {
         var el = document.getElementById('error-container'),
             haveMsg = !!msg;
@@ -41,6 +42,7 @@
         
         displayMessage(errorMsg);
     };
-    
-    document.querySelector('#email-error').addEventListener('click', emailError);
+    if(errorBtn) {
+        errorBtn.addEventListener('click', emailError);
+    }
 })();
