@@ -19,15 +19,6 @@
       $dict['success'] = FALSE;
       $f->logMessage($e->getMessage());
     }
-    if($dict['success'] == FALSE) {
-        $dict['error'] = 1;
-    } else {
-        // Must be me to access this page
-        if($user_id != "1") {
-            $dict['success'] = FALSE;
-            $dict['error'] = 2;
-        }
-    }
   }
 
   if($dict['success'] == TRUE) {
