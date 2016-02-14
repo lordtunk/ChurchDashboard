@@ -111,7 +111,7 @@
               $results = $f->fetchAndExecute($query);
               if(count($results) > 0) {
                   $startingPointEmails = $results[0]['starting_point_emails'];
-                  $f->sendEmail($startingPointEmails, "Ready for Starting Point", $body);
+                  $f->sendEmail($startingPointEmails, "Ready for Starting Point - " . $f->getEnvironment(), $body);
               }
               $query = "UPDATE People SET starting_point_notified=1 WHERE id IN ($paramsSql)";
               $f->executeAndReturnResult($query, $paramsArr);

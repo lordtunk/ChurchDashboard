@@ -3,6 +3,7 @@
   use Vimeo\Vimeo;
   class Func {
     private $db = NULL;
+    private $env  = "dev";
     private $logFileName = "../logs/log.txt";
     private $logFileNamePrefix = "../logs/log-";
     private $configFileName = "../config.ini";
@@ -46,6 +47,10 @@
       } catch(Exception $e) {
         $this->logMessage($e->getMessage(), 4);
       }
+    }
+        
+    function getEnvironment() {
+        return $this->env;
     }
 
     function beginTransaction() {

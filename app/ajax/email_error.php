@@ -8,7 +8,7 @@
     $headers =  'From: auto@gcb.my-tasks.info' . "\r\n" .
                 'Reply-To: auto@gcb.my-tasks.info';
     try {
-        $f->sendEmail("stevvensa.550@gmail.com", "GCB Dash Error", $msg);
+        $f->sendEmail("stevvensa.550@gmail.com", "GCB Dash Error - " . $f->getEnvironment(), $msg);
         $dict['success'] = true;
     }  catch (Exception $e) {
       $f->logMessage($e->getMessage());
