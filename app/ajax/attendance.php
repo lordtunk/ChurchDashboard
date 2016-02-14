@@ -246,12 +246,12 @@
         }
         
         private function getServiceIds($service_dt, $campus) {
-            $query = "SELECT id, label FROM Services WHERE DATE_FORMAT(service_dt,'%c/%e/%Y') = :date AND campus = :campus";
+            $query = "SELECT id, label FROM Services WHERE service_dt = STR_TO_DATE(:date,'%c/%e/%Y') AND campus = :campus";
             return $this->f->fetchAndExecute($query, array(":date"=>$service_dt, ":campus"=>$campus));
         }
         
         public function getServiceId($service_dt, $campus, $service_label) {
-            $query = "SELECT id FROM Services WHERE DATE_FORMAT(service_dt,'%c/%e/%Y') = :date AND campus = :campus AND label = :service_label";
+            $query = "SELECT id FROM Services WHERE service_dt = STR_TO_DATE(:date,'%c/%e/%Y') AND campus = :campus AND label = :service_label";
             $results = $this->f->fetchAndExecute($query, array(":date"=>$service_dt, ":campus"=>$campus, ":service_label"=>$service_label));
             return count($results) > 0 ? $results[0]['id'] : -1;
         }
@@ -399,12 +399,13 @@
         }
         
         public function getVisitorCount($service_dt, $adult, $campus, $label) {
-            if($adult)
-                $query = "SELECT COALESCE(adult_visitors, 0) visitors FROM Services WHERE DATE_FORMAT(service_dt,'%c/%e/%Y') = :date AND campus = :campus AND label=:label";
-            else
-                $query = "SELECT COALESCE(kid_visitors, 0) visitors FROM Services WHERE DATE_FORMAT(service_dt,'%c/%e/%Y') = :date AND campus = :campus AND label=:label";
+            // if($adult)
+                // $query = "SELECT COALESCE(adult_visitors, 0) visitors FROM Services WHERE service_dt = STR_TO_DATE(:date,'%c/%e/%Y') AND campus = :campus AND label=:label";
+            // else
+                // $query = "SELECT COALESCE(kid_visitors, 0) visitors FROM Services WHERE service_dt = STR_TO_DATE(:date,'%c/%e/%Y') AND campus = :campus AND label=:label";
+            $query = "SELECT COALESCE(adult_visitors, 0) adult_visitors, COALESCE(kid_visitors, 0) kid_visitors FROM Services WHERE service_dt = STR_TO_DATE(:date,'%c/%e/%Y') AND campus = :campus AND label=:label";
             $results = $this->f->fetchAndExecute($query, array(":date"=>$service_dt, ":campus"=>$campus, ":label"=>$label));
-            return count($results) > 0 ? $results[0]['visitors'] : 0;
+            return count($results) > 0 ? $results[0] : array("adult_visitors"=>0, "kid_visitors"=>0);
         }
         
         public function getVisitorCounts($fromDate, $toDate, $campus, $label1, $label2) {

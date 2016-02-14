@@ -30,6 +30,8 @@
         visitorsSecondCount = 0,
         originalVisitorsFirstCount = 0,
         originalVisitorsSecondCount = 0,
+        otherVisitorsFirstCount = 0,
+        otherVisitorsSecondCount = 0,
         people = [],
         idSequence = 0,
         personIdSequence = -1,
@@ -362,21 +364,30 @@
     }
     
     function updateVisitorAttendance() {
-        var totalName = (isAdults ? 'adult' : 'kid') + '_total_count',
-            firstName = (isAdults ? 'adult' : 'kid') + '_first_count',
-            secondName = (isAdults ? 'adult' : 'kid') + '_second_count';
-            
-        totalsEls[firstName].innerHTML = totals[firstName] + visitorsFirstCount;
-        totalsEls[secondName].innerHTML = totals[secondName] + visitorsSecondCount;
-        totalsEls[totalName].innerHTML = totals[totalName] + visitorsFirstCount + visitorsSecondCount;
-        
+        if(isAdults) {
+            totalsEls.adult_first_count.innerHTML = totals.adult_first_count + visitorsFirstCount;
+            totalsEls.adult_second_count.innerHTML = totals.adult_second_count + visitorsSecondCount;
+            totalsEls.adult_total_count.innerHTML = totals.adult_total_count + visitorsFirstCount + visitorsSecondCount;
+                     
+            totalsEls.kid_first_count.innerHTML = totals.kid_first_count + otherVisitorsFirstCount;
+            totalsEls.kid_second_count.innerHTML = totals.kid_second_count + otherVisitorsSecondCount;
+            totalsEls.kid_total_count.innerHTML = totals.kid_total_count + otherVisitorsFirstCount + otherVisitorsSecondCount;
+        } else {     
+            totalsEls.adult_first_count.innerHTML = totals.adult_first_count + otherVisitorsFirstCount;
+            totalsEls.adult_second_count.innerHTML = totals.adult_second_count + otherVisitorsSecondCount;
+            totalsEls.adult_total_count.innerHTML = totals.adult_total_count + otherVisitorsFirstCount + otherVisitorsSecondCount;
+                     
+            totalsEls.kid_first_count.innerHTML = totals.kid_first_count + visitorsFirstCount;
+            totalsEls.kid_second_count.innerHTML = totals.kid_second_count + visitorsSecondCount;
+            totalsEls.kid_total_count.innerHTML = totals.kid_total_count + visitorsFirstCount + visitorsSecondCount;
+        }
         totals.total_first_count = totals.adult_first_count + totals.kid_first_count;
         totals.total_second_count = totals.adult_second_count + totals.kid_second_count;
         totals.total_total_count = totals.adult_total_count + totals.kid_total_count;
         
-        totalsEls.total_first_count.innerHTML = totals.total_first_count + visitorsFirstCount;
-        totalsEls.total_second_count.innerHTML = totals.total_second_count + visitorsSecondCount;
-        totalsEls.total_total_count.innerHTML = totals.total_total_count + visitorsFirstCount + visitorsSecondCount;
+        totalsEls.total_first_count.innerHTML = totals.total_first_count + visitorsFirstCount + otherVisitorsFirstCount;
+        totalsEls.total_second_count.innerHTML = totals.total_second_count + visitorsSecondCount + otherVisitorsSecondCount;
+        totalsEls.total_total_count.innerHTML = totals.total_total_count + visitorsFirstCount + visitorsSecondCount + otherVisitorsFirstCount + otherVisitorsSecondCount;
     }
     
     function refreshTotals() {
@@ -570,8 +581,19 @@
                     currentCampus = campusField.value;
                     currentLabel1 = serviceLabel1Field.value;
                     currentLabel2 = serviceLabel2Field.value;
-                    originalVisitorsFirstCount = visitorsFirstCount = parseInt(data.visitors1);
-                    originalVisitorsSecondCount = visitorsSecondCount = parseInt(data.visitors2);
+                    if(isAdults) {
+                        originalVisitorsFirstCount = visitorsFirstCount = parseInt(data.visitors1.adult_visitors);
+                        originalVisitorsSecondCount = visitorsSecondCount = parseInt(data.visitors2.adult_visitors);
+                        otherVisitorsFirstCount = parseInt(data.visitors1.kid_visitors);
+                        otherVisitorsSecondCount = parseInt(data.visitors2.kid_visitors);
+                    } else {
+                        originalVisitorsFirstCount = visitorsFirstCount = parseInt(data.visitors1.kid_visitors);
+                        originalVisitorsSecondCount = visitorsSecondCount = parseInt(data.visitors2.kid_visitors);
+                        otherVisitorsFirstCount = parseInt(data.visitors1.adult_visitors);
+                        otherVisitorsSecondCount = parseInt(data.visitors2.adult_visitors);
+                    }
+                    //originalVisitorsFirstCount = visitorsFirstCount = parseInt(isAdults ? data.visitors1.adult_visitors : data.visitors1.kid_visitors);
+                    //originalVisitorsSecondCount = visitorsSecondCount = parseInt(isAdults ? data.visitors2.adult_visitors : data.visitors2.kid_visitors);
                     totals = data.totals;
                     sanitizeAttendance();
                     originalTotals = jQuery.extend({}, totals);
