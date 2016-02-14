@@ -22,6 +22,8 @@ body {
   box-sizing: border-box;
   overflow: hidden;
   min-height: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .app-bar {
@@ -81,9 +83,14 @@ body {
   z-index: 2;
 }
 
+.app-bar input {
+  padding-left: 5px;
+}
+
 .app-bar button {
-  width: 60px;
-  height: 60px;
+  width: 45px;
+  height: 45px;
+  color: white;
   background-image: none;
   background-color: transparent;
   border: none;
@@ -212,6 +219,12 @@ main {
   min-height: 100%;
 }
 
+#error-container {
+  color: red;
+  margin: 0 auto;
+  width: 400px;
+}
+
 .background.color--gray-keyline {
   background-color: #e0e0e0;
 }
@@ -247,6 +260,59 @@ main {
   margin-left: 7px;
 }
 
+.attendance-search {
+  display: inline-block;
+  float: left;
+  padding-top: 70px;
+}
+
+/*#service-options {
+  display: none;
+}*/
+
+.attendance-search > label,
+.attendance-search > #service-options  label {
+    width: 155px;
+    display: inline-block;
+}
+
+#service-options select {
+    width: 120px;
+}
+
+.campus-text {
+  text-align: center;
+  padding: 0px;
+}
+
+#visitors-container {
+  margin: 10px 0;
+}
+
+#visitors-container > input {
+  width: 70px;
+}
+
+#visitors-second-service {
+    margin-top: 5px;
+}
+
+#visitors-container > button {
+  margin-left: 10px;
+}
+
+.attendance-stats {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  float: right;
+  margin: 0 10px 10px 0;
+}
+
+.attendance-stats > table {
+  margin-top: 10px;
+}
+
 .attendance-table-container {
   max-height: 500px;
   width: 100%;
@@ -267,9 +333,19 @@ main {
   margin-left: 20px;
 }
 
+.dialog-form-inner>label[for=add-to-spouse] {
+  width: 120px;
+}
+
 #follow-up-table-container {
   max-height: 500px;
   width: 100%;
+  display: block;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+#relationship-table-container {
+  max-height: 500px;
   display: block;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
@@ -281,12 +357,19 @@ main {
 
 #attendance-date-display {
   text-align: center;
+  /* border-bottom: 1px solid; */
+  /* border-top: 1px solid; */
+  padding: 0px;
 }
 
 .navigation-links {
   display: inline-block;
   float: right;
   margin: 20px;
+}
+
+.navigation-links > div {
+  display: inline-block;
 }
 
 .jump-to {
@@ -325,6 +408,12 @@ main {
   height: 300px;
 }
 
+.relationship-table-button-col {
+  width: 90px !important;
+  padding: 0 0 0 10px !important;
+  text-align: center;
+}
+
 .follow-up-table-button-col {
   width: 90px !important;
   padding: 0 0 0 10px !important;
@@ -348,6 +437,12 @@ main {
   text-align: center;
 }
 
+.row-header {
+  text-align: center;
+  background-color: #009344 !important;
+  color: white;
+}
+
 .attendance-history-button {
   margin-right: 10px;
 }
@@ -355,6 +450,11 @@ main {
 .app-content label {
   padding-left: 20px;
   padding-right: 10px;
+}
+
+.app-content.login-form {
+  padding-top: 20px;
+  /* margin-left: 20px; */
 }
 
 .app-content.login-form label,
@@ -368,20 +468,32 @@ main {
   margin-left: 20px;
 }
 
-#follow-up-person-container {
+#follow-up-person-container,
+#relationship-person-container {
   display: -webkit-flex;
   display: flex;
+  margin-bottom: 10px;
 }
 #follow-up-person-container>label {
   padding-top: 10px;
   width: 110px;
   text-align: right;
 }
-#follow-up-person-container>button {
+#relationship-person-container>label {
+  padding-top: 10px;
+  width: 70px;
+}
+.manage-person-relationship-form .dialog-form-inner>label {
+  width: 70px;
+}
+
+#follow-up-person-container>button,
+#relationship-person-container>button {
   margin-top: 0;
 }
 
-#follow-up-person-container>div {
+#follow-up-person-container>div,
+#relationship-person-container>div{
   display: inline-block;
   padding-right: 20px;
   padding-top: 10px;
@@ -396,6 +508,10 @@ main {
   display: inline-block;
   width: 110px;
   text-align: right;
+}
+
+.follow-ups-form-inner > .communication-card-options {
+  margin-left: 112px;
 }
 
 .dialog-form-inner>label {
@@ -417,6 +533,34 @@ main {
   display: inline-block;
 }
 
+.legend {
+    margin-top: 25px;
+}
+
+.legend > .item * {
+    vertical-align: middle;
+}
+
+.legend > .item > .text {
+    display: inline-block;
+}
+
+.legend-icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    border: 1px solid gray;
+    margin-left: 10px;
+}
+
+#email-summary {
+    margin-right: 10px;
+}
+
+.first-time-visitor {
+    background-color: #8FFD3B;
+}
+
 #manage-unknown-date {
   margin-left: 25px;
 }
@@ -436,6 +580,11 @@ main {
   padding-left: 0px;
 }
 
+.app-content.view-person,
+.app-content.reports-form {
+  padding-top: 20px;
+}
+
 .app-content.view-person label {
   display: inline-block;
   width: 175px;
@@ -448,7 +597,7 @@ main {
 }
 
 .app-content .active-input {
-  display: inline-block;
+/*  display: inline-block;*/
 }
 
 .app-form input[type=text],
@@ -458,7 +607,7 @@ main {
   margin-bottom: 5px;
 }
 
-.delete-follow-up {
+.delete-follow-up, .delete-relationship {
   color: red;
 }
 
@@ -503,10 +652,27 @@ main {
   padding: 10px;
 }
 
-#follow-up-options > label {
+#follow-up-options label {
   width: 270px;
   text-align: left;
   padding-left: 10px;
+}
+
+#include-all-checkboxes {
+  margin-bottom: 10px;
+}
+
+div.setting {
+  text-align: center;
+  width: 100%;
+}
+.setting textarea {
+  width: 90%;
+}
+
+input.setting {
+  width: 100px;
+  margin-left: 40px;
 }
 
 .address-form-section {
@@ -530,11 +696,21 @@ main {
   text-align: left;
 }
 
-.commitments-form-section-title {
+.commitments-form-section-title,
+.interested-form-section-title {
   padding: 0 0 0 40px;
 }
-.commitments-form-section {
+.commitments-form-section,
+.interested-form-section {
   margin: 0 0 10px 40px;
+}
+.communication-card-options .commitments-form-section-title,
+.communication-card-options .interested-form-section-title{
+  padding: 0;
+}
+.communication-card-options .commitments-form-section,
+.communication-card-options .interested-form-section {
+  margin: 0 0 10px 0;
 }
 .commitments-form-section > input {
   margin: 0 10px;
@@ -543,12 +719,6 @@ main {
   padding-left: 5px;
 }
 
-.interested-form-section-title {
-  padding: 0 0 0 40px;
-}
-.interested-form-section {
-  margin: 0 0 0 40px;
-}
 .interested-form-section > input {
   margin: 0 10px;
 }
@@ -565,7 +735,13 @@ main {
 }
 
 #email {
+  margin-top: 12px;
+  margin-right: 5px;
   width: 273px;
+}
+
+#email-label {
+  width: 100px;
 }
 
 .attendance-form .attendance-table-attendance-col label {
@@ -637,6 +813,55 @@ td.checkbox-table-col {
   width: 120px;
 }
 
+.checkbox-form-section {
+    margin: 10px 0 10px 40px;
+    width: 425px;
+}
+
+#number-of-attempts {
+  width: 40px;
+}
+#files {
+  margin: 10px;
+}
+
+#status {
+  opacity: 1 !important;
+  font-style: italic;
+  font-weight: bold;
+}
+
+#drop_zone {
+  border: 2px dashed #bbb;
+  border-radius: 5px;
+  padding: 25px;
+  text-align: center;
+  font: 20pt bold 'Helvetica';
+  color: #bbb;
+}
+
+#progress-bar,
+#status {
+  width: 90%;
+  margin: 10px auto;
+  padding: 3px;
+  font-size: 14px;
+  clear: both;
+  opacity: 0;
+  -moz-transition: opacity 1s linear;
+  -o-transition: opacity 1s linear;
+  -webkit-transition: opacity 1s linear;
+}
+#progress-bar.loading,
+#status.loading{
+  opacity: 1.0;
+}
+#progress-bar #percent {
+  background-color: #99ccff;
+  height: auto;
+  width: 0;
+}
+
 /* Larger Screens - desktops and tablets */
 @media all and (min-device-width:1200px) {
   .app-bar {
@@ -659,9 +884,10 @@ td.checkbox-table-col {
     line-height: 130px;
     font-size: 46px;
   }
-
+  
   .app-bar-actions {
     float: right;
+    margin: 42px 0;
   }
 
   .app-bar:after {
@@ -715,10 +941,6 @@ td.checkbox-table-col {
     min-height: initial;
   }
 
-  body {
-    overflow-y: scroll;
-  }
-
   .navdrawer-container {
     position: relative;
     margin-top: 0;
@@ -727,7 +949,7 @@ td.checkbox-table-col {
   td.attendance-table-attendance-col {
     text-align: center;
   }
-  .delete-follow-up {
+  .delete-follow-up, .delete-relationship {
     margin-left: 5px;
   }
 }
@@ -748,7 +970,7 @@ td.checkbox-table-col {
   .app-bar-actions {
     width: 100%;
   }
-
+  
   .navdrawer-container {
     padding: 0 16px;
     overflow-y: auto;
@@ -773,7 +995,7 @@ td.checkbox-table-col {
 
 @media all and (min-width:800px) {
   .app-content .active-input {
-    display: inline-block;
+/*    display: inline-block;*/
   }
   
   .col-1, .col-2 {
@@ -783,7 +1005,7 @@ td.checkbox-table-col {
     vertical-align: top;
   }
   .address-form-section-title {
-    padding: 0 0 0 50px;
+    padding: 10px 0 0 50px;
   }
   .address-form-section {
     margin: 0 0 10px 50px;
@@ -794,16 +1016,108 @@ td.checkbox-table-col {
   .address-form-section-title {
     padding: 10px 0 0 65px;
   }
+  .navigation-links {
+    float: none;
+  }
+  .navigation-links > div {
+    display: block;
+  }
+  .attendance-stats {
+    width: 100%;
+    margin-right: 0px;
+    margin-bottom: 20px;
+  }
 }
-.checkbox-form-seciton {
-    margin: 10px 0 10px 40px;
+@media all and (max-width:799px) and (orientation:portrait) {
+  .app-bar input {
+    display: none;
+  }
+  .btn-text {
+    display: none;
+  }
+  .checkbox-form-section {
+    margin: 10px 0 10px 20px;
+    width: 225px;
+  }
+  .checkbox {
+    display: block;
+  }
+  #starting-point-notified-label {
+    width: 170px !important;
+  }
+  
+  .app-content.login-form label,
+  .app-content.view-person label{
+    text-align: left;
+    padding-left: 20px;
+    vertical-align: top;
+  }
+  #attender-status {
+    margin-left: 20px;
+    margin-right: 105px;
+  }
+  .app-content.login-form input,
+  .app-content.view-person input,
+  .address-form-section select,
+  #first-recorded-visit,
+  .contact-form-section-title,
+  .contact-form-section,
+  .address-form-section-title,
+  .commitments-form-section-title,
+  .interested-form-section-title  {
+    margin-left: 20px;
+  }
+  #first-recorded-visit {
+    display: block;
+  }
+  .contact-form-section-title,
+  .address-form-section-title,
+  .commitments-form-section-title,
+  .interested-form-section-title {
+    padding: 10px 0 0 0;
+  }
+  .contact-form-section {
+    width: 255px;
+  }
+  #email {
+    width: 210px;
+  }
+  .phone-panel > input {
+    width: 135px;
+  }
+  .address-form-section {
+    margin: 0 0 10px 20px;
+    width: 255px;
+  }
+  #map-panel {
+    width: 300px;
+  }
+  .commitments-form-section,
+  .interested-form-section {
+    margin: 0 0 10px 20px;
+    width: 255px;
+  }
+  .app-content.view-person .commitments-form-section label,
+  .app-content.view-person .interested-form-section label{
+    padding-left: 0px;
+    padding-bottom: 5px;
+    width: 185px;
+  }
 }
-.form-section.checkbox-form-seciton > input {
+.form-section.checkbox-form-section input {
     margin-left: 10px;
 }
-.form-section.checkbox-form-seciton > label {
+.form-section.checkbox-form-section label {
     text-align: left;
     padding-left: 5px;
+}
+
+#starting-point-notified-label {
+    width: 240px;
+}
+
+.checkbox {
+  display: inline-block;
 }
 
 #map-note {
@@ -811,4 +1125,15 @@ td.checkbox-table-col {
     font-weight: bold;
     font-style: italic;
     text-align: right;
+}
+body {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.ui-datepicker-calendar td,
+.ui-datepicker-calendar th {
+  display: table-cell;
+}
+.ui-datepicker-calendar td:before {
+  display: none;
 }

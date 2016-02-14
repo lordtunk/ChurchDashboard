@@ -43,7 +43,7 @@
 	<li><a id="attendance-nav" href="attendance.html">Attendance</a></li>
         <li><a id="reports-nav" href="reports.html">Reports</a></li>
         <li><a id="address-view-nav" href="#address-view">Address View</a></li>
-        <li><a id="follow-ups-nav" href="follow-ups.html">Follow Up Entry</a></li>
+        <li><a id="follow-ups-nav" href="follow-ups.html">Follow Ups</a></li>
         <li><a id="search-nav" href="search.html">Search</a></li>
         <li><a href="javascript:logout()">Log Out</a></li>
       </ul>
@@ -98,8 +98,14 @@
 
     </main>
 
+    <div id="error-container" style="display: none;">
+      <div id="error-msg"></div>
+      <button id="email-error" type="button" class="button--primary"><i class="fa fa-envelope"></i> <span class="btn-text">Email Error</span></button>
+    </div>
+
     <!-- build:js scripts/main.min.js -->
     <script src="jquery/jquery-1.11.1.min.js"></script>
+    <script src="scripts/error.js"></script>
     <script src="jquery/jquery-ui.min.js"></script>
     <script src="jquery/jquery.loadmask.min.js"></script>
     <script src="jquery/jquery.toastmessage.js"></script>

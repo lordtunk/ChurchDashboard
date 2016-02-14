@@ -1,8 +1,18 @@
 <?php
   session_start();
   include("func.php");
+  include("person.php");
+  include("attendance.php");
   $f = new Func();
+  $att = new Attendance();
   $people = json_decode($_POST['people']);
+  $attendanceDate = $_POST['date'];
+  $campus = $_POST['campus'];
+  $label1 = $_POST['label1'];
+  $label2 = $_POST['label2'];
+  $visitors1 = $_POST['visitors1'];
+  $visitors2 = $_POST['visitors2'];
+  $adult = $_POST['adult'] == "true";
   $dict = array();
   $new_people = array();
   if(!isset($_SESSION['user_id']) || !isset($_SESSION['session_id'])) {
@@ -25,52 +35,90 @@
     try {
       $f->useTransaction = FALSE;
       $f->beginTransaction();
+      $paramsSql = "";
+      $paramsArr = array();
+      $readyForStartingPoint = array();
+      $serviceId1 = $att->getServiceId($attendanceDate, $campus, $label1);
+      // Create the service if it does not exist
+      if($serviceId1 == -1)
+          $serviceId1 = $att->createService($attendanceDate, $campus, $label1);
+      $att->updateVisitorCount($serviceId1, $visitors1, $adult);
+      $serviceId2 = -1;
+      if(isset($label2) && $label2 != '') {
+        $serviceId2 = $att->getServiceId($attendanceDate, $campus, $label2);
+        if($serviceId2 == -1)
+          $serviceId2 = $att->createService($attendanceDate, $campus, $label2);
+        $att->updateVisitorCount($serviceId2, $visitors2, $adult);
+      }
       
-//       if(count($people) > 0) {
-//         $query = "DELETE FROM Attendance WHERE attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')";
-//         $f->executeAndReturnResult($query, array(":attendance_dt"=>$people[0]->attendanceDate));
-//       }
       
       foreach($people as $key => $person) {
-        // Translate TRUE/FALSE to 1/0 so that log statements
-        // are easier to read since FALSE does not display
-        $person->adult = $person->adult ? 1 : 0;
-        $person->first = $person->first ? 1 : 0;
-        $person->second = $person->second ? 1 : 0;
+        $p = new Person($person, $f);
 
         // If the id is negative then we need to create the person
-        if($person->id < 0) {
-          if(isset($person->display)) {
-            $pos = strpos($person->display, ",");
-
-            // If a comma is found then assume the display is Last, First
-            if($pos == FALSE) {
-              $query = "INSERT INTO People (description, adult, last_modified_dt, modified_by, creation_dt, created_by) VALUES (:description, :adult, NOW(), :user_id, NOW(), :user_id)";
-              $person->id = $f->queryLastInsertId($query, array(":description"=>$person->display, ":adult"=>$person->adult, ":user_id"=>$user_id));
-            } else {
-              $names = explode(",", $person->display);
-              $person->last_name = trim($names[0]);
-              $person->first_name = trim($names[1]);
-              $query = "INSERT INTO People (last_name, first_name, adult, last_modified_dt, modified_by, creation_dt, created_by) VALUES (:last_name, :first_name, :adult, NOW(), :user_id, NOW(), :user_id)";
-              $person->id = $f->queryLastInsertId($query, array(":last_name"=>$person->last_name, ":first_name"=>$person->first_name, ":adult"=>$person->adult, ":user_id"=>$user_id));
-            }
-            array_push($new_people, $person->id);
-          }
+        if($p->id < 0) {
+          $p->insert($user_id);
+          array_push($new_people, $p->id);
         } else {
-          $query = "UPDATE People SET active=true WHERE id=:id";
-          $f->executeAndReturnResult($query, array(":id"=>$person->id));
-          
-          $query = "DELETE FROM Attendance WHERE attended_by=:id AND attendance_dt=STR_TO_DATE(:attendance_dt,'%m/%d/%Y')";
-          $f->executeAndReturnResult($query, array(":id"=>$person->id, ":attendance_dt"=>$person->attendanceDate));
+          $p->update();
+          $att->deleteAttendance($serviceId1, $p->id);
+          if($serviceId2 > 0)
+              $att->deleteAttendance($serviceId2, $p->id);
         }
 
         // Add an Attendance record if the person attended this service
-        if($person->first || $person->second) {
-          $query = "INSERT INTO Attendance (`attendance_dt`, `attended_by`, `first`, `second`) VALUES(STR_TO_DATE(:attendance_dt,'%m/%d/%Y'), :attended_by, :first, :second)";
-          $results = $f->executeAndReturnResult($query, array(":attendance_dt"=>$person->attendanceDate, ":attended_by"=>$person->id, ":first"=>$person->first, ":second"=>$person->second));
+        if($p->first || $p->second) {
+          if($p->first)
+            $att->addAttendance($serviceId1, $p->id);
+          if($p->second && $serviceId2 > 0)
+              $att->addAttendance($serviceId2, $p->id);
+
+          $paramCount = count($paramsArr)+1;
+          $paramsArr[":id$paramCount"] = $p->id;
+          if($paramCount > 1)
+            $paramsSql = $paramsSql.",";
+          $paramsSql = $paramsSql.":id".$paramCount;
         }
       }
+      if(count($paramsArr) > 0) {
+          $query = "SELECT 
+                        att.attended_by, p.first_name, p.last_name, p.description, p.primary_phone, count(*) attendance_count 
+                    FROM 
+                        (
+                            SELECT DISTINCT
+                                s.service_dt, a.attended_by
+                            FROM 
+                                attendance_test a
+                                INNER JOIN Services s ON s.id=a.service_id
+                            WHERE
+                                a.attended_by IN ($paramsSql)
+                        ) att
+                        INNER JOIN People p ON p.id=att.attended_by
+                    WHERE
+                        p.starting_point_notified = 0
+                    GROUP BY
+                        att.attended_by
+                    HAVING
+                        attendance_count=3";
+          $results = $f->fetchAndExecute($query, $paramsArr);
+          
+          if(count($results) > 0) {
+              $body = getEmailBody($results);
+              $query = "SELECT
+                      starting_point_emails
+                    FROM
+                      Settings";
+              $results = $f->fetchAndExecute($query);
+              if(count($results) > 0) {
+                  $startingPointEmails = $results[0]['starting_point_emails'];
+                  $f->sendEmail($startingPointEmails, "Ready for Starting Point - " . $f->getEnvironment(), $body);
+              }
+              $query = "UPDATE People SET starting_point_notified=1 WHERE id IN ($paramsSql)";
+              $f->executeAndReturnResult($query, $paramsArr);
+          }
+      }
       $f->commit();
+      
       $dict['success'] = TRUE;
     } catch (Exception $e) {
       $dict['success'] = FALSE;
@@ -85,66 +133,8 @@
         for($i=1; $i < count($new_people); $i++) {
           $idIn = $idIn.",".$new_people[$i];
         }
-        $query = "SELECT
-                    p.id,
-                    p.first_name,
-                    p.last_name,
-                    p.description,
-                    p.adult,
-                    p.active,
-                    DATE_FORMAT(a.attendance_dt,'%m/%d/%Y') attendance_dt,
-                    a.first,
-                    a.second
-                  FROM
-                    People p
-                    LEFT OUTER JOIN Attendance a ON p.id=a.attended_by
-                  WHERE
-                    p.id IN ($idIn)
-                  ORDER BY
-                    p.last_name IS NOT NULL DESC,
-                    p.description IS NOT NULL DESC,
-                    p.last_name,
-                    p.first_name,
-                    p.description";
-        $results = $f->fetchAndExecute($query);
-        $people = array();
-        foreach($results as $key => $row) {
-        $p = NULL;
-        $j = NULL;
-        $foundPerson = FALSE;
-        // Check to see if we have already added the person
-        foreach($people as $k => $person) {
-          if(!isset($person['id'])) continue;
-          if($person['id'] == $row['id']) {
-            $j = $k;
-            $foundPerson = TRUE;
-            break;
-          }
-        }
-
-        // Set the person data if we have not encountered this person before
-        if($foundPerson == FALSE) {
-          $p = array();
-          $p['id'] = $row['id'];
-          $p['first_name'] = $row['first_name'];
-          $p['last_name'] = $row['last_name'];
-          $p['description'] = $row['description'];
-          $p['adult'] = $row['adult'] ? TRUE : FALSE;
-          $p['active'] = $row['active'] ? TRUE : FALSE;
-          $p['attendance'] = array();
-          array_push($people, $p);
-          $j = count($people) - 1;
-        }
-
-        if(isset($row['attendance_dt'])) {
-          $att = array();
-          $att['date'] = $row['attendance_dt'];
-          $att['first'] = $row['first'] ? TRUE : FALSE;
-          $att['second'] = $row['second'] ? TRUE : FALSE;
-          array_push($people[$j]['attendance'], $att);
-        }
-      }
-        $dict['people'] = $people;
+        
+        $dict['people'] = $att->getAttendance($attendanceDate, true, $adult, $campus, $label1, $label2, $idIn);
         $dict['success'] = TRUE;
       } catch (Exception $e) {
         $dict['success'] = FALSE;
@@ -155,4 +145,28 @@
     $dict['error'] = 1;
   }
   echo json_encode($dict);
+
+  function getDisplayName($person, $prefix="") {
+    if($person === null) return '';
+    
+    if($person[$prefix.'last_name'] && $person[$prefix.'first_name']) {
+      return $person[$prefix.'first_name'] . " " . $person[$prefix.'last_name'];
+    } else if($person[$prefix.'first_name']) {
+      return $person[$prefix.'first_name'];
+    } else if($person[$prefix.'last_name']) {
+      return $person[$prefix.'last_name'];
+    }
+    return $person[$prefix.'description'];
+  }
+  function getEmailBody($people) {
+      if(count($people) == 0) return;
+      $body = "";
+      foreach($people as $key => $person) {
+        $body .= getListItem(getDisplayName($person)." ".$person['primary_phone']);
+      }
+      return "The following people are ready for Starting Point:<ul>$body</ul>";
+  }
+  function getListItem($text) {
+      return "<li>$text</li>";
+  }
 ?>

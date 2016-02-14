@@ -24,6 +24,10 @@ ADD recommitment_christ tinyint(1) NOT NULL DEFAULT 0 AFTER commitment_christ,
 ADD commitment_tithe tinyint(1) NOT NULL DEFAULT 0 AFTER recommitment_christ,
 ADD commitment_ministry tinyint(1) NOT NULL DEFAULT 0 AFTER commitment_tithe,
 ADD commitment_baptism tinyint(1) NOT NULL DEFAULT 0 AFTER commitment_ministry;
+ALTER TABLE People ADD `starting_point_notified` tinyint(1) NOT NULL DEFAULT '0';
+ALTER TABLE People ADD `attender_status` tinyint(1) NOT NULL DEFAULT '3';
+ALTER TABLE People ADD `primary_phone_type` tinyint(1) NOT NULL DEFAULT '2';
+ALTER TABLE People ADD `secondary_phone_type` tinyint(1) NOT NULL DEFAULT '2';
 
 
 CREATE TABLE FollowUps (
@@ -52,4 +56,106 @@ ALTER TABLE FollowUps
 ADD last_modified_dt datetime AFTER comments,
 ADD modified_by int(11) AFTER last_modified_dt,
 ADD creation_dt datetime AFTER modified_by,
-ADD created_by int(11) AFTER creation_dt
+ADD created_by int(11) AFTER creation_dt,
+ADD attendance_frequency tinyint(1) DEFAULT NULL
+
+
+CREATE TABLE IF NOT EXISTS `Services` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `service_dt` date NOT NULL,
+  `label` int(10) unsigned NOT NULL,
+  `campus` int(10) unsigned NOT NULL DEFAULT '1',
+  `adult_visitors` int(10) unsigned DEFAULT NULL,
+  `kid_visitors` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `U_SERVICE` (`service_dt`,`label`,`campus`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `gcbdash`.`Services` ADD UNIQUE `U_SERVICE` (`service_dt`, `label`, `campus`)COMMENT '';
+
+
+CREATE TABLE IF NOT EXISTS `Settings` (
+  `starting_point_emails` varchar(500) DEFAULT NULL,
+  `campuses` varchar(500) NOT NULL,
+  `service_labels` varchar(500) NOT NULL,
+  `default_campus` int(10) unsigned NOT NULL,
+  `default_first_service_label` int(10) unsigned NOT NULL,
+  `default_second_service_label` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `Settings` (`starting_point_emails`, `campuses`, `service_labels`, `default_campus`, `default_first_service_label`, `default_second_service_label`) VALUES
+('buck3y3girl13@gmail.com,stevvensa.550@gmail.com', '1|Main', '1|9:00 AM,2|10:30 AM', 1, 1, 2);
+
+
+INSERT INTO Services (service_dt, campus, label)
+(SELECT distinct
+	`attendance_dt` as `service_dt`,
+    1 as campus,
+    1 as label
+FROM 
+	`attendance` a
+ORDER BY 
+	attendance_dt
+ )
+ 
+INSERT INTO Services (service_dt, campus, label)
+(SELECT distinct
+	`attendance_dt` as `service_dt`,
+    1 as campus,
+    2 as label
+FROM 
+	`attendance` a
+ORDER BY 
+	attendance_dt
+ )
+ 
+ALTER TABLE `attendance_test` ADD `service_id` INT NOT NULL ;
+ALTER TABLE attendance_test DROP INDEX attendance_dt_attended_by;
+
+UPDATE `attendance_test` a, services s SET service_id=s.id WHERE a.first=1 and s.service_dt=a.attendance_dt and s.label=1;
+
+-- INSERT INTO attendance_test (attendance_dt, `attended_by`, `first`, `service_id`)
+-- (SELECT
+	-- `attendance_dt`,
+    -- `attended_by`,
+ 	-- 1 as `first`,
+ 	-- s.id
+-- FROM 
+	-- `attendance` a
+ 	-- INNER JOIN services s on a.`attendance_dt`=s.service_dt
+-- WHERE
+ 	-- a.second=1
+    -- AND s.label=2
+-- ORDER BY 
+	-- attendance_dt
+ -- )
+ 
+INSERT INTO attendance_test (`attended_by`, `service_id`)
+(SELECT
+    `attended_by`,
+ 	s.id
+FROM 
+	`attendance` a
+ 	INNER JOIN Services s on a.`attendance_dt`=s.service_dt
+WHERE
+ 	a.second=1
+    AND s.label=2
+ORDER BY 
+	attendance_dt
+ )
+
+--delete FROM `attendance_test` where first=0
+ 
+ALTER TABLE `attendance_test` DROP `attendance_dt`;
+ALTER TABLE `attendance_test` DROP `first`;
+ALTER TABLE `attendance_test` DROP `second`;
+ 
+
+
+ALTER TABLE `attendance_test` ADD UNIQUE (`attended_by`, `service_id`);
+
+
