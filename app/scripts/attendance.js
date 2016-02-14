@@ -581,16 +581,22 @@
                     currentCampus = campusField.value;
                     currentLabel1 = serviceLabel1Field.value;
                     currentLabel2 = serviceLabel2Field.value;
+                    var secondService = $('#service-label-2').val();
+                    
                     if(isAdults) {
                         originalVisitorsFirstCount = visitorsFirstCount = parseInt(data.visitors1.adult_visitors);
-                        originalVisitorsSecondCount = visitorsSecondCount = parseInt(data.visitors2.adult_visitors);
                         otherVisitorsFirstCount = parseInt(data.visitors1.kid_visitors);
-                        otherVisitorsSecondCount = parseInt(data.visitors2.kid_visitors);
+                        if(secondService) {
+                            originalVisitorsSecondCount = visitorsSecondCount = parseInt(data.visitors2.adult_visitors);
+                            otherVisitorsSecondCount = parseInt(data.visitors2.kid_visitors);
+                        }
                     } else {
                         originalVisitorsFirstCount = visitorsFirstCount = parseInt(data.visitors1.kid_visitors);
-                        originalVisitorsSecondCount = visitorsSecondCount = parseInt(data.visitors2.kid_visitors);
                         otherVisitorsFirstCount = parseInt(data.visitors1.adult_visitors);
-                        otherVisitorsSecondCount = parseInt(data.visitors2.adult_visitors);
+                        if(secondService) {
+                            originalVisitorsSecondCount = visitorsSecondCount = parseInt(data.visitors2.kid_visitors);
+                            otherVisitorsSecondCount = parseInt(data.visitors2.adult_visitors);
+                        }
                     }
                     //originalVisitorsFirstCount = visitorsFirstCount = parseInt(isAdults ? data.visitors1.adult_visitors : data.visitors1.kid_visitors);
                     //originalVisitorsSecondCount = visitorsSecondCount = parseInt(isAdults ? data.visitors2.adult_visitors : data.visitors2.kid_visitors);
@@ -604,7 +610,7 @@
                     $('.first-service-header').text(firstServiceText);
                     $('#first-service-total-header').text(firstServiceText+' Attendance');
                     $('#visitors-first-service-label').text(firstServiceText+' Visitors');
-                    var secondService = $('#service-label-2').val();
+                    
                     if(secondService) {
                         $('.second-service-header').text(options.service_labels[secondService]);
                         $('#second-service-total-header').text(options.service_labels[secondService] + ' Attendance');
