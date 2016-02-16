@@ -558,7 +558,7 @@ main {
 }
 
 .first-time-visitor {
-    background-color: #8FFD3B;
+    background-color: #8FFD3B !important;
 }
 
 #manage-unknown-date {

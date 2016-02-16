@@ -151,6 +151,7 @@
                 $query = "update People set
                             commitment_baptism = (SELECT COUNT(*) FROM FollowUps WHERE type = 3 AND commitment_baptism=1 AND follow_up_to_person_id = :person_id) > 0,
                             commitment_christ = (SELECT COUNT(*) FROM FollowUps WHERE type = 3 AND commitment_christ=1 AND follow_up_to_person_id = :person_id) > 0,
+                            recommitment_christ = (SELECT COUNT(*) FROM FollowUps WHERE type = 3 AND recommitment_christ=1 AND follow_up_to_person_id = :person_id) > 0,
                             commitment_ministry = (SELECT COUNT(*) FROM FollowUps WHERE type = 3 AND commitment_ministry=1 AND follow_up_to_person_id = :person_id) > 0,
                             commitment_tithe = (SELECT COUNT(*) FROM FollowUps WHERE type = 3 AND commitment_tithe=1 AND follow_up_to_person_id = :person_id) > 0,
                             info_ggroups = (SELECT COUNT(*) FROM FollowUps WHERE type = 3 AND info_ggroups=1 AND follow_up_to_person_id = :person_id) > 0,
