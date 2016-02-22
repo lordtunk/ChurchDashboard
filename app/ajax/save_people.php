@@ -80,7 +80,7 @@
           $paramsSql = $paramsSql.":id".$paramCount;
         }
       }
-      if(count($paramsArr) > 0) {
+      if($adult && count($paramsArr) > 0) {
           $query = "SELECT 
                         att.attended_by, p.first_name, p.last_name, p.description, p.primary_phone, count(*) attendance_count 
                     FROM 
@@ -111,7 +111,11 @@
               $results = $f->fetchAndExecute($query);
               if(count($results) > 0) {
                   $startingPointEmails = $results[0]['starting_point_emails'];
-                  $f->sendEmail($startingPointEmails, "Ready for Starting Point - " . $f->getEnvironment(), $body);
+                  $subject = "Ready for Starting Point";
+                  $env = $f->getEnvironment();
+                  if(strtoupper($env) != "prd")
+                      $subject = $subject." - $env";
+                  $f->sendEmail($startingPointEmails, $subject, $body);
               }
               $query = "UPDATE People SET starting_point_notified=1 WHERE id IN ($paramsSql)";
               $f->executeAndReturnResult($query, $paramsArr);
