@@ -113,7 +113,7 @@
                   $startingPointEmails = $results[0]['starting_point_emails'];
                   $subject = "Ready for Starting Point";
                   $env = $f->getEnvironment();
-                  if(strtoupper($env) != "prd")
+                  if(strtoupper($env) != "PRD")
                       $subject = $subject." - $env";
                   $f->sendEmail($startingPointEmails, $subject, $body);
               }
