@@ -556,6 +556,9 @@
             .done(function(msg) {
                 var data = JSON.parse(msg);
                 if (data.success) {
+                    originalVisitorsSecondCount = 0;
+                    otherVisitorsSecondCount = 0;
+                    
                     if(data.attendance_dt)
                         setAttendanceDate(new Date(data.attendance_dt));
                     if(typeof data.attendance_adults !== "undefined") {
@@ -787,10 +790,9 @@
 
     function appendNavigationOption(id, lastName) {
         if (!lastName) return;
-        var containerId = '#jump-to';
         var letter = lastName.substr(0, 1).toUpperCase();
-        if ($(containerId + ' option:contains("' + letter + '")').length > 0) return;
-        var s = document.querySelector(containerId);
+        if ($('#jump-to option:contains("' + letter + '")').length > 0) return;
+        var s = document.querySelector('#jump-to');
         var o = document.createElement('option');
         o.setAttribute('scroll_to_id', id);
         o.innerHTML = letter;
