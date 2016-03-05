@@ -89,7 +89,7 @@
                                           s.service_dt attendance_dt,
                                           a.attended_by
                                         FROM
-                                          attendance_test a
+                                          Attendance a
                                           inner join Services s on a.service_id=s.id and s.label=:label1 $where
                                       ) a1 ON a1.attended_by=p.id
                                       LEFT OUTER JOIN (
@@ -97,7 +97,7 @@
                                           s.service_dt attendance_dt,
                                           a.attended_by
                                         FROM
-                                          attendance_test a
+                                          Attendance a
                                           inner join Services s on a.service_id=s.id and s.label=:label2 $where
                                       ) a2 ON a2.attended_by=p.id and a2.attendance_dt=a1.attendance_dt
                                       
@@ -116,7 +116,7 @@
                                           s.service_dt attendance_dt,
                                           a.attended_by
                                         FROM
-                                          attendance_test a
+                                          Attendance a
                                           inner join Services s on a.service_id=s.id and s.label=:label2 $where
                                       ) a2 ON a2.attended_by=p.id
                                       LEFT OUTER JOIN (
@@ -124,7 +124,7 @@
                                           s.service_dt attendance_dt,
                                           a.attended_by
                                         FROM
-                                          attendance_test a
+                                          Attendance a
                                           inner join Services s on a.service_id=s.id and s.label=:label1 $where
                                       ) a1 ON a1.attended_by=p.id and a2.attendance_dt=a1.attendance_dt
                                 ) u
@@ -150,6 +150,18 @@
                         $aggregates['Min_Total_Attendance'] = $results[0]['Total_Attendance'];
                         $aggregates['Min_First_Service_Attendance'] = $results[0]['First_Service_Attendance'];
                         $aggregates['Min_Second_Service_Attendance'] = $results[0]['Second_Service_Attendance'];
+                        
+                        foreach($visitorResults as $k => $r) {                            
+                            if($r['service_dt'] == $results[0]['Attendance_dt']) {
+                                $aggregates['Min_Total_Attendance'] += $r['visitors'];
+                                
+                                if($r['label'] == $params->label1) {
+                                    $aggregates['Min_First_Service_Attendance'] += $r['visitors'];
+                                } else if($r['label'] == $params->label2) {
+                                    $aggregates['Min_Second_Service_Attendance'] += $r['visitors'];
+                                }
+                            }
+                        }
                     } else {
                         $aggregates['Min_Total_Attendance'] = 0;
                         $aggregates['Min_First_Service_Attendance'] = 0;
@@ -196,7 +208,7 @@
                             DATE_FORMAT(s.service_dt,'%m/%d/%Y') Attendance_dt,
                             COUNT(*) Total_Attendance
                         FROM 
-                            attendance_test a
+                            Attendance a
                             inner join Services s on a.service_id=s.id and s.label=:label1 $where
                         GROUP BY
                             s.service_dt DESC";
@@ -297,7 +309,7 @@
                                           s.service_dt attendance_dt,
                                           a.attended_by
                                         FROM
-                                          attendance_test a
+                                          Attendance a
                                           inner join Services s on a.service_id=s.id and s.label=:label1 $where
                                       ) a1 ON a1.attended_by=p.id
                                       LEFT OUTER JOIN (
@@ -305,7 +317,7 @@
                                           s.service_dt attendance_dt,
                                           a.attended_by
                                         FROM
-                                          attendance_test a
+                                          Attendance a
                                           inner join Services s on a.service_id=s.id and s.label=:label2 $where
                                       ) a2 ON a2.attended_by=p.id and a2.attendance_dt=a1.attendance_dt
                                       
@@ -327,7 +339,7 @@
                                           s.service_dt attendance_dt,
                                           a.attended_by
                                         FROM
-                                          attendance_test a
+                                          Attendance a
                                           inner join Services s on a.service_id=s.id and s.label=:label2 $where
                                       ) a2 ON a2.attended_by=p.id
                                       LEFT OUTER JOIN (
@@ -335,7 +347,7 @@
                                           s.service_dt attendance_dt,
                                           a.attended_by
                                         FROM
-                                          attendance_test a
+                                          Attendance a
                                           inner join Services s on a.service_id=s.id and s.label=:label1 $where
                                       ) a1 ON a1.attended_by=p.id and a2.attendance_dt=a1.attendance_dt
                                 ) u
@@ -376,7 +388,7 @@
                                   s.service_dt attendance_dt,
                                   a.attended_by
                                 FROM
-                                  attendance_test a
+                                  Attendance a
                                   inner join Services s on a.service_id=s.id and s.label=:label1 $where
                               ) a1 ON a1.attended_by=p.id
                         WHERE
@@ -426,7 +438,7 @@
                                   p.description
                                 FROM
                                   People p
-                                  LEFT OUTER JOIN attendance_test a ON p.id=a.attended_by AND a.service_id IN
+                                  LEFT OUTER JOIN Attendance a ON p.id=a.attended_by AND a.service_id IN
                                 ($idString)
                                 WHERE
                                   a.attended_by IS NULL

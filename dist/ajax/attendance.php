@@ -98,7 +98,7 @@
                             SELECT
                               a.attended_by
                             FROM
-                              attendance_test a
+                              Attendance a
                             WHERE
                               a.service_id=$serviceId1
                           ) a1 ON a1.attended_by=p.id
@@ -106,7 +106,7 @@
                             SELECT
                               a.attended_by
                             FROM
-                              attendance_test a
+                              Attendance a
                             WHERE
                               a.service_id=$serviceId2
                           ) a2 ON a2.attended_by=p.id
@@ -148,7 +148,7 @@
                             SELECT
                               a.attended_by
                             FROM
-                              attendance_test a
+                              Attendance a
                             WHERE
                               a.service_id=$serviceId1
                           ) a1 ON a1.attended_by=p.id
@@ -185,28 +185,28 @@
                 $visitorsFirst = $this->getVisitorCount($service_dt, $adult, $campus, $label1);
                 $query = "
                         select
-                            (SELECT count(*) FROM attendance_test WHERE service_id = $serviceId1) total_first_count,
+                            (SELECT count(*) FROM Attendance WHERE service_id = $serviceId1) total_first_count,
 
-                            (SELECT count(*) FROM attendance_test a inner join People p on a.attended_by=p.id WHERE p.adult=1 AND a.service_id = $serviceId1) adult_first_count,
+                            (SELECT count(*) FROM Attendance a inner join People p on a.attended_by=p.id WHERE p.adult=1 AND a.service_id = $serviceId1) adult_first_count,
 
-                            (SELECT count(*) FROM attendance_test a inner join People p on a.attended_by=p.id WHERE p.adult=0 AND a.service_id = $serviceId1) kid_first_count
+                            (SELECT count(*) FROM Attendance a inner join People p on a.attended_by=p.id WHERE p.adult=0 AND a.service_id = $serviceId1) kid_first_count
                         from
                             dual";
             } else {
                 $haveSecondService = TRUE;
                 $query = "
                         select
-                            (SELECT count(*) FROM attendance_test WHERE service_id = $serviceId1) total_first_count,
-                            (SELECT count(*) FROM attendance_test WHERE service_id = $serviceId2) total_second_count,
-                            (SELECT count(*) FROM attendance_test WHERE (service_id = $serviceId1 OR service_id = $serviceId2)) total_total_count,
+                            (SELECT count(*) FROM Attendance WHERE service_id = $serviceId1) total_first_count,
+                            (SELECT count(*) FROM Attendance WHERE service_id = $serviceId2) total_second_count,
+                            (SELECT count(*) FROM Attendance WHERE (service_id = $serviceId1 OR service_id = $serviceId2)) total_total_count,
 
-                            (SELECT count(*) FROM attendance_test a inner join People p on a.attended_by=p.id WHERE p.adult=1 AND a.service_id = $serviceId1) adult_first_count,
-                            (SELECT count(*) FROM attendance_test a inner join People p on a.attended_by=p.id WHERE p.adult=1 AND a.service_id = $serviceId2) adult_second_count,
-                            (SELECT count(*) FROM (SELECT count(*) cnt, attended_by FROM attendance_test a inner join People p on a.attended_by=p.id WHERE p.adult=1 AND (a.service_id = $serviceId1 OR a.service_id = $serviceId2) group by attended_by) at1) adult_total_count,
+                            (SELECT count(*) FROM Attendance a inner join People p on a.attended_by=p.id WHERE p.adult=1 AND a.service_id = $serviceId1) adult_first_count,
+                            (SELECT count(*) FROM Attendance a inner join People p on a.attended_by=p.id WHERE p.adult=1 AND a.service_id = $serviceId2) adult_second_count,
+                            (SELECT count(*) FROM (SELECT count(*) cnt, attended_by FROM Attendance a inner join People p on a.attended_by=p.id WHERE p.adult=1 AND (a.service_id = $serviceId1 OR a.service_id = $serviceId2) group by attended_by) at1) adult_total_count,
 
-                            (SELECT count(*) FROM attendance_test a inner join People p on a.attended_by=p.id WHERE p.adult=0 AND a.service_id = $serviceId1) kid_first_count,
-                            (SELECT count(*) FROM attendance_test a inner join People p on a.attended_by=p.id WHERE p.adult=0 AND a.service_id = $serviceId2) kid_second_count,
-                            (SELECT count(*) FROM (SELECT count(*) cnt, attended_by FROM attendance_test a inner join People p on a.attended_by=p.id WHERE p.adult=0 AND (a.service_id = $serviceId1 OR a.service_id = $serviceId2) group by attended_by) at1) kid_total_count
+                            (SELECT count(*) FROM Attendance a inner join People p on a.attended_by=p.id WHERE p.adult=0 AND a.service_id = $serviceId1) kid_first_count,
+                            (SELECT count(*) FROM Attendance a inner join People p on a.attended_by=p.id WHERE p.adult=0 AND a.service_id = $serviceId2) kid_second_count,
+                            (SELECT count(*) FROM (SELECT count(*) cnt, attended_by FROM Attendance a inner join People p on a.attended_by=p.id WHERE p.adult=0 AND (a.service_id = $serviceId1 OR a.service_id = $serviceId2) group by attended_by) at1) kid_total_count
                         from
                             dual";
 
@@ -263,12 +263,12 @@
         }
         
         public function deleteAttendance($service_id, $person_id) {
-            $query = "DELETE FROM attendance_test WHERE attended_by=:id AND service_id=:service_id";
+            $query = "DELETE FROM Attendance WHERE attended_by=:id AND service_id=:service_id";
             $this->f->executeAndReturnResult($query, array(":id"=>$person_id, ":service_id"=>$service_id));
         }
         
         public function addAttendance($service_id, $person_id) {
-            $query = "INSERT INTO attendance_test (`attended_by`, `service_id`) VALUES(:attended_by, :service_id)";
+            $query = "INSERT INTO Attendance (`attended_by`, `service_id`) VALUES(:attended_by, :service_id)";
             $results = $this->f->executeAndReturnResult($query, array(":attended_by"=>$person_id, ":service_id"=>$service_id));
         }
         
@@ -296,7 +296,7 @@
                           a.attended_by,
                           s.service_dt attendance_dt
                         FROM
-                          attendance_test a
+                          Attendance a
                           inner join Services s on a.service_id=s.id and s.label=:label1 and s.campus=:campus
                       ) a1 ON a1.attended_by=p.id
                       LEFT OUTER JOIN (
@@ -304,7 +304,7 @@
                           a.attended_by,
                           s.service_dt attendance_dt
                         FROM
-                          attendance_test a
+                          Attendance a
                           inner join Services s on a.service_id=s.id and s.label=:label2 and s.campus=:campus
                       ) a2 ON a2.attended_by=p.id and a2.attendance_dt=a1.attendance_dt
                     WHERE
@@ -328,7 +328,7 @@
                           a.attended_by,
                           s.service_dt attendance_dt
                         FROM
-                          attendance_test a
+                          Attendance a
                           inner join Services s on a.service_id=s.id and s.label=:label2 and s.campus=:campus
                       ) a2 ON a2.attended_by=p.id
                       LEFT OUTER JOIN (
@@ -336,7 +336,7 @@
                           a.attended_by,
                           s.service_dt attendance_dt
                         FROM
-                          attendance_test a
+                          Attendance a
                           inner join Services s on a.service_id=s.id and s.label=:label1 and s.campus=:campus
                       ) a1 ON a1.attended_by=p.id and a2.attendance_dt=a1.attendance_dt
                     WHERE
@@ -360,7 +360,7 @@
                           a.attended_by,
                           s.service_dt attendance_dt
                         FROM
-                          attendance_test a
+                          Attendance a
                           inner join Services s on a.service_id=s.id and s.label=:label1 and s.campus=:campus
                       ) a1 ON a1.attended_by=p.id
                     WHERE

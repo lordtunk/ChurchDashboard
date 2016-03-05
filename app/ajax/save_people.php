@@ -88,7 +88,7 @@
                             SELECT DISTINCT
                                 s.service_dt, a.attended_by
                             FROM 
-                                attendance_test a
+                                Attendance a
                                 INNER JOIN Services s ON s.id=a.service_id
                             WHERE
                                 a.attended_by IN ($paramsSql)
