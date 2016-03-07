@@ -87,7 +87,7 @@
                   rp.description relationship_description,
                   r.type relationship_type_cd
                 FROM
-                  (select min(service_dt) attendance_dt from services where id in (select service_id from Attendance where attended_by=:id)) at,
+                  (select min(service_dt) attendance_dt from Services where id in (select service_id from Attendance where attended_by=:id)) at,
                   People p
                   left outer join FollowUps f on f.follow_up_to_person_id=p.id
                   left outer join FollowUpVisitors v on f.id=v.follow_up_id
