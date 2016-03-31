@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <title>GCB Copy</title>
+    <script src="jquery-1.11.1.min.js"></script>
+    <script src="gcb_copy.js"></script>
+    <style>
+      body {
+        min-width: 410px;
+        overflow-x: hidden;
+        background-color: #88b749;
+        color: #ffffff;
+      }
+      div {
+		display: inline-block;
+		padding-left: 7px;
+      }
+      label {
+		display: inline-block;
+		font-weight: bold;
+		width: 100px;
+		text-align: right;
+      }
+      .user_copied {
+		display: none;
+      }
+	</style>
+  </head>
+  <body>
+	<label>Input: </label>
+	<input id="input" type="text" />
+	<input id="read" type="button" value="Read Input" />
+    <br /><input id="copy" type="button" value="Copy" />
+	<input id="paste" type="button" value="Paste" /><br />
+	<h4 id="userCopied" style="display: none;">User copied!</h4>
+  </body>
+</html>
+
