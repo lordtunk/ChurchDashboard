@@ -46,6 +46,7 @@
         cancelBtn = document.querySelector('#cancel'),
         deleteBtn = document.querySelector('#delete'),
         addFollowUpBtn = document.querySelector('#add-follow-up'),
+        copyAddressToSpouseBtn = document.querySelector('#copy-address-to-spouse'),
         
         relationshipDialog = $('.manage-person-relationship-form').dialog({
             autoOpen: false,
@@ -228,6 +229,8 @@
         updateMap(p);
         processFollowUps(p.follow_ups);
         processRelationships(p.relationships);
+
+        setCopyAddressBtnVisibility();
     }
     
     function populateCommunicationCardOptions(p) {
@@ -673,6 +676,7 @@
                 if (data.success) {
                     r.id = data.relationship_id;
                     cb.call(this, r);
+                    setCopyAddressBtnVisibility();
                     $().toastmessage('showSuccessToast', "Relationship save successful");
                 } else {
                     if (data.error === 1) {
@@ -702,6 +706,7 @@
                 var data = JSON.parse(msg);
                 if (data.success) {
                     $('#relationship-table tr[relationship_id=' + id + ']').remove();
+                    setCopyAddressBtnVisibility();
                 } else {
                     if (data.error === 1) {
                         logout();
@@ -713,6 +718,35 @@
             .fail(function() {
                 $().toastmessage('showErrorToast', "Error deleting relationship");
             });
+    }
+
+    function copyAddress() {
+        $.ajax({
+            type: 'POST',
+            url: 'ajax/copy_address_to_spouse.php',
+            data: {
+                personId: person.id
+            }
+        })
+        .done(function(msg) {
+            var data = JSON.parse(msg);
+            if (data.success) {
+                $().toastmessage('showSuccessToast', "Address copied successful");
+            } else {
+                if (data.error === 1) {
+                    logout();
+                } else {
+                    $().toastmessage('showErrorToast', "Error copying address");
+                }
+            }
+        })
+        .fail(function() {
+            $().toastmessage('showErrorToast', "Error copying address");
+        });
+    }
+
+    function setCopyAddressBtnVisibility() {
+        copyAddressToSpouseBtn.style.display = $('#relationship-table td[typecd=1]').length > 0 ? '' : 'none';
     }
     
     
@@ -1318,6 +1352,7 @@
     addClearBtn.addEventListener('click', addClear);
     addCloseBtn.addEventListener('click', addClose);
     closeBtn.addEventListener('click', closeFollowUp);
+    copyAddressToSpouseBtn.addEventListener('click', copyAddress);
     $('#follow-up-type').on('change', onFollowUpTypeChange);
     
     addRelationshipBtn.addEventListener('click', addRelationship);
