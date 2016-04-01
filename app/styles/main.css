@@ -683,6 +683,10 @@ input.setting {
   width: 100px !important;
 }
 
+.address-form-section > button {
+    float: right;
+}
+
 .contact-form-section-title {
   padding: 0 0 0 40px;
 }
