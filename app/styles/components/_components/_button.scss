@@ -45,6 +45,15 @@
   @include style-button(#009344, #ffffff);
 }
 
+.button--primary-small {
+  @extend .button;
+  padding: (($lineHeight / 3) - 1) 16px;
+  margin-bottom: $lineHeight / 3;
+  margin-top: $lineHeight / 3;
+  min-height: $lineHeight;
+  @include style-button(#009344, #ffffff);
+}
+
 .button--secondary {
   @extend .button;
   @include style-button(#ffffff, $colorGreen);

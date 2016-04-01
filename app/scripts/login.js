@@ -9,7 +9,7 @@ function checkLoginStatus(cb, preventRedirect) {
             if (data.success) {
                 if (cb) cb();
             } else if(preventRedirect !== true) {
-                window.location = 'index.html';
+                window.location = 'index.html?url='+encodeURIComponent(window.location);
             }
         });
 }
@@ -55,6 +55,21 @@ function logout() {
         }
         return true;
     }
+    
+    function getUrlParameter(sParam)
+    {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++) 
+        {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam) 
+            {
+                return decodeURIComponent(sParameterName[1]);
+            }
+        }
+        return null;
+    }  
 
     function login(username, password) {
         $.ajax({
@@ -65,18 +80,27 @@ function logout() {
                 password: password
             }
         })
-            .done(function(msg) {
-                var data = JSON.parse(msg);
-                if (data.success) {
-                    window.location = 'attendance.html';
+        .done(function(msg) {
+            var data = JSON.parse(msg);
+            if (data.success) {
+                var url = getUrlParameter('url');
+                if(url) {
+                    window.location = url;
                 } else {
-                    $().toastmessage('showErrorToast', 'Username or password is incorrect');
+                    window.location = 'attendance.html';
                 }
-            });
+            } else {
+                $().toastmessage('showErrorToast', 'Username or password is incorrect');
+            }
+        });
     }
     
     function redirectToApp() {
-        window.location = 'attendance.html';
+        var url = getUrlParameter('url');
+        if(url)
+            window.location = url;
+        else
+            window.location = 'attendance.html';
     }
 
     if (loginBtn) {

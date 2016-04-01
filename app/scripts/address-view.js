@@ -34,7 +34,12 @@
                 interested_in_gteams: false,
                 interested_in_joining: false,
                 would_like_visit: $('#would-like-visit').is(':checked'),
-                no_agent: false
+                no_agent: false,
+                commitment_christ: false,
+                recommitment_christ: false,
+                commitment_tithe: false,
+                commitment_ministry: false,
+                attendance_frequency: false
             };
             doSearch(params);
         }

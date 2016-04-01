@@ -21,6 +21,7 @@
     "gulp-uglify": "^0.3.1",
     "gulp-uncss": "^0.4.4",
     "gulp-useref": "^0.4.3",
+    "imagemin-svgo": "^4.1.2",
     "jshint-stylish": "^0.2.0",
     "opn": "^0.1.1",
     "psi": "^0.0.4",
@@ -31,7 +32,7 @@
     "node": ">=0.10.0"
   },
   "private": true,
-  "version": "2.0.24",
+  "version": "2.2.5",
   "dependencies": {
     "gulp-bump": "^0.1.11",
     "gulp-git": "^0.5.5"

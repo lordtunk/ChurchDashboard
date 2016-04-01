@@ -22,12 +22,10 @@
   if($dict['success'] == TRUE) {
     try {
       $query = "SELECT
-                  DATE_FORMAT(MAX(a.attendance_dt),'%m/%d/%Y') Last_Attendance_Dt,
-                  DATE_FORMAT(MIN(a.attendance_dt),'%m/%d/%Y') First_Attendance_Dt
+                  DATE_FORMAT(MAX(s.service_dt),'%m/%d/%Y') Last_Attendance_Dt,
+                  DATE_FORMAT(MIN(s.service_dt),'%m/%d/%Y') First_Attendance_Dt
                 FROM
-                  Attendance a
-                WHERE
-                  a.first = 1 OR a.second = 1";
+                  Services s";
       $results = $f->fetchAndExecute($query);
       $dict['first_dt'] = $results[0]['First_Attendance_Dt'];
       $dict['last_dt'] = $results[0]['Last_Attendance_Dt'];

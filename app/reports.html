@@ -43,7 +43,7 @@
         <li><a id="attendance-nav" href="attendance.html">Attendance</a></li>
         <li><a id="reports-nav" href="#reports">Reports</a></li>
         <li><a id="address-view-nav" href="address-view.html">Address View</a></li>
-        <li><a id="follow-ups-nav" href="follow-ups.html">Follow Up Entry</a></li>
+        <li><a id="follow-ups-nav" href="follow-ups.html">Follow Ups</a></li>
         <li><a id="search-nav" href="search.html">Search</a></li>
         <li><a href="javascript:logout()">Log Out</a></li>
       </ul>
@@ -67,55 +67,88 @@
             <option value="2">Attendance By Person</option>
             <option value="3">Missing In Action</option>
             <option value="4">Follow Up</option>
+            <option value="5">People By Attender Status</option>
           </select>
         </div>
         <h4 id="communication-card-header" style="display: none;">Communication Card Received</h4>
-        <div id="from-to-dates" style="display: inline-block;">
+        <div id="from-to-dates">
           <label for="from-date">From Date:</label>
           <input type="text" id="from-date" class="date-field" /><br />
           <label for="to-date">To Date:</label>
           <input type="text" id="to-date" class="date-field" />
         </div>
+        <div id="service-options" style="display: inline-block;">
+          <div class="service-label-container">
+            <label for="service-label-1">First Service:</label>
+            <select id="service-label-1">
+            </select>
+          </div>
+          <div class="service-label-container">
+            <label for="service-label-2">Second Service:</label>
+            <select id="service-label-2">
+            </select>
+          </div>
+          <div>
+            <label for="campus">Campus:</label>
+            <select id="campus">
+            </select>
+          </div>
+        </div>
         <div id="follow-up-options-spacer" style="display: none;"></div>
         <div id="follow-up-options" style="display: none;">
-          <input type="checkbox" id="not-visited"/>
-          <label for="not-visited">Not yet visited</label>
+          <h4 style="padding-top: 0;">Include Only:</h4>
           <input type="checkbox" id="ty-card-not-sent"/>
-          <label for="ty-card-not-sent">Thank you card not sent</label><br />
-          <input type="checkbox" id="signed-up-for-baptism"/>
-          <label for="signed-up-for-baptism">Signed up for baptism</label>
-          <input type="checkbox" id="baptized"/>
-          <label for="baptized">Baptized</label><br />
-          <input type="checkbox" id="interested-in-gkids"/>
-          <label for="interested-in-gkids">Interested in gKids</label>
-          <input type="checkbox" id="interested-in-next"/>
-          <label for="interested-in-next">Interested in Next</label><br />
-          <input type="checkbox" id="interested-in-ggroups"/>
-          <label for="interested-in-ggroups">Interested in gGroups</label>
-          <input type="checkbox" id="interested-in-gteams"/>
-          <label for="interested-in-gteams">Interested in gTeams</label><br />
-          <input type="checkbox" id="interested-in-joining"/>
-          <label for="interested-in-joining">Interested in joining GC</label>
-          <input type="checkbox" id="would-like-visit"/>
-          <label for="would-like-visit">Would like a visit from a GC Pastor</label><br />
-          <input type="checkbox" id="no-agent"/>
-          <label for="no-agent">Not assigned an agent</label>
+          <label for="ty-card-not-sent">Thank you card not sent</label>
+          <input type="checkbox" id="not-visited"/>
+          <label for="not-visited">Not yet visited</label><br />
           <input type="checkbox" id="active" checked/>
-          <label for="active">Active</label><br />
+          <label for="active">Active</label>
+          <br />
+          <h4 style="padding-top: 0;">Include All:</h4>
+          <div id="include-all-checkboxes">
+            <input type="checkbox" id="first-time-visitor"/>
+            <label for="first-time-visitor">First time visitor</label>
+            <input type="checkbox" id="signed-up-for-baptism"/>
+            <label for="signed-up-for-baptism">Signed up for baptism</label><br />
+            <input type="checkbox" id="interested-in-gkids"/>
+            <label for="interested-in-gkids">Interested in gKids</label>
+            <input type="checkbox" id="interested-in-next"/>
+            <label for="interested-in-next">Interested in Next</label><br />
+            <input type="checkbox" id="interested-in-ggroups"/>
+            <label for="interested-in-ggroups">Interested in gGroups</label>
+            <input type="checkbox" id="interested-in-gteams"/>
+            <label for="interested-in-gteams">Interested in gTeams</label><br />
+            <input type="checkbox" id="interested-in-joining"/>
+            <label for="interested-in-joining">Interested in joining GC</label>
+            <input type="checkbox" id="would-like-visit"/>
+            <label for="would-like-visit">Would like a visit from a GC Pastor</label><br />
+            <input type="checkbox" id="commitment-christ"/>
+            <label for="commitment-christ">Committing life to Christ</label>
+            <input type="checkbox" id="recommitment-christ"/>
+            <label for="recommitment-christ">Recommitting life to Christ</label><br />
+            <input type="checkbox" id="commitment-tithe"/>
+            <label for="commitment-tithe">Committing to tithe</label>
+            <input type="checkbox" id="commitment-ministry"/>
+            <label for="commitment-ministry">Committing to serving in ministry</label><br />
+            <input type="checkbox" id="baptized"/>
+            <label for="baptized">Baptized</label>
+            <input type="checkbox" id="no-agent"/>
+            <label for="no-agent">Not assigned an agent</label>
+          </div>
+          <input type="checkbox" id="toggle-check"/>
+          <label for="toggle-check">Select/Deselect All</label>
         </div>
         <button id="go-arrow" class="button--secondary-small">Run <i class="fa fa-arrow-right"></i></button>
         <br />
         <div id="attendance-by-date-container" style="display: none;">
           <div class="attendance-table-container">
-            <table class="table-6 attendance-table" id="attendance-date-table">
+            <table class="table-4 attendance-table" id="attendance-date-table">
               <thead>
                   <tr>
                     <th>Date</th>
                     <th>Total</th>
-                    <th>1st Service</th>
-                    <th>2nd Service</th>
-                    <th>1st Service Adults</th>
-                    <th>2nd Service Adults</th>
+                    <th class="service-header first-service-header">1st Service</th>
+                    <th class="service-header second-service-header">2nd Service</th>
                   </tr>
               </thead>
               <tbody>
@@ -128,15 +161,13 @@
           </div>
           <div class="clear"></div>
           <div class="attendance-table-container" id="attendance-by-date-table-container">
-            <table class="table-6 attendance-table" id="attendance-date-aggregates-table">
+            <table class="table-4 attendance-table" id="attendance-date-aggregates-table">
               <thead>
                   <tr>
                     <th>Aggregate</th>
                     <th>Total</th>
-                    <th>1st Service</th>
-                    <th>2nd Service</th>
-                    <th>1st Service Adults</th>
-                    <th>2nd Service Adults</th>
+                    <th class="service-header first-service-header">1st Service</th>
+                    <th class="service-header second-service-header">2nd Service</th>
                   </tr>
               </thead>
               <tbody>
@@ -150,8 +181,8 @@
               <thead>
                   <tr>
                       <th>Name</th>
-                      <th>1st Service</th>
-                      <th>2nd Service</th>
+                      <th class="service-header first-service-header">1st Service</th>
+                      <th class="service-header second-service-header">2nd Service</th>
                       <th>Total</th>
                   </tr>
               </thead>
@@ -203,14 +234,41 @@
             <a href="javascript:void(0);" id="mia-top">Top</a>
             <a href="javascript:void(0);" id="mia-bottom">Bottom</a>
           </div>
+          <label id="email-label" for="email">Email: </label>
+          <input type="email" id="email" />
+          <button id="email-summary" class="button--primary-small"><i class="fa fa-envelope"></i> Email Summary</button>
+          <div class="clear"></div>
+        </div>
+        <div id="people-by-attender-status-container" style="display: none;">
+          <div class="attendance-table-container" id="people-by-attender-status-table-container">
+            <table class="table-1 attendance-by-person-table" id="people-by-attender-status-table">
+              <thead>
+                  <tr>
+                      <th>Name</th>
+                  </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="top-bottom-links">
+            <a href="javascript:void(0);" id="attender-status-top">Top</a>
+            <a href="javascript:void(0);" id="attender-status-bottom">Bottom</a>
+          </div>
           <div class="clear"></div>
         </div>
       </div>
 
     </main>
 
+    <div id="error-container" style="display: none;">
+      <div id="error-msg"></div>
+      <button id="email-error" type="button" class="button--primary"><i class="fa fa-envelope"></i> <span class="btn-text">Email Error</span></button>
+    </div>
+
     <!-- build:js scripts/main.min.js -->
     <script src="jquery/jquery-1.11.1.min.js"></script>
+    <script src="scripts/error.js"></script>
     <script src="jquery/jquery-ui.min.js"></script>
     <script src="jquery/jquery.loadmask.min.js"></script>
     <script src="jquery/jquery.toastmessage.js"></script>
