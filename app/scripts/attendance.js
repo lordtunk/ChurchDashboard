@@ -1,9 +1,14 @@
 (function() {
     'use strict';
 
+    // A janky way to ensure that this code only runs on the Attendance
+    // page. This is needed because the js minifier brings in all code
+    // files. If the minifier process could be modified to generate a
+    // minified version of only the needed files for each page or if
+    // each page could be made to be an object that would probably
+    // be ideal
     if ($('#attendance').length === 0) return;
 
-    //$('#attendance-date').datepicker();
     $('#attendance-date').datepicker({
         dateFormat: 'm/d/yy'
     });

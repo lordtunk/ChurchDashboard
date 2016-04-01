@@ -1,6 +1,4 @@
 <?php
-  require("autoload.php");
-  use Vimeo\Vimeo;
   class Func {
     private $db = NULL;
     private $env  = "dev";
@@ -65,94 +63,12 @@
       $this->db->rollback();
     }
       
-    function getUser() {
-        $lib = new Vimeo($this->client_id, $this->client_secret);
-        if (!empty($this->access_token)) {
-            $lib->setToken($this->access_token);
-            $user = $lib->request('/me');
-        } else {
-            $user = $lib->request('/users/dashron');
-        }
-        if ($user['status'] != 200) {
-            $this->logMessage('Could not locate the requested resource uri [/me]'.$user);
-            throw new Exception('Could not locate the requested resource uri [/me]');
-        }
-        return $user;
-    }
-      
-    function generateUploadTicket() {
-        $lib = new Vimeo($this->client_id, $this->client_secret);
-        $ticket = null;
-        if (!empty($this->access_token)) {
-            $lib->setToken($this->access_token);
-            $ticket = $lib->request('/me/videos', array('type'=>'streaming'), 'POST');
-        } else {
-            throw new Exception('Must have access token');
-        }
-        return $ticket;
-    }
-      
-    function getQuota() {
-        $lib = new Vimeo($this->client_id, $this->client_secret);
-        $resource = null;
-        if (!empty($this->access_token)) {
-            $lib->setToken($this->access_token);
-            $resource = $lib->request('/me');
-        } else {
-            throw new Exception('Must have access token');
-        }
-        if ($resource['status'] != 200) {
-            $this->logMessage('Could not locate the requested resource uri [/me]'.$resource);
-            throw new Exception('Could not locate the requested resource uri [/me]');
-        }
-        if(empty($resource['body']['upload_quota']))
-            throw new Exception('The resource loaded does not have the upload_quota');
-        return $resource['body']['upload_quota'];
-    }
-
-    function CWD() {
-      return getCWD();
-    }
-
     function sendEmail($email, $subject, $body) {
         $headers = "From: auto@gcb.my-tasks.info \r\n";
         $headers .= "Reply-To: auto@gcb.my-tasks.info \r\n";
 		$headers .= "MIME-Version: 1.0\r\n";
 		$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
         mail(strip_tags($email), $subject, $body, $headers);
-    }
-
-    function writableFile() {
-      if (is_writable($this->logFileName)) {
-        if (!$handle = fopen($this->logFileName, 'a'))
-          return "Error opening";
-        if (fwrite($handle, date("m-d-y g:i a").$msg."\n") === FALSE)
-          return "Error writing";
-        fclose($handle);
-        return "Success";
-      }
-      return "Not writable";
-    }
-
-    function fileStatus() {
-      $status = $this->CWD();
-
-      if (file_exists($this->logFileName))
-        $status = $status." file_exists: TRUE";
-      else
-        $status = $status." file_exists: FALSE";
-
-      if (is_readable($this->logFileName))
-        $status = $status." is_readable: TRUE";
-      else
-        $status = $status." is_readable: FALSE";
-
-      if (is_writable($this->logFileName))
-        $status = $status." is_writable: TRUE";
-      else
-        $status = $status." is_writable: FALSE";
-
-      return $status;
     }
 
     function logMessage($msg, $severity=1) {
@@ -290,41 +206,6 @@
       } else {
         return TRUE;
       }
-    }
-
-    function numRows($sth) {
-      $count = 0;
-      while($row = fetch($sth)) {
-        $count++;
-      }
-      return $count;
-    }
-    function dbMultiConn($type=0) {
-      switch($type) {
-      // Read, Write, Modify
-      case 0:
-        // Connect to the database
-        $link = mysqli_connect('db371484997.db.1and1.com', 'dbo371484997', 'bobgnome');
-        break;
-      // Read only
-      case 1:
-        $link = mysqli_connect('db371484997.db.1and1.com', 'dbo371484997', 'bobgnome');
-        break;
-      // Read and Write
-      case 2:
-        $link = mysqli_connect('db371484997.db.1and1.com', 'dbo371484997', 'bobgnome');
-        break;
-      }
-      /* check connection */
-      if (mysqli_connect_errno()) {
-          die("Connect failed: ".mysqli_connect_error());
-      }
-      // Select the database
-      $db = mysqli_select_db($link, 'db371484997');
-      return $link;
-    }
-    function close() {
-      mysql_close();
     }
 
     function getFollowUpReport($params, $queryFlags) {
