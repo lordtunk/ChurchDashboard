@@ -196,7 +196,7 @@ gulp.task('clean', function (cb) {
 // Watch Files For Changes & Reload
 gulp.task('serve', function () {
   browserSync.init({
-    proxy: "localhost/GuideChurchDash/app",
+    proxy: "localhost:8080/GuideChurchDash/app",
     notify: false,
     host: '192.168.2.17'
   });
