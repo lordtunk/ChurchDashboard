@@ -10,16 +10,17 @@
 
     <title>Guide Church Dash</title>
 
+    <!-- build:css styles/main.min.css -->
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/font-awesome.css">
     <link rel="stylesheet" href="styles/jquery-ui.css">
     <link rel="stylesheet" href="styles/jquery.toastmessage.css">
     <link rel="stylesheet" href="styles/jquery.loadmask.css">
+    <!-- endbuild -->
     
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -91,7 +92,7 @@
                   <label for="adults-false">Kids</label>
                   <br />
                   <!--<div id="go-arrow"></div>-->
-                  <button id="go-arrow" class="btn btn-default">Run <i class="fa fa-arrow-right"></i>
+                  <button id="go-arrow" class="btn btn-default">Run <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
                   </button>
                   <br />
               </div>
@@ -136,7 +137,7 @@
             <input type="number" id="visitors-first-service" /><br />
             <label id="visitors-second-service-label" for="visitors-second-service">Visitors:</label>
             <input type="number" id="visitors-second-service" /><br />
-            <button id="refresh-visitors" type="button" class="btn btn-default"><i class="fa fa-refresh"></i> Refresh Totals</button>
+            <button id="refresh-visitors" type="button" class="btn btn-default"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Refresh Totals</button>
           </div>
           <div class="attendance-table-container" id="attendance-table-container">
               <table class="table table-responsive table-striped attendance-table" id="attendance-table">
@@ -152,7 +153,7 @@
               </table>
           </div>
           <div class="table-bar">
-            <button id="add-person" type="button" class="btn btn-default add-person"><i class="fa fa-plus"></i> Add</button>
+            <button id="add-person" type="button" class="btn btn-default add-person"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</button>
             <div class="navigation-links">
                 <label for="jump-to">Jump To:</label>
                 <select id="jump-to" class="jump-to"></select>
@@ -164,10 +165,10 @@
             </div>
           </div>
           <div class="form-bar background color--gray-keyline">
-            <button id="export" type="button" style="display: none;" class="button--primary first-button"><i class="fa fa-file-excel-o"></i> <span class="btn-text">Export</span></button>
+            <button id="export" type="button" style="display: none;" class="button--primary first-button"><span class="glyphicon glyphicon-export" aria-hidden="true"></span> <span class="btn-text">Export</span></button>
             <div class="spacer"></div>
-            <button id="update" type="button" class="btn btn-primary"><i class="fa fa-floppy-o"></i> <span class="btn-text">Save</span></button>
-            <button id="cancel" type="button" class="btn btn-default"><i class="fa fa-refresh"></i> <span class="btn-text">Refresh</span></button>
+            <button id="update" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> <span class="btn-text">Save</span></button>
+            <button id="cancel" type="button" class="btn btn-default"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span><span class="btn-text">Refresh</span></button>
           </div>
       </div>
 
@@ -193,20 +194,20 @@
 
     <div id="error-container" style="display: none;">
       <div id="error-msg"></div>
-      <button id="email-error" type="button" class="btn btn-primary"><i class="fa fa-envelope"></i> <span class="btn-text">Email Error</span></button>
+      <button id="email-error" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <span class="btn-text">Email Error</span></button>
     </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
-    <!-- <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script> -->
+    <!-- build:js scripts/main.min.js -->
     <script src="jquery/jquery-1.11.1.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="scripts/error.js"></script>
     <script src="jquery/jquery-ui.min.js"></script>
     <script src="jquery/jquery.loadmask.min.js"></script>
     <script src="jquery/jquery.toastmessage.js"></script>
+    <!-- endbuild -->
     <script src="scripts/login.js"></script>
     <script src="scripts/attendance.js"></script>
   </body>

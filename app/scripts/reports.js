@@ -1,7 +1,5 @@
 (function () {
   'use strict';
-
-  if($('#reports').length === 0) return;
   
   $( "#from-date" ).datepicker();
   $( "#to-date" ).datepicker();

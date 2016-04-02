@@ -67,40 +67,46 @@ gulp.task('styles:css', function () {
     .pipe($.size({title: 'styles:css'}));
 });
 
-gulp.task('styles:fontawesomefonts', function () {
-  return gulp.src('app/fonts/**')
+gulp.task('styles:bootstrapfonts', function () {
+  return gulp.src('app/bootstrap/fonts/**')
     .pipe(gulp.dest('dist/fonts'))
-    .pipe($.size({title: 'styles:fontawesomefonts'}));
+    .pipe($.size({title: 'styles:bootstrapfonts'}));
 });
+
+////////////////////////////////////////////////////////////////////////
+// Commented out the Sass compilation since I am not using it anymore
+// It might be useful though if I ever add it back in
+////////////////////////////////////////////////////////////////////////
 
 // Compile Sass For Style Guide Components (app/styles/components)
-gulp.task('styles:components', function () {
-  return gulp.src('app/styles/components/components.scss')
-    .pipe($.rubySass({
-      style: 'expanded',
-      precision: 10,
-      loadPath: ['app/styles/components']
-    }))
-    .pipe($.autoprefixer('last 1 version'))
-    .pipe(gulp.dest('app/styles/components'))
-    .pipe($.size({title: 'styles:components'}));
-});
+//gulp.task('styles:components', function () {
+  //return gulp.src('app/styles/components/components.scss')
+    //.pipe($.rubySass({
+      //style: 'expanded',
+      //precision: 10,
+      //loadPath: ['app/styles/components']
+    //}))
+    //.pipe($.autoprefixer('last 1 version'))
+    //.pipe(gulp.dest('app/styles/components'))
+    //.pipe($.size({title: 'styles:components'}));
+//});
 
 // Compile Any Other Sass Files You Added (app/styles)
-gulp.task('styles:scss', function () {
-  return gulp.src(['app/styles/**/*.scss', '!app/styles/components/components.scss'])
-    .pipe($.rubySass({
-      style: 'expanded',
-      precision: 10,
-      loadPath: ['app/styles']
-    }))
-    .pipe($.autoprefixer('last 1 version'))
-    .pipe(gulp.dest('.tmp/styles'))
-    .pipe($.size({title: 'styles:scss'}));
-});
+//gulp.task('styles:scss', function () {
+  //return gulp.src(['app/styles/**/*.scss', '!app/styles/components/components.scss'])
+    //.pipe($.rubySass({
+      //style: 'expanded',
+      //precision: 10,
+      //loadPath: ['app/styles']
+    //}))
+    //.pipe($.autoprefixer('last 1 version'))
+    //.pipe(gulp.dest('.tmp/styles'))
+    //.pipe($.size({title: 'styles:scss'}));
+//});
 
 // Output Final CSS Styles
-gulp.task('styles', ['styles:components', 'styles:scss', 'styles:css', 'styles:fontawesomefonts']);
+//gulp.task('styles', ['styles:components', 'styles:scss', 'styles:css']);
+gulp.task('styles', ['styles:css', 'styles:bootstrapfonts']);
 
 // Scan Your HTML For Assets & Optimize Them
 gulp.task('html', function () {
@@ -119,11 +125,12 @@ gulp.task('html', function () {
     .pipe($.size({title: 'html'}));
 });
 
+// Leave the files separated since there is only one per screen
 gulp.task('scripts:main', function() {
     return gulp.src('app/scripts/*.js')
-        .pipe(concat('scripts/main-scripts.min.js'))
+        //.pipe(concat('scripts/main-scripts.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist/scripts'));
 });
 
 gulp.task('scripts:jquery', function() {
@@ -132,8 +139,16 @@ gulp.task('scripts:jquery', function() {
         .pipe(gulp.dest('dist'));
 });
 
+gulp.task('scripts:bootstrap', function() {
+    // Just copy the already minified file to the dist folder
+    return gulp.src('app/bootstrap/*.min.js')
+        //.pipe(concat('scripts/main-bootstrap.min.js'))
+        .pipe(gulp.dest('dist'));
+});
+
 gulp.task('scripts:join', function() {
-    return gulp.src('dist/scripts/*.js')
+    // Join the jQuery and Bootstrap minified files
+    return gulp.src('dist/scripts/*.min.js')
         .pipe(concat('scripts/main.min.js'))
         .pipe(gulp.dest('dist'));
 });
@@ -143,7 +158,7 @@ gulp.task('scripts:clean', function (cb) {
 });
 
 gulp.task('scripts', function() {
-  runSequence('scripts:clean', 'scripts:main', 'scripts:jquery', 'scripts:join');
+  runSequence('scripts:clean', 'scripts:main', 'scripts:jquery', 'scripts:bootstrap', 'scripts:join');
 });
 
 gulp.task('files:ajax', function() {

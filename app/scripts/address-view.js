@@ -1,6 +1,5 @@
 (function() {
     'use strict';
-    if ($('.address-view-form').length === 0) return;
 
     $("#from-date").datepicker();
     $("#to-date").datepicker();

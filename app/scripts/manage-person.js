@@ -1,6 +1,5 @@
 (function() {
     'use strict';
-    if ($('#manage-person').length === 0) return;
 
     $('#follow-up-date').datepicker();
     $('#first-visit').datepicker();
@@ -981,7 +980,7 @@
             '<td data-th="Date" class="follow-up-table-date-col">' + followUp.date + '</td>' +
             '<td data-th="By" visitorsIds="' + followUp.visitorsIds.join(',') + '">' + followUp.visitors.join(', ') + '</td>' +
             '<td data-th="Comments" class="follow-up-table-comments-col">' + followUp.comments + '</td>' +
-            '<td data-th="" class="follow-up-table-button-col"><button class="edit-follow-up"><i class="fa fa-edit"></i></button><button class="delete-follow-up"><i class="fa fa-minus-circle"></i></button></td>' +
+            '<td data-th="" class="follow-up-table-button-col"><button class="edit-follow-up"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button><button class="delete-follow-up"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></button></td>' +
             '</tr>');
     }
 
@@ -1020,7 +1019,7 @@
             '<tr relationship_id="' + relationship.id + '">' +
             '<td data-th="Type" typeCd="' + relationship.typeCd + '">' + relationship.type + '</td>' +
             '<td data-th="Name" relationId="'+relationship.relation_id+'" relationname="' + relationship.name + '"><a class="person_name" href="manage-person.html?id=' + relationship.relation_id + '">' + relationship.name + '</a></td>' +
-            '<td data-th="" class="relationship-table-button-col"><button class="edit-relationship"><i class="fa fa-edit"></i></button><button class="delete-relationship"><i class="fa fa-minus-circle"></i></button></td>' +
+            '<td data-th="" class="relationship-table-button-col"><button class="edit-relationship"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button><button class="delete-relationship"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></button></td>' +
             '</tr>');
     }
 

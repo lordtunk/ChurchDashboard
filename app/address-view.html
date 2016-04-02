@@ -10,16 +10,17 @@
 
     <title>Guide Church Dash</title>
 
+    <!-- build:css styles/main.min.css -->
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/font-awesome.css">
     <link rel="stylesheet" href="styles/jquery-ui.css">
     <link rel="stylesheet" href="styles/jquery.toastmessage.css">
     <link rel="stylesheet" href="styles/jquery.loadmask.css">
+    <!-- endbuild -->
     
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -73,7 +74,7 @@
           <label for="would-like-visit">Would like a visit from a GC Pastor</label>
           <input type="checkbox" id="would-like-visit"/>
         </div>
-        <button id="go-arrow" class="btn btn-default">Run <i class="fa fa-arrow-right"></i></button>
+        <button id="go-arrow" class="btn btn-default">Run <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span></button>
         <br />
         <br />
         <div id="address-view-container">
@@ -100,7 +101,7 @@
               </div>
           </div>
           <br />
-          <button id="gen-map" class="btn btn-info"><i class="fa fa-map-marker"></i> Map</button>
+          <button id="gen-map" class="btn btn-info"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Map</button>
           <div id="address-map-panel"></div>
           <div id="map-note" style="display: none;">*Selected people with no address (or only "OH") will not be mapped</div>
           <div id="map-legend" style="display: none;"></div>
@@ -112,20 +113,20 @@
 
     <div id="error-container" style="display: none;">
       <div id="error-msg"></div>
-      <button id="email-error" type="button" class="btn btn-primary"><i class="fa fa-envelope"></i> <span class="btn-text">Email Error</span></button>
+      <button id="email-error" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <span class="btn-text">Email Error</span></button>
     </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
-    <!-- <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script> -->
+    <!-- build:js scripts/main.min.js -->
     <script src="jquery/jquery-1.11.1.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="scripts/error.js"></script>
     <script src="jquery/jquery-ui.min.js"></script>
     <script src="jquery/jquery.loadmask.min.js"></script>
     <script src="jquery/jquery.toastmessage.js"></script>
+    <!-- endbuild -->
     <script src="scripts/login.js"></script>
     <script src="scripts/address-view.js"></script>
   </body>

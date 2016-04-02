@@ -1,14 +1,6 @@
 (function() {
     'use strict';
 
-    // A janky way to ensure that this code only runs on the Attendance
-    // page. This is needed because the js minifier brings in all code
-    // files. If the minifier process could be modified to generate a
-    // minified version of only the needed files for each page or if
-    // each page could be made to be an object that would probably
-    // be ideal
-    if ($('#attendance').length === 0) return;
-
     $('#attendance-date').datepicker({
         dateFormat: 'm/d/yy'
     });
@@ -276,7 +268,7 @@
         }
         tempId = genId();
         return '<tr adult="' + person.adult + '" personId="' + person.id + '"><td data-th="Name">' +
-            '<button class="attendance-history-button"><i class="fa fa-archive" /></button>' + display + '</td>' +
+            '<button class="attendance-history-button"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span></button>' + display + '</td>' +
             '<td class="attendance-table-attendance-col" service="first" data-th="First?">' +
             '<label for="' + tempId + '"><input id="' + tempId + '" type="checkbox" ' + firstChecked + '/></label></td>' +
             secondServiceCol + '</tr>';
@@ -477,7 +469,7 @@
     
     
     
-    function loadPersonAttendance(personId, cb) {
+    function loadPersonAttendance(personId) {
         $('.attendance-form').mask('Loading...');
         $.ajax({
             type: 'GET',

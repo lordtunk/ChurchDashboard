@@ -1,6 +1,5 @@
 (function() {
     'use strict';
-    if ($('.follow-ups-form').length === 0) return;
 
     $('#follow-up-date').datepicker();
     $('#follow-ups-for-date').datepicker({
@@ -46,7 +45,6 @@
             modal: true
         }),
         selectPersonBtn = document.querySelector('#select-person-btn'),
-        scrollAnimationMs = 1000,
         followUpIdSequence = -1,
         followUpTypeData = {
             1: "Phone Call",
@@ -77,6 +75,7 @@
             $select.append('<option value=' + typeCd + '>' + type + '</option>');
         });
         $select.val('3');
+        onFollowUpTypeChange();
     }
 
     function addNewPerson() {
@@ -493,7 +492,7 @@
             '<td data-th="Date" class="follow-up-table-date-col">' + followUp.date + '</td>' +
             '<td data-th="By" visitorsIds="' + followUp.visitorsIds.join(',') + '">' + followUp.visitors.join(', ') + '</td>' +
             '<td data-th="Comments" class="follow-up-table-comments-col">' + followUp.comments + '</td>' +
-            '<td data-th="" class="follow-up-table-button-col"><button class="edit-follow-up btn btn-xs btn-default"><i class="fa fa-edit"></i></button><button class="delete-follow-up btn btn-xs btn-default"><i class="fa fa-minus-circle"></i></button></td>' +
+            '<td data-th="" class="follow-up-table-button-col"><button class="edit-follow-up btn btn-xs btn-default"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button><button class="delete-follow-up btn btn-xs btn-default"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></button></td>' +
             '</tr>');
     }
 

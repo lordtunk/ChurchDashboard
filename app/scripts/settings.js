@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-    if($('.settings-form').length === 0) return;
     
     var startingPointEmailField = document.querySelector('#starting-point-emails'),
         campusesField = document.querySelector('#campuses'),

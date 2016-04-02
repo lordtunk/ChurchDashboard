@@ -2,10 +2,12 @@
     session_start();
     include("func.php");
     include("attendance.php");
+    include("follow_ups.php");
     $type = $_POST['type'];
     $params = isset($_POST['params']) ? json_decode($_POST['params']) : null;
     $f = new Func();
     $att = new Attendance();
+    $followUps = new FollowUps();
     $dict = array();
 
     function isDate($txtDate, $allowBlank) {
@@ -455,7 +457,7 @@
                 $dict['people'] = $results;
                 break;
             case 4:
-                $results = $f->getFollowUpReport($params, false);
+                $results = $followUps->getFollowUpReport($params, false);
                 $dict['people'] = $results;
                 break;
             case 5:

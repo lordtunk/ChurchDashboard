@@ -1,6 +1,5 @@
 (function () {
   'use strict';
-  if($('.search-form').length === 0) return;
  
   var searchBtn = document.querySelector('#search'),
       searchField = document.querySelector('#search-name'),

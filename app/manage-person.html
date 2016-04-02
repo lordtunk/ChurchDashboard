@@ -10,16 +10,18 @@
 
     <title>Guide Church Dash</title>
 
+    <!-- build:css styles/main.min.css -->
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/font-awesome.css">
+    
     <link rel="stylesheet" href="styles/jquery-ui.css">
     <link rel="stylesheet" href="styles/jquery.toastmessage.css">
     <link rel="stylesheet" href="styles/jquery.loadmask.css">
+    <!-- endbuild -->
     
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -156,7 +158,7 @@
                 <input type="text" id="zip" title="5 digit Zip Code" />
                 <br />
                 <!--style="display: none;"-->
-                <button id="copy-address-to-spouse" type="button"  class="btn btn-sm btn-primary"><i class="fa fa-copy"></i> Copy to Spouse</button>
+                <button id="copy-address-to-spouse" type="button"  class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Copy to Spouse</button>
             </div>
             <div class="col-2" id="map-panel">
             </div>
@@ -200,11 +202,11 @@
 
             <div class="form-bar background color--gray-keyline">
                 <div class="spacer"></div>
-                <button id="update" type="button" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  <span class="btn-text">Save</span>
+                <button id="update" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>  <span class="btn-text">Save</span>
                 </button>
-                <button id="delete" type="button" class="btn btn-danger"><i class="fa fa-minus-circle"></i>  <span class="btn-text">Delete</span>
+                <button id="delete" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>  <span class="btn-text">Delete</span>
                 </button>
-                <button id="cancel" type="button" class="btn btn-default"><i class="fa fa-refresh"></i>  <span class="btn-text">Refresh</span>
+                <button id="cancel" type="button" class="btn btn-default"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>  <span class="btn-text">Refresh</span>
                 </button>
             </div>
         </form>
@@ -225,7 +227,7 @@
                 </tbody>
             </table>
         </div>
-        <button id="add-follow-up" type="button" class="btn btn-default first-button"><i class="fa fa-plus"></i> Add Follow Up</button>
+        <button id="add-follow-up" type="button" class="btn btn-default first-button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Follow Up</button>
 
         <div id="relationship-table-container">
             <h3>Relationships</h3>
@@ -240,7 +242,7 @@
                 <tbody>
                 </tbody>
             </table>
-            <button id="add-relationship" type="button" data-toggle="modal" data-target="#manage-relationship-modal" class="btn btn-default first-button"><i class="fa fa-plus"></i> Add Relationship</button>
+            <button id="add-relationship" type="button" class="btn btn-default first-button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Relationship</button>
         </div>
 
     </div><!-- /.container -->
@@ -315,17 +317,17 @@
         </div>
         <div class="form-bar background color--gray-keyline">
             <!--Add and Clear-->
-            <button id="add-clear" type="button" class="btn btn-primary first-button"><i class="fa fa-plus"></i>/<i class="fa fa-refresh"></i>
+            <button id="add-clear" type="button" class="btn btn-primary first-button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>/<span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
             </button>
             <!--Add and Copy-->
-            <button id="add-copy" type="button" class="btn btn-primary"><i class="fa fa-plus"></i>/<i class="fa fa-copy"></i>
+            <button id="add-copy" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>/<span class="glyphicon glyphicon-copy" aria-hidden="true"></span>
             </button>
             <!--Add and Close-->
-            <button id="add-close" type="button" class="btn btn-primary"><i class="fa fa-plus"></i>/<i class="fa fa-close"></i>
+            <button id="add-close" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>/<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             </button>
             <div class="spacer"></div>
             <!--Close-->
-            <button id="close" type="button" class="btn btn-default"><i class="fa fa-close"></i>
+            <button id="close" type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             </button>
         </div>
     </div>
@@ -345,11 +347,11 @@
         </div>
         <div class="form-bar background color--gray-keyline">
             <!--Add and Close-->
-            <button id="add-close-relationship" type="button" class="btn btn-primary"><i class="fa fa-plus"></i>/<i class="fa fa-close"></i>
+            <button id="add-close-relationship" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>/<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             </button>
             <div class="spacer"></div>
             <!--Close-->
-            <button id="close-relationship" type="button" class="btn btn-default"><i class="fa fa-close"></i>
+            <button id="close-relationship" type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             </button>
         </div>
     </div>
@@ -357,7 +359,7 @@
     <div class="dialog-form app-form select-person-form" title="Select Person">
         <label for="search-name">Name</label>
         <input type="text" id="search-name" />
-        <button id="search" type="button" class="button--primary-small"><i class="fa fa-search"></i></i>
+        <button id="search" type="button" class="button--primary-small"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>
         </button>
         <div id="search-container">
             <div class="search-table-container" id="search-table-container">
@@ -375,30 +377,30 @@
             </div>
         </div>
         <div class="form-bar background color--gray-keyline">
-            <button id="add-new-person" type="button" class="btn btn-primary first-button"><i class="fa fa-plus"></i>
+            <button id="add-new-person" type="button" class="btn btn-primary first-button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             </button>
             <div class="spacer"></div>
-            <button id="close-select-person" type="button" class="btn btn-default"><i class="fa fa-close"></i>
+            <button id="close-select-person" type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             </button>
         </div>
     </div>
 
     <div id="error-container" style="display: none;">
       <div id="error-msg"></div>
-      <button id="email-error" type="button" class="btn btn-primary"><i class="fa fa-envelope"></i> <span class="btn-text">Email Error</span></button>
+      <button id="email-error" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> <span class="btn-text">Email Error</span></button>
     </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
-    <!-- <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script> -->
+    <!-- build:js scripts/main.min.js -->
     <script src="jquery/jquery-1.11.1.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="scripts/error.js"></script>
     <script src="jquery/jquery-ui.min.js"></script>
     <script src="jquery/jquery.loadmask.min.js"></script>
     <script src="jquery/jquery.toastmessage.js"></script>
+    <!-- endbuild -->
     <script src="scripts/login.js"></script>
     <script src="scripts/manage-person.js"></script>
   </body>
