@@ -135,15 +135,17 @@ gulp.task('scripts:main', function() {
 
 gulp.task('scripts:jquery', function() {
     return gulp.src('app/jquery/*.js')
-        .pipe(concat('scripts/main-jquery.min.js'))
+        // It is important that jQuery come before Bootstrap so this
+        // needs to come first alphabetically...hackalicious
+        .pipe(concat('scripts/a-main-jquery.min.js'))
         .pipe(gulp.dest('dist'));
 });
 
 gulp.task('scripts:bootstrap', function() {
     // Just copy the already minified file to the dist folder
-    return gulp.src('app/bootstrap/*.min.js')
+    return gulp.src('app/bootstrap/js/bootstrap.min.js')
         //.pipe(concat('scripts/main-bootstrap.min.js'))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist/scripts'));
 });
 
 gulp.task('scripts:join', function() {
