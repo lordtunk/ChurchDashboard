@@ -337,7 +337,7 @@
             // Attach listeners to inserted rows
             pEl = $('[personid=' + newPerson.id + ']');
             pEl.find('a.person_name').on('click', onClickLink);
-            pEl.find('button.attendance-history-button').on('click', onClickAttendanceHistoryButton);
+            //pEl.find('button.attendance-history-button').on('click', onClickAttendanceHistoryButton);
             // FIX ATTENDANCE UPDATE ISSUE. Attendance counts get messed up when toggling checkbox
             // after saving after adding a new person
             pEl.find('input:checkbox').on('change', updateAttendance);
@@ -475,7 +475,9 @@
         }
     }
     
-    function loadPersonAttendance(personId) {
+    
+    
+    function loadPersonAttendance(personId, cb) {
         $('.attendance-form').mask('Loading...');
         $.ajax({
             type: 'GET',

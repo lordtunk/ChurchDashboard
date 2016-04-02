@@ -368,7 +368,7 @@
   }
 
   function onClickTopBottom(e) {
-    var containerId = '#'+e.target.parentElement.previousElementSibling.id;
+    var containerId = '#'+e.target.parentElement.parentElement.parentElement.previousElementSibling.id;
     var pos = (e.target.id.indexOf('top') == -1) ?
                     $(containerId)[0].scrollHeight
                     : 0;

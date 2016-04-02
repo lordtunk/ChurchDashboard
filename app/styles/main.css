@@ -2,7 +2,7 @@ body {
   padding-top: 50px;  /* Shift everything down to account for the navbar */
 }
 .btn-default {
-  color: #007838;
+  /*color: #007838;*/
 }
 .xlarge {
   font-size: 26px;
@@ -13,6 +13,11 @@ body {
   font-size: 20px;
   font-weight: 300;
   line-height: 1.3em;
+}
+
+.navbar-brand.readonly:hover,
+.navbar-brand.readonly:focus {
+    background-color: transparent;
 }
 
 #error-container {
@@ -41,6 +46,10 @@ body {
 .spacer {
   -webkit-flex: 1;
   flex: 1;
+}
+
+div.spacer {
+  display: inline-block;
 }
 
 #password {
@@ -173,7 +182,7 @@ body {
 }
 
 .navigation-links {
-  display: inline-block;
+  /*display: inline-block;*/
   float: right;
 }
 
@@ -187,15 +196,15 @@ body {
 
 .dialog-form #search-table-container {
   overflow-y: scroll;
-  height: 198px;
-  width: 464px;
+  height: 250px;
+  /*width: 464px;*/
 }
 
 .dialog-form .navigation-links {
   margin: 0 20px 0 0;
 }
 
-.search-form #search-table-container {
+.dialog-form #search-table-container {
   overflow-y: scroll;
   max-height: 500px;
 }
@@ -756,6 +765,13 @@ table th {
     margin-bottom: 20px;
   }
 }
+
+@media all and (max-width:999px) and (min-width:765px) {
+    body {
+      padding-top: 100px;  /* Shift everything down to account for the navbar */
+    }
+}
+
 @media all and (max-width:799px) and (orientation:portrait) {
   .app-bar input {
     display: none;
@@ -767,7 +783,7 @@ table th {
     margin: 10px 0 10px 20px;
     width: 225px;
   }
-  .checkbox {
+  .check {
     display: block;
   }
   #starting-point-notified-label {
@@ -844,7 +860,7 @@ table th {
     width: 240px;
 }
 
-.checkbox {
+.check {
   display: inline-block;
 }
 

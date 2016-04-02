@@ -66,7 +66,7 @@
         
         selectPersonDialog = $('.select-person-form').dialog({
             autoOpen: false,
-            height: 430,
+            height: 400,
             width: 510,
             modal: true
         }),
@@ -108,8 +108,6 @@
         followUpInfoMember = dialog[0].querySelector('#follow-up-info-member'),
         followUpInfoVisit = dialog[0].querySelector('#follow-up-info-visit'),
         followUpComments = dialog[0].querySelector('#follow-up-comments'),
-        $dialogTitle = $('.ui-dialog-title').text('Edit Follow Up'),
-        $relationshipDialogTitle = $('.ui-dialog-title').text('Edit Relationship'),
         followUpIdSequence = -1,
         noChangesMade = true,
         phoneNumberRegex = /^((\(?([2-9][0-8][0-9])\))|([2-9][0-8][0-9]))?[-. ]?([2-9][0-9]{2})[-. ]?([0-9]{4})$/,
@@ -924,7 +922,7 @@
         }
         
         var spouse = $('#relationship-table td[typecd=1]');
-        if(spouse.length > 0 && addToSpouseFollowUp.checked && $dialogTitle.text().indexOf('Edit') === -1) {
+        if(spouse.length > 0 && addToSpouseFollowUp.checked && dialog.dialog('option', 'title').indexOf('Edit') === -1) {
             spouseId = spouse.next()[0].getAttribute('relationid');
         }
 
@@ -946,7 +944,7 @@
         }
 
         return {
-            id: ($dialogTitle.text().indexOf('Edit') === -1) ? genFollowUpId() : followUpId.value,
+            id: (dialog.dialog('option', 'title').indexOf('Edit') === -1) ? genFollowUpId() : followUpId.value,
             personId: person.id,
             spouseId: spouseId,
             date: date,
@@ -1050,7 +1048,7 @@
     function addRelationship() {
         relationshipDialog.dialog('open');
         clearRelationshipForm();
-        $relationshipDialogTitle.text('Add Relationship');
+        relationshipDialog.dialog('option', 'title', 'Add Relationship');
         relationshipPersonName.innerHTML = getDisplayName(person);
     }
 
@@ -1089,7 +1087,7 @@
     }
     
     function addCloseRelationship() {
-        if ($relationshipDialogTitle.text().indexOf('Edit') === -1)
+        if (relationshipDialog.dialog('option', 'title').indexOf('Edit') === -1)
             doAddRelationship();
         else
             doEditRelationship();
@@ -1118,7 +1116,7 @@
         }
         
         return {
-            id: ($relationshipDialogTitle.text().indexOf('Edit') === -1) ? genRelationshipId() : relationshipId.value,
+            id: (relationshipDialog.dialog('option', 'title').indexOf('Edit') === -1) ? genRelationshipId() : relationshipId.value,
             spouseId: spouseId,
             typeCd: type,
             type: relationshipType.selectedOptions[0].text,
@@ -1135,7 +1133,7 @@
         relationshipType.value = row.children[0].getAttribute('typeCd') || '';
         relationshipId.value = row.getAttribute('relationship_id');
         doSelectPerson(row.children[1].getAttribute('relationid'), row.children[1].getAttribute('relationname'));
-        $relationshipDialogTitle.text('Edit Follow Up');
+        relationshipDialog.dialog('option', 'title', 'Edit Relationship');
     }
 
     function onDeleteRelationshipClick(e) {
@@ -1149,7 +1147,7 @@
         dialog.dialog('open');
         clearFollowUpForm();
         setVisitors();
-        $dialogTitle.text('Add Follow Up');
+        dialog.dialog('option', 'title', 'Add Follow Up');
     }
 
     function closeFollowUp() {
@@ -1179,21 +1177,21 @@
     }
 
     function addCopy() {
-        if ($dialogTitle.text().indexOf('Edit') === -1)
+        if (dialog.dialog('option', 'title').indexOf('Edit') === -1)
             doAddFollowUp();
         else
             doEditFollowUp();
     }
 
     function addClear() {
-        if ($dialogTitle.text().indexOf('Edit') === -1)
+        if (dialog.dialog('option', 'title').indexOf('Edit') === -1)
             doAddFollowUp(clearFollowUpForm);
         else
             doEditFollowUp(clearFollowUpForm);
     }
 
     function addClose() {
-        if ($dialogTitle.text().indexOf('Edit') === -1)
+        if (dialog.dialog('option', 'title').indexOf('Edit') === -1)
             doAddFollowUp(closeFollowUp);
         else
             doEditFollowUp(closeFollowUp);
@@ -1251,7 +1249,7 @@
         }
         onFollowUpTypeChange();
         
-        $dialogTitle.text('Edit Follow Up');
+        dialog.dialog('option', 'title', 'Edit Follow Up');
     }
 
     function onDeleteFollowUpClick(e) {

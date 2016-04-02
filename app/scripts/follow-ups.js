@@ -45,8 +45,8 @@
             width: 510,
             modal: true
         }),
-        scrollAnimationMs = 1000,
         selectPersonBtn = document.querySelector('#select-person-btn'),
+        scrollAnimationMs = 1000,
         followUpIdSequence = -1,
         followUpTypeData = {
             1: "Phone Call",
@@ -76,7 +76,7 @@
         $.each(followUpTypeData, function(typeCd, type) {
             $select.append('<option value=' + typeCd + '>' + type + '</option>');
         });
-        $select.val('2');
+        $select.val('3');
     }
 
     function addNewPerson() {
@@ -437,7 +437,7 @@
             '<tr person_id="' + p.id + '">' +
             '<td data-th="Name" person_name="' + name + '"><a class="person_name" href="javascript:void(0);">' + name + '</a></td>' +
             '<td data-th="Address">' + getAddress(p) + '</td>' +
-            '<td data-th="" class="search-table-button-col"><button class="search-button button--blue-x-small">Manage</button></td>' +
+            '<td data-th="" class="search-table-button-col"><button class="search-button btn btn-xs btn-info">Manage</button></td>' +
             '</tr>');
     }
 
@@ -493,7 +493,7 @@
             '<td data-th="Date" class="follow-up-table-date-col">' + followUp.date + '</td>' +
             '<td data-th="By" visitorsIds="' + followUp.visitorsIds.join(',') + '">' + followUp.visitors.join(', ') + '</td>' +
             '<td data-th="Comments" class="follow-up-table-comments-col">' + followUp.comments + '</td>' +
-            '<td data-th="" class="follow-up-table-button-col"><button class="edit-follow-up"><i class="fa fa-edit"></i></button><button class="delete-follow-up"><i class="fa fa-minus-circle"></i></button></td>' +
+            '<td data-th="" class="follow-up-table-button-col"><button class="edit-follow-up btn btn-xs btn-default"><i class="fa fa-edit"></i></button><button class="delete-follow-up btn btn-xs btn-default"><i class="fa fa-minus-circle"></i></button></td>' +
             '</tr>');
     }
 
@@ -624,16 +624,16 @@
         $('.follow-ups-form').effect('highlight', {}, 1200);
     }
 
-    function isAdd() {
-        return $formTitle.text().indexOf('Edit') === -1;
-    }
-
     function openSelectPerson() {
         dialog.dialog('open');
     }
 
     function close() {
         dialog.dialog('close');
+    }
+
+    function isAdd() {
+        return $formTitle.text().indexOf('Edit') === -1;
     }
 
     function onClickLink(e) {
@@ -685,19 +685,6 @@
     function genFollowUpId() {
         return --followUpIdSequence;
     }
-
-    function onClickTopBottom(e) {
-        var container = $('#search-table-container'),
-            pos = (e.target.id.indexOf('top') == -1) ?
-                container[0].scrollHeight : 0;
-
-        container.stop().animate({
-            scrollTop: pos
-        }, scrollAnimationMs, 'swing', function() {
-            $('<style></style>').appendTo($(document.body)).remove();
-        });
-    }
-    $('.navigation-links a').on('click', onClickTopBottom);
 
     addCopyBtn.addEventListener('click', addCopy);
     addClearBtn.addEventListener('click', addClear);
