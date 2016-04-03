@@ -54,7 +54,6 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-
     <div class="container">
         <h1 id="follow-ups">Follow Ups</h1>
 
@@ -66,7 +65,7 @@
                     <div id="follow-up-person-container">
                         <label for="follow-up-person">Person:</label>
                         <div id="follow-up-person" personid="-1">(Select a person)</div>
-                        <button id="select-person-btn" class="btn btn-info">Select Person</button>
+                        <button id="select-person-btn" class="btn btn-xs btn-info">Select Person</button>
                     </div>
                     <label for="follow-up-type">Type:</label>
                     <select id="follow-up-type">
@@ -74,8 +73,10 @@
                     <br />
                     <label for="follow-up-date">Date:</label>
                     <input type="text" id="follow-up-date" class="date-field" />
-                    <label for="unknown-date">Unknown</label>
-                    <input type="checkbox" id="unknown-date" />
+                    <div id="follow-up-unknown-date-container">
+                        <label for="unknown-date">Unknown</label>
+                        <input type="checkbox" id="unknown-date" />
+                    </div>
                     <br />
                     <label for="follow-up-by">By:</label>
                     <div id="follow-up-visitors">
@@ -125,7 +126,7 @@
                             <label for="follow-up-info-visit">I would like a visit from a Guide Church Pastor</label>
                         </div>
                     </div>
-                    <label for="follow-up-comments">Comments:</label>
+                    <label for="follow-up-comments" id="follow-up-comments-label">Comments:</label>
                     <br />
                     <textarea rows="4" cols="40" id="follow-up-comments"></textarea>
                 </div>

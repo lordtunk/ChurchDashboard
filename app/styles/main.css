@@ -286,6 +286,10 @@ div.spacer {
   margin-left: 20px;
 }
 
+#follow-up-unknown-date-container {
+    display: inline-block;
+}
+
 #follow-up-person-container,
 #relationship-person-container {
   display: -webkit-flex;
@@ -514,7 +518,8 @@ input.setting {
 
 .form-section.interested-form-section>label,
 .form-section.commitments-form-section>label {
-  width:500px;
+  /*width:500px;*/
+  width: 85%;
   text-align: left;
 }
 
@@ -535,14 +540,14 @@ input.setting {
   margin: 0 0 10px 0;
 }
 .commitments-form-section > input {
-  margin: 0 10px;
+  margin: 0 0 0 10px;
 }
 .commitments-form-section > label {
   padding-left: 5px;
 }
 
 .interested-form-section > input {
-  margin: 0 10px;
+  margin: 0 0 0 10px;
 }
 .interested-form-section > label {
   padding-left: 5px;
@@ -847,6 +852,43 @@ table th {
     padding-bottom: 5px;
     width: 185px;
   }
+}
+
+@media all and (max-width:799px) {
+    .follow-ups-form-inner #follow-up-comments,
+    .follow-ups-form-inner .communication-card-options,
+    #follow-up-options {
+      margin-left: 0px;
+    }
+    
+    .follow-ups-form-inner > label,
+    #follow-up-person-container > label,
+    #follow-up-frequency-container > label
+    #follow-up-options > label {
+      padding-left: 0px;
+      text-align: left;
+      display: block;
+    }
+
+    #follow-up-unknown-date-container {
+        display: block;
+    }
+    #follow-up-unknown-date-container > label {
+        padding-left: 0px;
+        text-align: left;
+    }
+
+    .ui-dialog .ui-dialog-content {
+        padding: .5em 0 !important;
+    }
+
+    #address-map-panel {
+      width: 320px;
+    }
+    .col-2 img,
+    #address-map-panel img {
+      width: 320px;
+    }
 }
 .form-section.checkbox-form-section input {
     margin-left: 10px;

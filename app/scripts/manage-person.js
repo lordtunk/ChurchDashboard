@@ -50,8 +50,14 @@
         relationshipDialog = $('.manage-person-relationship-form').dialog({
             autoOpen: false,
             height: 400,
-            width: 510,
-            modal: true
+            width: 350,
+            modal: true,
+            open: function() {
+                $("body").css({ overflow: 'hidden' });
+            },
+            beforeClose: function() {
+                $("body").css({ overflow: 'inherit' });
+            }
         }),
         relationshipId = relationshipDialog[0].querySelector('#relationship-id'),
         relationshipType = relationshipDialog[0].querySelector('#relationship-type'),
@@ -66,8 +72,14 @@
         selectPersonDialog = $('.select-person-form').dialog({
             autoOpen: false,
             height: 400,
-            width: 510,
-            modal: true
+            width: 350,
+            modal: true,
+            open: function() {
+                $("body").css({ overflow: 'hidden' });
+            },
+            beforeClose: function() {
+                $("body").css({ overflow: 'inherit' });
+            }
         }),
         addNewPersonBtn = document.querySelector('#add-new-person'),
         searchBtn = document.querySelector('#search'),
@@ -82,9 +94,15 @@
         closeBtn = document.querySelector('#close'),
         dialog = $('.manage-person-follow-up-form').dialog({
             autoOpen: false,
-            height: 400,
-            width: 510,
-            modal: true
+            height: 410,
+            width: 350,
+            modal: true,
+            open: function() {
+                $("body").css({ overflow: 'hidden' });
+            },
+            beforeClose: function() {
+                $("body").css({ overflow: 'inherit' });
+            }
         }),
         addToSpouseContainerFollowUp = dialog[0].querySelector('#add-to-spouse-container-follow-up'),
         addToSpouseFollowUp = dialog[0].querySelector('#add-to-spouse-follow-up'),
@@ -787,7 +805,7 @@
             '<tr person_id="' + p.id + '">' +
             '<td data-th="Name" person_name="' + name + '"><a class="person_name" href="javascript:void(0);">' + name + '</a></td>' +
             '<td data-th="Address">' + getAddress(p) + '</td>' +
-            '<td data-th="" class="search-table-button-col"><button class="search-button button--blue-x-small">Manage</button></td>' +
+            '<td data-th="" class="search-table-button-col"><button class="search-button btn btn-xs btn-info">Manage</button></td>' +
             '</tr>');
     }
     

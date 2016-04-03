@@ -38,9 +38,15 @@
         scrollAnimationMs = 1000,
         dialog = $('.dialog-form').dialog({
             autoOpen: false,
-            height: 450,
-            width: 450,
-            modal: true
+            height: 420,
+            width: 350,
+            modal: true,
+            open: function() {
+                $("body").css({ overflow: 'hidden' });
+            },
+            beforeClose: function() {
+                $("body").css({ overflow: 'inherit' });
+            }
         }),
         months = [
             'January',

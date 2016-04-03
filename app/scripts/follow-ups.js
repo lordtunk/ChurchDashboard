@@ -40,9 +40,15 @@
         closeBtn = document.querySelector('#close'),
         dialog = $('#search-form').dialog({
             autoOpen: false,
-            height: 430,
-            width: 510,
-            modal: true
+            height: 400,
+            width: 350,
+            modal: true,
+            open: function() {
+                $("body").css({ overflow: 'hidden' });
+            },
+            beforeClose: function() {
+                $("body").css({ overflow: 'inherit' });
+            }
         }),
         selectPersonBtn = document.querySelector('#select-person-btn'),
         followUpIdSequence = -1,
