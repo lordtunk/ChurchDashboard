@@ -20,6 +20,15 @@ body {
     background-color: transparent;
 }
 
+a.navbar-brand:before {
+  content: url('../images/icon-transparent-20x20.png');
+}
+.navbar-brand-text {
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 4px;
+}
+
 #error-container {
   color: red;
   margin: 0 auto;

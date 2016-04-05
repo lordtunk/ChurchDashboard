@@ -163,6 +163,12 @@ gulp.task('scripts', function() {
   runSequence('scripts:clean', 'scripts:main', 'scripts:jquery', 'scripts:bootstrap', 'scripts:join');
 });
 
+gulp.task('files:logs', function() {
+    // Will just create an empty 'logs' directory
+    return gulp.src('app/logs/')
+        .pipe(gulp.dest('dist'));
+});
+
 gulp.task('files:ajax', function() {
     return gulp.src('app/ajax/*.{php,json}')
         .pipe(gulp.dest('dist/ajax'));
@@ -173,7 +179,7 @@ gulp.task('files:config', function() {
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('files', ['files:ajax', 'files:config']);
+gulp.task('files', ['files:ajax', 'files:config', 'files:logs']);
 
 gulp.task('bump-patch', function(){
   gulp.src(['./app/manifest.webapp'])
