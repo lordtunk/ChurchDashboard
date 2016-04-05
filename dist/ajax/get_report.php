@@ -410,6 +410,8 @@
                 $dict['people'] = $results;
                 break;
             case 3:
+                // BUG: This query does not seem to work with certain 
+                // versions of libmysql for Ubuntu. It will return 0 results
                 $query = "SELECT DISTINCT
                                 service_dt,
                                 id
