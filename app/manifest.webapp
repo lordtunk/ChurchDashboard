@@ -1,6 +1,6 @@
 {
   "version": "3.0.1",
-  "name": "Guide Church Dash",
+  "name": "Church Dashboard",
   "launch_path": "/index.html",
   "description": "An application that helps to manage attendance for Guide Church Baptist.",
   "developer": {
@@ -14,7 +14,7 @@
   "permissions": {},
   "locales": {
     "en": {
-      "name": "Guide Church Dash",
+      "name": "Church Dashboard",
       "description": "An application that helps to manage attendance for Guide Church Baptist."
     }
   }
