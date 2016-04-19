@@ -63,7 +63,7 @@
 	}
 	
 	function getLoginUrl() {
-		return $this->urlRoot."login.html";
+		return $this->urlRoot."login.php";
 	}
         
     function getEnvironment() {
