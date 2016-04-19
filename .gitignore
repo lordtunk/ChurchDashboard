@@ -3,5 +3,6 @@ node_modules/
 *config.ini
 *~
 *kate-swp
+logs/*
 app/logs/*
 dist/logs/*
