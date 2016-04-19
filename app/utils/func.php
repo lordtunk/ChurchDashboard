@@ -73,23 +73,23 @@
 	function getRootDirectory() {
 		$root = "";
 		// Convert slashes to all one type to account for different OS's
-		$cwd = str_replace("/", "\\", getcwd());
-		$arr = explode("\\", $cwd);
+		$cwd = str_replace("\\", "/", getcwd());
+		$arr = explode("/", $cwd);
 		$ind = array_search("app", $arr);
 		
 		if($ind === FALSE) {
 			$ind = array_search("dist", $arr);
 		} 
 		if($ind === FALSE) {
-			return "$cwd\\";
+			return "$cwd/";
 		}
 		// Get the whole path up to either the app\ or dist\ directories
-		$root = implode("\\", array_slice($arr, 0, $ind));
-		return "$root\\";
+		$root = implode("/", array_slice($arr, 0, $ind));
+		return "$root/";
 	}
 	
 	function getLogPath() {
-		return $this->getRootDirectory()."logs\\";
+		return $this->getRootDirectory()."logs/";
 	}
 
     function beginTransaction() {
