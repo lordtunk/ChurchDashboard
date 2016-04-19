@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include("func.php");
+    include("../utils/func.php");
     $f = new Func();
     $follow_up = json_decode($_POST['follow_up']);
     $spouseFollowUpId = "";

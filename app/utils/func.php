@@ -2,16 +2,13 @@
   class Func {
     private $db = NULL;
     private $env  = "dev";
-    private $logFileName = "../logs/log.txt";
-    private $logFileNamePrefix = "../logs/log-";
-    private $configFileName = "../config.ini";
+    private $logFileNamePrefix = "log-";
+    private $configFileName = "config.ini";
     private $dbHost = "";
     private $dbName = "";
     private $dbUser = "";
     private $dbPass = "";
-    private $client_id = "";
-    private $client_secret = "";
-    public $access_token = "";
+	private $urlRoot = "";
 
     // INFO = 1
     // DEBUG = 2
@@ -22,7 +19,12 @@
     public $useTransaction = TRUE;
     public function __construct() {
 		try {
+			$root = $this->getRootDirectory();
+			$this->logFileNamePrefix = $root."logs\\".$this->logFileNamePrefix;
+			$this->configFileName = $root.$this->configFileName;
+			
 			$this->readConfig();
+			
 			$this->db = new PDO("mysql:host={$this->dbHost};dbname={$this->dbName}", $this->dbUser, $this->dbPass);
 			if (!$this->db) {
 			$this->logMessage('Could not connect to DB', 4);
@@ -43,6 +45,7 @@
             dbName= "dbName"
             dbUser = "user"
             dbPass = "password"
+			urlRoot = "localhost"
          */
         if(file_exists($this->configFileName)) {
           $contents = parse_ini_file($this->configFileName);
@@ -54,10 +57,40 @@
         $this->logMessage($e->getMessage(), 4);
       }
     }
+	
+	function getUrl() {
+		return $this->urlRoot;
+	}
+	
+	function getLoginUrl() {
+		return $this->urlRoot."login.html";
+	}
         
     function getEnvironment() {
         return $this->env;
     }
+	
+	function getRootDirectory() {
+		$root = "";
+		// Convert slashes to all one type to account for different OS's
+		$cwd = str_replace("/", "\\", getcwd());
+		$arr = explode("\\", $cwd);
+		$ind = array_search("app", $arr);
+		
+		if($ind === FALSE) {
+			$ind = array_search("dist", $arr);
+		} 
+		if($ind === FALSE) {
+			return "$cwd\\";
+		}
+		// Get the whole path up to either the app\ or dist\ directories
+		$root = implode("\\", array_slice($arr, 0, $ind));
+		return "$root\\";
+	}
+	
+	function getLogPath() {
+		return $this->getRootDirectory()."logs\\";
+	}
 
     function beginTransaction() {
       $this->db->beginTransaction();
@@ -223,5 +256,23 @@
         return TRUE;
       }
     }
+	
+	function doRedirect($session) {
+		if(!isset($session['user_id']) || !isset($session['session_id'])) {
+			$this->logMessage('Session information missing');
+		  } else {
+			$session_id = $session['session_id'];
+			$user_id = $session['user_id'];
+
+			try {
+			  if($this->isLoggedIn($session['user_id'], $session['session_id'])) {
+				return FALSE;
+			  }
+			} catch (Exception $e) {
+			  $this->logMessage($e->getMessage());
+			}
+		  }
+		return TRUE;
+	}
   }
 ?>

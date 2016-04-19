@@ -384,6 +384,10 @@ div.spacer {
     margin-left: 10px;
 }
 
+.dashboard .legend {
+  margin-top: 0;
+}
+
 #email-summary {
     margin-right: 10px;
 }

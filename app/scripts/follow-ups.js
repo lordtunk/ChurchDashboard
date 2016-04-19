@@ -6,8 +6,7 @@
         dateFormat: 'm/d/yy'
     });
     $('#follow-ups-for-date').datepicker("setDate", new Date());
-    var visitors = [],
-        noChangesMade = true,
+    var noChangesMade = true,
         $formTitle = $('#follow-ups-form-title'),
         followUpId = document.querySelector('#follow-up-id'),
         followUpPerson = document.querySelector('#follow-up-person'),
@@ -150,32 +149,6 @@
             });
     }
 
-    function loadVisitors() {
-        $.ajax({
-            type: 'GET',
-            url: 'ajax/get_visitors.php'
-        })
-            .done(function(msg) {
-                var data = JSON.parse(msg);
-                if (data.success) {
-                    visitors = data.people;
-                    setVisitors();
-                    populateTypes();
-                    populateAttendanceFrequency();
-                    loadFollowUps();
-                } else {
-                    if (data.error === 1) {
-                        logout();
-                    } else {
-                        $().toastmessage('showErrorToast', "Error loading visitors");
-                    }
-                }
-            })
-            .fail(function() {
-                $().toastmessage('showErrorToast', "Error loading visitors");
-            });
-    }
-
     function loadFollowUps() {
         $.ajax({
             type: 'POST',
@@ -286,7 +259,7 @@
         followUpPerson.innerHTML = '(Select a person)';
         followUpPerson.setAttribute('personid', '');
         followUpPerson.setAttribute('person_name', '');
-        followUpType.value = '2';
+        followUpType.value = '3';
         followUpDate.value = '';
 
         followUpAttendanceFrequency.value = '';
@@ -412,7 +385,7 @@
 
     function doSelectPerson(id, name) {
         close();
-        followUpPerson.innerHTML = '<a class="person_name" href="manage-person.html?id=' + id + '">' + name + '</a>';
+        followUpPerson.innerHTML = '<a class="person_name" href="manage-person.php?id=' + id + '">' + name + '</a>';
         followUpPerson.setAttribute('personid', id);
         followUpPerson.setAttribute('person_name', name);
     }
@@ -420,7 +393,7 @@
     function onManagePerson(e) {
         var row = e.currentTarget.parentElement.parentElement;
         var id = row.getAttribute('person_id');
-        window.location = 'manage-person.html?id=' + id;
+        window.location = 'manage-person.php?id=' + id;
     }
 
     function processSearchResults(results) {
@@ -484,7 +457,7 @@
         var name = followUp.name,
             display;
         if (followUp.personId >= 0) {
-            display = '<a class="person_name" href="manage-person.html?id=' + followUp.personId + '">' + name + '</a>';
+            display = '<a class="person_name" href="manage-person.php?id=' + followUp.personId + '">' + name + '</a>';
         }
         var options = [];
         for(var o in followUp.communication_card_options) {
@@ -515,7 +488,7 @@
         row[0].setAttribute('communication_card_options', options.join(','));
         children[0].setAttribute('personid', followUp.personId);
         children[0].setAttribute('person_name', followUp.name);
-        children[0].innerHTML = '<a class="person_name" href="manage-person.html?id=' + followUp.personId + '">' + followUp.name + '</a>';
+        children[0].innerHTML = '<a class="person_name" href="manage-person.php?id=' + followUp.personId + '">' + followUp.name + '</a>';
         children[1].setAttribute('typeCd', followUp.typeCd);
         children[1].innerHTML = followUp.type;
         children[2].innerHTML = followUp.date;
@@ -527,8 +500,8 @@
     function setVisitors() {
         if (followUpVisitors.innerHTML.trim() === '') {
             var v;
-            for (var i = 0; i < visitors.length; i++) {
-                v = visitors[i];
+            for (var i = 0; i < visitors.length; i++) {		// jshint ignore:line
+                v = visitors[i];							// jshint ignore:line
                 followUpVisitors.innerHTML +=
                     '<div class="check-field">' +
                     '<input type="checkbox" personid="' + v.id + '" id="follow-up-by-' + v.id + '"/>' +
@@ -708,5 +681,10 @@
     $('#follow-up-type').on('change', onFollowUpTypeChange);
     
     clearFollowUpForm();
-    checkLoginStatus(loadVisitors);
+    
+	setVisitors();
+	populateTypes();
+	populateAttendanceFrequency();
+	
+	processFollowUps(followUps);	// jshint ignore:line
 })();

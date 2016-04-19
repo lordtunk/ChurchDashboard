@@ -1,16 +1,20 @@
+<?php
+  session_start();
+  include("utils/func.php");
+  include("utils/attendance.php");
+  $f = new Func();
+  $att = new Attendance();
+  
+  if($f->doRedirect($_SESSION)) {
+	header("Location: ".$f->getLoginUrl());
+    die();
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="A simple web application for Guide Church to keep track of attendance">
-    <link rel="shortcut icon" href="images/favicon.ico">
-
-    <title>Church Dashboard</title>
-
-    <!-- build:css styles/main.min.css -->
+	<?php include("head.php"); ?>
+	<!-- build:css styles/main.min.css -->
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
@@ -30,30 +34,7 @@
   </head>
 
   <body>
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand readonly" href="#"><div class="navbar-brand-text"> Church Dashboard</div></a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a id="attendance-nav" href="#">Attendance</a></li>
-            <li><a id="reports-nav" href="reports.html">Reports</a></li>
-            <li><a id="address-view-nav" href="address-view.html">Address View</a></li>
-            <li><a id="follow-ups-nav" href="follow-ups.html">Follow Ups</a></li>
-            <li><a id="search-nav" href="search.html">Search</a></li>
-            <li><a href="javascript:logout()">Log Out</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+    <?php include("navbar.php"); ?>
 
     <div class="container">
 
@@ -208,6 +189,19 @@
     <script src="jquery/jquery.loadmask.min.js"></script>
     <script src="jquery/jquery.toastmessage.js"></script>
     <!-- endbuild -->
+	<script type="text/javascript">
+<?php
+	try {
+      echo "var options = ".json_encode($att->getServiceOptions()).";";
+    } catch (Exception $e) {
+	  $f->logMessage($e->getMessage());
+      echo "$().toastmessage('showErrorToast', 'Error loading service options');";
+    }
+?>
+		var el = $('#navbar a[id=attendance-nav]');
+		el.attr('href', '#');
+		el.parent().addClass('active');
+	</script>
     <script src="scripts/login.js"></script>
     <script src="scripts/attendance.js"></script>
   </body>

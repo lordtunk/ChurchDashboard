@@ -1,3 +1,16 @@
+<?php
+  session_start();
+  include("utils/func.php");
+  $f = new Func();
+  
+  if(!$f->doRedirect($_SESSION)) {
+	if(isset($_GET['url']))
+		header("Location: ".$_GET['url']);
+	else
+		header("Location: attendance.php");
+    die();
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>

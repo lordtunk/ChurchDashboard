@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include("func.php");
+    include("../utils/func.php");
     $f = new Func();
     $msg = $_POST['msg'];
     $msg = str_replace('|', '<br />', strip_tags(str_replace('<br />', '|', $msg)));

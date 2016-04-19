@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include("func.php");
+    include("../utils/func.php");
     $f = new Func();
     $email = $_POST['email'];
     $video_status = $_POST['video_status'];

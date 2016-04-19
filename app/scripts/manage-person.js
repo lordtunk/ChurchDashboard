@@ -4,8 +4,6 @@
     $('#follow-up-date').datepicker();
     $('#first-visit').datepicker();
     var urlParams = {},
-        person = {},
-        visitors = [],
         firstName = document.querySelector('#first-name'),
         lastName = document.querySelector('#last-name'),
         description = document.querySelector('#description'),
@@ -172,7 +170,7 @@
 
     // Redirect the user to the attendance page if no
     // id was specified in the url parameters
-    if (!urlParams.id) window.location = 'attendance.html';
+    if (!urlParams.id) window.location = 'attendance.php';
 
     function populateStates(states) {
         var $select = $('#state');
@@ -274,7 +272,7 @@
 
     function onUpdateClick() {
         var p = {
-            id: person.id,
+            id: person.id,	// jshint ignore:line
             first_name: $.trim(firstName.value),
             last_name: $.trim(lastName.value),
             description: $.trim(description.value),
@@ -343,7 +341,7 @@
                 id: row.getAttribute('relationship_id'),
                 typeCd: typeCd,
                 type: relationshipTypeData[typeCd],
-                person_id: person.id,
+                person_id: person.id,	// jshint ignore:line
                 relation_id: row.children[1].getAttribute('relationid'),
                 name: row.children[1].getAttribute('relationname')
             });
@@ -407,7 +405,7 @@
 
     function onCancelClick() {
         if (confirm("If you continue you will lose any unsaved changes. Continue?")) {
-            populateForm(person);
+            populateForm(person);	// jshint ignore:line
             noChangesMade = true;
         }
     }
@@ -496,59 +494,11 @@
                 }
                 populateTypes();
                 populateAttendanceFrequency();
-                loadPerson();
-                loadVisitors();
+                //loadPerson();
+                //loadVisitors();
             })
             .fail(function() {
                 $().toastmessage('showErrorToast', "Error loading states");
-            });
-    }
-
-    function loadVisitors() {
-        $.ajax({
-            type: 'GET',
-            url: 'ajax/get_visitors.php'
-        })
-            .done(function(msg) {
-                var data = JSON.parse(msg);
-                if (data.success) {
-                    visitors = data.people;
-                } else {
-                    if (data.error === 1) {
-                        logout();
-                    } else {
-                        $().toastmessage('showErrorToast', "Error loading visitors");
-                    }
-                }
-            })
-            .fail(function() {
-                $().toastmessage('showErrorToast', "Error loading visitors");
-            });
-    }
-
-    function loadPerson() {
-        $.ajax({
-            type: 'GET',
-            url: 'ajax/get_person.php',
-            data: {
-                id: urlParams.id
-            }
-        })
-            .done(function(msg) {
-                var data = JSON.parse(msg);
-                if (data.success) {
-                    person = data.person;
-                    populateForm(data.person);
-                } else {
-                    if (data.error === 1) {
-                        logout();
-                    } else {
-                        $().toastmessage('showErrorToast', "Error loading");
-                    }
-                }
-            })
-            .fail(function() {
-                $().toastmessage('showErrorToast', "Error loading person");
             });
     }
 
@@ -565,7 +515,7 @@
                 if (data.success) {
                     p.follow_ups = getFollowUps();
                     p.relationships = getRelationships();
-                    person = p;
+                    person = p;		// jshint ignore:line
                     noChangesMade = true;
                     updateMap(p);
                     $().toastmessage('showSuccessToast', "Save successful");
@@ -587,13 +537,13 @@
             type: 'POST',
             url: 'ajax/delete_person.php',
             data: {
-                id: person.id
+                id: person.id	// jshint ignore:line
             }
         })
             .done(function(msg) {
                 var data = JSON.parse(msg);
                 if (data.success) {
-                    window.location = 'attendance.html';
+                    window.location = 'attendance.php';
                 } else {
                     if (data.error === 1) {
                         logout();
@@ -645,7 +595,7 @@
             url: 'ajax/delete_follow_up.php',
             data: {
                 id: id,
-                personId: person.id
+                personId: person.id		// jshint ignore:line
             }
         })
             .done(function(msg) {
@@ -740,7 +690,7 @@
             type: 'POST',
             url: 'ajax/copy_address_to_spouse.php',
             data: {
-                personId: person.id
+                personId: person.id		// jshint ignore:line
             }
         })
         .done(function(msg) {
@@ -775,7 +725,7 @@
 
     function doSelectPerson(id, name) {
         closeSelectPerson();
-        relationshipRelation.innerHTML = '<a class="person_name" href="manage-person.html?id=' + id + '">' + name + '</a>';
+        relationshipRelation.innerHTML = '<a class="person_name" href="manage-person.php?id=' + id + '">' + name + '</a>';
         relationshipRelation.setAttribute('relationid', id);
         relationshipRelation.setAttribute('person_name', name);
     }
@@ -783,7 +733,7 @@
     function onManagePerson(e) {
         var row = e.currentTarget.parentElement.parentElement;
         var id = row.getAttribute('person_id');
-        window.location = 'manage-person.html?id=' + id;
+        window.location = 'manage-person.php?id=' + id;
     }
 
     function processSearchResults(results) {
@@ -962,7 +912,7 @@
 
         return {
             id: (dialog.dialog('option', 'title').indexOf('Edit') === -1) ? genFollowUpId() : followUpId.value,
-            personId: person.id,
+            personId: person.id,		// jshint ignore:line
             spouseId: spouseId,
             date: date,
             typeCd: type,
@@ -1036,7 +986,7 @@
         $('#relationship-table > tbody:last').append(
             '<tr relationship_id="' + relationship.id + '">' +
             '<td data-th="Type" typeCd="' + relationship.typeCd + '">' + relationship.type + '</td>' +
-            '<td data-th="Name" relationId="'+relationship.relation_id+'" relationname="' + relationship.name + '"><a class="person_name" href="manage-person.html?id=' + relationship.relation_id + '">' + relationship.name + '</a></td>' +
+            '<td data-th="Name" relationId="'+relationship.relation_id+'" relationname="' + relationship.name + '"><a class="person_name" href="manage-person.php?id=' + relationship.relation_id + '">' + relationship.name + '</a></td>' +
             '<td data-th="" class="relationship-table-button-col"><button class="edit-relationship"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button><button class="delete-relationship"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></button></td>' +
             '</tr>');
     }
@@ -1051,8 +1001,8 @@
     function setVisitors() {
         if (followUpVisitors.innerHTML.trim() === '') {
             var v;
-            for (var i = 0; i < visitors.length; i++) {
-                v = visitors[i];
+            for (var i = 0; i < visitors.length; i++) {		// jshint ignore:line
+                v = visitors[i];							// jshint ignore:line
                 followUpVisitors.innerHTML +=
                     '<div class="check-field">' +
                     '<input type="checkbox" personid="' + v.id + '" id="follow-up-by-' + v.id + '"/>' +
@@ -1066,7 +1016,7 @@
         relationshipDialog.dialog('open');
         clearRelationshipForm();
         relationshipDialog.dialog('option', 'title', 'Add Relationship');
-        relationshipPersonName.innerHTML = getDisplayName(person);
+        relationshipPersonName.innerHTML = getDisplayName(person);	// jshint ignore:line
     }
 
     function closeRelationship() {
@@ -1118,7 +1068,7 @@
 
         if (!relationId) {
             msg += 'Must select a person<br />';
-        } else if(relationId == person.id) {
+        } else if(relationId == person.id) {	// jshint ignore:line
             msg += 'Person cannot have a relationship with themself<br />';            
         }
         
@@ -1137,7 +1087,7 @@
             spouseId: spouseId,
             typeCd: type,
             type: relationshipType.selectedOptions[0].text,
-            person_id: person.id,
+            person_id: person.id,		// jshint ignore:line
             relation_id: relationId,
             name: relationshipRelation.getAttribute('person_name')
         };
@@ -1387,5 +1337,6 @@
     
     $('#manage-unknown-date').on('change', onChangeUnknownDate);
 
-    checkLoginStatus(loadStates);
+    loadStates();
+	populateForm(person);	// jshint ignore:line
 })();

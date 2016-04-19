@@ -1,8 +1,8 @@
 <?php
   session_start();
-  include("func.php");
-  include("person.php");
-  include("attendance.php");
+  include("../utils/func.php");
+  include("../utils/person.php");
+  include("../utils/attendance.php");
   $f = new Func();
   $att = new Attendance();
   $people = json_decode($_POST['people']);

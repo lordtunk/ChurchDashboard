@@ -1,23 +1,39 @@
+<?php
+	session_start();
+	include("utils/func.php");
+	include("utils/attendance.php");
+	$f = new Func();
+	$att = new Attendance();
+
+	if($f->doRedirect($_SESSION)) {
+		header("Location: ".$f->getLoginUrl());
+		die();
+	}
+	
+	$success = TRUE;
+	try {
+	  $query = "SELECT
+				  DATE_FORMAT(MAX(s.service_dt),'%m/%d/%Y') Last_Attendance_Dt,
+				  DATE_FORMAT(MIN(s.service_dt),'%m/%d/%Y') First_Attendance_Dt
+				FROM
+				  Services s";
+	  $results = $f->fetchAndExecute($query);
+	} catch (Exception $e) {
+	  $success = FALSE;
+      $f->logMessage($e->getMessage());
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="A simple web application for Guide Church to keep track of attendance">
-    <link rel="shortcut icon" href="images/favicon.ico">
-
-    <title>Church Dashboard</title>
-
-    <!-- build:css styles/main.min.css -->
+    <?php include("head.php"); ?>
+	<!-- build:css styles/main.min.css -->
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link rel="stylesheet" href="styles/main.css">
-    
     <link rel="stylesheet" href="styles/jquery-ui.css">
     <link rel="stylesheet" href="styles/jquery.toastmessage.css">
     <link rel="stylesheet" href="styles/jquery.loadmask.css">
@@ -31,30 +47,7 @@
   </head>
 
   <body>
-
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand readonly" href="#"><div class="navbar-brand-text"> Church Dashboard</div></a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a id="attendance-nav" href="attendance.html">Attendance</a></li>
-            <li class="active"><a id="reports-nav" href="#">Reports</a></li>
-            <li><a id="address-view-nav" href="address-view.html">Address View</a></li>
-            <li><a id="follow-ups-nav" href="follow-ups.html">Follow Ups</a></li>
-            <li><a id="search-nav" href="search.html">Search</a></li>
-            <li><a href="javascript:logout()">Log Out</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+	<?php include("navbar.php"); ?>
 
     <div class="container">
         
@@ -63,10 +56,10 @@
       <div class="app-content app-form reports-form">
         <div id="first-last-dates">
             <label>First Service:</label>
-            <span id="first-date"></span>
+            <span id="first-date"><?php echo $results[0]['First_Attendance_Dt'] ?></span>
             <br />
             <label>Last Service:</label>
-            <span id="last-date"></span>
+            <span id="last-date"><?php echo $results[0]['Last_Attendance_Dt'] ?></span>
         </div>
         <div id="report-type-container" style="display: block;">
           <label for="report-type">Report Type:</label>
@@ -306,6 +299,23 @@
     <script src="jquery/jquery.loadmask.min.js"></script>
     <script src="jquery/jquery.toastmessage.js"></script>
     <!-- endbuild -->
+	<script type="text/javascript">
+<?php
+	if($success) {
+		try {
+		  echo "var options = ".json_encode($att->getServiceOptions()).";";
+		} catch (Exception $e) {
+		  $f->logMessage($e->getMessage());
+		  echo "$().toastmessage('showErrorToast', 'Error loading service options');";
+		}
+	} else {
+		echo "$().toastmessage('showErrorToast', 'Error loading settings');";
+	}
+?>
+	var el = $('#navbar a[id=reports-nav]');
+	el.attr('href', '#');
+	el.parent().addClass('active');
+	</script>
     <script src="scripts/login.js"></script>
     <script src="scripts/reports.js"></script>
   </body>

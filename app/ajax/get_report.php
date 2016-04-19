@@ -1,8 +1,8 @@
 <?php
     session_start();
-    include("func.php");
-    include("attendance.php");
-    include("follow_ups.php");
+    include("../utils/func.php");
+    include("../utils/attendance.php");
+    include("../utils/follow_ups.php");
     $type = $_POST['type'];
     $params = isset($_POST['params']) ? json_decode($_POST['params']) : null;
     $f = new Func();
