@@ -110,7 +110,8 @@ gulp.task('styles', ['styles:css', 'styles:bootstrapfonts']);
 
 // Scan Your HTML For Assets & Optimize Them
 gulp.task('html', function () {
-  return gulp.src('app/**/*.html')
+  //return gulp.src('app/**/*.html')
+  return gulp.src('app/*.php')
     .pipe($.useref.assets({searchPath: '{.tmp,app}'}))
     // Concatenate And Minify Styles
     .pipe($.if('*.css', $.csso()))
@@ -163,15 +164,15 @@ gulp.task('scripts', function() {
   runSequence('scripts:clean', 'scripts:main', 'scripts:jquery', 'scripts:bootstrap', 'scripts:join');
 });
 
-gulp.task('files:logs', function() {
-    // Will just create an empty 'logs' directory
-    return gulp.src('app/logs/')
-        .pipe(gulp.dest('dist'));
-});
 
 gulp.task('files:ajax', function() {
     return gulp.src('app/ajax/*.{php,json}')
         .pipe(gulp.dest('dist/ajax'));
+});
+
+gulp.task('files:utils', function() {
+    return gulp.src('app/utils/*.{php,json}')
+        .pipe(gulp.dest('dist/utils'));
 });
 
 gulp.task('files:config', function() {
@@ -179,7 +180,7 @@ gulp.task('files:config', function() {
         .pipe(gulp.dest('dist'));
 });
 
-gulp.task('files', ['files:ajax', 'files:config', 'files:logs']);
+gulp.task('files', ['files:ajax', 'files:config', 'files:utils']);
 
 gulp.task('bump-patch', function(){
   gulp.src(['./app/manifest.webapp'])
