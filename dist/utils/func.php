@@ -20,7 +20,7 @@
     public function __construct() {
 		try {
 			$root = $this->getRootDirectory();
-			$this->logFileNamePrefix = $root."logs\\".$this->logFileNamePrefix;
+			$this->logFileNamePrefix = $root."logs/".$this->logFileNamePrefix;
 			$this->configFileName = $root.$this->configFileName;
 			
 			$this->readConfig();
