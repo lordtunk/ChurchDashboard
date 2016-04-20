@@ -37,7 +37,7 @@ function logout() {
         var username = usernameField.value;
         var password = passwordField.value;
         if (validateLogin(username, password)) {
-            login(username, $.md5(password));
+            login(username, sha256_digest(password));	// jshint ignore:line
         }
     }
 

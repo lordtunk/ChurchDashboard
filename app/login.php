@@ -74,7 +74,7 @@
     <!-- build:js scripts/main.min.js -->
     <script src="jquery/jquery-1.11.1.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="jquery/jquery.md5.js"></script>
+    <script src="jquery/sha256.js"></script>
     <script src="jquery/jquery.toastmessage.js"></script>
     <!-- endbuild -->
     <script src="scripts/login.js"></script>

@@ -57,7 +57,12 @@
 					  <h3 class="panel-title">Administrative Pages</h3>
 					</div>
 					<div class="panel-body">
-					  <a href="settings.php">Settings</a>
+						<ul>
+							<li><a href="manage-account.php">Manage Account</a></li>
+							<li><a href="create-account.php">Create Account</a></li>
+							<li><a href="manage-permissions.php">Manage Permissions</a></li>
+							<li><a href="settings.php">Settings</a></li>
+						</ul>
 					</div>
 				</div>
 			</div>
