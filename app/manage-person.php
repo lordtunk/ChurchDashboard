@@ -2,7 +2,9 @@
 	session_start();
 	include("utils/func.php");
 	include("utils/person.php");
+	include("utils/attendance.php");
 	$f = new Func();
+	$att = new Attendance($f);
 	$id = $_GET['id'];
 
 	if($f->doRedirect($_SESSION)) {
@@ -21,7 +23,9 @@
                   People p
                 WHERE
                   p.visitor=true";
-      $visitors = $f->fetchAndExecute($query);
+          $visitors = $f->fetchAndExecute($query);
+          
+          $campuses = $att->getSetting('campuses');
 	  $p = Person::getPerson($id, $f);
 	  if($p != NULL) {
 		$_SESSION['scroll_to_id'] = $id;
@@ -117,6 +121,22 @@
                 </div>
             </div>
             <br />
+            <div class="row checkbox-panel">
+		<div class="col-sm-4">
+                    <div class="panel panel-default">
+                    	<div class="panel-heading">
+                    	  <h3 class="panel-title">Campuses</h3>
+                    	</div>
+                    	<div class="panel-body">
+                    		<?php
+                                    foreach($campuses as $id => $name) {
+                                        echo "<div class=\"check\"><input type=\"checkbox\" campusid=\"$id\" id=\"campus-$id\" /><label for=\"campus-$id\">$name</label></div>";
+                                    }
+                                ?>
+                    	</div>
+                    </div>
+                </div>
+            </div>
             <h4 class="form-section-title contact-form-section-title">Contact</h4>
             <div class="form-section contact-form-section">
                 <label for="email">Email:</label>

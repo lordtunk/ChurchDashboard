@@ -522,7 +522,8 @@ input.setting {
     float: right;
 }
 
-.contact-form-section-title {
+.contact-form-section-title,
+.campuses-form-section-title {
   padding: 0 0 0 40px;
 }
 .contact-form-section {
@@ -903,10 +904,15 @@ table th {
       width: 320px;
     }
 }
-.form-section.checkbox-form-section input {
+.checkbox-panel {
+   margin-left: 24px; 
+}
+.form-section.checkbox-form-section input,
+.checkbox-panel .panel-body input {
     margin-left: 10px;
 }
-.form-section.checkbox-form-section label {
+.form-section.checkbox-form-section label, 
+.checkbox-panel .panel-body label {
     text-align: left;
     padding-left: 5px;
 }

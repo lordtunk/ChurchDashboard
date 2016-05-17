@@ -2,8 +2,12 @@
     require_once("func.php");
     class Attendance {
         private $f = NULL;
-        public function __construct() {
-            $this->f = new Func();
+        public function __construct($f=null) {
+            if($f != null) {
+            	$this->f = $f;
+            } else {
+            	$this->f = new Func();
+            }
         }
         
         public function getServiceOptions() {
@@ -24,6 +28,15 @@
             $options['default_second_service_label'] = $results[0]['default_second_service_label'];
             
             return $options;
+        }
+        
+        public function getSetting($setting) {
+            $query = "SELECT
+                  $setting
+                FROM
+                  Settings";
+            $results = $this->f->fetchAndExecute($query);
+            return $this->settingStringToObject($results[0][$setting]);
         }
         
         private function settingStringToObject($str) {

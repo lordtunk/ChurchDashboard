@@ -30,6 +30,7 @@
     
     <!-- Custom styles for this page -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/jquery.toastmessage.css">
     <!-- endbuild -->
     
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
