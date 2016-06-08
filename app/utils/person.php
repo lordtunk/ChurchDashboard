@@ -8,6 +8,7 @@
         private $first_name = NULL;
         private $last_name = NULL;
         private $display = NULL;
+		private $campuses = array();
         private $has_name = FALSE;
         private $f = NULL;
         public function __construct($person, $func) {
@@ -20,7 +21,9 @@
             $this->first_name = isset($person->first_name) ? trim($person->first_name) : "";
             $this->last_name = isset($person->last_name) ? trim($person->last_name) : "";
             $this->display = isset($person->display) ? trim($person->display) : "";
-            
+            if(isset($person->campus))
+				$this->campuses = array($person->campus);
+			
             $this->f = $func;
             
             $this->getNameFromDisplay();
@@ -35,16 +38,29 @@
         
         public function insert($user_id) {
             $this->validate();
-            if($this->has_name) {
-                $query = "INSERT INTO People (last_name, first_name, adult, last_modified_dt, modified_by, creation_dt, created_by) VALUES 
-                (:last_name, :first_name, :adult, NOW(), :user_id, NOW(), :user_id)";
-                $this->id = $this->f->queryLastInsertId($query, array(":last_name"=>$this->last_name, ":first_name"=>$this->first_name, ":adult"=>$this->adult, ":user_id"=>$user_id));
-            } else {
-                $query = "INSERT INTO People (description, adult, last_modified_dt, modified_by, creation_dt, created_by) VALUES 
-                (:description, :adult, NOW(), :user_id, NOW(), :user_id)";
-                $this->id = $this->f->queryLastInsertId($query, array(":description"=>$this->display, ":adult"=>$this->adult, ":user_id"=>$user_id));
-            }
+			
+			if($this->has_name) {
+				$query = "INSERT INTO People (last_name, first_name, adult, last_modified_dt, modified_by, creation_dt, created_by) VALUES 
+				(:last_name, :first_name, :adult, NOW(), :user_id, NOW(), :user_id)";
+				$this->id = $this->f->queryLastInsertId($query, array(":last_name"=>$this->last_name, ":first_name"=>$this->first_name, ":adult"=>$this->adult, ":user_id"=>$user_id));
+			} else {
+				$query = "INSERT INTO People (description, adult, last_modified_dt, modified_by, creation_dt, created_by) VALUES 
+				(:description, :adult, NOW(), :user_id, NOW(), :user_id)";
+				$this->id = $this->f->queryLastInsertId($query, array(":description"=>$this->display, ":adult"=>$this->adult, ":user_id"=>$user_id));
+			}
+			self::updateCampuses($this->id, $this->campuses, $this->f);
         }
+		
+		public static function updateCampuses($person_id, $campuses, $f) {
+			$query = "DELETE FROM PersonCampusAssociations WHERE person_id = :person_id";
+				$f->executeAndReturnResult($query, array(":person_id"=>$person_id));
+				
+			for($i = 0; $i < count($campuses); $i++) {
+				$query = "INSERT INTO PersonCampusAssociations (person_id, campus) VALUES
+				(:person_id, :campus)";
+				$f->executeAndReturnResult($query, array(":person_id"=>$person_id, ":campus"=>$campuses[$i]));
+			}
+		}
         
         public function update() {
             $query = "UPDATE People SET active=true WHERE id=:id";
@@ -155,10 +171,12 @@
                   rp.first_name relationship_first_name,
                   rp.last_name relationship_last_name,
                   rp.description relationship_description,
-                  r.type relationship_type_cd
+                  r.type relationship_type_cd,
+				  pca.campus
                 FROM
                   (select min(service_dt) attendance_dt from Services where id in (select service_id from Attendance where attended_by=:id)) at,
                   People p
+				  left outer join PersonCampusAssociations pca on pca.person_id=p.id
                   left outer join FollowUps f on f.follow_up_to_person_id=p.id
                   left outer join FollowUpVisitors v on f.id=v.follow_up_id
                   left outer join People fp on fp.id=v.person_id
@@ -227,6 +245,7 @@
 
                         $p['follow_ups'] = array();
                         $p['relationships'] = array();
+						$p['campuses'] = array();
                         array_push($people, $p);
                         $j = count($people) - 1;
                     }
@@ -310,6 +329,17 @@
                             $l = count($people[$j]['relationships']) - 1;
                         }
                     }
+					if($row['campus'] != "" && $row['campus'] != NULL) {
+						$foundCampus = FALSE;
+						for($i = 0; $i < count($people[$j]['campuses']); $i++) {
+							if($people[$j]['campuses'][$i] == $row['campus']) {
+								$foundCampus = TRUE;
+								break;
+							}
+						}
+						if($foundCampus == FALSE)
+							array_push($people[$j]['campuses'], $row['campus']);
+					}
                 }
                 return $people[0];
             } else {

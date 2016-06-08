@@ -107,6 +107,7 @@
                           CASE WHEN a2.attended_by IS NULL THEN '' ELSE 1 END second
                         FROM
                           People p
+						  inner join PersonCampusAssociations pca on pca.person_id=p.id and pca.campus=:campus
                           LEFT OUTER JOIN (
                             SELECT
                               a.attended_by
@@ -157,6 +158,7 @@
                           CASE WHEN a1.attended_by IS NULL THEN '' ELSE 1 END first
                         FROM
                           People p
+						  inner join PersonCampusAssociations pca on pca.person_id=p.id and pca.campus=:campus
                           LEFT OUTER JOIN (
                             SELECT
                               a.attended_by
@@ -176,7 +178,7 @@
                           p.first_name,
                           p.description";
             }
-            $results = $this->f->fetchAndExecute($query, array(":active"=>$active, ":adult"=>$adult));
+            $results = $this->f->fetchAndExecute($query, array(":campus"=>$campus,":active"=>$active, ":adult"=>$adult));
             return $results;
         }
         

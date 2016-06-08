@@ -121,104 +121,135 @@
                 </div>
             </div>
             <br />
-            <div class="row checkbox-panel">
-		<div class="col-sm-4">
+            <div class="row">
+				<div class="col-sm-4 checkbox-panel campuses">
                     <div class="panel panel-default">
                     	<div class="panel-heading">
                     	  <h3 class="panel-title">Campuses</h3>
                     	</div>
                     	<div class="panel-body">
                     		<?php
-                                    foreach($campuses as $id => $name) {
-                                        echo "<div class=\"check\"><input type=\"checkbox\" campusid=\"$id\" id=\"campus-$id\" /><label for=\"campus-$id\">$name</label></div>";
-                                    }
-                                ?>
+								foreach($campuses as $id => $name) {
+									echo "<div class=\"check\"><input type=\"checkbox\" campusid=\"$id\" id=\"campus-$id\" /><label for=\"campus-$id\">$name</label></div>";
+								}
+							?>
                     	</div>
                     </div>
                 </div>
             </div>
-            <h4 class="form-section-title contact-form-section-title">Contact</h4>
-            <div class="form-section contact-form-section">
-                <label for="email">Email:</label>
-                <input type="email" id="email" />
-                <br />
-                <div class="phone-panel">
-                    <label for="primary-phone">Primary Phone:</label>
-                    <input type="tel" id="primary-phone" />
-                    <select id="primary-phone-type">
-                        <option value="1">Home</option>
-                        <option value="2" selected>Mobile</option>
-                        <option value="3">Work</option>
-                    </select>
+			<div class="row">
+				<div class="col-sm-8 contact-panel">
+                    <div class="panel panel-default">
+                    	<div class="panel-heading">
+                    	  <h3 class="panel-title">Contact</h3>
+                    	</div>
+                    	<div class="panel-body">
+                    		<label for="email">Email:</label>
+							<input type="email" id="email" />
+							<br />
+							<div class="phone-panel">
+								<label for="primary-phone">Primary Phone:</label>
+								<input type="tel" id="primary-phone" />
+								<select id="primary-phone-type">
+									<option value="1">Home</option>
+									<option value="2" selected>Mobile</option>
+									<option value="3">Work</option>
+								</select>
+							</div>
+							<div class="phone-panel">
+								<label for="secondary-phone">Secondary Phone:</label>
+								<input type="tel" id="secondary-phone" />
+								<select id="secondary-phone-type">
+									<option value="1">Home</option>
+									<option value="2" selected>Mobile</option>
+									<option value="3">Work</option>
+								</select>
+							</div>
+                    	</div>
+                    </div>
                 </div>
-                <div class="phone-panel">
-                    <label for="secondary-phone">Secondary Phone:</label>
-                    <input type="tel" id="secondary-phone" />
-                    <select id="secondary-phone-type">
-                        <option value="1">Home</option>
-                        <option value="2" selected>Mobile</option>
-                        <option value="3">Work</option>
-                    </select>
+			</div>
+			<div class="row">
+				<div class="col-sm-5 address-panel">
+                    <div class="panel panel-default">
+                    	<div class="panel-heading">
+                    	  <h3 class="panel-title">Address</h3>
+                    	</div>
+                    	<div class="panel-body">
+                    		<label for="street1">Street 1:</label>
+							<input type="text" id="street1" />
+							<br />
+							<label for="street2">Street 2:</label>
+							<input type="text" id="street2" />
+							<br />
+							<label for="city">City:</label>
+							<input type="text" id="city" />
+							<br />
+							<label for="state">State:</label>
+							<select id="state"></select>
+							<br />
+							<label for="zip">Zip Code:</label>
+							<input type="text" id="zip" title="5 digit Zip Code" />
+							<br />
+							<button id="copy-address-to-spouse" type="button"  class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Copy to Spouse</button>
+                    	</div>
+                    </div>
+                </div>
+				<div class="col-sm-4" id="map-panel">
+				</div>
+            </div>
+			<div class="row">
+				<div class="col-sm-8 commitments-panel">
+                    <div class="panel panel-default">
+                    	<div class="panel-heading">
+                    	  <h3 class="panel-title">Committing To...</h3>
+                    	</div>
+                    	<div class="panel-body">
+                    		<input type="checkbox" id="commitment-christ" disabled />
+							<label for="commitment-christ">Committing life to Christ</label>
+							<br />
+							<input type="checkbox" id="recommitment-christ" disabled />
+							<label for="recommitment-christ">Recommitting life to Christ</label>
+							<br />
+							<input type="checkbox" id="commitment-tithe" disabled />
+							<label for="commitment-tithe">Committing to tithe</label>
+							<br />
+							<input type="checkbox" id="commitment-ministry" disabled />
+							<label for="commitment-ministry">Committing to serving in ministry at Guide Church Baptist</label>
+							<br />
+							<input type="checkbox" id="commitment-baptism" disabled />
+							<label for="commitment-baptism">Sign up for the next baptism</label>
+                    	</div>
+                    </div>
                 </div>
             </div>
-            <h4 class="form-section-title address-form-section-title">Address</h4>
-            <div class="form-section address-form-section">
-                <label for="street1">Street 1:</label>
-                <input type="text" id="street1" />
-                <br />
-                <label for="street2">Street 2:</label>
-                <input type="text" id="street2" />
-                <br />
-                <label for="city">City:</label>
-                <input type="text" id="city" />
-                <br />
-                <label for="state">State:</label>
-                <select id="state"></select>
-                <br />
-                <label for="zip">Zip Code:</label>
-                <input type="text" id="zip" title="5 digit Zip Code" />
-                <br />
-                <!--style="display: none;"-->
-                <button id="copy-address-to-spouse" type="button"  class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-copy" aria-hidden="true"></span> Copy to Spouse</button>
-            </div>
-            <div class="col-2" id="map-panel">
-            </div>
-            <h4 class="form-section-title commitments-form-section-title">Committing To...</h4>
-            <div class="form-section commitments-form-section">
-                <input type="checkbox" id="commitment-christ" disabled />
-                <label for="commitment-christ">Committing life to Christ</label>
-                <br />
-                <input type="checkbox" id="recommitment-christ" disabled />
-                <label for="recommitment-christ">Recommitting life to Christ</label>
-                <br />
-                <input type="checkbox" id="commitment-tithe" disabled />
-                <label for="commitment-tithe">Committing to tithe</label>
-                <br />
-                <input type="checkbox" id="commitment-ministry" disabled />
-                <label for="commitment-ministry">Committing to serving in ministry at Guide Church Baptist</label>
-                <br />
-                <input type="checkbox" id="commitment-baptism" disabled />
-                <label for="commitment-baptism">Sign up for the next baptism</label>
-            </div>
-            <h4 class="form-section-title interested-form-section-title">Interested In...</h4>
-            <div class="form-section interested-form-section">
-                <input type="checkbox" id="info-next" disabled />
-                <label for="info-next">Interested in attending Next</label>
-                <br />
-                <input type="checkbox" id="info-gkids" disabled />
-                <label for="info-gkids">Get more information on serving in gKids (nursery to age 12)</label>
-                <br />
-                <input type="checkbox" id="info-ggroups" disabled />
-                <label for="info-ggroups">Get more information on joining or hosting a gGroup</label>
-                <br />
-                <input type="checkbox" id="info-gteams" disabled />
-                <label for="info-gteams">Get more information about gTeams</label>
-                <br />
-                <input type="checkbox" id="info-member" disabled />
-                <label for="info-member">Get more information about joining Guide Church Baptist</label>
-                <br />
-                <input type="checkbox" id="info-visit" disabled />
-                <label for="info-visit">I would like a visit from a Guide Church Pastor</label>
+			<div class="row">
+				<div class="col-sm-8 interested-panel">
+                    <div class="panel panel-default">
+                    	<div class="panel-heading">
+                    	  <h3 class="panel-title">Interested In...</h3>
+                    	</div>
+                    	<div class="panel-body">
+                    		<input type="checkbox" id="info-next" disabled />
+							<label for="info-next">Interested in attending Next</label>
+							<br />
+							<input type="checkbox" id="info-gkids" disabled />
+							<label for="info-gkids">Get more information on serving in gKids (nursery to age 12)</label>
+							<br />
+							<input type="checkbox" id="info-ggroups" disabled />
+							<label for="info-ggroups">Get more information on joining or hosting a gGroup</label>
+							<br />
+							<input type="checkbox" id="info-gteams" disabled />
+							<label for="info-gteams">Get more information about gTeams</label>
+							<br />
+							<input type="checkbox" id="info-member" disabled />
+							<label for="info-member">Get more information about joining Guide Church Baptist</label>
+							<br />
+							<input type="checkbox" id="info-visit" disabled />
+							<label for="info-visit">I would like a visit from a Guide Church Pastor</label>
+                    	</div>
+                    </div>
+                </div>
             </div>
 
             <div class="form-bar background color--gray-keyline">
@@ -294,47 +325,63 @@
                 </select>
             </div>
             <div class="communication-card-options" style="display: none;">
-                <h4 class="form-section-title commitments-form-section-title">Committing To...</h4>
-                <div class="form-section commitments-form-section">
-                    <input type="checkbox" id="follow-up-commitment-christ" />
-                    <label for="follow-up-commitment-christ">Committing life to Christ</label>
-                    <br />
-                    <input type="checkbox" id="follow-up-recommitment-christ" />
-                    <label for="follow-up-recommitment-christ">Recommitting life to Christ</label>
-                    <br />
-                    <input type="checkbox" id="follow-up-commitment-tithe" />
-                    <label for="follow-up-commitment-tithe">Committing to tithe</label>
-                    <br />
-                    <input type="checkbox" id="follow-up-commitment-ministry" />
-                    <label for="follow-up-commitment-ministry">Committing to serving in ministry at Guide Church Baptist</label>
-                    <br />
-                    <input type="checkbox" id="follow-up-commitment-baptism" />
-                    <label for="follow-up-commitment-baptism">Sign up for the next baptism</label>
+				<div class="row">
+				<div class="col-sm-11 committing-panel">
+                    <div class="panel panel-default">
+                    	<div class="panel-heading">
+                    	  <h3 class="panel-title">Committing To...</h3>
+                    	</div>
+                    	<div class="panel-body">
+                    		<input type="checkbox" id="follow-up-commitment-christ" />
+							<label for="follow-up-commitment-christ">Committing life to Christ</label>
+							<br />
+							<input type="checkbox" id="follow-up-recommitment-christ" />
+							<label for="follow-up-recommitment-christ">Recommitting life to Christ</label>
+							<br />
+							<input type="checkbox" id="follow-up-commitment-tithe" />
+							<label for="follow-up-commitment-tithe">Committing to tithe</label>
+							<br />
+							<input type="checkbox" id="follow-up-commitment-ministry" />
+							<label for="follow-up-commitment-ministry">Committing to serving in ministry at Guide Church Baptist</label>
+							<br />
+							<input type="checkbox" id="follow-up-commitment-baptism" />
+							<label for="follow-up-commitment-baptism">Sign up for the next baptism</label>
+                    	</div>
+                    </div>
                 </div>
-                <h4 class="form-section-title interested-form-section-title">Interested In...</h4>
-                <div class="form-section interested-form-section">
-                    <input type="checkbox" id="follow-up-info-next" />
-                    <label for="follow-up-info-next">Interested in attending Next</label>
-                    <br />
-                    <input type="checkbox" id="follow-up-info-gkids" />
-                    <label for="follow-up-info-gkids">Get more information on serving in gKids (nursery to age 12)</label>
-                    <br />
-                    <input type="checkbox" id="follow-up-info-ggroups" />
-                    <label for="follow-up-info-ggroups">Get more information on joining or hosting a gGroup</label>
-                    <br />
-                    <input type="checkbox" id="follow-up-info-gteams" />
-                    <label for="follow-up-info-gteams">Get more information about gTeams</label>
-                    <br />
-                    <input type="checkbox" id="follow-up-info-member" />
-                    <label for="follow-up-info-member">Get more information about joining Guide Church Baptist</label>
-                    <br />
-                    <input type="checkbox" id="follow-up-info-visit" />
-                    <label for="follow-up-info-visit">I would like a visit from a Guide Church Pastor</label>
+            </div>
+			<div class="row">
+				<div class="col-sm-11 interested-panel">
+                    <div class="panel panel-default">
+                    	<div class="panel-heading">
+                    	  <h3 class="panel-title">Interested In...</h3>
+                    	</div>
+                    	<div class="panel-body">
+                    		<input type="checkbox" id="follow-up-info-next" />
+							<label for="follow-up-info-next">Interested in attending Next</label>
+							<br />
+							<input type="checkbox" id="follow-up-info-gkids" />
+							<label for="follow-up-info-gkids">Get more information on serving in gKids (nursery to age 12)</label>
+							<br />
+							<input type="checkbox" id="follow-up-info-ggroups" />
+							<label for="follow-up-info-ggroups">Get more information on joining or hosting a gGroup</label>
+							<br />
+							<input type="checkbox" id="follow-up-info-gteams" />
+							<label for="follow-up-info-gteams">Get more information about gTeams</label>
+							<br />
+							<input type="checkbox" id="follow-up-info-member" />
+							<label for="follow-up-info-member">Get more information about joining Guide Church Baptist</label>
+							<br />
+							<input type="checkbox" id="follow-up-info-visit" />
+							<label for="follow-up-info-visit">I would like a visit from a Guide Church Pastor</label>
+                    	</div>
+                    </div>
                 </div>
+            </div>
             </div>
             <label for="follow-up-comments">Comments:</label>
             <br />
-            <textarea rows="4" cols="40" id="follow-up-comments"></textarea>
+            <textarea rows="4" cols="36" id="follow-up-comments"></textarea>
         </div>
         <div class="form-bar background color--gray-keyline">
             <!--Add and Clear-->

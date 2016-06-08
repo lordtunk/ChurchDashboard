@@ -187,7 +187,7 @@
         });
         $select.val('');
     }
-
+	
     function populateTypes() {
         var $select = $('#follow-up-type');
         $.each(followUpTypeData, function(typeCd, type) {
@@ -238,6 +238,7 @@
         secondaryPhoneType.value = p.secondary_phone_type;
 
         populateCommunicationCardOptions(p);
+		populateCampuses(p.campuses);
 
         updateMap(p);
         processFollowUps(p.follow_ups);
@@ -260,6 +261,13 @@
         infoMember.checked = p.info_member;
         infoVisit.checked = p.info_visit;
     }
+	
+	function populateCampuses(campuses) {
+		$('.campuses input').prop('checked', false);
+		for(var i=0; i<campuses.length; i++) {
+			$('.campuses input[campusid='+campuses[i]+']').prop('checked', true);
+		}
+	}
 
     function updateMap(p) {
         var addr = getAddressString(p);
@@ -271,6 +279,12 @@
     }
 
     function onUpdateClick() {
+		var campusEls = $('.campuses input:checked');
+		var campuses = [];
+		for(var i=0; i<campusEls.length; i++) {
+			campuses.push(campusEls[i].getAttribute('campusid'));
+		}
+		
         var p = {
             id: person.id,	// jshint ignore:line
             first_name: $.trim(firstName.value),
@@ -305,7 +319,8 @@
             info_ggroups: infoGGroups.checked,
             info_gteams: infoGTeams.checked,
             info_member: infoMember.checked,
-            info_visit: infoVisit.checked
+            info_visit: infoVisit.checked,
+			campuses: campuses
         };
         
         if($.trim(getAddressString(p)) === 'OH')

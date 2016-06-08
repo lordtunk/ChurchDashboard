@@ -88,6 +88,8 @@
     function populateTypes() {
         var $select = $('#service-label-1'),
             $select2 = $('#service-label-2');
+		$select.children().remove();
+		$select2.children().remove();
         $.each(options.service_labels, function(typeCd, type) { // jshint ignore:line
             $select.append('<option value="' + typeCd + '">' + type + '</option>');
             $select2.append('<option value="' + typeCd + '">' + type + '</option>');
@@ -97,6 +99,7 @@
         $select2.val(options.default_second_service_label);	// jshint ignore:line
         
         $select = $('#campus');
+		$select.children().remove();
         $.each(options.campuses, function(typeCd, type) {	// jshint ignore:line
             $select.append('<option value="' + typeCd + '">' + type + '</option>');
         });
@@ -536,7 +539,8 @@
 		.done(function(msg) {
 			var data = JSON.parse(msg);
 			if (data.success) {
-				populateTypes();
+				if(isDefault)
+					populateTypes();
 				originalVisitorsSecondCount = 0;
 				otherVisitorsSecondCount = 0;
 				

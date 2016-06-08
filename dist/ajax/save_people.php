@@ -53,6 +53,7 @@
       
       
       foreach($people as $key => $person) {
+		$person->campus = $campus;
         $p = new Person($person, $f);
 
         // If the id is negative then we need to create the person

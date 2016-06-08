@@ -47,6 +47,7 @@
     if($dict['success'] == TRUE) {
         try {
             switch($type) {
+			// Attendance By Date
             case 1:
                 $queryParams = array();
                 $totalsQuery = "";
@@ -250,6 +251,7 @@
                 $dict['totals'] = $results;
                 $dict['aggregates'] = $aggregates;
                 break;
+			// Attendance By Person
             case 2:
                 $queryParams = array();
                 $where = " and s.campus=:campus";
@@ -409,7 +411,8 @@
                 $results = $f->fetchAndExecute($query, $queryParams);
                 $dict['people'] = $results;
                 break;
-            case 3:
+            // Missing In Action
+			case 3:
                 // BUG: This query does not seem to work with certain 
                 // versions of libmysql for Ubuntu. It will return 0 results
                 $query = "SELECT DISTINCT
@@ -442,6 +445,7 @@
                                   p.description
                                 FROM
                                   People p
+								  inner join PersonCampusAssociations pca on pca.person_id=p.id and pca.campus=:campus
                                   LEFT OUTER JOIN Attendance a ON p.id=a.attended_by AND a.service_id IN
                                 ($idString)
                                 WHERE
@@ -454,15 +458,17 @@
                                   p.last_name,
                                   p.first_name,
                                   p.description";
-                    $results = $f->fetchAndExecute($query);
+                    $results = $f->fetchAndExecute($query, array(":campus"=>$params->campus));
                 }
                 $dict['people'] = $results;
                 break;
-            case 4:
+            // Follow Up
+			case 4:
                 $results = $followUps->getFollowUpReport($params, false);
                 $dict['people'] = $results;
                 break;
-            case 5:
+            // People By Attender Status
+			case 5:
                 $query = "SELECT
                             p.id,
                             p.first_name,
@@ -472,6 +478,7 @@
                             'true' adult
                           FROM
                             People p
+							inner join PersonCampusAssociations pca on pca.person_id=p.id and pca.campus=:campus
                           WHERE
                             p.adult = 1
                           ORDER BY
@@ -481,7 +488,7 @@
                             p.last_name,
                             p.first_name,
                             p.description";
-                $results = $f->fetchAndExecute($query);
+                $results = $f->fetchAndExecute($query, array(":campus"=>$params->campus));
                 $dict['people'] = $results;
                 break;
             }

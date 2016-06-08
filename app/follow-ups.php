@@ -87,45 +87,61 @@
                         <select id="follow-up-frequency">
                         </select>
                     </div>
-                    <div class="communication-card-options" style="display: none;">
-                        <h4 class="form-section-title commitments-form-section-title">Committing To...</h4>
-                        <div class="form-section commitments-form-section">
-                            <input type="checkbox" id="follow-up-commitment-christ" />
-                            <label for="follow-up-commitment-christ">Committing life to Christ</label>
-                            <br />
-                            <input type="checkbox" id="follow-up-recommitment-christ" />
-                            <label for="follow-up-recommitment-christ">Recommitting life to Christ</label>
-                            <br />
-                            <input type="checkbox" id="follow-up-commitment-tithe" />
-                            <label for="follow-up-commitment-tithe">Committing to tithe</label>
-                            <br />
-                            <input type="checkbox" id="follow-up-commitment-ministry" />
-                            <label for="follow-up-commitment-ministry">Committing to serving in ministry at Guide Church Baptist</label>
-                            <br />
-                            <input type="checkbox" id="follow-up-commitment-baptism" />
-                            <label for="follow-up-commitment-baptism">Sign up for the next baptism</label>
-                        </div>
-                        <h4 class="form-section-title interested-form-section-title">Interested In...</h4>
-                        <div class="form-section interested-form-section">
-                            <input type="checkbox" id="follow-up-info-next" />
-                            <label for="follow-up-info-next">Interested in attending Next</label>
-                            <br />
-                            <input type="checkbox" id="follow-up-info-gkids" />
-                            <label for="follow-up-info-gkids">Get more information on serving in gKids (nursery to age 12)</label>
-                            <br />
-                            <input type="checkbox" id="follow-up-info-ggroups" />
-                            <label for="follow-up-info-ggroups">Get more information on joining or hosting a gGroup</label>
-                            <br />
-                            <input type="checkbox" id="follow-up-info-gteams" />
-                            <label for="follow-up-info-gteams">Get more information about gTeams</label>
-                            <br />
-                            <input type="checkbox" id="follow-up-info-member" />
-                            <label for="follow-up-info-member">Get more information about joining Guide Church Baptist</label>
-                            <br />
-                            <input type="checkbox" id="follow-up-info-visit" />
-                            <label for="follow-up-info-visit">I would like a visit from a Guide Church Pastor</label>
-                        </div>
-                    </div>
+					<div class="communication-card-options" style="display: none;">
+						<div class="row">
+							<div class="col-sm-11 committing-panel">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+									  <h3 class="panel-title">Committing To...</h3>
+									</div>
+									<div class="panel-body">
+										<input type="checkbox" id="follow-up-commitment-christ" />
+										<label for="follow-up-commitment-christ">Committing life to Christ</label>
+										<br />
+										<input type="checkbox" id="follow-up-recommitment-christ" />
+										<label for="follow-up-recommitment-christ">Recommitting life to Christ</label>
+										<br />
+										<input type="checkbox" id="follow-up-commitment-tithe" />
+										<label for="follow-up-commitment-tithe">Committing to tithe</label>
+										<br />
+										<input type="checkbox" id="follow-up-commitment-ministry" />
+										<label for="follow-up-commitment-ministry">Committing to serving in ministry at Guide Church Baptist</label>
+										<br />
+										<input type="checkbox" id="follow-up-commitment-baptism" />
+										<label for="follow-up-commitment-baptism">Sign up for the next baptism</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-11 interested-panel">
+								<div class="panel panel-default">
+									<div class="panel-heading">
+									  <h3 class="panel-title">Interested In...</h3>
+									</div>
+									<div class="panel-body">
+										<input type="checkbox" id="follow-up-info-next" />
+										<label for="follow-up-info-next">Interested in attending Next</label>
+										<br />
+										<input type="checkbox" id="follow-up-info-gkids" />
+										<label for="follow-up-info-gkids">Get more information on serving in gKids (nursery to age 12)</label>
+										<br />
+										<input type="checkbox" id="follow-up-info-ggroups" />
+										<label for="follow-up-info-ggroups">Get more information on joining or hosting a gGroup</label>
+										<br />
+										<input type="checkbox" id="follow-up-info-gteams" />
+										<label for="follow-up-info-gteams">Get more information about gTeams</label>
+										<br />
+										<input type="checkbox" id="follow-up-info-member" />
+										<label for="follow-up-info-member">Get more information about joining Guide Church Baptist</label>
+										<br />
+										<input type="checkbox" id="follow-up-info-visit" />
+										<label for="follow-up-info-visit">I would like a visit from a Guide Church Pastor</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
                     <label for="follow-up-comments" id="follow-up-comments-label">Comments:</label>
                     <br />
                     <textarea rows="4" cols="40" id="follow-up-comments"></textarea>

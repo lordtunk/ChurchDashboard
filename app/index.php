@@ -2,8 +2,10 @@
   session_start();
 	include("utils/func.php");
 	include("utils/follow_ups.php");
+	include("utils/user.php");
 	$f = new Func();
 	$followUps = new FollowUps($f);
+	$u = new User($f);
 
 	if($f->doRedirect($_SESSION)) {
 		header("Location: ".$f->getLoginUrl());
@@ -11,11 +13,16 @@
 	}
 	
 	$success = TRUE;
+	$isUserAdmin = FALSE;
+	$isSiteAdmin = FALSE;
 	try {
 	  $today = date("n/j/Y");
 	  $lastWeek = date_sub(new DateTime($today), date_interval_create_from_date_string('7 days'));
 	  $lastWeekStr = date_format($lastWeek, 'n/j/Y');
 	  $follow_ups = $followUps->getFollowUpsFromDate($lastWeekStr, $today);
+	  $user = $u->getUserPermissions($_SESSION['user_id']);
+	  $isUserAdmin = $user['is_user_admin'] ? TRUE : FALSE;
+	  $isSiteAdmin = $user['is_site_admin'] ? TRUE : FALSE;
 	} catch (Exception $e) {
 	  $success = FALSE;
       $f->logMessage($e->getMessage());
@@ -59,9 +66,13 @@
 					<div class="panel-body">
 						<ul>
 							<li><a href="manage-account.php">Manage Account</a></li>
+							<?php if($isUserAdmin) { ?>
 							<li><a href="create-account.php">Create Account</a></li>
 							<li><a href="manage-permissions.php">Manage Permissions</a></li>
+							<?php } ?>
+							<?php if($isSiteAdmin) {?>
 							<li><a href="settings.php">Settings</a></li>
+							<?php } ?>
 						</ul>
 					</div>
 				</div>

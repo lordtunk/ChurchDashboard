@@ -355,6 +355,10 @@ div.spacer {
   overflow-y: scroll;
 }
 
+.manage-person-follow-up-form .dialog-form-inner {
+  height: 290px;
+}
+
 #follow-up-visitors {
   font-style: italic;
   display: inline;
@@ -448,7 +452,7 @@ div.spacer {
 
 .form-section {
   display: inline-block;
-  border: 1px solid gray;
+  border: 1px solid #ddd;
   border-radius: 5px;
   padding: 10px 10px 5px 0;
 }
@@ -510,61 +514,27 @@ input.setting {
   margin-left: 40px;
 }
 
-.address-form-section {
-  margin: 0 0 10px 65px;
-}
-
-.address-form-section > label {
+.address-panel label {
   width: 100px !important;
 }
 
-.address-form-section > button {
+.address-panel button {
     float: right;
 }
 
-.contact-form-section-title,
-.campuses-form-section-title {
-  padding: 0 0 0 40px;
-}
-.contact-form-section {
-  margin: 0 0 0 40px;
-}
-
-.form-section.interested-form-section>label,
-.form-section.commitments-form-section>label {
+.row .interested-panel label,
+.row .commitments-panel label {
   /*width:500px;*/
   width: 85%;
   text-align: left;
 }
 
-.commitments-form-section-title,
-.interested-form-section-title {
-  padding: 0 0 0 40px;
+.dialog-form .communication-card-options .row {
+  margin: 0;
 }
-.commitments-form-section,
-.interested-form-section {
-  margin: 0 0 10px 40px;
-}
-.communication-card-options .commitments-form-section-title,
-.communication-card-options .interested-form-section-title{
-  padding: 0;
-}
-.communication-card-options .commitments-form-section,
-.communication-card-options .interested-form-section {
-  margin: 0 0 10px 0;
-}
-.commitments-form-section > input {
-  margin: 0 0 0 10px;
-}
-.commitments-form-section > label {
-  padding-left: 5px;
-}
-
-.interested-form-section > input {
-  margin: 0 0 0 10px;
-}
-.interested-form-section > label {
-  padding-left: 5px;
+.dialog-form .communication-card-options .col-sm-11 {
+  width: 100%;
+  padding-left: 0;
 }
 
 .col-1 {
@@ -703,6 +673,11 @@ td.checkbox-table-col {
   width: 0;
 }
 
+.app-content.view-person .row {
+   margin-left: 24px;
+   margin-right: 24px;
+}
+
 /* Bootstrap overrides */
 .table>thead>tr>th {
   vertical-align: bottom;
@@ -717,7 +692,7 @@ table th {
 /* Larger Screens - desktops and tablets */
 @media all and (min-device-width:1200px) {
   .container {
-    max-width: 864px;
+    max-width: 900px;
   }
   td.attendance-table-attendance-col {
     text-align: center;
@@ -756,18 +731,9 @@ table th {
   .col-2 {
     vertical-align: top;
   }
-  .address-form-section-title {
-    padding: 10px 0 0 50px;
-  }
-  .address-form-section {
-    margin: 0 0 10px 50px;
-  }
 }
 
 @media all and (max-width:799px) {
-  .address-form-section-title {
-    padding: 10px 0 0 65px;
-  }
   .navigation-links {
     float: none;
     margin-left: 10px;
@@ -788,6 +754,13 @@ table th {
 @media all and (max-width:999px) and (min-width:765px) {
     body {
       padding-top: 100px;  /* Shift everything down to account for the navbar */
+    }
+    .row .panel label {
+      text-align: left;
+      padding-left: 0;
+    }
+    .row .campuses label {
+      width: 135px;
     }
 }
 
@@ -821,50 +794,23 @@ table th {
   }
   .app-content.login-form input,
   .app-content.view-person input,
-  .address-form-section select,
-  #first-recorded-visit,
-  .contact-form-section-title,
-  .contact-form-section,
-  .address-form-section-title,
-  .commitments-form-section-title,
-  .interested-form-section-title  {
+  #first-recorded-visit  {
     margin-left: 20px;
   }
+
   #first-recorded-visit {
     display: block;
   }
-  .contact-form-section-title,
-  .address-form-section-title,
-  .commitments-form-section-title,
-  .interested-form-section-title {
-    padding: 10px 0 0 0;
-  }
-  .contact-form-section {
-    width: 255px;
-  }
+
   #email {
     width: 210px;
   }
   .phone-panel > input {
     width: 135px;
   }
-  .address-form-section {
-    margin: 0 0 10px 20px;
-    width: 255px;
-  }
+
   #map-panel {
     width: 300px;
-  }
-  .commitments-form-section,
-  .interested-form-section {
-    margin: 0 0 10px 20px;
-    width: 255px;
-  }
-  .app-content.view-person .commitments-form-section label,
-  .app-content.view-person .interested-form-section label{
-    padding-left: 0px;
-    padding-bottom: 5px;
-    width: 185px;
   }
 }
 
@@ -899,14 +845,12 @@ table th {
     #address-map-panel {
       width: 320px;
     }
-    .col-2 img,
+    #map-panel img,
     #address-map-panel img {
       width: 320px;
     }
 }
-.checkbox-panel {
-   margin-left: 24px; 
-}
+
 .form-section.checkbox-form-section input,
 .checkbox-panel .panel-body input {
     margin-left: 10px;
