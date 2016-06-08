@@ -130,7 +130,7 @@
                     	<div class="panel-body">
                     		<?php
 								foreach($campuses as $id => $name) {
-									echo "<div class=\"check\"><input type=\"checkbox\" campusid=\"$id\" id=\"campus-$id\" /><label for=\"campus-$id\">$name</label></div>";
+									echo "<div class='check'><input type='checkbox' campusid='$id' id='campus-$id' /><label for='campus-$id'>$name</label></div>";
 								}
 							?>
                     	</div>
