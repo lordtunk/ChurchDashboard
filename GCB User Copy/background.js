@@ -38,6 +38,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 // It matches URLs like: http[s]://[...]stackoverflow.com[...]
 var managePersonUrlRegex = /.*manage-person\.html.*/;
 var cityUrlRegex = /.*guidechurch.onthecity.org\/admin\/users*.*/;
+var planningCenterUrlRegex = /.*.planningcenteronline.com*.*/;
 
 // A function to use as callback
 function doStuffWithDom(domContent) {
@@ -47,7 +48,9 @@ function doStuffWithDom(domContent) {
 // When the browser-action button is clicked...
 chrome.browserAction.onClicked.addListener(function (tab) {
     // ...check the URL of the active tab against our pattern and...
+	console.log(tab);
     if (managePersonUrlRegex.test(tab.url)) {
+		console.log('matched manage-person.html...copying person');
         chrome.tabs.executeScript(tab.id, { file: "content.js" }, function() {
             chrome.tabs.sendRequest(tab.id, { method: 'copyPerson' }, function(results) {
               if(results.method == 'copyPerson')
@@ -72,18 +75,47 @@ chrome.browserAction.onClicked.addListener(function (tab) {
 		code += buildSetter('offline_user_address_attributes__city', f.city);
 		code += buildSetter('offline_user_address_attributes__state', f.state);
 		code += buildSetter('offline_user_address_attributes__zipcode', f.zip);
-        console.log(code);
+        
 		chrome.tabs.executeScript(tab.id, {
 			code: code
 		});
-    }
+    } else if(planningCenterUrlRegex.test(tab.url)) {
+		var f = JSON.parse(localStorage.getItem('formData'));
+		var code = "var frame = document.querySelector('iframe');";
+		code += buildSetter('person_first_name', f.firstName, 'frame.contentDocument');
+		code += buildSetter('person_last_name', f.lastName, 'frame.contentDocument');
+		code += buildSetter('person_contact_data_email_addresses__address', f.email, 'frame.contentDocument');
+		
+        code += buildSetter('person_contact_data_phone_numbers__number', f.phone1, 'frame.contentDocument');
+        code += buildSetter('person_contact_data_phone_numbers__location', f.phoneType1, 'frame.contentDocument');
+        // Planning Center for some reason duplicates the id of the input fields, so skip adding a second phone number
+		//code += buildSetter('person_contact_data_phone_numbers__number', f.phone2);
+        //code += buildSetter('person_contact_data_phone_numbers__location', f.phoneType2);
+		
+		code += buildSetterBySelector('input[name="person[contact_data][addresses][][street_line_1]"]', f.street1, 'frame.contentDocument');
+        code += buildSetterBySelector('input[name="person[contact_data][addresses][][street_line_2]"]', f.street2, 'frame.contentDocument');
+		code += buildSetter('person_contact_data_addresses__city', f.city, 'frame.contentDocument');
+		code += buildSetter('person_contact_data_addresses__state', f.state, 'frame.contentDocument');
+		code += buildSetter('person_contact_data_addresses__zip', f.zip, 'frame.contentDocument');
+		
+		chrome.tabs.executeScript(tab.id, {
+			code: code
+		});
+	}
 });
 
 
-function buildSetter(field, value) {
+function buildSetter(field, value, doc) {
 	value = value || '';
-	return "f = document.getElementById('"+field+"'); if(f) { f.value = '"+value+"'; }";
+	doc = doc || 'document';
+	return "f = "+doc+".getElementById('"+field+"'); if(f) { f.value = '"+value+"'; }";
 }
+function buildSetterBySelector(selector, value, doc) {
+	value = value || '';
+	doc = doc || 'document';
+	return "f = "+doc+".querySelector('"+selector+"'); if(f) { f.value = '"+value+"'; }";
+}
+
 function addPhoneNumbers(home, cell) {
 	var code = "";
 	if(home && cell) {
