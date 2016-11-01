@@ -81,7 +81,7 @@ chrome.browserAction.onClicked.addListener(function (tab) {
 		});
     } else if(planningCenterUrlRegex.test(tab.url)) {
 		var f = JSON.parse(localStorage.getItem('formData'));
-		var code = "var frame = document.querySelector('iframe');";
+		var code = "var frame = document.querySelector('#person_editor_modal_iframe');";
 		code += buildSetter('person_first_name', f.firstName, 'frame.contentDocument');
 		code += buildSetter('person_last_name', f.lastName, 'frame.contentDocument');
 		code += buildSetter('person_contact_data_email_addresses__address', f.email, 'frame.contentDocument');
