@@ -118,6 +118,7 @@
           runParams = {
             fromDate: '',
             toDate: '',
+			missingFor: 3,
             campus: campusField.value
           };
           break;

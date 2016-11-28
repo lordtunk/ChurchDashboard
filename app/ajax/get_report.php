@@ -415,26 +415,48 @@
 			case 3:
                 // BUG: This query does not seem to work with certain 
                 // versions of libmysql for Ubuntu. It will return 0 results
-                $query = "SELECT DISTINCT
+                // $query = "SELECT DISTINCT
+                                // service_dt,
+                                // id
+                            // FROM
+                                // Services AS s1
+                            // WHERE
+                                // (SELECT
+                                // COUNT(DISTINCT(service_dt))
+                                  // FROM
+                                // Services AS s2
+                                  // WHERE
+                                // DAYOFWEEK(s2.service_dt) = 1
+                                // AND DAYOFWEEK(s1.service_dt) = 1
+                                // AND s1.service_dt <= s2.service_dt) IN (1,2)
+                                
+                                // AND s1.campus=:campus";
+								
+				// Get all Sunday services for the specified campus
+				$query = "SELECT DISTINCT
                                 service_dt,
                                 id
                             FROM
                                 Services AS s1
                             WHERE
-                                (SELECT
-                                COUNT(DISTINCT(service_dt))
-                                  FROM
-                                Services AS s2
-                                  WHERE
-                                DAYOFWEEK(s2.service_dt) = 1
-                                AND DAYOFWEEK(s1.service_dt) = 1
-                                AND s1.service_dt <= s2.service_dt) IN (1,2)
                                 
-                                AND s1.campus=:campus";
+                                DAYOFWEEK(s1.service_dt) = 1
+                                AND s1.campus=:campus
+                            ORDER BY
+                            	service_dt DESC";
                 $results = $f->fetchAndExecute($query, array(":campus"=>$params->campus));
                 if(count($results) > 0) {
                     $service_ids = array();
+					$count = 1;
+					$lastDate = $results[0]['service_dt'];
                     foreach($results as $key => $row) {
+						// Each Sunday can have multiple services so track count by date
+						if($lastDate != $row['service_dt']) {
+							$lastDate = $row['service_dt'];
+							$count = $count + 1;
+						}
+						if($count > $params->missingFor)
+							break;
                         array_push($service_ids, $row['id']);
                     }
                     $idString = implode(",", $service_ids);
