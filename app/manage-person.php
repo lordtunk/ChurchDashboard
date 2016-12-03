@@ -469,6 +469,7 @@
 	<script type="text/javascript">
 <?php
 	if($success && count($visitors) > 0) {
+		echo "var apiKey = '".$f->getGoogleApiKey()."';";
 		echo "var visitors = ".json_encode($visitors).";
 		var person = ".json_encode($p).";";
 	} else {

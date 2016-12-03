@@ -151,6 +151,11 @@
             4: "Member",
             "": "--None Provided--"
         };
+		
+	/* jshint ignore:start */
+	if(apiKey)
+		gMapsImgUrl += '&key='+apiKey;
+	/* jshint ignore:end */
 
     (window.onpopstate = function() {
         var match,

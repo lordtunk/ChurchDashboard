@@ -46,7 +46,7 @@
 		    p.state,
 		    p.zip,
 		    COALESCE(p.email, '') email,
-            (select count(*) from relationships r where r.person_id=p.id and r.type=1) > 0 as has_spouse
+            (select count(*) from Relationships r where r.person_id=p.id and r.type=1) > 0 as has_spouse
 		  FROM
 		    People p
 		  WHERE";
