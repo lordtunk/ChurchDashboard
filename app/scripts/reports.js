@@ -47,21 +47,23 @@
     var d = new Date();
     fromDateField.value = $.datepicker.formatDate('mm/dd/yy', new Date(d.getFullYear(), d.getMonth(), 1, 0, 0, 0, 0));
     toDateField.value = $.datepicker.formatDate('mm/dd/yy', d);
+	$('#missing-for').val(3);
   }
   
   function onReportTypeChange() {
     var reportType = parseInt(reportTypeField.value);
     
-    $('#from-to-dates')[0].style.setProperty('display', (reportType === 3 || reportType === 5) ? 'none' : '');
+    $('#from-to-dates').css('display', (reportType === 3 || reportType === 5) ? 'none' : '');
     $('.service-label-container').css('display', (reportType === 3 || reportType === 4 || reportType === 5) ? 'none' : '');
     if(reportType === 3 || reportType === 4 || reportType === 5) {
       fromDateField.value = '';
       toDateField.value = '';
     }
-    $('#first-last-dates')[0].style.setProperty('display', (reportType === 4) ? 'none' : 'inherit');
-    $('#communication-card-header')[0].style.setProperty('display', (reportType === 4) ? 'inherit' : 'none');
-    $('#follow-up-options')[0].style.setProperty('display', (reportType === 4) ? 'inline-block' : 'none');
-    $('#follow-up-options-spacer')[0].style.setProperty('display', (reportType === 4) ? 'inherit' : 'none');
+    $('#first-last-dates').css('display', (reportType === 4) ? 'none' : 'inherit');
+    $('#communication-card-header').css('display', (reportType === 4) ? 'inherit' : 'none');
+    $('#follow-up-options').css('display', (reportType === 4) ? 'inline-block' : 'none');
+    $('#follow-up-options-spacer').css('display', (reportType === 4) ? 'inherit' : 'none');
+	$('#missing-for-container').css('display', (reportType === 3) ? 'inherit' : 'none');
   }
 
   function onRunClick() {
@@ -70,6 +72,10 @@
         $().toastmessage('showErrorToast', "First and Second Service cannot be the same");
         return;
     }
+	var missingFor = parseInt($('#missing-for').val());
+	if(isNaN(missingFor) || missingFor <= 0){
+		$().toastmessage('showErrorToast', "Missing for # of Sundays must be a positive number");
+	}
     if(validateDates(fromDateField.value, toDateField.value, (reportType === 1 || reportType === 2))) {
       hideAllReportContainers();
       currentCampus = campusField.value;
@@ -77,7 +83,7 @@
       currentLabel2 = '';
       switch(reportType) {
         case 1:
-          $('#attendance-by-date-container')[0].style.setProperty('display', 'inherit');
+          $('#attendance-by-date-container').css('display', 'inherit');
           runParams = {
             fromDate: fromDateField.value,
             toDate: toDateField.value,
@@ -96,7 +102,7 @@
 
           break;
         case 2:
-          $('#attendance-by-person-container')[0].style.setProperty('display', 'inherit');
+          $('#attendance-by-person-container').css('display', 'inherit');
           runParams = {
             fromDate: fromDateField.value,
             toDate: toDateField.value,
@@ -114,21 +120,21 @@
           }
           break;
         case 3:
-          $('#attendance-by-mia-container')[0].style.setProperty('display', 'inherit');
+          $('#attendance-by-mia-container').css('display', 'inherit');
           runParams = {
             fromDate: '',
             toDate: '',
-			missingFor: 3,
+			missingFor: missingFor,
             campus: campusField.value
           };
           break;
 	   case 4:
-          $('#follow-up-container')[0].style.setProperty('display', 'inherit');
+          $('#follow-up-container').css('display', 'inherit');
           runParams = buildParameters();
           runParams.campus = campusField.value;
           break;
         case 5:
-          $('#people-by-attender-status-container')[0].style.setProperty('display', 'inherit');
+          $('#people-by-attender-status-container').css('display', 'inherit');
           runParams = {
             fromDate: '',
             toDate: '',
@@ -164,11 +170,11 @@
   }
 
   function hideAllReportContainers() {
-    $('#attendance-by-person-container')[0].style.setProperty('display', 'none');
-    $('#attendance-by-date-container')[0].style.setProperty('display', 'none');
-    $('#attendance-by-mia-container')[0].style.setProperty('display', 'none');
-    $('#follow-up-container')[0].style.setProperty('display', 'none');
-    $('#people-by-attender-status-container')[0].style.setProperty('display', 'none');
+    $('#attendance-by-person-container').css('display', 'none');
+    $('#attendance-by-date-container').css('display', 'none');
+    $('#attendance-by-mia-container').css('display', 'none');
+    $('#follow-up-container').css('display', 'none');
+    $('#people-by-attender-status-container').css('display', 'none');
   }
 
   function validateDates(fDate, tDate, requireDate) {

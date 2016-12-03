@@ -93,20 +93,45 @@
             $this->has_name = TRUE;
         }
 		
-		public static function getPerson($id, $f) {
-			function getDisplayName($person, $prefix="") {
-				if($person === null) return '';
+		public static function getDisplayName($person, $prefix="") {
+			if($person === null) return '';
 
-				if($person[$prefix.'last_name'] && $person[$prefix.'first_name']) {
-					return $person[$prefix.'first_name'] . " " . $person[$prefix.'last_name'];
-				} else if($person[$prefix.'first_name']) {
-					return $person[$prefix.'first_name'];
-				} else if($person[$prefix.'last_name']) {
-					return $person[$prefix.'last_name'];
-				}
-				return $person[$prefix.'description'];
+			if($person[$prefix.'last_name'] && $person[$prefix.'first_name']) {
+				return $person[$prefix.'first_name'] . " " . $person[$prefix.'last_name'];
+			} else if($person[$prefix.'first_name']) {
+				return $person[$prefix.'first_name'];
+			} else if($person[$prefix.'last_name']) {
+				return $person[$prefix.'last_name'];
 			}
-			
+			return $person[$prefix.'description'];
+		}
+		
+		public static function getSpouse($id, $f) {
+			$query = "
+				SELECT
+					p.id,
+					p.first_name,
+					p.last_name,
+					p.description
+				FROM
+					People p
+					inner join Relationships r on r.relation_id=p.id and r.type=1
+				WHERE
+					r.person_id = :person_id";
+					
+			$results = $f->fetchAndExecute($query, array(":person_id"=>$id));
+            if(count($results) > 0) {
+				foreach($results as $key => $row) {
+					$p = array();
+					$p['id'] = $row['id'];
+					$p['name'] = self::getDisplayName($row);
+					return $p;
+				}
+			}
+			return NULL;
+		}
+		
+		public static function getPerson($id, $f) {
 			$query = "
               SELECT
                   DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
@@ -114,7 +139,6 @@
                   p.first_name,
                   p.last_name,
                   p.description,
-                  DATE_FORMAT(p.first_visit,'%m/%d/%Y') first_visit,
                   p.attender_status,
                   p.active,
                   p.adult,
@@ -211,7 +235,6 @@
                         $p['first_name'] = $row['first_name'];
                         $p['last_name'] = $row['last_name'];
                         $p['description'] = $row['description'];
-                        $p['first_visit'] = $row['first_visit'];
                         $p['attender_status'] = $row['attender_status'];
                         $p['adult'] = $row['adult'] ? TRUE : FALSE;
                         $p['active'] = $row['active'] ? TRUE : FALSE;
@@ -300,7 +323,7 @@
                             $l = count($people[$j]['follow_ups']) - 1;
                         }
                         if($foundVisitorId == FALSE) {
-                            array_push($people[$j]['follow_ups'][$l]['visitors'], getDisplayName($row, "follow_up_"));
+                            array_push($people[$j]['follow_ups'][$l]['visitors'], self::getDisplayName($row, "follow_up_"));
                             array_push($people[$j]['follow_ups'][$l]['visitorsIds'], $row['person_id']);
                         }
                     }
@@ -323,7 +346,7 @@
                             $relationship['id'] = $row['relationship_id'];
                             $relationship['typeCd'] = $row['relationship_type_cd'];
                             $relationship['relation_id'] = $row['relationship_relation_id'];
-                            $relationship['name'] = getDisplayName($row, "relationship_");
+                            $relationship['name'] = self::getDisplayName($row, "relationship_");
                             
                             array_push($people[$j]['relationships'], $relationship);
                             $l = count($people[$j]['relationships']) - 1;

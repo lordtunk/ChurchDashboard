@@ -61,7 +61,7 @@
                 }
                 if($params->toDate != "") {
                     $queryParams[":toDate"] = $params->toDate;
-                    $where .= "AND s.service_dt <= STR_TO_DATE(:toDate,'%m/%d/%Y')";
+                    $where .= " AND s.service_dt <= STR_TO_DATE(:toDate,'%m/%d/%Y')";
                 }
                 if($params->label2 != "") {
                     $queryParams[":label2"] = $params->label2;

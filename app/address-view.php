@@ -109,6 +109,9 @@
 		var el = $('#navbar a[id=address-view-nav]');
 		el.attr('href', '#');
 		el.parent().addClass('active');
+<?php
+	echo "var apiKey = '".$f->getGoogleApiKey()."';";
+?>
 	</script>
     <script src="scripts/login.js"></script>
     <script src="scripts/address-view.js"></script>

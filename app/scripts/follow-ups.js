@@ -132,21 +132,21 @@
                 search: text
             }
         })
-            .done(function(msg) {
-                var data = JSON.parse(msg);
-                if (data.success) {
-                    processSearchResults(data.people);
-                } else {
-                    if (data.error === 1) {
-                        logout();
-                    } else {
-                        $().toastmessage('showErrorToast', "Error loading visitors");
-                    }
-                }
-            })
-            .fail(function() {
-                $().toastmessage('showErrorToast', "Error loading visitors");
-            });
+		.done(function(msg) {
+			var data = JSON.parse(msg);
+			if (data.success) {
+				processSearchResults(data.people);
+			} else {
+				if (data.error === 1) {
+					logout();
+				} else {
+					$().toastmessage('showErrorToast', "Error loading visitors");
+				}
+			}
+		})
+		.fail(function() {
+			$().toastmessage('showErrorToast', "Error loading visitors");
+		});
     }
 
     function loadFollowUps() {
@@ -187,6 +187,13 @@
                 if (data.success) {
                     f.id = data.follow_up_id;
                     cb.call(this, f, clear);
+					
+					if(data.spouse_follow_up_id) {
+						f.id = data.spouse_follow_up_id;
+						f.personId = data.spouse_id;
+						f.name = data.spouse_name;
+						cb.call(this, f, clear);
+					}
                     $().toastmessage('showSuccessToast', "Save successful");
                 } else {
                     if (data.error === 1) {
@@ -261,6 +268,10 @@
         followUpPerson.setAttribute('person_name', '');
         followUpType.value = '3';
         followUpDate.value = '';
+		
+		$('#add-to-spouse')[0].checked = false;
+		$('#add-to-spouse').css('display', 'none');
+		$('#add-to-spouse-label').css('display', 'none');
 
         followUpAttendanceFrequency.value = '';
         
@@ -362,6 +373,7 @@
 
         return {
             id: isAdd() ? genFollowUpId() : followUpId.value,
+			add_to_spouse: $('#add-to-spouse')[0].checked,
             date: date,
             name: name,
             personId: personId,
@@ -379,15 +391,20 @@
         var row = e.currentTarget.parentElement.parentElement;
 
         var id = row.getAttribute('person_id');
+		var hasSpouse = row.getAttribute('has_spouse');
         var name = row.children[0].getAttribute('person_name');
-        doSelectPerson(id, name);
+        doSelectPerson(id, name, hasSpouse);
     }
 
-    function doSelectPerson(id, name) {
+    function doSelectPerson(id, name, hasSpouse) {
         close();
         followUpPerson.innerHTML = '<a class="person_name" href="manage-person.php?id=' + id + '">' + name + '</a>';
         followUpPerson.setAttribute('personid', id);
         followUpPerson.setAttribute('person_name', name);
+		
+		$('#add-to-spouse').css('display', (hasSpouse) ? '' : 'none');
+		$('#add-to-spouse-label').css('display', (hasSpouse) ? '' : 'none');
+		$('#add-to-spouse').prop( "checked", hasSpouse );
     }
 
     function onManagePerson(e) {
@@ -412,7 +429,7 @@
     function appendPerson(p) {
         var name = getDisplayName(p);
         $('#search-table > tbody:last').append(
-            '<tr person_id="' + p.id + '">' +
+            '<tr person_id="' + p.id + '" has_spouse="'+(!!p.has_spouse)+'">' +
             '<td data-th="Name" person_name="' + name + '"><a class="person_name" href="javascript:void(0);">' + name + '</a></td>' +
             '<td data-th="Address">' + getAddress(p) + '</td>' +
             '<td data-th="" class="search-table-button-col"><button class="search-button btn btn-xs btn-info">Manage</button></td>' +
@@ -559,7 +576,10 @@
         for(i=0; i<optionsArr.length; i++) {
             options[optionsArr[i]] = true;
         }
-
+		
+		$('#add-to-spouse').css('display', 'none');
+		$('#add-to-spouse-label').css('display', 'none');
+		
         followUpPerson.setAttribute('personid', row.children[0].getAttribute('personid') || '');
         followUpPerson.setAttribute('person_name', row.children[0].getAttribute('person_name') || '');
         followUpPerson.innerHTML = row.children[0].innerHTML || '';

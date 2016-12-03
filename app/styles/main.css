@@ -264,6 +264,10 @@ div.spacer {
   text-align: center;
 }
 
+#missing-for {
+	width: 50px;
+}
+
 .row-header {
   text-align: center;
   background-color: #009344 !important;
@@ -516,6 +520,9 @@ input.setting {
 
 .address-panel label {
   width: 100px !important;
+}
+.address-panel input {
+  width: 175px !important;
 }
 
 .address-panel button {

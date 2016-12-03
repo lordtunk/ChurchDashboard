@@ -75,9 +75,6 @@
             <label for="description">Description:</label>
             <input type="text" id="description" />
             <br />
-            <label for="first-visit">First GCB Visit:</label>
-            <input type="text" id="first-visit" />
-            <br />
             <label>First Recorded Visit:</label>
             <div id="first-recorded-visit"></div>
             <br />

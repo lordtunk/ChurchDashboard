@@ -45,7 +45,13 @@
 					WHERE
 					  DATE_FORMAT(f.creation_dt,'%c/%e/%Y') = :date
 					ORDER BY
-					  f.follow_up_date";
+					  f.follow_up_date,
+					  f.type,
+					  p.last_name IS NOT NULL DESC,
+					  p.description IS NOT NULL DESC,
+					  p.last_name,
+					  p.first_name,
+					  p.description";
 			$results = $this->f->fetchAndExecute($query, array(":date"=>$date));
 			
             return $this->processFollowUpResults($results);
@@ -206,11 +212,7 @@
                         f.attendance_frequency,
                         CASE WHEN p.commitment_baptism = 1 THEN  'true' ELSE  'false' END commitment_baptism
                       FROM 
-                        People p
-						inner join PersonCampusAssociations pca on pca.person_id=p.id and pca.campus=:campus
-                        LEFT OUTER JOIN FollowUps f ON f.follow_up_to_person_id = p.id AND f.type = 3
-                        LEFT OUTER JOIN (SELECT COUNT(*) visit_count, follow_up_to_person_id FROM FollowUps WHERE TYPE =2 GROUP BY follow_up_to_person_id)vc ON vc.follow_up_to_person_id = p.id
-                        LEFT OUTER JOIN (SELECT COUNT(*) ty_card_sent_count, follow_up_to_person_id, follow_up_date FROM FollowUps WHERE TYPE =5 GROUP BY follow_up_to_person_id, follow_up_date)tyc ON tyc.follow_up_to_person_id = p.id";
+                        ";
             } else {
                 $query = "SELECT 
                         CASE WHEN vc.visit_count > 0 THEN  'true' ELSE  'false' END visited, 
@@ -229,15 +231,23 @@
                         p.zip,
                         CASE WHEN p.commitment_baptism = 1 THEN  'true' ELSE  'false' END commitment_baptism
                       FROM 
-                        People p
-						inner join PersonCampusAssociations pca on pca.person_id=p.id and pca.campus=:campus
-                        LEFT OUTER JOIN FollowUps f ON f.follow_up_to_person_id = p.id AND f.type = 3
-                        LEFT OUTER JOIN (SELECT COUNT(*) visit_count, follow_up_to_person_id FROM FollowUps WHERE type = 2 GROUP BY  follow_up_to_person_id)vc ON vc.follow_up_to_person_id = p.id
-                        LEFT OUTER JOIN (SELECT COUNT(*) ty_card_sent_count, follow_up_to_person_id, follow_up_date FROM FollowUps WHERE type = 5 GROUP BY follow_up_to_person_id)tyc ON tyc.follow_up_to_person_id = p.id";
+                        ";
             }
 			
-			$queryParams[":campus"] = $params->campus;
-
+			if(property_exists($params,'campus') && $params->campus != "") {
+				$queryParams[":campus"] = $params->campus;
+				$query .= "People p
+						inner join PersonCampusAssociations pca on pca.person_id=p.id and pca.campus=:campus
+                        LEFT OUTER JOIN FollowUps f ON f.follow_up_to_person_id = p.id AND f.type = 3
+                        LEFT OUTER JOIN (SELECT COUNT(*) visit_count, follow_up_to_person_id FROM FollowUps WHERE TYPE = 2 GROUP BY follow_up_to_person_id) vc ON vc.follow_up_to_person_id = p.id
+                        LEFT OUTER JOIN (SELECT COUNT(*) ty_card_sent_count, follow_up_to_person_id, follow_up_date FROM FollowUps WHERE TYPE =5 GROUP BY follow_up_to_person_id, follow_up_date) tyc ON tyc.follow_up_to_person_id = p.id";
+			} else {
+				$query .= "People p
+                        LEFT OUTER JOIN FollowUps f ON f.follow_up_to_person_id = p.id AND f.type = 3
+                        LEFT OUTER JOIN (SELECT COUNT(*) visit_count, follow_up_to_person_id FROM FollowUps WHERE TYPE = 2 GROUP BY follow_up_to_person_id) vc ON vc.follow_up_to_person_id = p.id
+                        LEFT OUTER JOIN (SELECT COUNT(*) ty_card_sent_count, follow_up_to_person_id, follow_up_date FROM FollowUps WHERE TYPE =5 GROUP BY follow_up_to_person_id, follow_up_date) tyc ON tyc.follow_up_to_person_id = p.id";
+			}
+			
             if($params->active) {
                 $where .= "
                     AND p.active = 1";

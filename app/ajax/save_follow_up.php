@@ -1,6 +1,7 @@
 <?php
     session_start();
     include("../utils/func.php");
+	include("../utils/person.php");
     $f = new Func();
     $follow_up = json_decode($_POST['follow_up']);
     $spouseFollowUpId = "";
@@ -23,10 +24,31 @@
     if($dict['success'] == TRUE) {
         $dict['success'] = FALSE;
         try {
+			if(isset($follow_up->add_to_spouse) && $follow_up->add_to_spouse == TRUE) {
+				$spouse = Person::getSpouse($follow_up->personId, $f);
+				$follow_up->spouseId = $spouse['id'];
+				$dict["spouse_id"] = $spouse['id'];
+				$dict["spouse_name"] = $spouse['name'];
+			} else {
+				$follow_up->spouseId = "";
+			}
+			
             if($follow_up->date === ""){
                 $follow_up->date = NULL;
             }
             $options = $follow_up->communication_card_options;
+			$options->commitment_christ = $options->commitment_christ  ? 1 : 0;
+			$options->recommitment_christ = $options->recommitment_christ  ? 1 : 0;
+			$options->commitment_tithe = $options->commitment_tithe  ? 1 : 0;
+			$options->commitment_ministry = $options->commitment_ministry  ? 1 : 0;
+			$options->commitment_baptism = $options->commitment_baptism  ? 1 : 0;
+			$options->info_next = $options->info_next  ? 1 : 0;
+			$options->info_gkids = $options->info_gkids  ? 1 : 0;
+			$options->info_ggroups = $options->info_ggroups  ? 1 : 0;
+			$options->info_gteams = $options->info_gteams  ? 1 : 0;
+			$options->info_member = $options->info_member  ? 1 : 0;
+			$options->info_visit = $options->info_visit  ? 1 : 0;
+			
             $f->useTransaction = FALSE;
             $f->beginTransaction();
             if($follow_up->id < 0) {
@@ -72,6 +94,7 @@
                                   ":info_gteams"=>$options->info_gteams,
                                   ":info_member"=>$options->info_member,
                                   ":info_visit"=>$options->info_visit));
+					    $dict["spouse_follow_up_id"] = $spouseFollowUpId;
                     }
                 }
             } else {

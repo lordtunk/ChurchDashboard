@@ -67,8 +67,8 @@
 						<ul>
 							<li><a href="manage-account.php">Manage Account</a></li>
 							<?php if($isUserAdmin) { ?>
-							<li><a href="create-account.php">Create Account</a></li>
-							<li><a href="manage-permissions.php">Manage Permissions</a></li>
+							<!--<li><a href="create-account.php">Create Account</a></li>
+							<li><a href="manage-permissions.php">Manage Permissions</a></li>-->
 							<?php } ?>
 							<?php if($isSiteAdmin) {?>
 							<li><a href="settings.php">Settings</a></li>

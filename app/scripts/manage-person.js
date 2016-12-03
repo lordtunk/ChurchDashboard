@@ -2,12 +2,10 @@
     'use strict';
 
     $('#follow-up-date').datepicker();
-    $('#first-visit').datepicker();
     var urlParams = {},
         firstName = document.querySelector('#first-name'),
         lastName = document.querySelector('#last-name'),
         description = document.querySelector('#description'),
-        firstVisit = document.querySelector('#first-visit'),
         firstRecordedVisit = document.querySelector('#first-recorded-visit'),
         attenderStatus = document.querySelector('#attender-status'),
         adult = document.querySelector('#adult'),
@@ -212,7 +210,6 @@
         firstName.value = p.first_name;
         lastName.value = p.last_name;
         description.value = p.description;
-        firstVisit.value = p.first_visit;
         firstRecordedVisit.innerHTML = p.first_attendance_dt || '<span style="font-style: italic;">(None)</span>';
         attenderStatus.value = p.attender_status;
         adult.checked = p.adult;
@@ -290,7 +287,6 @@
             first_name: $.trim(firstName.value),
             last_name: $.trim(lastName.value),
             description: $.trim(description.value),
-            first_visit: $.trim(firstVisit.value),
             attender_status: attenderStatus.value,
             adult: adult.checked,
             active: active.checked,
@@ -847,7 +843,7 @@
         
         var spouse = $('#relationship-table td[typecd=1]');
         addToSpouseContainerFollowUp.style.display = (spouse.length > 0) ? 'inherit' : 'none';
-        addToSpouseFollowUp.checked = true;
+        addToSpouseFollowUp.checked = spouse.length > 0;
 
         var inputs = followUpVisitors.querySelectorAll('input');
         for (var i = 0; i < inputs.length; i++)

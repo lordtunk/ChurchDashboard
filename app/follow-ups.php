@@ -67,6 +67,9 @@
                         <div id="follow-up-person" personid="-1">(Select a person)</div>
                         <button id="select-person-btn" class="btn btn-xs btn-info">Select Person</button>
                     </div>
+					<label for="add-to-spouse" id="add-to-spouse-label" style="display: none;">Add to spouse:</label>
+					<input type="checkbox" id="add-to-spouse"  style="display: none;" />
+					<br />
                     <label for="follow-up-type">Type:</label>
                     <select id="follow-up-type">
                     </select>

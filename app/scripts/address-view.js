@@ -15,7 +15,8 @@
         gMapsUrl = 'https://www.google.com/maps/place/',
         gMapsMarker = '&markers=color:red%7Clabel:',
         gMapsLabels = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
-
+	if(apiKey)
+		gMapsImgUrl += '&key='+apiKey;
     function onRunClick() {
         if (validateDates(fromDateField.value, toDateField.value)) {
             var params;
@@ -147,12 +148,12 @@
         }
         if (mapLegend.innerHTML !== '') {
             mapPanel.innerHTML = '<img border="0" src="' + url + '" />';
-            $('#map-legend')[0].style.setProperty('display', 'block');
-            $('#map-note')[0].style.setProperty('display', 'block');
+            $('#map-legend').css('display', 'block');
+            $('#map-note').css('display', 'block');
         } else {
             mapPanel.innerHTML = '';
-            $('#map-legend')[0].style.setProperty('display', 'none');
-            $('#map-note')[0].style.setProperty('display', 'none');
+            $('#map-legend').css('display', 'none');
+            $('#map-note').css('display', 'none');
             $().toastmessage('showWarningToast', 'Must select at least 1 person with an address');
         }
     }

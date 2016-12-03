@@ -94,6 +94,10 @@
             <select id="campus">
             </select>
           </div>
+		  <div id="missing-for-container" style="display: none;">
+			<label for="missing-for">Missing for # of Sundays:</label>
+			<input type="number" id="missing-for" />
+		  </div>
         </div>
         <div id="follow-up-options-spacer" style="display: none;"></div>
         <div id="follow-up-options" style="display: none;">

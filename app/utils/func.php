@@ -3,12 +3,14 @@
     private $db = NULL;
     private $env  = "dev";
     private $logFileNamePrefix = "log-";
+	private $logRoot = "";
     private $configFileName = "config.ini";
     private $dbHost = "";
     private $dbName = "";
     private $dbUser = "";
     private $dbPass = "";
 	private $urlRoot = "";
+	private $apiKey = "";
 
     // INFO = 1
     // DEBUG = 2
@@ -21,6 +23,7 @@
 		try {
 			$root = $this->getRootDirectory();
 			$this->logFileNamePrefix = $root."logs/".$this->logFileNamePrefix;
+			$this->logRoot = $root."logs/";
 			$this->configFileName = $root.$this->configFileName;
 			
 			$this->readConfig();
@@ -70,6 +73,10 @@
         return $this->env;
     }
 	
+	function getGoogleApiKey() {
+		return $this->apiKey;
+	}
+	
 	function getRootDirectory() {
 		$root = "";
 		// Convert slashes to all one type to account for different OS's
@@ -116,6 +123,8 @@
       if($severity < $this->minSeverity) return;
       $log_file_name = $this->logFileNamePrefix.date("y-m-d").".txt";
       
+	  if(!file_exists($this->logRoot))
+		  mkdir($this->logRoot);
       if (!file_exists($log_file_name))
           fopen($log_file_name, 'w');
       if (is_writable($log_file_name)) {
