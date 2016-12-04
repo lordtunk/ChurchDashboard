@@ -87,7 +87,7 @@ function logout() {
                 if(url) {
                     window.location = url;
                 } else {
-                    window.location = 'attendance.php';
+                    window.location = homepage;	//jshint ignore:line
                 }
             } else {
                 $().toastmessage('showErrorToast', 'Username or password is incorrect');

@@ -1,4 +1,6 @@
 <?php
+//https://github.com/defuse/password-hashing
+
 class InvalidHashException extends Exception {}
 class CannotPerformOperationException extends Exception {}
 class PasswordStorage

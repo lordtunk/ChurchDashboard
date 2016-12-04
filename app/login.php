@@ -1,13 +1,15 @@
 <?php
   session_start();
   include("utils/func.php");
+  include("utils/user.php");
   $f = new Func();
   
+  $homepage = User::getUser($_SESSION['user_id'], $f)['homepage'];
   if(!$f->doRedirect($_SESSION)) {
 	if(isset($_GET['url']))
 		header("Location: ".$_GET['url']);
 	else
-		header("Location: attendance.php");
+		header("Location: ".$homepage);
     die();
   }
 ?>
@@ -78,6 +80,11 @@
     <script src="jquery/sha256.js"></script>
     <script src="jquery/jquery.toastmessage.js"></script>
     <!-- endbuild -->
+	<script type="text/javascript">
+<?php
+	echo "var homepage = '$homepage';";
+?>
+	</script>
     <script src="scripts/login.js"></script>
   </body>
 </html>

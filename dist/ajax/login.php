@@ -10,6 +10,11 @@
   
   $query = "SELECT password FROM Users WHERE UPPER(username)=:username";
   $results = $f->fetchAndExecute($query, array(":username"=>strtoupper($username)));
+  if(count($results) == 0) {
+	  $dict['success'] = false;
+	  echo json_encode($dict);
+	  die();
+  } 
   if(!PasswordStorage::verify_password($password, $results[0]['password'])) {
 	  $dict['success'] = false;
 	  echo json_encode($dict);

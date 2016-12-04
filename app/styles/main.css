@@ -61,7 +61,7 @@ div.spacer {
   display: inline-block;
 }
 
-#password {
+.login-form #password {
   margin-bottom: 20px;
 }
 
@@ -685,6 +685,17 @@ td.checkbox-table-col {
    margin-right: 24px;
 }
 
+.manage-account-form label {
+	width: 175px !important;
+	text-align: right;
+	margin-bottom: 15px;
+}
+
+.app-content.manage-account-form .row {
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
 /* Bootstrap overrides */
 .table>thead>tr>th {
   vertical-align: bottom;
@@ -790,7 +801,8 @@ table th {
   }
   
   .app-content.login-form label,
-  .app-content.view-person label{
+  .app-content.view-person label,
+  .app-content.manage-account-form label{
     text-align: left;
     padding-left: 20px;
     vertical-align: top;
