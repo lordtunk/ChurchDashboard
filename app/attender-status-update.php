@@ -1,21 +1,12 @@
 <?php
-	session_start();
-	include("utils/func.php");
-	include("utils/user.php");
-	$f = new Func();
-
-	if($f->doRedirect($_SESSION)) {
-		header("Location: ".$f->getLoginUrl());
-		die();
-	}
+  session_start();
+  include("utils/func.php");
+  $f = new Func();
   
-	$success = TRUE;
-	try {
-		$u = User::getUser($_SESSION['user_id'], $f);
-	} catch (Exception $e) {
-		$success = FALSE;
-		$f->logMessage($e->getMessage());
-	}
+  if($f->doRedirect($_SESSION)) {
+	header("Location: ".$f->getLoginUrl());
+    die();
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,41 +36,28 @@
 
     <div class="container">
 
-      <h1 id="manage-account-h">Manage Account</h1>
+      <h1 id="attender-status-h">Attender Status Update</h1>
 
-      <div class="app-content app-form manage-account-form">
-        <label for="username">Username:</label>
-        <input type="text" id="username"/><br />
-		<label for="homepage">Homepage:</label>
-        <select id="homepage">
-			<option value="index.php" selected>Dashboard</option>
-			<option value="attendance.php">Attendance</option>
-			<option value="follow-ups.php">Follow Ups</option>
-			<option value="reports.php">Reports</option>
-		</select><br />
-		
-		<div class="row">
-			<div class="col-sm-7 change-password-panel">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-					  <h3 class="panel-title">Change Password</h3>
-					</div>
-					<div class="panel-body">
-						<label for="password">Old Password:</label>
-						<input type="password" id="password"/><br />
-						<label for="new-password">New Password:</label>
-						<input type="password" id="new-password"/><br />
-						<label for="confirm-password">Confirm Password:</label>
-						<input type="password" id="confirm-password"/>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-        <div class="form-bar background color--gray-keyline">
-			<div class="spacer"></div>
-			<button id="update" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>  <span class="btn-text">Save</span>
-			</button>
+      <div class="app-content app-form attender-status-form">
+        <div id="attender-status-container">
+          <div class="attender-status-table-container" id="attender-status-table-container">
+            <table class="table table-responsive table-striped attender-status-table" id="attender-status-table">
+              <thead>
+                  <tr>
+					  <th></th>
+                      <th>Name</th>
+                      <th>Status</th>
+                  </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+          <div class="navigation-links">
+            <a href="javascript:void(0);" id="mia-top">Top</a>
+            <a href="javascript:void(0);" id="mia-bottom">Bottom</a>
+          </div>
+          <div class="clear"></div>
         </div>
       </div>
 
@@ -97,17 +75,14 @@
     <script src="jquery/jquery-1.11.1.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="scripts/error.js"></script>
-	<script src="jquery/sha256.js"></script>
     <script src="jquery/jquery-ui.min.js"></script>
     <script src="jquery/jquery.loadmask.min.js"></script>
     <script src="jquery/jquery.toastmessage.js"></script>
     <!-- endbuild -->
 	<script type="text/javascript">
-<?php
-	echo "var user=".json_encode($u).";";
-?>		
+
 	</script>
     <script src="scripts/login.js"></script>
-    <script src="scripts/manage-account.js"></script>
+    <script src="scripts/attender-status-update.js"></script>
   </body>
 </html>
