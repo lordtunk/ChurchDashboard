@@ -35,7 +35,6 @@
             $person->first_name = trim($person->first_name);
             $person->last_name = trim($person->last_name);
             $person->description = trim($person->description);
-            $person->first_visit = trim($person->first_visit);
             $person->street1 = trim($person->street1);
             $person->street2 = trim($person->street2);
             $person->city = trim($person->city);
@@ -91,9 +90,6 @@
             if($person->last_name === ""){
                 $person->last_name = NULL;
             }
-            if($person->first_visit === ""){
-                $person->first_visit = NULL;
-            }
             $f->useTransaction = FALSE;
             $f->beginTransaction();
             // Add an Attendance record if a matching one does not exist, otherwise, update the existing
@@ -129,7 +125,6 @@
                           first_name=:first_name,
                           last_name=:last_name,
                           description=:description,
-                          first_visit=:first_visit,
                           attender_status=:attender_status,
                           adult=:adult,
                           active=:active,
@@ -155,7 +150,6 @@
                 array(":first_name"=>$person->first_name, 
                     ":last_name"=>$person->last_name, 
                     ":description"=>$person->description,
-                    ":first_visit"=>$person->first_visit,
                     ":attender_status"=>$person->attender_status,
                     ":adult"=>$person->adult, 
                     ":active"=>$person->active,
