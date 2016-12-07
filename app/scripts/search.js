@@ -1,6 +1,5 @@
 (function () {
   'use strict';
-  if($('.search-form').length === 0) return;
  
   var searchBtn = document.querySelector('#search'),
       searchField = document.querySelector('#search-name'),
@@ -71,7 +70,7 @@
     var name = getDisplayName(p);
     $('#search-table > tbody:last').append(
       '<tr person_id="'+p.id+'">' +
-	'<td data-th="Name" person_name="'+name+'"><a class="person_name" href="manage-person.html?id='+p.id+'">'+name+'</a></td>' +
+	'<td data-th="Name" person_name="'+name+'"><a class="person_name" href="manage-person.php?id='+p.id+'">'+name+'</a></td>' +
         '<td data-th="Email">'+p.email+'</td>'+
 	'<td data-th="Address">'+getAddress(p)+'</td>'+
       '</tr>');
@@ -115,6 +114,4 @@
       search();
     }
   });
-  
-  checkLoginStatus();
 })();

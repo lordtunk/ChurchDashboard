@@ -1,7 +1,7 @@
 <?php
     session_start();
-    include("func.php");
-    include("validation_exception.php");
+    include("../utils/func.php");
+    include("../utils/validation_exception.php");
     $f = new Func();
     $relationship = json_decode($_POST['relationship']);
     $dict = array();

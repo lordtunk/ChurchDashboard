@@ -1,6 +1,6 @@
 <?php
   session_start();
-  include("func.php");
+  include("../utils/func.php");
   $f = new Func();
   $id = $_POST['id'];
   $dict = array();

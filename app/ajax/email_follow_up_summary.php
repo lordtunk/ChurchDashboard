@@ -1,7 +1,7 @@
 <?php
     session_start();
-    include("func.php");
-    include("follow_ups.php");
+    include("../utils/func.php");
+    include("../utils/follow_ups.php");
     $params = isset($_POST['params']) ? json_decode($_POST['params']) : null;
     $email = $_POST['email'];
     $f = new Func();

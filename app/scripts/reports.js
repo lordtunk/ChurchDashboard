@@ -1,15 +1,11 @@
 (function () {
   'use strict';
-
-  if($('#reports').length === 0) return;
   
   $( "#from-date" ).datepicker();
   $( "#to-date" ).datepicker();
   
   var toDateField = document.querySelector('#to-date'),
       fromDateField = document.querySelector('#from-date'),
-      firstDateField = document.querySelector('#first-date'),
-      lastDateField = document.querySelector('#last-date'),
       reportTypeField = document.querySelector('#report-type'),
       serviceLabel1Field = document.querySelector('#service-label-1'),
       serviceLabel2Field = document.querySelector('#service-label-2'),
@@ -18,7 +14,6 @@
 	  emailField = document.querySelector('#email'),
 	  emailBtn = document.querySelector('#email-summary'),
 	  runParams = null,
-      options = {},
       currentLabel1 = -1,
       currentLabel2 = -1,
       currentCampus = -1,
@@ -33,43 +28,42 @@
     function populateTypes() {
         var $select = $('#service-label-1'),
             $select2 = $('#service-label-2');
-        $.each(options.service_labels, function(typeCd, type) {
+        $.each(options.service_labels, function(typeCd, type) {	// jshint ignore:line
             $select.append('<option value="' + typeCd + '">' + type + '</option>');
             $select2.append('<option value="' + typeCd + '">' + type + '</option>');
         });
         $select2.append('<option value="">--None--</option>');
-        $select.val(options.default_first_service_label);
-        $select2.val(options.default_second_service_label);
+        $select.val(options.default_first_service_label);		// jshint ignore:line
+        $select2.val(options.default_second_service_label);		// jshint ignore:line
         
         $select = $('#campus');
-        $.each(options.campuses, function(typeCd, type) {
+        $.each(options.campuses, function(typeCd, type) {		// jshint ignore:line
             $select.append('<option value="' + typeCd + '">' + type + '</option>');
         });
-        $select.val(options.default_campus);
+        $select.val(options.default_campus);					// jshint ignore:line
     }
     
-  function populateForm(first_dt, last_dt) {
-    firstDateField.innerHTML = first_dt ? first_dt : 'N/A';
-    lastDateField.innerHTML = last_dt ? last_dt : 'N/A';
-
+  function populateForm() {
     var d = new Date();
     fromDateField.value = $.datepicker.formatDate('mm/dd/yy', new Date(d.getFullYear(), d.getMonth(), 1, 0, 0, 0, 0));
     toDateField.value = $.datepicker.formatDate('mm/dd/yy', d);
+	$('#missing-for').val(3);
   }
   
   function onReportTypeChange() {
     var reportType = parseInt(reportTypeField.value);
     
-    $('#from-to-dates')[0].style.setProperty('display', (reportType === 3 || reportType === 5) ? 'none' : '');
+    $('#from-to-dates').css('display', (reportType === 3 || reportType === 5) ? 'none' : '');
     $('.service-label-container').css('display', (reportType === 3 || reportType === 4 || reportType === 5) ? 'none' : '');
     if(reportType === 3 || reportType === 4 || reportType === 5) {
       fromDateField.value = '';
       toDateField.value = '';
     }
-    $('#first-last-dates')[0].style.setProperty('display', (reportType === 4) ? 'none' : 'inherit');
-    $('#communication-card-header')[0].style.setProperty('display', (reportType === 4) ? 'inherit' : 'none');
-    $('#follow-up-options')[0].style.setProperty('display', (reportType === 4) ? 'inline-block' : 'none');
-    $('#follow-up-options-spacer')[0].style.setProperty('display', (reportType === 4) ? 'inherit' : 'none');
+    $('#first-last-dates').css('display', (reportType === 4) ? 'none' : 'inherit');
+    $('#communication-card-header').css('display', (reportType === 4) ? 'inherit' : 'none');
+    $('#follow-up-options').css('display', (reportType === 4) ? 'inline-block' : 'none');
+    $('#follow-up-options-spacer').css('display', (reportType === 4) ? 'inherit' : 'none');
+	$('#missing-for-container').css('display', (reportType === 3) ? 'inherit' : 'none');
   }
 
   function onRunClick() {
@@ -78,6 +72,10 @@
         $().toastmessage('showErrorToast', "First and Second Service cannot be the same");
         return;
     }
+	var missingFor = parseInt($('#missing-for').val());
+	if(isNaN(missingFor) || missingFor <= 0){
+		$().toastmessage('showErrorToast', "Missing for # of Sundays must be a positive number");
+	}
     if(validateDates(fromDateField.value, toDateField.value, (reportType === 1 || reportType === 2))) {
       hideAllReportContainers();
       currentCampus = campusField.value;
@@ -85,7 +83,7 @@
       currentLabel2 = '';
       switch(reportType) {
         case 1:
-          $('#attendance-by-date-container')[0].style.setProperty('display', 'inherit');
+          $('#attendance-by-date-container').css('display', 'inherit');
           runParams = {
             fromDate: fromDateField.value,
             toDate: toDateField.value,
@@ -96,15 +94,15 @@
           currentLabel2 = serviceLabel2Field.value;
           if(currentLabel2) {
             $('.service-header').css('display', '');
-            $('.first-service-header').text(options.service_labels[currentLabel1]);
-            $('.second-service-header').text(options.service_labels[currentLabel2]);
+            $('.first-service-header').text(options.service_labels[currentLabel1]);		// jshint ignore:line
+            $('.second-service-header').text(options.service_labels[currentLabel2]);	// jshint ignore:line	
           } else {
               $('.service-header').css('display', 'none');
           }
 
           break;
         case 2:
-          $('#attendance-by-person-container')[0].style.setProperty('display', 'inherit');
+          $('#attendance-by-person-container').css('display', 'inherit');
           runParams = {
             fromDate: fromDateField.value,
             toDate: toDateField.value,
@@ -115,27 +113,28 @@
           currentLabel2 = serviceLabel2Field.value;
           if(currentLabel2) {
             $('.service-header').css('display', '');
-            $('.first-service-header').text(options.service_labels[currentLabel1]);
-            $('.second-service-header').text(options.service_labels[currentLabel2]);
+            $('.first-service-header').text(options.service_labels[currentLabel1]);		// jshint ignore:line
+            $('.second-service-header').text(options.service_labels[currentLabel2]);	// jshint ignore:line
           } else {
               $('.service-header').css('display', 'none');
           }
           break;
         case 3:
-          $('#attendance-by-mia-container')[0].style.setProperty('display', 'inherit');
+          $('#attendance-by-mia-container').css('display', 'inherit');
           runParams = {
             fromDate: '',
             toDate: '',
+			missingFor: missingFor,
             campus: campusField.value
           };
           break;
 	   case 4:
-          $('#follow-up-container')[0].style.setProperty('display', 'inherit');
+          $('#follow-up-container').css('display', 'inherit');
           runParams = buildParameters();
           runParams.campus = campusField.value;
           break;
         case 5:
-          $('#people-by-attender-status-container')[0].style.setProperty('display', 'inherit');
+          $('#people-by-attender-status-container').css('display', 'inherit');
           runParams = {
             fromDate: '',
             toDate: '',
@@ -171,11 +170,11 @@
   }
 
   function hideAllReportContainers() {
-    $('#attendance-by-person-container')[0].style.setProperty('display', 'none');
-    $('#attendance-by-date-container')[0].style.setProperty('display', 'none');
-    $('#attendance-by-mia-container')[0].style.setProperty('display', 'none');
-    $('#follow-up-container')[0].style.setProperty('display', 'none');
-    $('#people-by-attender-status-container')[0].style.setProperty('display', 'none');
+    $('#attendance-by-person-container').css('display', 'none');
+    $('#attendance-by-date-container').css('display', 'none');
+    $('#attendance-by-mia-container').css('display', 'none');
+    $('#follow-up-container').css('display', 'none');
+    $('#people-by-attender-status-container').css('display', 'none');
   }
 
   function validateDates(fDate, tDate, requireDate) {
@@ -321,7 +320,7 @@
       display = person.description;
     }
 
-    display = '<a class="person_name" href="manage-person.html?id='+person.id+'">'+display+'</a>';
+    display = '<a class="person_name" href="manage-person.php?id='+person.id+'">'+display+'</a>';
 
     return '<tr adult="'+person.adult+'" personId="'+person.id+'"><td data-th="Name">'+display+'</td></tr>';
   }
@@ -329,14 +328,14 @@
   function buildPersonRow(person) {
 
 
-    //display = '<a class="person_name" href="manage-person.html?id='+person.id+'">'+display+'</a>';
+    //display = '<a class="person_name" href="manage-person.php?id='+person.id+'">'+display+'</a>';
     temp = (currentLabel2 === '') ? 
             '' : 
             '<td class="report-attendance-table-attendance-col" data-th="First">'+
             person.First_Service_Attendance+'</td>'+
             '<td class="report-attendance-table-attendance-col" data-th="Second">'+
             person.Second_Service_Attendance+'</td>';
-    return    '<tr personId="'+person.id+'"><td data-th="Name"><a class="person_name" href="manage-person.html?id='+person.id+'">'+person.display+'</a></td>'+
+    return    '<tr personId="'+person.id+'"><td data-th="Name"><a class="person_name" href="manage-person.php?id='+person.id+'">'+person.display+'</a></td>'+
               temp+
               '<td class="report-attendance-table-attendance-col" data-th="Total">'+
               person.Total_Attendance+'</td></tr>';
@@ -352,7 +351,7 @@
       display = person.description;
     }
     
-    display = '<a class="person_name" href="manage-person.html?id='+person.id+'">'+display+'</a>';
+    display = '<a class="person_name" href="manage-person.php?id='+person.id+'">'+display+'</a>';
 
     phone = formatPhoneNumber(phone);
 
@@ -368,7 +367,7 @@
   }
 
   function onClickTopBottom(e) {
-    var containerId = '#'+e.target.parentElement.previousElementSibling.id;
+    var containerId = '#'+e.target.parentElement.parentElement.parentElement.previousElementSibling.id;
     var pos = (e.target.id.indexOf('top') == -1) ?
                     $(containerId)[0].scrollHeight
                     : 0;
@@ -376,31 +375,6 @@
       $('<style></style>').appendTo($(document.body)).remove();
     });
   }
-      
-    function loadServiceOptions() {
-        $.ajax({
-            type: 'POST',
-            url: 'ajax/get_service_options.php'
-        })
-        .done(function(msg) {
-            $('.reports-form').unmask();
-            var data = JSON.parse(msg);
-            if (data.success && data.options) {
-                options = data.options;
-                populateTypes();
-            } else {
-                if (data.error === 1) {
-                    logout();
-                } else {
-                    $().toastmessage('showErrorToast', "Error loading settings");
-                }
-            }
-        })
-        .fail(function() {
-            $('.reports-form').unmask();
-            $().toastmessage('showErrorToast', "Error loading settings");
-        });
-    }
 
   function loadReport(reportType, params) {
     $('.reports-form').mask('Loading...');
@@ -444,31 +418,6 @@
     .fail(function() {
       $('.reports-form').unmask();
       $().toastmessage('showErrorToast', "Error loading report");
-    });
-  }
-
-  function loadFirstLastServiceDates() {
-    $('.reports-form').mask('Loading...');
-    $.ajax({
-      type: 'GET',
-      url: 'ajax/get_first_last_service_dates.php'
-    })
-    .done(function(msg) {
-      var data = JSON.parse(msg);
-      if(data.success) {
-        populateForm(data.first_dt, data.last_dt);
-        loadServiceOptions();
-      } else {
-        if(data.error === 1) {
-          logout();
-        } else {
-          $().toastmessage('showErrorToast', "Error loading data");
-        }
-      }
-    })
-    .fail(function() {
-      $('.reports-form').unmask();
-      $().toastmessage('showErrorToast', "Error loading data");
     });
   }
 
@@ -572,5 +521,6 @@
   $('.top-bottom-links a').on('click', onClickTopBottom);
   $('#toggle-check').on('change', toggleSelection);
   
-  checkLoginStatus(loadFirstLastServiceDates);
+  populateForm();
+  populateTypes();
 })();

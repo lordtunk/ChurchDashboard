@@ -1,0 +1,1 @@
+update People p set primary_phone=concat('(',SUBSTRING(p.primary_phone, 1, 3),') ',SUBSTRING(p.primary_phone, 4, 3),'-',SUBSTRING(p.primary_phone, 7)) where concat('',p.primary_phone * 1) = p.primary_phone and length(p.primary_phone) = 10
