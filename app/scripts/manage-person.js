@@ -216,7 +216,7 @@
         lastName.value = p.last_name;
         description.value = p.description;
         firstRecordedVisit.innerHTML = p.first_attendance_dt || '<span style="font-style: italic;">(None)</span>';
-        attenderStatus.value = p.attender_status;
+		attenderStatus.value = p.attender_status;
         adult.checked = p.adult;
         active.checked = p.active;
         baptized.checked = p.baptized;
@@ -508,8 +508,7 @@
                     var data = JSON.parse(msg);
                     populateStates(data);
                 }
-                populateTypes();
-                populateAttendanceFrequency();
+
                 //loadPerson();
                 //loadVisitors();
             })
@@ -1354,5 +1353,7 @@
     $('#manage-unknown-date').on('change', onChangeUnknownDate);
 
     loadStates();
+	populateTypes();
+	populateAttendanceFrequency();
 	populateForm(person);	// jshint ignore:line
 })();
