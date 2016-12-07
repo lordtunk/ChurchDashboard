@@ -1,16 +1,11 @@
 (function() {
     'use strict';
-    if ($('#manage-person').length === 0) return;
 
     $('#follow-up-date').datepicker();
-    $('#first-visit').datepicker();
     var urlParams = {},
-        person = {},
-        visitors = [],
         firstName = document.querySelector('#first-name'),
         lastName = document.querySelector('#last-name'),
         description = document.querySelector('#description'),
-        firstVisit = document.querySelector('#first-visit'),
         firstRecordedVisit = document.querySelector('#first-recorded-visit'),
         attenderStatus = document.querySelector('#attender-status'),
         adult = document.querySelector('#adult'),
@@ -51,8 +46,14 @@
         relationshipDialog = $('.manage-person-relationship-form').dialog({
             autoOpen: false,
             height: 400,
-            width: 510,
-            modal: true
+            width: 350,
+            modal: true,
+            open: function() {
+                $("body").css({ overflow: 'hidden' });
+            },
+            beforeClose: function() {
+                $("body").css({ overflow: 'inherit' });
+            }
         }),
         relationshipId = relationshipDialog[0].querySelector('#relationship-id'),
         relationshipType = relationshipDialog[0].querySelector('#relationship-type'),
@@ -66,9 +67,15 @@
         
         selectPersonDialog = $('.select-person-form').dialog({
             autoOpen: false,
-            height: 430,
-            width: 510,
-            modal: true
+            height: 400,
+            width: 350,
+            modal: true,
+            open: function() {
+                $("body").css({ overflow: 'hidden' });
+            },
+            beforeClose: function() {
+                $("body").css({ overflow: 'inherit' });
+            }
         }),
         addNewPersonBtn = document.querySelector('#add-new-person'),
         searchBtn = document.querySelector('#search'),
@@ -83,9 +90,15 @@
         closeBtn = document.querySelector('#close'),
         dialog = $('.manage-person-follow-up-form').dialog({
             autoOpen: false,
-            height: 400,
-            width: 510,
-            modal: true
+            height: 410,
+            width: 350,
+            modal: true,
+            open: function() {
+                $("body").css({ overflow: 'hidden' });
+            },
+            beforeClose: function() {
+                $("body").css({ overflow: 'inherit' });
+            }
         }),
         addToSpouseContainerFollowUp = dialog[0].querySelector('#add-to-spouse-container-follow-up'),
         addToSpouseFollowUp = dialog[0].querySelector('#add-to-spouse-follow-up'),
@@ -108,8 +121,6 @@
         followUpInfoMember = dialog[0].querySelector('#follow-up-info-member'),
         followUpInfoVisit = dialog[0].querySelector('#follow-up-info-visit'),
         followUpComments = dialog[0].querySelector('#follow-up-comments'),
-        $dialogTitle = $('.ui-dialog-title').text('Edit Follow Up'),
-        $relationshipDialogTitle = $('.ui-dialog-title').text('Edit Relationship'),
         followUpIdSequence = -1,
         noChangesMade = true,
         phoneNumberRegex = /^((\(?([2-9][0-8][0-9])\))|([2-9][0-8][0-9]))?[-. ]?([2-9][0-9]{2})[-. ]?([0-9]{4})$/,
@@ -140,6 +151,11 @@
             4: "Member",
             "": "--None Provided--"
         };
+		
+	/* jshint ignore:start */
+	if(apiKey)
+		gMapsImgUrl += '&key='+apiKey;
+	/* jshint ignore:end */
 
     (window.onpopstate = function() {
         var match,
@@ -157,7 +173,7 @@
 
     // Redirect the user to the attendance page if no
     // id was specified in the url parameters
-    if (!urlParams.id) window.location = 'attendance.html';
+    if (!urlParams.id) window.location = 'attendance.php';
 
     function populateStates(states) {
         var $select = $('#state');
@@ -174,7 +190,7 @@
         });
         $select.val('');
     }
-
+	
     function populateTypes() {
         var $select = $('#follow-up-type');
         $.each(followUpTypeData, function(typeCd, type) {
@@ -199,7 +215,6 @@
         firstName.value = p.first_name;
         lastName.value = p.last_name;
         description.value = p.description;
-        firstVisit.value = p.first_visit;
         firstRecordedVisit.innerHTML = p.first_attendance_dt || '<span style="font-style: italic;">(None)</span>';
         attenderStatus.value = p.attender_status;
         adult.checked = p.adult;
@@ -225,6 +240,7 @@
         secondaryPhoneType.value = p.secondary_phone_type;
 
         populateCommunicationCardOptions(p);
+		populateCampuses(p.campuses);
 
         updateMap(p);
         processFollowUps(p.follow_ups);
@@ -247,6 +263,13 @@
         infoMember.checked = p.info_member;
         infoVisit.checked = p.info_visit;
     }
+	
+	function populateCampuses(campuses) {
+		$('.campuses input').prop('checked', false);
+		for(var i=0; i<campuses.length; i++) {
+			$('.campuses input[campusid='+campuses[i]+']').prop('checked', true);
+		}
+	}
 
     function updateMap(p) {
         var addr = getAddressString(p);
@@ -258,12 +281,17 @@
     }
 
     function onUpdateClick() {
+		var campusEls = $('.campuses input:checked');
+		var campuses = [];
+		for(var i=0; i<campusEls.length; i++) {
+			campuses.push(campusEls[i].getAttribute('campusid'));
+		}
+		
         var p = {
-            id: person.id,
+            id: person.id,	// jshint ignore:line
             first_name: $.trim(firstName.value),
             last_name: $.trim(lastName.value),
             description: $.trim(description.value),
-            first_visit: $.trim(firstVisit.value),
             attender_status: attenderStatus.value,
             adult: adult.checked,
             active: active.checked,
@@ -292,7 +320,8 @@
             info_ggroups: infoGGroups.checked,
             info_gteams: infoGTeams.checked,
             info_member: infoMember.checked,
-            info_visit: infoVisit.checked
+            info_visit: infoVisit.checked,
+			campuses: campuses
         };
         
         if($.trim(getAddressString(p)) === 'OH')
@@ -328,7 +357,7 @@
                 id: row.getAttribute('relationship_id'),
                 typeCd: typeCd,
                 type: relationshipTypeData[typeCd],
-                person_id: person.id,
+                person_id: person.id,	// jshint ignore:line
                 relation_id: row.children[1].getAttribute('relationid'),
                 name: row.children[1].getAttribute('relationname')
             });
@@ -392,7 +421,7 @@
 
     function onCancelClick() {
         if (confirm("If you continue you will lose any unsaved changes. Continue?")) {
-            populateForm(person);
+            populateForm(person);	// jshint ignore:line
             noChangesMade = true;
         }
     }
@@ -481,59 +510,11 @@
                 }
                 populateTypes();
                 populateAttendanceFrequency();
-                loadPerson();
-                loadVisitors();
+                //loadPerson();
+                //loadVisitors();
             })
             .fail(function() {
                 $().toastmessage('showErrorToast', "Error loading states");
-            });
-    }
-
-    function loadVisitors() {
-        $.ajax({
-            type: 'GET',
-            url: 'ajax/get_visitors.php'
-        })
-            .done(function(msg) {
-                var data = JSON.parse(msg);
-                if (data.success) {
-                    visitors = data.people;
-                } else {
-                    if (data.error === 1) {
-                        logout();
-                    } else {
-                        $().toastmessage('showErrorToast', "Error loading visitors");
-                    }
-                }
-            })
-            .fail(function() {
-                $().toastmessage('showErrorToast', "Error loading visitors");
-            });
-    }
-
-    function loadPerson() {
-        $.ajax({
-            type: 'GET',
-            url: 'ajax/get_person.php',
-            data: {
-                id: urlParams.id
-            }
-        })
-            .done(function(msg) {
-                var data = JSON.parse(msg);
-                if (data.success) {
-                    person = data.person;
-                    populateForm(data.person);
-                } else {
-                    if (data.error === 1) {
-                        logout();
-                    } else {
-                        $().toastmessage('showErrorToast', "Error loading");
-                    }
-                }
-            })
-            .fail(function() {
-                $().toastmessage('showErrorToast', "Error loading person");
             });
     }
 
@@ -550,7 +531,7 @@
                 if (data.success) {
                     p.follow_ups = getFollowUps();
                     p.relationships = getRelationships();
-                    person = p;
+                    person = p;		// jshint ignore:line
                     noChangesMade = true;
                     updateMap(p);
                     $().toastmessage('showSuccessToast', "Save successful");
@@ -572,13 +553,13 @@
             type: 'POST',
             url: 'ajax/delete_person.php',
             data: {
-                id: person.id
+                id: person.id	// jshint ignore:line
             }
         })
             .done(function(msg) {
                 var data = JSON.parse(msg);
                 if (data.success) {
-                    window.location = 'attendance.html';
+                    window.location = 'attendance.php';
                 } else {
                     if (data.error === 1) {
                         logout();
@@ -630,7 +611,7 @@
             url: 'ajax/delete_follow_up.php',
             data: {
                 id: id,
-                personId: person.id
+                personId: person.id		// jshint ignore:line
             }
         })
             .done(function(msg) {
@@ -725,7 +706,7 @@
             type: 'POST',
             url: 'ajax/copy_address_to_spouse.php',
             data: {
-                personId: person.id
+                personId: person.id		// jshint ignore:line
             }
         })
         .done(function(msg) {
@@ -760,7 +741,7 @@
 
     function doSelectPerson(id, name) {
         closeSelectPerson();
-        relationshipRelation.innerHTML = '<a class="person_name" href="manage-person.html?id=' + id + '">' + name + '</a>';
+        relationshipRelation.innerHTML = '<a class="person_name" href="manage-person.php?id=' + id + '">' + name + '</a>';
         relationshipRelation.setAttribute('relationid', id);
         relationshipRelation.setAttribute('person_name', name);
     }
@@ -768,7 +749,7 @@
     function onManagePerson(e) {
         var row = e.currentTarget.parentElement.parentElement;
         var id = row.getAttribute('person_id');
-        window.location = 'manage-person.html?id=' + id;
+        window.location = 'manage-person.php?id=' + id;
     }
 
     function processSearchResults(results) {
@@ -790,7 +771,7 @@
             '<tr person_id="' + p.id + '">' +
             '<td data-th="Name" person_name="' + name + '"><a class="person_name" href="javascript:void(0);">' + name + '</a></td>' +
             '<td data-th="Address">' + getAddress(p) + '</td>' +
-            '<td data-th="" class="search-table-button-col"><button class="search-button button--blue-x-small">Manage</button></td>' +
+            '<td data-th="" class="search-table-button-col"><button class="search-button btn btn-xs btn-info">Manage</button></td>' +
             '</tr>');
     }
     
@@ -867,7 +848,7 @@
         
         var spouse = $('#relationship-table td[typecd=1]');
         addToSpouseContainerFollowUp.style.display = (spouse.length > 0) ? 'inherit' : 'none';
-        addToSpouseFollowUp.checked = true;
+        addToSpouseFollowUp.checked = spouse.length > 0;
 
         var inputs = followUpVisitors.querySelectorAll('input');
         for (var i = 0; i < inputs.length; i++)
@@ -924,7 +905,7 @@
         }
         
         var spouse = $('#relationship-table td[typecd=1]');
-        if(spouse.length > 0 && addToSpouseFollowUp.checked && $dialogTitle.text().indexOf('Edit') === -1) {
+        if(spouse.length > 0 && addToSpouseFollowUp.checked && dialog.dialog('option', 'title').indexOf('Edit') === -1) {
             spouseId = spouse.next()[0].getAttribute('relationid');
         }
 
@@ -946,8 +927,8 @@
         }
 
         return {
-            id: ($dialogTitle.text().indexOf('Edit') === -1) ? genFollowUpId() : followUpId.value,
-            personId: person.id,
+            id: (dialog.dialog('option', 'title').indexOf('Edit') === -1) ? genFollowUpId() : followUpId.value,
+            personId: person.id,		// jshint ignore:line
             spouseId: spouseId,
             date: date,
             typeCd: type,
@@ -983,7 +964,7 @@
             '<td data-th="Date" class="follow-up-table-date-col">' + followUp.date + '</td>' +
             '<td data-th="By" visitorsIds="' + followUp.visitorsIds.join(',') + '">' + followUp.visitors.join(', ') + '</td>' +
             '<td data-th="Comments" class="follow-up-table-comments-col">' + followUp.comments + '</td>' +
-            '<td data-th="" class="follow-up-table-button-col"><button class="edit-follow-up"><i class="fa fa-edit"></i></button><button class="delete-follow-up"><i class="fa fa-minus-circle"></i></button></td>' +
+            '<td data-th="" class="follow-up-table-button-col"><button class="edit-follow-up"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button><button class="delete-follow-up"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></button></td>' +
             '</tr>');
     }
 
@@ -1021,8 +1002,8 @@
         $('#relationship-table > tbody:last').append(
             '<tr relationship_id="' + relationship.id + '">' +
             '<td data-th="Type" typeCd="' + relationship.typeCd + '">' + relationship.type + '</td>' +
-            '<td data-th="Name" relationId="'+relationship.relation_id+'" relationname="' + relationship.name + '"><a class="person_name" href="manage-person.html?id=' + relationship.relation_id + '">' + relationship.name + '</a></td>' +
-            '<td data-th="" class="relationship-table-button-col"><button class="edit-relationship"><i class="fa fa-edit"></i></button><button class="delete-relationship"><i class="fa fa-minus-circle"></i></button></td>' +
+            '<td data-th="Name" relationId="'+relationship.relation_id+'" relationname="' + relationship.name + '"><a class="person_name" href="manage-person.php?id=' + relationship.relation_id + '">' + relationship.name + '</a></td>' +
+            '<td data-th="" class="relationship-table-button-col"><button class="edit-relationship"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></button><button class="delete-relationship"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></button></td>' +
             '</tr>');
     }
 
@@ -1036,8 +1017,8 @@
     function setVisitors() {
         if (followUpVisitors.innerHTML.trim() === '') {
             var v;
-            for (var i = 0; i < visitors.length; i++) {
-                v = visitors[i];
+            for (var i = 0; i < visitors.length; i++) {		// jshint ignore:line
+                v = visitors[i];							// jshint ignore:line
                 followUpVisitors.innerHTML +=
                     '<div class="check-field">' +
                     '<input type="checkbox" personid="' + v.id + '" id="follow-up-by-' + v.id + '"/>' +
@@ -1050,8 +1031,8 @@
     function addRelationship() {
         relationshipDialog.dialog('open');
         clearRelationshipForm();
-        $relationshipDialogTitle.text('Add Relationship');
-        relationshipPersonName.innerHTML = getDisplayName(person);
+        relationshipDialog.dialog('option', 'title', 'Add Relationship');
+        relationshipPersonName.innerHTML = getDisplayName(person);	// jshint ignore:line
     }
 
     function closeRelationship() {
@@ -1089,7 +1070,7 @@
     }
     
     function addCloseRelationship() {
-        if ($relationshipDialogTitle.text().indexOf('Edit') === -1)
+        if (relationshipDialog.dialog('option', 'title').indexOf('Edit') === -1)
             doAddRelationship();
         else
             doEditRelationship();
@@ -1103,7 +1084,7 @@
 
         if (!relationId) {
             msg += 'Must select a person<br />';
-        } else if(relationId == person.id) {
+        } else if(relationId == person.id) {	// jshint ignore:line
             msg += 'Person cannot have a relationship with themself<br />';            
         }
         
@@ -1118,11 +1099,11 @@
         }
         
         return {
-            id: ($relationshipDialogTitle.text().indexOf('Edit') === -1) ? genRelationshipId() : relationshipId.value,
+            id: (relationshipDialog.dialog('option', 'title').indexOf('Edit') === -1) ? genRelationshipId() : relationshipId.value,
             spouseId: spouseId,
             typeCd: type,
             type: relationshipType.selectedOptions[0].text,
-            person_id: person.id,
+            person_id: person.id,		// jshint ignore:line
             relation_id: relationId,
             name: relationshipRelation.getAttribute('person_name')
         };
@@ -1135,7 +1116,7 @@
         relationshipType.value = row.children[0].getAttribute('typeCd') || '';
         relationshipId.value = row.getAttribute('relationship_id');
         doSelectPerson(row.children[1].getAttribute('relationid'), row.children[1].getAttribute('relationname'));
-        $relationshipDialogTitle.text('Edit Follow Up');
+        relationshipDialog.dialog('option', 'title', 'Edit Relationship');
     }
 
     function onDeleteRelationshipClick(e) {
@@ -1149,7 +1130,7 @@
         dialog.dialog('open');
         clearFollowUpForm();
         setVisitors();
-        $dialogTitle.text('Add Follow Up');
+        dialog.dialog('option', 'title', 'Add Follow Up');
     }
 
     function closeFollowUp() {
@@ -1179,21 +1160,21 @@
     }
 
     function addCopy() {
-        if ($dialogTitle.text().indexOf('Edit') === -1)
+        if (dialog.dialog('option', 'title').indexOf('Edit') === -1)
             doAddFollowUp();
         else
             doEditFollowUp();
     }
 
     function addClear() {
-        if ($dialogTitle.text().indexOf('Edit') === -1)
+        if (dialog.dialog('option', 'title').indexOf('Edit') === -1)
             doAddFollowUp(clearFollowUpForm);
         else
             doEditFollowUp(clearFollowUpForm);
     }
 
     function addClose() {
-        if ($dialogTitle.text().indexOf('Edit') === -1)
+        if (dialog.dialog('option', 'title').indexOf('Edit') === -1)
             doAddFollowUp(closeFollowUp);
         else
             doEditFollowUp(closeFollowUp);
@@ -1251,7 +1232,7 @@
         }
         onFollowUpTypeChange();
         
-        $dialogTitle.text('Edit Follow Up');
+        dialog.dialog('option', 'title', 'Edit Follow Up');
     }
 
     function onDeleteFollowUpClick(e) {
@@ -1372,5 +1353,6 @@
     
     $('#manage-unknown-date').on('change', onChangeUnknownDate);
 
-    checkLoginStatus(loadStates);
+    loadStates();
+	populateForm(person);	// jshint ignore:line
 })();

@@ -1,11 +1,13 @@
 <?php
     session_start();
-    include("func.php");
-    include("attendance.php");
+    include("../utils/func.php");
+    include("../utils/attendance.php");
+    include("../utils/follow_ups.php");
     $type = $_POST['type'];
     $params = isset($_POST['params']) ? json_decode($_POST['params']) : null;
     $f = new Func();
     $att = new Attendance();
+    $followUps = new FollowUps();
     $dict = array();
 
     function isDate($txtDate, $allowBlank) {
@@ -45,6 +47,7 @@
     if($dict['success'] == TRUE) {
         try {
             switch($type) {
+			// Attendance By Date
             case 1:
                 $queryParams = array();
                 $totalsQuery = "";
@@ -58,7 +61,7 @@
                 }
                 if($params->toDate != "") {
                     $queryParams[":toDate"] = $params->toDate;
-                    $where .= "AND s.service_dt <= STR_TO_DATE(:toDate,'%m/%d/%Y')";
+                    $where .= " AND s.service_dt <= STR_TO_DATE(:toDate,'%m/%d/%Y')";
                 }
                 if($params->label2 != "") {
                     $queryParams[":label2"] = $params->label2;
@@ -248,6 +251,7 @@
                 $dict['totals'] = $results;
                 $dict['aggregates'] = $aggregates;
                 break;
+			// Attendance By Person
             case 2:
                 $queryParams = array();
                 $where = " and s.campus=:campus";
@@ -407,27 +411,52 @@
                 $results = $f->fetchAndExecute($query, $queryParams);
                 $dict['people'] = $results;
                 break;
-            case 3:
-                $query = "SELECT DISTINCT
+            // Missing In Action
+			case 3:
+                // BUG: This query does not seem to work with certain 
+                // versions of libmysql for Ubuntu. It will return 0 results
+                // $query = "SELECT DISTINCT
+                                // service_dt,
+                                // id
+                            // FROM
+                                // Services AS s1
+                            // WHERE
+                                // (SELECT
+                                // COUNT(DISTINCT(service_dt))
+                                  // FROM
+                                // Services AS s2
+                                  // WHERE
+                                // DAYOFWEEK(s2.service_dt) = 1
+                                // AND DAYOFWEEK(s1.service_dt) = 1
+                                // AND s1.service_dt <= s2.service_dt) IN (1,2)
+                                
+                                // AND s1.campus=:campus";
+								
+				// Get all Sunday services for the specified campus
+				$query = "SELECT DISTINCT
                                 service_dt,
                                 id
                             FROM
                                 Services AS s1
                             WHERE
-                                (SELECT
-                                COUNT(DISTINCT(service_dt))
-                                  FROM
-                                Services AS s2
-                                  WHERE
-                                DAYOFWEEK(s2.service_dt) = 1
-                                AND DAYOFWEEK(s1.service_dt) = 1
-                                AND s1.service_dt <= s2.service_dt) IN (1,2)
                                 
-                                AND s1.campus=:campus";
+                                DAYOFWEEK(s1.service_dt) = 1
+                                AND s1.campus=:campus
+                            ORDER BY
+                            	service_dt DESC";
                 $results = $f->fetchAndExecute($query, array(":campus"=>$params->campus));
                 if(count($results) > 0) {
                     $service_ids = array();
+					$count = 1;
+					$lastDate = $results[0]['service_dt'];
                     foreach($results as $key => $row) {
+						// Each Sunday can have multiple services so track count by date
+						if($lastDate != $row['service_dt']) {
+							$lastDate = $row['service_dt'];
+							$count = $count + 1;
+						}
+						if($count > $params->missingFor)
+							break;
                         array_push($service_ids, $row['id']);
                     }
                     $idString = implode(",", $service_ids);
@@ -438,6 +467,7 @@
                                   p.description
                                 FROM
                                   People p
+								  inner join PersonCampusAssociations pca on pca.person_id=p.id and pca.campus=:campus
                                   LEFT OUTER JOIN Attendance a ON p.id=a.attended_by AND a.service_id IN
                                 ($idString)
                                 WHERE
@@ -450,15 +480,17 @@
                                   p.last_name,
                                   p.first_name,
                                   p.description";
-                    $results = $f->fetchAndExecute($query);
+                    $results = $f->fetchAndExecute($query, array(":campus"=>$params->campus));
                 }
                 $dict['people'] = $results;
                 break;
-            case 4:
-                $results = $f->getFollowUpReport($params, false);
+            // Follow Up
+			case 4:
+                $results = $followUps->getFollowUpReport($params, false);
                 $dict['people'] = $results;
                 break;
-            case 5:
+            // People By Attender Status
+			case 5:
                 $query = "SELECT
                             p.id,
                             p.first_name,
@@ -468,6 +500,7 @@
                             'true' adult
                           FROM
                             People p
+							inner join PersonCampusAssociations pca on pca.person_id=p.id and pca.campus=:campus
                           WHERE
                             p.adult = 1
                           ORDER BY
@@ -477,7 +510,7 @@
                             p.last_name,
                             p.first_name,
                             p.description";
-                $results = $f->fetchAndExecute($query);
+                $results = $f->fetchAndExecute($query, array(":campus"=>$params->campus));
                 $dict['people'] = $results;
                 break;
             }

@@ -1,9 +1,11 @@
 <?php
     session_start();
-    include("func.php");
+    include("../utils/func.php");
+    include("../utils/follow_ups.php");
     $params = isset($_POST['params']) ? json_decode($_POST['params']) : null;
     $email = $_POST['email'];
     $f = new Func();
+    $followUps = new FollowUps();
     $dict = array();
 
     function isDate($txtDate, $allowBlank) {
@@ -62,7 +64,7 @@
 			$commitmentMinistry = "";
 			$firstTimeVisitors = "";
 			
-            $results = $f->getFollowUpReport($params, true);
+            $results = $followUps->getFollowUpReport($params, true);
 			$borderWidth = "1px";
 			$borderColor = "black";
 			$style = "border: $borderWidth solid $borderColor";

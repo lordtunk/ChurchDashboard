@@ -1,6 +1,5 @@
 (function () {
     'use strict';
-    if($('.settings-form').length === 0) return;
     
     var startingPointEmailField = document.querySelector('#starting-point-emails'),
         campusesField = document.querySelector('#campuses'),
@@ -85,7 +84,7 @@
                 if (data.error === 1) {
                     logout();
                 } else if(data.error === 2) {
-                    window.location = 'attendance.html';
+                    window.location = 'attendance.php';
                 } else {
                     $().toastmessage('showErrorToast', "Error updating settings");
                 }
@@ -95,38 +94,6 @@
             $().toastmessage('showErrorToast', "Error updating settings");
         });
     }
-    
-    function loadSettings() {
-        $.ajax({
-          type: 'POST',
-          url: 'ajax/get_settings.php'
-        })
-        .done(function(msg) {
-            var data = JSON.parse(msg);
-            if (data.success) {
-                startingPointEmailField.value = data.starting_point_emails;
-                campusesField.value = data.campuses;
-                serviceLabelsField.value = data.service_labels;
-                defaultCampusField.value = data.default_campus;
-                defaultFirstServiceLabelField.value = data.default_first_service_label;
-                defaultSecondServiceLabelField.value = data.default_second_service_label;
-            } else {
-                if (data.error === 1) {
-                    logout();
-                } else if(data.error === 2) {
-                    window.location = 'attendance.html';
-                } else {
-                    $().toastmessage('showErrorToast', "Error loading settings");
-                }
-            }
-        })
-        .fail(function() {
-            $().toastmessage('showErrorToast', "Error loading settings");
-        });
-    }
-
 
     document.getElementById('update').addEventListener('click', updateSettings);
-    
-    checkLoginStatus(loadSettings);
 })();

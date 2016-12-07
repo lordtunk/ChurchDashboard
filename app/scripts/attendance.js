@@ -1,9 +1,6 @@
 (function() {
     'use strict';
 
-    if ($('#attendance').length === 0) return;
-
-    //$('#attendance-date').datepicker();
     $('#attendance-date').datepicker({
         dateFormat: 'm/d/yy'
     });
@@ -41,9 +38,15 @@
         scrollAnimationMs = 1000,
         dialog = $('.dialog-form').dialog({
             autoOpen: false,
-            height: 450,
-            width: 450,
-            modal: true
+            height: 420,
+            width: 350,
+            modal: true,
+            open: function() {
+                $("body").css({ overflow: 'hidden' });
+            },
+            beforeClose: function() {
+                $("body").css({ overflow: 'inherit' });
+            }
         }),
         months = [
             'January',
@@ -59,7 +62,7 @@
             'November',
             'December'
         ],
-        options = {},
+        //options = {},
         tempId = -1,
         isAdults = true,
         originalTotals,
@@ -85,19 +88,22 @@
     function populateTypes() {
         var $select = $('#service-label-1'),
             $select2 = $('#service-label-2');
-        $.each(options.service_labels, function(typeCd, type) {
+		$select.children().remove();
+		$select2.children().remove();
+        $.each(options.service_labels, function(typeCd, type) { // jshint ignore:line
             $select.append('<option value="' + typeCd + '">' + type + '</option>');
             $select2.append('<option value="' + typeCd + '">' + type + '</option>');
         });
         $select2.append('<option value="">--None--</option>');
-        $select.val(options.default_first_service_label);
-        $select2.val(options.default_second_service_label);
+        $select.val(options.default_first_service_label);	// jshint ignore:line
+        $select2.val(options.default_second_service_label);	// jshint ignore:line
         
         $select = $('#campus');
-        $.each(options.campuses, function(typeCd, type) {
+		$select.children().remove();
+        $.each(options.campuses, function(typeCd, type) {	// jshint ignore:line
             $select.append('<option value="' + typeCd + '">' + type + '</option>');
         });
-        $select.val(options.default_campus);
+        $select.val(options.default_campus);				// jshint ignore:line
     }
 
     function update() {
@@ -264,14 +270,14 @@
             display = '',
             secondServiceCol = '';
 
-        display = '<a class="person_name" href="manage-person.html?id=' + person.id + '">' + person.display + '</a>';
+        display = '<a class="person_name" href="manage-person.php?id=' + person.id + '">' + person.display + '</a>';
         if(currentLabel2) {
             tempId = genId();
             secondServiceCol = '<td class="attendance-table-attendance-col" service="second" data-th="Second?"><label for="' + tempId + '"><input id="' + tempId + '" type="checkbox" ' + secondChecked + '/></label></td>';
         }
         tempId = genId();
         return '<tr adult="' + person.adult + '" personId="' + person.id + '"><td data-th="Name">' +
-            '<button class="attendance-history-button"><i class="fa fa-archive" /></button>' + display + '</td>' +
+            '<button class="attendance-history-button"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span></button>' + display + '</td>' +
             '<td class="attendance-table-attendance-col" service="first" data-th="First?">' +
             '<label for="' + tempId + '"><input id="' + tempId + '" type="checkbox" ' + firstChecked + '/></label></td>' +
             secondServiceCol + '</tr>';
@@ -332,7 +338,7 @@
             // Attach listeners to inserted rows
             pEl = $('[personid=' + newPerson.id + ']');
             pEl.find('a.person_name').on('click', onClickLink);
-            pEl.find('button.attendance-history-button').on('click', onClickAttendanceHistoryButton);
+            //pEl.find('button.attendance-history-button').on('click', onClickAttendanceHistoryButton);
             // FIX ATTENDANCE UPDATE ISSUE. Attendance counts get messed up when toggling checkbox
             // after saving after adding a new person
             pEl.find('input:checkbox').on('change', updateAttendance);
@@ -470,6 +476,8 @@
         }
     }
     
+    
+    
     function loadPersonAttendance(personId) {
         $('.attendance-form').mask('Loading...');
         $.ajax({
@@ -505,34 +513,9 @@
                 $().toastmessage('showErrorToast', "Error loading person's attendance history");
             });
     }
-    
-    function loadServiceOptions() {
-        $('.attendance-form').mask('Loading...');
-        $.ajax({
-            type: 'POST',
-            url: 'ajax/get_service_options.php'
-        })
-        .done(function(msg) {
-            var data = JSON.parse(msg);
-            if (data.success && data.options) {
-                options = data.options;
-                populateTypes();
-                loadPeople();
-            } else {
-                if (data.error === 1) {
-                    logout();
-                } else {
-                    $().toastmessage('showErrorToast', "Error loading settings");
-                }
-            }
-        })
-        .fail(function() {
-            $('.attendance-form').unmask();
-            $().toastmessage('showErrorToast', "Error loading settings");
-        });
-    }
 
     function loadPeople(isDefault) {
+		$('.attendance-form').mask('Loading...');
         if(typeof isDefault === 'undefined') {
             isDefault = true;
         }
@@ -553,113 +536,115 @@
                 isDefaultLoad: isDefault
             }
         })
-            .done(function(msg) {
-                var data = JSON.parse(msg);
-                if (data.success) {
-                    originalVisitorsSecondCount = 0;
-                    otherVisitorsSecondCount = 0;
-                    
-                    if(data.attendance_dt)
-                        setAttendanceDate(new Date(data.attendance_dt));
-                    if(typeof data.attendance_adults !== "undefined") {
-                        var isLoadAdults = data.attendance_adults == "true";
-                        adultTrue.checked = isLoadAdults;                            
-                        adultFalse.checked = !isLoadAdults;                            
-                    }
-                    if(typeof data.attendance_active !== "undefined"){
-                        var isLoadActive = data.attendance_active == "true";
-                        activeTrue.checked = isLoadActive;                            
-                        activeFalse.checked = !isLoadActive;                            
-                    }
-                    if(typeof data.campus !== "undefined") {
-                        campusField.value = data.campus;
-                    }
-                    if(typeof data.label1 !== "undefined") {
-                        serviceLabel1Field.value = data.label1;
-                    }
-                    if(typeof data.label2 !== "undefined") {
-                        serviceLabel2Field.value = data.label2;
-                    }
-                    isAdults = adultTrue.checked;
-                    currentCampus = campusField.value;
-                    currentLabel1 = serviceLabel1Field.value;
-                    currentLabel2 = serviceLabel2Field.value;
-                    var secondService = $('#service-label-2').val();
-                    
-                    if(isAdults) {
-                        originalVisitorsFirstCount = visitorsFirstCount = parseInt(data.visitors1.adult_visitors);
-                        otherVisitorsFirstCount = parseInt(data.visitors1.kid_visitors);
-                        if(secondService) {
-                            originalVisitorsSecondCount = visitorsSecondCount = parseInt(data.visitors2.adult_visitors);
-                            otherVisitorsSecondCount = parseInt(data.visitors2.kid_visitors);
-                        }
-                    } else {
-                        originalVisitorsFirstCount = visitorsFirstCount = parseInt(data.visitors1.kid_visitors);
-                        otherVisitorsFirstCount = parseInt(data.visitors1.adult_visitors);
-                        if(secondService) {
-                            originalVisitorsSecondCount = visitorsSecondCount = parseInt(data.visitors2.kid_visitors);
-                            otherVisitorsSecondCount = parseInt(data.visitors2.adult_visitors);
-                        }
-                    }
-                    //originalVisitorsFirstCount = visitorsFirstCount = parseInt(isAdults ? data.visitors1.adult_visitors : data.visitors1.kid_visitors);
-                    //originalVisitorsSecondCount = visitorsSecondCount = parseInt(isAdults ? data.visitors2.adult_visitors : data.visitors2.kid_visitors);
-                    totals = data.totals;
-                    sanitizeAttendance();
-                    originalTotals = jQuery.extend({}, totals);
-                    processPeople(data.people);
-                    refreshTotals();
-                    $('#name-table-header').text(isAdults ? 'Adults' : 'Kids');
-                    var firstServiceText = options.service_labels[$('#service-label-1').val()];
-                    $('.first-service-header').text(firstServiceText);
-                    $('#first-service-total-header').text(firstServiceText+' Attendance');
-                    $('#visitors-first-service-label').text(firstServiceText+' Visitors');
-                    
-                    if(secondService) {
-                        $('.second-service-header').text(options.service_labels[secondService]);
-                        $('#second-service-total-header').text(options.service_labels[secondService] + ' Attendance');
-                        $('.second-service-header').css('display', '');
-                        $('#first-service-total-row').css('display', '');
-                        $('#second-service-total-row').css('display', '');
-                        $('.attendance-table-attendance-col[service=second]').css('display', '');
-                        $('#visitors-second-service-label').css('display', '').text(options.service_labels[secondService]+' Visitors');
-                        $('#visitors-second-service').css('display', '');
-                    } else {
-                        $('.second-service-header').css('display', 'none');
-                        $('#first-service-total-row').css('display', 'none');
-                        $('#second-service-total-row').css('display', 'none');
-                        $('.attendance-table-attendance-col[service=second]').css('display', 'none');
-                        $('#visitors-second-service-label').css('display', 'none');
-                        $('#visitors-second-service').css('display', 'none');
-                    }
-                    $('.campus-text').text(options.campuses[$('#campus').val()]);
-                    if (data.scroll_to_id && data.scroll_to_id >= 0) {
-                        var scrollTo = $('[personid=' + data.scroll_to_id + ']')[0];
-                        if (scrollTo) {
-                            var containerId = '#attendance-table-container',
-                                screenOff = $(containerId).offset().top,
-                                scrollOff = scrollTo.offsetTop;
-                            $('body').animate({
-                                scrollTop: screenOff
-                            }, 300);
-                            $(containerId).animate({
-                                scrollTop: scrollOff
-                            }, scrollAnimationMs);
-                        }
-                    }
-                    $('.attendance-form').unmask();
-                } else {
-                    $('.attendance-form').unmask();
-                    if (data.error === 1) {
-                        logout();
-                    } else {
-                        $().toastmessage('showErrorToast', "Error loading");
-                    }
-                }
-            })
-            .fail(function() {
-                $('.attendance-form').unmask();
-                $().toastmessage('showErrorToast', "Error loading");
-            });
+		.done(function(msg) {
+			var data = JSON.parse(msg);
+			if (data.success) {
+				if(isDefault)
+					populateTypes();
+				originalVisitorsSecondCount = 0;
+				otherVisitorsSecondCount = 0;
+				
+				if(data.attendance_dt)
+					setAttendanceDate(new Date(data.attendance_dt));
+				if(typeof data.attendance_adults !== "undefined") {
+					var isLoadAdults = data.attendance_adults == "true";
+					adultTrue.checked = isLoadAdults;                            
+					adultFalse.checked = !isLoadAdults;                            
+				}
+				if(typeof data.attendance_active !== "undefined"){
+					var isLoadActive = data.attendance_active == "true";
+					activeTrue.checked = isLoadActive;                            
+					activeFalse.checked = !isLoadActive;                            
+				}
+				if(typeof data.campus !== "undefined") {
+					campusField.value = data.campus;
+				}
+				if(typeof data.label1 !== "undefined") {
+					serviceLabel1Field.value = data.label1;
+				}
+				if(typeof data.label2 !== "undefined") {
+					serviceLabel2Field.value = data.label2;
+				}
+				isAdults = adultTrue.checked;
+				currentCampus = campusField.value;
+				currentLabel1 = serviceLabel1Field.value;
+				currentLabel2 = serviceLabel2Field.value;
+				var secondService = $('#service-label-2').val();
+				
+				if(isAdults) {
+					originalVisitorsFirstCount = visitorsFirstCount = parseInt(data.visitors1.adult_visitors);
+					otherVisitorsFirstCount = parseInt(data.visitors1.kid_visitors);
+					if(secondService) {
+						originalVisitorsSecondCount = visitorsSecondCount = parseInt(data.visitors2.adult_visitors);
+						otherVisitorsSecondCount = parseInt(data.visitors2.kid_visitors);
+					}
+				} else {
+					originalVisitorsFirstCount = visitorsFirstCount = parseInt(data.visitors1.kid_visitors);
+					otherVisitorsFirstCount = parseInt(data.visitors1.adult_visitors);
+					if(secondService) {
+						originalVisitorsSecondCount = visitorsSecondCount = parseInt(data.visitors2.kid_visitors);
+						otherVisitorsSecondCount = parseInt(data.visitors2.adult_visitors);
+					}
+				}
+				//originalVisitorsFirstCount = visitorsFirstCount = parseInt(isAdults ? data.visitors1.adult_visitors : data.visitors1.kid_visitors);
+				//originalVisitorsSecondCount = visitorsSecondCount = parseInt(isAdults ? data.visitors2.adult_visitors : data.visitors2.kid_visitors);
+				totals = data.totals;
+				sanitizeAttendance();
+				originalTotals = jQuery.extend({}, totals);
+				processPeople(data.people);
+				refreshTotals();
+				$('#name-table-header').text(isAdults ? 'Adults' : 'Kids');
+				var firstServiceText = options.service_labels[$('#service-label-1').val()];	// jshint ignore:line
+				$('.first-service-header').text(firstServiceText);
+				$('#first-service-total-header').text(firstServiceText+' Attendance');
+				$('#visitors-first-service-label').text(firstServiceText+' Visitors');
+				
+				if(secondService) {
+					$('.second-service-header').text(options.service_labels[secondService]);	// jshint ignore:line
+					$('#second-service-total-header').text(options.service_labels[secondService] + ' Attendance');	// jshint ignore:line
+					$('.second-service-header').css('display', '');
+					$('#first-service-total-row').css('display', '');
+					$('#second-service-total-row').css('display', '');
+					$('.attendance-table-attendance-col[service=second]').css('display', '');
+					$('#visitors-second-service-label').css('display', '').text(options.service_labels[secondService]+' Visitors');	// jshint ignore:line
+					$('#visitors-second-service').css('display', '');
+				} else {
+					$('.second-service-header').css('display', 'none');
+					$('#first-service-total-row').css('display', 'none');
+					$('#second-service-total-row').css('display', 'none');
+					$('.attendance-table-attendance-col[service=second]').css('display', 'none');
+					$('#visitors-second-service-label').css('display', 'none');
+					$('#visitors-second-service').css('display', 'none');
+				}
+				$('.campus-text').text(options.campuses[$('#campus').val()]);	// jshint ignore:line
+				if (data.scroll_to_id && data.scroll_to_id >= 0) {
+					var scrollTo = $('[personid=' + data.scroll_to_id + ']')[0];
+					if (scrollTo) {
+						var containerId = '#attendance-table-container',
+							screenOff = $(containerId).offset().top,
+							scrollOff = scrollTo.offsetTop;
+						$('body').animate({
+							scrollTop: screenOff
+						}, 300);
+						$(containerId).animate({
+							scrollTop: scrollOff
+						}, scrollAnimationMs);
+					}
+				}
+				$('.attendance-form').unmask();
+			} else {
+				$('.attendance-form').unmask();
+				if (data.error === 1) {
+					logout();
+				} else {
+					$().toastmessage('showErrorToast', "Error loading");
+				}
+			}
+		})
+		.fail(function() {
+			$('.attendance-form').unmask();
+			$().toastmessage('showErrorToast', "Error loading");
+		});
     }
 
     function savePeople(newPeople) {
@@ -834,5 +819,7 @@
     $('.navigation-links a').on('click', onClickTopBottom);
     $('#refresh-visitors').on('click', refreshTotals);
     
-    checkLoginStatus(loadServiceOptions);
+    //checkLoginStatus(loadServiceOptions);
+	//loadServiceOptions();
+	loadPeople();
 })();

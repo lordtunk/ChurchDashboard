@@ -1,222 +1,32 @@
-/*
- * Web Starter Kit
- *
- * Multi-screen layout styles for your page. Brought to you by the
- * Web Starter Kit team.
- *
- */
-
-html,
 body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+  padding-top: 50px;  /* Shift everything down to account for the navbar */
 }
-
-body {
-  position: relative;
-  font-family:  'Helvetica', 'Arial', sans-serif;
+.btn-default {
+  /*color: #007838;*/
+}
+.xlarge {
+  font-size: 26px;
   font-weight: 300;
-  background-color: #FFFFFF;
-  box-sizing: border-box;
-  overflow: hidden;
-  min-height: 100%;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
+  line-height: 1em;
 }
-
-.app-bar {
-  display: block;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: #009344;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.app-bar-container {
-  display: -webkit-flex;
-  display: flex;
-  width: 100%;
-  height: 60px;
-  position: relative;
-  -webkit-flex-direction: row;
-  flex-direction: row;
-  margin: 0 auto;
-}
-
-.app-bar.open,
-.app-bar.open ~ main {
-  -webkit-transform: translate(250px, 0);
-  transform: translate(250px, 0);
-}
-
-.app-bar .logo {
-  -webkit-flex: 1;
-  flex: 1;
-  font-size: 2em;
-  line-height: 60px;
-  margin: 0 16px;
-  padding: 0;
-  color: #fefefe;
-  float: none;
-  max-width: none;
-  font-family:  'Helvetica Neue', Helvetica, sans-serif;
+.large {
+  font-size: 20px;
   font-weight: 300;
-  line-height: 60px;
+  line-height: 1.3em;
 }
 
-.app-bar .logo a {
-  text-decoration: none;
-  color: inherit;
-  font-weight: normal;
+.navbar-brand.readonly:hover,
+.navbar-brand.readonly:focus {
+    background-color: transparent;
 }
 
-.app-bar-actions {
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-direction: row;
-  flex-direction: row;
-  z-index: 2;
+a.navbar-brand:before {
+  content: url('../images/icon-transparent-20x20.png');
 }
-
-.app-bar input {
-  padding-left: 5px;
-}
-
-.app-bar button {
-  width: 45px;
-  height: 45px;
-  color: white;
-  background-image: none;
-  background-color: transparent;
-  border: none;
-  padding: 0;
-  transition: background-color 0.2s ease-out;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.app-bar button img {
-  width: 60px;
-  height: 60px;
-}
-
-.app-bar button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.app-bar button:focus {
-  background-color: rgba(255, 255, 255, 0.2);
-  outline: 0;
-}
-
-.app-bar button:active {
-  background-color: rgba(255, 255, 255, 0.4);
-}
-
-button.menu img {
-  height:24px;
-  width: 24px;
-}
-
-.promote-layer {
-  /*
-  This may promote the layer to a composited
-  layer.
-
-  Replace with will-change when available
-
-  #perfmatters
-  */
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.base, p, ul, ol {
-  font-size: 19px;
-}
-
-.navdrawer-container {
-  z-index: 1;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: 250px;
-  height: 100%;
-  background-color: #007838;
-  color: #fefefe;
-  -webkit-transform: translate(-250px, 0);
-  transform: translate(-250px, 0);
-  overflow-y: scroll;
-}
-
-.navdrawer-container.open {
-  -webkit-transform: translate(0, 0);
-  transform: translate(0, 0);
-}
-
-.app-bar, .navdrawer-container, main {
-  transition: -webkit-transform 0.3s ease-out;
-  transition: transform 0.3s ease-out;
-}
-
-.navdrawer-container h4,
-.navdrawer-container ul li a {
-  height: 60px;
-  padding: 0 20px;
-  line-height: 60px;
-}
-
-.navdrawer-container h4 {
-  background-color: white;
-  color: #007838;
-}
-
-.navdrawer-container ul {
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-}
-
-.navdrawer-container ul li a {
-  display: block;
-  text-decoration: none;
-  color: white;
-  transition: background-color 0.2s ease-out;
-}
-
-.navdrawer-container ul li {
-  border-bottom-style: solid;
-  border-width: 1px;
-  border-color: white;
-  padding: 0;
-}
-
-.navdrawer-container ul li:before {
-  content: none;
-}
-
-.navdrawer-container ul li a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.navdrawer-container ul li a:focus {
-  background-color: rgba(255, 255, 255, 0.3);
-  outline: 0;
-}
-
-.navdrawer-container ul li a:active {
-  background-color: rgba(255, 255, 255, 0.4);
-}
-
-main {
-  margin: 0 auto;
-  /* Height of the header */
-  padding: 60px 16px 16px 16px;
-  min-height: 100%;
+.navbar-brand-text {
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 4px;
 }
 
 #error-container {
@@ -247,7 +57,11 @@ main {
   flex: 1;
 }
 
-#password {
+div.spacer {
+  display: inline-block;
+}
+
+.login-form #password {
   margin-bottom: 20px;
 }
 
@@ -262,8 +76,9 @@ main {
 
 .attendance-search {
   display: inline-block;
-  float: left;
   padding-top: 70px;
+  min-width: 284px;
+  width: 48%;
 }
 
 /*#service-options {
@@ -306,7 +121,9 @@ main {
   padding: 0;
   margin: 0;
   float: right;
-  margin: 0 10px 10px 0;
+  margin: 20px 10px 10px 0;
+  min-width: 230px;
+  width: 48%;
 }
 
 .attendance-stats > table {
@@ -319,6 +136,13 @@ main {
   display: block;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+}
+
+.attendance-table>thead>tr>td, 
+.attendance-table>tbody>tr>td, 
+.attendance-table>tfoot>tr>td {
+  padding: 0 8px;
+  vertical-align: middle;
 }
 
 #address-view-table-container {
@@ -362,10 +186,13 @@ main {
   padding: 0px;
 }
 
-.navigation-links {
-  display: inline-block;
-  float: right;
+.table-bar {
   margin: 20px;
+}
+
+.navigation-links {
+  /*display: inline-block;*/
+  float: right;
 }
 
 .navigation-links > div {
@@ -378,15 +205,15 @@ main {
 
 .dialog-form #search-table-container {
   overflow-y: scroll;
-  height: 198px;
-  width: 464px;
+  height: 250px;
+  /*width: 464px;*/
 }
 
 .dialog-form .navigation-links {
   margin: 0 20px 0 0;
 }
 
-.search-form #search-table-container {
+.dialog-form #search-table-container {
   overflow-y: scroll;
   max-height: 500px;
 }
@@ -437,6 +264,10 @@ main {
   text-align: center;
 }
 
+#missing-for {
+	width: 50px;
+}
+
 .row-header {
   text-align: center;
   background-color: #009344 !important;
@@ -466,6 +297,10 @@ main {
 
 #follow-ups-form-title {
   margin-left: 20px;
+}
+
+#follow-up-unknown-date-container {
+    display: inline-block;
 }
 
 #follow-up-person-container,
@@ -524,6 +359,10 @@ main {
   overflow-y: scroll;
 }
 
+.manage-person-follow-up-form .dialog-form-inner {
+  height: 290px;
+}
+
 #follow-up-visitors {
   font-style: italic;
   display: inline;
@@ -551,6 +390,10 @@ main {
     display: inline-block;
     border: 1px solid gray;
     margin-left: 10px;
+}
+
+.dashboard .legend {
+  margin-top: 0;
 }
 
 #email-summary {
@@ -613,7 +456,7 @@ main {
 
 .form-section {
   display: inline-block;
-  border: 1px solid gray;
+  border: 1px solid #ddd;
   border-radius: 5px;
   padding: 10px 10px 5px 0;
 }
@@ -675,59 +518,30 @@ input.setting {
   margin-left: 40px;
 }
 
-.address-form-section {
-  margin: 0 0 10px 65px;
-}
-
-.address-form-section > label {
+.address-panel label {
   width: 100px !important;
 }
+.address-panel input {
+  width: 175px !important;
+}
 
-.address-form-section > button {
+.address-panel button {
     float: right;
 }
 
-.contact-form-section-title {
-  padding: 0 0 0 40px;
-}
-.contact-form-section {
-  margin: 0 0 0 40px;
-}
-
-.form-section.interested-form-section>label,
-.form-section.commitments-form-section>label {
-  width:500px;
+.row .interested-panel label,
+.row .commitments-panel label {
+  /*width:500px;*/
+  width: 85%;
   text-align: left;
 }
 
-.commitments-form-section-title,
-.interested-form-section-title {
-  padding: 0 0 0 40px;
+.dialog-form .communication-card-options .row {
+  margin: 0;
 }
-.commitments-form-section,
-.interested-form-section {
-  margin: 0 0 10px 40px;
-}
-.communication-card-options .commitments-form-section-title,
-.communication-card-options .interested-form-section-title{
-  padding: 0;
-}
-.communication-card-options .commitments-form-section,
-.communication-card-options .interested-form-section {
-  margin: 0 0 10px 0;
-}
-.commitments-form-section > input {
-  margin: 0 10px;
-}
-.commitments-form-section > label {
-  padding-left: 5px;
-}
-
-.interested-form-section > input {
-  margin: 0 10px;
-}
-.interested-form-section > label {
-  padding-left: 5px;
+.dialog-form .communication-card-options .col-sm-11 {
+  width: 100%;
+  padding-left: 0;
 }
 
 .col-1 {
@@ -866,90 +680,38 @@ td.checkbox-table-col {
   width: 0;
 }
 
+.app-content.view-person .row {
+   margin-left: 24px;
+   margin-right: 24px;
+}
+
+.manage-account-form label {
+	width: 175px !important;
+	text-align: right;
+	margin-bottom: 15px;
+}
+
+.app-content.manage-account-form .row {
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+/* Bootstrap overrides */
+.table>thead>tr>th {
+  vertical-align: bottom;
+  border: 2px solid #ddd;
+  background: #007235;
+  color: white;
+}
+table th {
+  text-align: center;
+}
+
 /* Larger Screens - desktops and tablets */
 @media all and (min-device-width:1200px) {
-  .app-bar {
-    position: relative;
+  .container {
+    max-width: 900px;
   }
-
-  .app-bar-container {
-    display: block;
-    height: 130px;
-    max-width: 864px;
-    padding: 0 16px;
-    box-sizing: border-box;
-    background-color: #009344;
-  }
-
-  .app-bar .logo {
-    float: left;
-    margin: 0;
-    padding: 0;
-    line-height: 130px;
-    font-size: 46px;
-  }
-  
-  .app-bar-actions {
-    float: right;
-    margin: 42px 0;
-  }
-
-  .app-bar:after {
-    content: ' ';
-    display: block;
-    height: 0;
-    overflow: hidden;
-    clear: both;
-  }
-
-  button.menu {
-    display: none;
-  }
-
-  nav {
-    display: block;
-    margin-top: 130px;
-  }
-
-  .navdrawer-container {
-    position: relative;
-    width: 100%;
-    height: auto;
-    margin-top: 130px;
-    -webkit-transform: translate(0, 0);
-    transform: translate(0, 0);
-    transition: none;
-    overflow-y: auto;
-  }
-
-  .navdrawer-container h4 {
-    display: none;
-  }
-
-  .navdrawer-container ul {
-    display: -webkit-flex;
-    display: flex;
-    max-width: 864px;
-    margin: 0 auto;
-    -webkit-flex-direction: row;
-    flex-direction: row;
-  }
-
-  .navdrawer-container ul li {
-    border: none;
-  }
-
-  main {
-    max-width: 864px;
-    padding-top: 0;
-    min-height: initial;
-  }
-
-  .navdrawer-container {
-    position: relative;
-    margin-top: 0;
-  }
-
   td.attendance-table-attendance-col {
     text-align: center;
   }
@@ -958,34 +720,6 @@ td.checkbox-table-col {
   }
 }
 
-@media all and (min-device-width:1200px) and (max-width:800px) {
-  .app-bar .logo {
-    float: none;
-    width: 100%;
-    line-height: normal;
-    text-align: center;
-    padding-top: 36px;
-  }
-
-  .app-bar-container {
-    height: auto;
-  }
-
-  .app-bar-actions {
-    width: 100%;
-  }
-  
-  .navdrawer-container {
-    padding: 0 16px;
-    overflow-y: auto;
-  }
-
-  .navdrawer-container li {
-    -webkit-flex: 1;
-    flex: 1;
-    text-align: center;
-  }
-}
 
 @media all and (min-device-width:800px) {
   td.attendance-table-attendance-col {
@@ -998,8 +732,15 @@ td.checkbox-table-col {
 }
 
 @media all and (min-width:800px) {
-  .app-content .active-input {
-/*    display: inline-block;*/
+  .xlarge {
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 1.2381em;
+  }
+  .large {
+    font-size: 26px;
+    font-weight: 300;
+    line-height: 1em;
   }
   
   .col-1, .col-2 {
@@ -1008,20 +749,15 @@ td.checkbox-table-col {
   .col-2 {
     vertical-align: top;
   }
-  .address-form-section-title {
-    padding: 10px 0 0 50px;
-  }
-  .address-form-section {
-    margin: 0 0 10px 50px;
-  }
 }
 
 @media all and (max-width:799px) {
-  .address-form-section-title {
-    padding: 10px 0 0 65px;
-  }
   .navigation-links {
     float: none;
+    margin-left: 10px;
+  }
+  .navigation-links > label {
+    padding-left: 0;
   }
   .navigation-links > div {
     display: block;
@@ -1032,6 +768,20 @@ td.checkbox-table-col {
     margin-bottom: 20px;
   }
 }
+
+@media all and (max-width:999px) and (min-width:765px) {
+    body {
+      padding-top: 100px;  /* Shift everything down to account for the navbar */
+    }
+    .row .panel label {
+      text-align: left;
+      padding-left: 0;
+    }
+    .row .campuses label {
+      width: 135px;
+    }
+}
+
 @media all and (max-width:799px) and (orientation:portrait) {
   .app-bar input {
     display: none;
@@ -1043,7 +793,7 @@ td.checkbox-table-col {
     margin: 10px 0 10px 20px;
     width: 225px;
   }
-  .checkbox {
+  .check {
     display: block;
   }
   #starting-point-notified-label {
@@ -1051,7 +801,8 @@ td.checkbox-table-col {
   }
   
   .app-content.login-form label,
-  .app-content.view-person label{
+  .app-content.view-person label,
+  .app-content.manage-account-form label{
     text-align: left;
     padding-left: 20px;
     vertical-align: top;
@@ -1062,56 +813,69 @@ td.checkbox-table-col {
   }
   .app-content.login-form input,
   .app-content.view-person input,
-  .address-form-section select,
-  #first-recorded-visit,
-  .contact-form-section-title,
-  .contact-form-section,
-  .address-form-section-title,
-  .commitments-form-section-title,
-  .interested-form-section-title  {
+  #first-recorded-visit  {
     margin-left: 20px;
   }
+
   #first-recorded-visit {
     display: block;
   }
-  .contact-form-section-title,
-  .address-form-section-title,
-  .commitments-form-section-title,
-  .interested-form-section-title {
-    padding: 10px 0 0 0;
-  }
-  .contact-form-section {
-    width: 255px;
-  }
+
   #email {
     width: 210px;
   }
   .phone-panel > input {
     width: 135px;
   }
-  .address-form-section {
-    margin: 0 0 10px 20px;
-    width: 255px;
-  }
+
   #map-panel {
     width: 300px;
   }
-  .commitments-form-section,
-  .interested-form-section {
-    margin: 0 0 10px 20px;
-    width: 255px;
-  }
-  .app-content.view-person .commitments-form-section label,
-  .app-content.view-person .interested-form-section label{
-    padding-left: 0px;
-    padding-bottom: 5px;
-    width: 185px;
-  }
 }
-.form-section.checkbox-form-section input {
+
+@media all and (max-width:799px) {
+    .follow-ups-form-inner #follow-up-comments,
+    .follow-ups-form-inner .communication-card-options,
+    #follow-up-options {
+      margin-left: 0px;
+    }
+    
+    .follow-ups-form-inner > label,
+    #follow-up-person-container > label,
+    #follow-up-frequency-container > label
+    #follow-up-options > label {
+      padding-left: 0px;
+      text-align: left;
+      display: block;
+    }
+
+    #follow-up-unknown-date-container {
+        display: block;
+    }
+    #follow-up-unknown-date-container > label {
+        padding-left: 0px;
+        text-align: left;
+    }
+
+    .ui-dialog .ui-dialog-content {
+        padding: .5em 0 !important;
+    }
+
+    #address-map-panel {
+      width: 320px;
+    }
+    #map-panel img,
+    #address-map-panel img {
+      width: 320px;
+    }
+}
+
+.form-section.checkbox-form-section input,
+.checkbox-panel .panel-body input {
     margin-left: 10px;
 }
-.form-section.checkbox-form-section label {
+.form-section.checkbox-form-section label, 
+.checkbox-panel .panel-body label {
     text-align: left;
     padding-left: 5px;
 }
@@ -1120,7 +884,7 @@ td.checkbox-table-col {
     width: 240px;
 }
 
-.checkbox {
+.check {
   display: inline-block;
 }
 

@@ -1,6 +1,7 @@
 <?php
     session_start();
-    include("func.php");
+    include("../utils/func.php");
+	include("../utils/person.php");
     $f = new Func();
     $person = json_decode($_POST['person']);
     $dict = array();
@@ -175,7 +176,7 @@
                     ":secondary_phone_type"=>$person->secondary_phone_type,
                     ":modified_by"=>$user_id, 
                     ":id"=>$person->id));
-
+			Person::updateCampuses($person->id, $person->campuses, $f);
             $f->commit();
             $dict['success'] = TRUE;
         } catch (Exception $e) {

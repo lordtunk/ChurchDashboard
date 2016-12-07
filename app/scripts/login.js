@@ -9,7 +9,7 @@ function checkLoginStatus(cb, preventRedirect) {
             if (data.success) {
                 if (cb) cb();
             } else if(preventRedirect !== true) {
-                window.location = 'index.html?url='+encodeURIComponent(window.location);
+                window.location = 'login.php?url='+encodeURIComponent(window.location);
             }
         });
 }
@@ -21,7 +21,7 @@ function logout() {
             url: 'ajax/logout.php'
         })
             .done(function() {
-                window.location = 'index.html';
+                window.location = 'login.php';
             });
     }
 }
@@ -37,7 +37,7 @@ function logout() {
         var username = usernameField.value;
         var password = passwordField.value;
         if (validateLogin(username, password)) {
-            login(username, $.md5(password));
+            login(username, sha256_digest(password));	// jshint ignore:line
         }
     }
 
@@ -87,20 +87,12 @@ function logout() {
                 if(url) {
                     window.location = url;
                 } else {
-                    window.location = 'attendance.html';
+                    window.location = homepage;	//jshint ignore:line
                 }
             } else {
                 $().toastmessage('showErrorToast', 'Username or password is incorrect');
             }
         });
-    }
-    
-    function redirectToApp() {
-        var url = getUrlParameter('url');
-        if(url)
-            window.location = url;
-        else
-            window.location = 'attendance.html';
     }
 
     if (loginBtn) {
@@ -110,6 +102,5 @@ function logout() {
                 onLoginClick();
             }
         });
-        checkLoginStatus(redirectToApp, true);
     }
 })();
