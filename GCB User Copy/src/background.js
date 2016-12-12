@@ -36,7 +36,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 // Regex-pattern to check URLs against. 
 // It matches URLs like: http[s]://[...]stackoverflow.com[...]
-var managePersonUrlRegex = /.*manage-person\.html.*/;
+var managePersonUrlRegex = /.*manage-person\.php.*/;
 var cityUrlRegex = /.*guidechurch.onthecity.org\/admin\/users*.*/;
 var planningCenterUrlRegex = /.*.planningcenteronline.com*.*/;
 
@@ -50,7 +50,7 @@ chrome.browserAction.onClicked.addListener(function (tab) {
     // ...check the URL of the active tab against our pattern and...
 	console.log(tab);
     if (managePersonUrlRegex.test(tab.url)) {
-		console.log('matched manage-person.html...copying person');
+		console.log('matched manage-person.php...copying person');
         chrome.tabs.executeScript(tab.id, { file: "content.js" }, function() {
             chrome.tabs.sendRequest(tab.id, { method: 'copyPerson' }, function(results) {
               if(results.method == 'copyPerson')

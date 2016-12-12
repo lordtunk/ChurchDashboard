@@ -8,7 +8,7 @@
 	"scripts": ["background.js"]
   },
   "content_scripts": [{
-    "matches": ["*://*/manage-person.html*", "*://guidechurch.onthecity.org/admin/users*", "*://*.planningcenteronline.com/*"],
+    "matches": ["*://*/manage-person.php*", "*://guidechurch.onthecity.org/admin/users*", "*://*.planningcenteronline.com/*"],
     "js": ["content.js"],
     "all_frames": true
   }],
