@@ -37,6 +37,7 @@
         infoGTeams = document.querySelector('#info-gteams'),
         infoMember = document.querySelector('#info-member'),
         infoVisit = document.querySelector('#info-visit'),
+        infoGrowth = document.querySelector('#info-growth'),
         updateBtn = document.querySelector('#update'),
         cancelBtn = document.querySelector('#cancel'),
         deleteBtn = document.querySelector('#delete'),
@@ -120,6 +121,7 @@
         followUpInfoGTeams = dialog[0].querySelector('#follow-up-info-gteams'),
         followUpInfoMember = dialog[0].querySelector('#follow-up-info-member'),
         followUpInfoVisit = dialog[0].querySelector('#follow-up-info-visit'),
+        followUpInfoGrowth = dialog[0].querySelector('#follow-up-info-growth'),
         followUpComments = dialog[0].querySelector('#follow-up-comments'),
         followUpIdSequence = -1,
         noChangesMade = true,
@@ -262,6 +264,7 @@
         infoGTeams.checked = p.info_gteams;
         infoMember.checked = p.info_member;
         infoVisit.checked = p.info_visit;
+        infoGrowth.checked = p.info_growth;
     }
 	
 	function populateCampuses(campuses) {
@@ -321,6 +324,7 @@
             info_gteams: infoGTeams.checked,
             info_member: infoMember.checked,
             info_visit: infoVisit.checked,
+            info_growth: infoGrowth.checked,
 			campuses: campuses
         };
         
@@ -842,6 +846,7 @@
         followUpInfoGTeams.checked = false;
         followUpInfoMember.checked = false;
         followUpInfoVisit.checked = false;
+        followUpInfoGrowth.checked = false;
         
         onFollowUpTypeChange();
         
@@ -921,7 +926,8 @@
                 info_ggroups: followUpInfoGGroups.checked,
                 info_gteams: followUpInfoGTeams.checked,
                 info_member: followUpInfoMember.checked,
-                info_visit: followUpInfoVisit.checked
+                info_visit: followUpInfoVisit.checked,
+                info_growth: followUpInfoGrowth.checked
             };
         }
 
@@ -1221,6 +1227,7 @@
         followUpInfoGTeams.checked = options.info_gteams;
         followUpInfoMember.checked = options.info_member;
         followUpInfoVisit.checked = options.info_visit;
+        followUpInfoGrowth.checked = options.info_growth;
         followUpDate.disabled = unknownDate.checked;
 
         var visitorIdsString = row.children[2].getAttribute('visitorsIds') || '';

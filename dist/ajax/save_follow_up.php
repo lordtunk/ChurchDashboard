@@ -48,15 +48,16 @@
 			$options->info_gteams = $options->info_gteams  ? 1 : 0;
 			$options->info_member = $options->info_member  ? 1 : 0;
 			$options->info_visit = $options->info_visit  ? 1 : 0;
+			$options->info_growth = $options->info_growth  ? 1 : 0;
 			
             $f->useTransaction = FALSE;
             $f->beginTransaction();
             if($follow_up->id < 0) {
                 if(isset($follow_up->communication_card_options)) {
                     $query = "INSERT INTO FollowUps 
-                                (follow_up_to_person_id, type, follow_up_date, comments, last_modified_dt, modified_by, creation_dt, created_by, commitment_christ, recommitment_christ, commitment_tithe, commitment_ministry, commitment_baptism, info_next, info_gkids, info_ggroups, info_gteams, info_member, info_visit, attendance_frequency)
+                                (follow_up_to_person_id, type, follow_up_date, comments, last_modified_dt, modified_by, creation_dt, created_by, commitment_christ, recommitment_christ, commitment_tithe, commitment_ministry, commitment_baptism, info_next, info_gkids, info_ggroups, info_gteams, info_member, info_visit, info_growth, attendance_frequency)
                               VALUES
-                                (:person_id, :type, STR_TO_DATE(:follow_up_date,'%m/%d/%Y'), :comments, NOW(), :user_id, NOW(), :user_id, :commitment_christ, :recommitment_christ, :commitment_tithe, :commitment_ministry, :commitment_baptism, :info_next, :info_gkids, :info_ggroups, :info_gteams, :info_member, :info_visit, :attendance_frequency)";
+                                (:person_id, :type, STR_TO_DATE(:follow_up_date,'%m/%d/%Y'), :comments, NOW(), :user_id, NOW(), :user_id, :commitment_christ, :recommitment_christ, :commitment_tithe, :commitment_ministry, :commitment_baptism, :info_next, :info_gkids, :info_ggroups, :info_gteams, :info_member, :info_visit, :info_growth, :attendance_frequency)";
                     $follow_up->id = $f->queryLastInsertId($query, 
                         array(":person_id"=>$follow_up->personId,
                               ":type"=>$follow_up->typeCd,
@@ -74,7 +75,8 @@
                               ":info_ggroups"=>$options->info_ggroups,
                               ":info_gteams"=>$options->info_gteams,
                               ":info_member"=>$options->info_member,
-                              ":info_visit"=>$options->info_visit));
+                              ":info_visit"=>$options->info_visit,
+                              ":info_growth"=>$options->info_growth));
                     if($follow_up->spouseId !== "") {
                         $spouseFollowUpId = $f->queryLastInsertId($query, 
                             array(":person_id"=>$follow_up->spouseId,
@@ -93,7 +95,8 @@
                                   ":info_ggroups"=>$options->info_ggroups,
                                   ":info_gteams"=>$options->info_gteams,
                                   ":info_member"=>$options->info_member,
-                                  ":info_visit"=>$options->info_visit));
+                                  ":info_visit"=>$options->info_visit,
+								  ":info_growth"=>$options->info_growth));
 					    $dict["spouse_follow_up_id"] = $spouseFollowUpId;
                     }
                 }
@@ -115,6 +118,7 @@
                             info_gteams=:info_gteams,
                             info_member=:info_member,
                             info_visit=:info_visit,
+                            info_growth=:info_growth,
                             last_modified_dt = NOW(),
                             modified_by = :user_id
                           WHERE
@@ -136,6 +140,7 @@
                           ":info_gteams"=>$options->info_gteams,
                           ":info_member"=>$options->info_member,
                           ":info_visit"=>$options->info_visit,
+						  ":info_growth"=>$options->info_growth,
                           ":user_id"=>$user_id,
                           ":follow_up_id"=>$follow_up->id));
 
@@ -182,7 +187,8 @@
                             info_gteams = (SELECT COUNT(*) FROM FollowUps WHERE type = 3 AND info_gteams=1 AND follow_up_to_person_id = :person_id) > 0,
                             info_member = (SELECT COUNT(*) FROM FollowUps WHERE type = 3 AND info_member=1 AND follow_up_to_person_id = :person_id) > 0,
                             info_next = (SELECT COUNT(*) FROM FollowUps WHERE type = 3 AND info_next=1 AND follow_up_to_person_id = :person_id) > 0,
-                            info_visit = (SELECT COUNT(*) FROM FollowUps WHERE type = 3 AND info_visit=1 AND follow_up_to_person_id = :person_id) > 0
+                            info_visit = (SELECT COUNT(*) FROM FollowUps WHERE type = 3 AND info_visit=1 AND follow_up_to_person_id = :person_id) > 0,
+                            info_growth = (SELECT COUNT(*) FROM FollowUps WHERE type = 3 AND info_growth=1 AND follow_up_to_person_id = :person_id) > 0
                         where
                             id = :person_id";
                 $f->beginTransaction();
@@ -202,7 +208,8 @@
                       CASE WHEN p.info_ggroups = 1 THEN  'true' ELSE  'false' END info_ggroups,
                       CASE WHEN p.info_gteams = 1 THEN  'true' ELSE  'false' END info_gteams,
                       CASE WHEN p.info_member = 1 THEN  'true' ELSE  'false' END info_member,
-                      CASE WHEN p.info_visit = 1 THEN  'true' ELSE  'false' END info_visit
+                      CASE WHEN p.info_visit = 1 THEN  'true' ELSE  'false' END info_visit,
+                      CASE WHEN p.info_growth = 1 THEN  'true' ELSE  'false' END info_growth
                     FROM
                       People p
                     WHERE

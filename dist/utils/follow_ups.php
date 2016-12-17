@@ -31,6 +31,7 @@
 					  f.info_gteams,
 					  f.info_member,
 					  f.info_visit,
+					  f.info_growth,
 					  f.comments follow_up_comments,
 					  v.follow_up_id visitor_follow_up_id,
 					  v.person_id visitor_person_id,
@@ -78,6 +79,7 @@
 					  f.info_gteams,
 					  f.info_member,
 					  f.info_visit,
+					  f.info_growth,
 					  f.comments follow_up_comments,
 					  v.follow_up_id visitor_follow_up_id,
 					  v.person_id visitor_person_id,
@@ -139,6 +141,7 @@
 					$options['info_gteams'] = $row['info_gteams'] ? TRUE : FALSE;
 					$options['info_member'] = $row['info_member'] ? TRUE : FALSE;
 					$options['info_visit'] = $row['info_visit'] ? TRUE : FALSE;
+					$options['info_growth'] = $row['info_growth'] ? TRUE : FALSE;
 
 					$fo['communication_card_options'] = $options;
 
@@ -204,6 +207,7 @@
                         p.info_gteams,
                         p.info_member,
                         p.info_visit,
+                        p.info_growth,
                         p.assigned_agent,
                         p.commitment_christ,
                         p.recommitment_christ,
@@ -285,6 +289,9 @@
             }
             if($params->would_like_visit) {
                 array_push($optionsArr, "p.info_visit = 1");
+            }
+            if($params->interested_in_growth) {
+                array_push($optionsArr, "p.info_growth = 1");
             }
             if($params->no_agent && $queryFlags == FALSE) {
                 array_push($optionsArr, "p.assigned_agent = 0");

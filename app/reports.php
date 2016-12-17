@@ -124,7 +124,9 @@
             <input type="checkbox" id="interested-in-gteams"/>
             <label for="interested-in-gteams">Interested in gTeams</label><br />
             <input type="checkbox" id="interested-in-joining"/>
-            <label for="interested-in-joining">Interested in joining GC</label>
+            <label for="interested-in-joining">Interested in joining GC</label><br />
+			<input type="checkbox" id="interested-in-growth" />
+			<label for="interested-in-growth">Interested in growth opportunities</label>
             <input type="checkbox" id="would-like-visit"/>
             <label for="would-like-visit">Would like a visit from a GC Pastor</label><br />
             <input type="checkbox" id="commitment-christ"/>
