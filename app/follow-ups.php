@@ -105,7 +105,7 @@
 										<label for="follow-up-recommitment-christ">Recommitting life to Christ</label>
 										<br />
 										<input type="checkbox" id="follow-up-commitment-tithe" />
-										<label for="follow-up-commitment-tithe">Committing to tithe</label>
+										<label for="follow-up-commitment-tithe">Committing to give at Guide Church</label>
 										<br />
 										<input type="checkbox" id="follow-up-commitment-ministry" />
 										<label for="follow-up-commitment-ministry">Committing to serving in ministry at Guide Church Baptist</label>
@@ -140,6 +140,9 @@
 										<br />
 										<input type="checkbox" id="follow-up-info-visit" />
 										<label for="follow-up-info-visit">I would like a visit from a Guide Church Pastor</label>
+										<br />
+										<input type="checkbox" id="follow-up-info-growth" />
+										<label for="follow-up-info-growth">Learn about growth opportunities</label>
 									</div>
 								</div>
 							</div>

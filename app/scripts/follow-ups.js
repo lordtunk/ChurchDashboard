@@ -26,6 +26,7 @@
         followUpInfoGTeams = document.querySelector('#follow-up-info-gteams'),
         followUpInfoMember = document.querySelector('#follow-up-info-member'),
         followUpInfoVisit = document.querySelector('#follow-up-info-visit'),
+        followUpInfoGrowth = document.querySelector('#follow-up-info-growth'),
         getFollowUpsBtn = document.querySelector('#get-follow-ups'),
         unknownDate = document.querySelector('#unknown-date'),
         followUpVisitors = document.querySelector('#follow-up-visitors'),
@@ -287,6 +288,7 @@
         followUpInfoGTeams.checked = false;
         followUpInfoMember.checked = false;
         followUpInfoVisit.checked = false;
+		followUpInfoGrowth.checked = false;
         
         followUpComments.value = '';
         unknownDate.checked = false;
@@ -317,7 +319,8 @@
                 info_ggroups: false,
                 info_gteams: false,
                 info_member: false,
-                info_visit: false
+                info_visit: false,
+                info_growth: false
             },
             visitors = [],
             visitorsIds = [],
@@ -367,7 +370,8 @@
                 info_ggroups: followUpInfoGGroups.checked,
                 info_gteams: followUpInfoGTeams.checked,
                 info_member: followUpInfoMember.checked,
-                info_visit: followUpInfoVisit.checked
+                info_visit: followUpInfoVisit.checked,
+                info_growth: followUpInfoGrowth.checked
             };
         }
 
@@ -599,6 +603,7 @@
         followUpInfoGTeams.checked = options.info_gteams;
         followUpInfoMember.checked = options.info_member;
         followUpInfoVisit.checked = options.info_visit;
+        followUpInfoGrowth.checked = options.info_growth;
         
         followUpComments.value = row.children[4].innerHTML || '';
         followUpId.value = row.getAttribute('follow_up_id');

@@ -544,6 +544,10 @@ input.setting {
   padding-left: 0;
 }
 
+.communication-card-options input[type=checkbox] {
+	vertical-align: top;
+}
+
 .col-1 {
   margin-top: 10px;
 }

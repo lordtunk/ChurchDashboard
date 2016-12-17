@@ -168,6 +168,7 @@
                   p.info_gteams,
                   p.info_member,
                   p.info_visit,
+                  p.info_growth,
                   p.starting_point_notified,
                   f.id follow_up_id,
                   f.type follow_up_type,
@@ -184,6 +185,7 @@
                   f.info_gteams follow_up_info_gteams,
                   f.info_member follow_up_info_member,
                   f.info_visit follow_up_info_visit,
+                  f.info_growth follow_up_info_growth,
                   f.attendance_frequency follow_up_attendance_frequency,
                   v.follow_up_id visitor_follow_up_id,
                   v.person_id,
@@ -265,6 +267,7 @@
                         $p['info_gteams'] = $row['info_gteams'] ? TRUE : FALSE;
                         $p['info_member'] = $row['info_member'] ? TRUE : FALSE;
                         $p['info_visit'] = $row['info_visit'] ? TRUE : FALSE;
+                        $p['info_growth'] = $row['info_growth'] ? TRUE : FALSE;
 
                         $p['follow_ups'] = array();
                         $p['relationships'] = array();
@@ -316,6 +319,7 @@
                             $options['info_gteams'] = $row['follow_up_info_gteams'] ? TRUE : FALSE;
                             $options['info_member'] = $row['follow_up_info_member'] ? TRUE : FALSE;
                             $options['info_visit'] = $row['follow_up_info_visit'] ? TRUE : FALSE;
+                            $options['info_growth'] = $row['follow_up_info_growth'] ? TRUE : FALSE;
 
                             $fo['communication_card_options'] = $options;
 

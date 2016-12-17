@@ -159,6 +159,7 @@
 		interested_in_ggroups: $('#interested-in-ggroups').is(':checked'),
 		interested_in_gteams: $('#interested-in-gteams').is(':checked'),
 		interested_in_joining: $('#interested-in-joining').is(':checked'),
+		interested_in_growth: $('#interested-in-growth').is(':checked'),
 		would_like_visit: $('#would-like-visit').is(':checked'),
 		no_agent: $('#no-agent').is(':checked'),
 		commitment_christ: $('#commitment-christ').is(':checked'),

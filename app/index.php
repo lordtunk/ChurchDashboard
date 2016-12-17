@@ -67,7 +67,7 @@
 						<ul>
 							<li><a href="manage-account.php">Manage Account</a></li>
 							<?php if($isUserAdmin) { ?>
-							<li><a href="attender-status-update.php">Attender Status Update</a></li>
+							<!-- <li><a href="attender-status-update.php">Attender Status Update</a></li> -->
 							<!--<li><a href="create-account.php">Create Account</a></li>
 							<li><a href="manage-permissions.php">Manage Permissions</a></li>-->
 							<?php } ?>
