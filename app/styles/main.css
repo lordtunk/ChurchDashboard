@@ -368,7 +368,8 @@ div.spacer {
   display: inline;
 }
 
-#first-recorded-visit {
+#first-recorded-visit,
+#last-recorded-visit {
   display: inline-block;
 }
 
@@ -817,11 +818,9 @@ table th {
   }
   .app-content.login-form input,
   .app-content.view-person input,
-  #first-recorded-visit  {
+  #first-recorded-visit,
+  #last-recorded-visit  {
     margin-left: 20px;
-  }
-
-  #first-recorded-visit {
     display: block;
   }
 

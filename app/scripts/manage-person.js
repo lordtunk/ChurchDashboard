@@ -7,6 +7,7 @@
         lastName = document.querySelector('#last-name'),
         description = document.querySelector('#description'),
         firstRecordedVisit = document.querySelector('#first-recorded-visit'),
+		lastRecordedVisit = document.querySelector('#last-recorded-visit'),
         attenderStatus = document.querySelector('#attender-status'),
         adult = document.querySelector('#adult'),
         active = document.querySelector('#active'),
@@ -218,6 +219,7 @@
         lastName.value = p.last_name;
         description.value = p.description;
         firstRecordedVisit.innerHTML = p.first_attendance_dt || '<span style="font-style: italic;">(None)</span>';
+		lastRecordedVisit.innerHTML = p.last_attendance_dt || '<span style="font-style: italic;">(None)</span>';
 		attenderStatus.value = p.attender_status;
         adult.checked = p.adult;
         active.checked = p.active;
@@ -877,7 +879,8 @@
                 info_ggroups: false,
                 info_gteams: false,
                 info_member: false,
-                info_visit: false
+                info_visit: false,
+                info_growth: false
             },
             msg = '',
             spouseId = '';
@@ -934,7 +937,8 @@
         return {
             id: (dialog.dialog('option', 'title').indexOf('Edit') === -1) ? genFollowUpId() : followUpId.value,
             personId: person.id,		// jshint ignore:line
-            spouseId: spouseId,
+            add_to_spouse: !!spouseId,
+			spouseId: spouseId,
             date: date,
             typeCd: type,
             type: followUpType.selectedOptions[0].text,

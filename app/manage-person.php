@@ -78,6 +78,9 @@
             <label>First Recorded Visit:</label>
             <div id="first-recorded-visit"></div>
             <br />
+            <label>Last Recorded Visit:</label>
+            <div id="last-recorded-visit"></div>
+            <br />
             <label for="attender-status">Attender Status:</label>
             <select id="attender-status"></select>
             <br />
