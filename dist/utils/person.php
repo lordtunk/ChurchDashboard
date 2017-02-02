@@ -134,7 +134,8 @@
 		public static function getPerson($id, $f) {
 			$query = "
               SELECT
-                  DATE_FORMAT(at.attendance_dt,'%m/%d/%Y') first_attendance_dt,
+                  DATE_FORMAT(at.first_attendance_dt,'%m/%d/%Y') first_attendance_dt,
+				  DATE_FORMAT(at.last_attendance_dt,'%m/%d/%Y') last_attendance_dt,
                   p.id,
                   p.first_name,
                   p.last_name,
@@ -200,7 +201,7 @@
                   r.type relationship_type_cd,
 				  pca.campus
                 FROM
-                  (select min(service_dt) attendance_dt from Services where id in (select service_id from Attendance where attended_by=:id)) at,
+                  (select min(service_dt) first_attendance_dt, max(service_dt) last_attendance_dt from Services where id in (select service_id from Attendance where attended_by=:id)) at,
                   People p
 				  left outer join PersonCampusAssociations pca on pca.person_id=p.id
                   left outer join FollowUps f on f.follow_up_to_person_id=p.id
@@ -234,6 +235,7 @@
                         $p = array();
                         $p['id'] = $row['id'];
                         $p['first_attendance_dt'] = $row['first_attendance_dt'];
+						$p['last_attendance_dt'] = $row['last_attendance_dt'];
                         $p['first_name'] = $row['first_name'];
                         $p['last_name'] = $row['last_name'];
                         $p['description'] = $row['description'];

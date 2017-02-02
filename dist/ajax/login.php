@@ -1,7 +1,8 @@
 <?php
   session_start();
   include("../utils/func.php");
-  include("../utils/password_storage.php");
+  include("../utils/user.php");
+  require_once("../utils/password_storage.php");
   $f = new Func();
   $username = $_POST['username'];
   $password = $_POST['password'];
@@ -32,6 +33,7 @@
     if(count($results) > 0) {
       $_SESSION['session_id'] = $session_id;
       $_SESSION['user_id'] = $results[0]['id'];
+	  $dict['homepage'] = User::getUser($_SESSION['user_id'], $f)['homepage'];
       $dict['success'] = true;
     } else {
       $dict['success'] = false;

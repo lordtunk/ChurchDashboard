@@ -83,6 +83,8 @@ function logout() {
         .done(function(msg) {
             var data = JSON.parse(msg);
             if (data.success) {
+				if(data.homepage)
+					homepage = data.homepage;	// jshint ignore:line
                 var url = getUrlParameter('url');
                 if(url) {
                     window.location = url;

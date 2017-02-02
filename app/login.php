@@ -4,7 +4,10 @@
   include("utils/user.php");
   $f = new Func();
   
-  $homepage = User::getUser($_SESSION['user_id'], $f)['homepage'];
+  if(isset($_SESSION['user_id']))
+	$homepage = User::getUser($_SESSION['user_id'], $f)['homepage'];
+  else
+	  $homepage = "index.php";
   if(!$f->doRedirect($_SESSION)) {
 	if(isset($_GET['url']))
 		header("Location: ".$_GET['url']);
