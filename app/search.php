@@ -39,8 +39,30 @@
       <h1 id="search-h">Person Search</h1>
 
       <div class="app-content app-form search-form">
-        <label for="search-name">Name</label>
-        <input type="text" id="search-name" />
+		<label for="search-by">Search By:</label>
+		<select id="search-by">
+		</select>
+		<br />
+		<div id="search-by-address" class="address-panel" style="display: none;">
+			<label for="street1">Street 1:</label>
+			<input type="text" id="street1" />
+			<br />
+			<label for="street2">Street 2:</label>
+			<input type="text" id="street2" />
+			<br />
+			<label for="city">City:</label>
+			<input type="text" id="city" />
+			<br />
+			<label for="state">State:</label>
+			<select id="state"></select>
+			<br />
+			<label for="zip">Zip Code:</label>
+			<input type="text" id="zip" title="5 digit Zip Code" />
+		</div>
+		<div id="search-by-name">
+			<label for="search-name">Name:</label>
+			<input type="text" id="search-name" />
+		</div>
         <button id="search" type="button" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
         <div id="search-container">
           <div class="search-table-container" id="search-table-container">
