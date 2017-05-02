@@ -712,6 +712,11 @@ table th {
   text-align: center;
 }
 
+#search-by-address,
+#search-by-name {
+	display: inline-block;
+}
+
 /* Larger Screens - desktops and tablets */
 @media all and (min-device-width:1200px) {
   .container {
