@@ -109,7 +109,6 @@
       $dict['success'] = TRUE;
     } catch (Exception $e) {
       $dict['success'] = false;
-	  $dict['msg']= $e->getMessage();
     }
   } else {
     $dict['error'] = 1;
