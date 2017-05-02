@@ -38,11 +38,11 @@
 		  WHERE
 		  ";
 		  
-	  if(isset($_GET['text']) || isset($_POST['text'])) {
-		  if(isset($_GET['text']))
-			$text = trim($_GET['text']);
-		  if(isset($_POST['text']))
-			$text = trim($_POST['text']);
+	  if(isset($_GET['search']) || isset($_POST['search'])) {
+		  if(isset($_GET['search']))
+			$text = trim($_GET['search']);
+		  if(isset($_POST['search']))
+			$text = trim($_POST['search']);
 		  $arr = explode(" ", $text);
 		  $first_name = "";
 		  $last_name = "";
@@ -109,7 +109,6 @@
       $dict['success'] = TRUE;
     } catch (Exception $e) {
       $dict['success'] = false;
-	  $dict['msg']= $e->getMessage();
     }
   } else {
     $dict['error'] = 1;
