@@ -59,7 +59,7 @@
     $('.search-form').mask('Loading...');
 	var data = {};
 	if(text)
-		data.text = text;
+		data.search = text;
 	else
 		data.address = JSON.stringify(address);
     $.ajax({
