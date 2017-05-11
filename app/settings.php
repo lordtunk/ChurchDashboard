@@ -7,9 +7,9 @@
 	header("Location: ".$f->getLoginUrl());
     die();
   }
-  // TODO: change this to be configurable
+  
   if($_SESSION['user_id'] != "1") {
-	  // Must be me to access this page
+	  
 	  header("Location: attendance.php");
 	  die();
   }
