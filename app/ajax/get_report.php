@@ -156,6 +156,41 @@
                         $aggregates['Min_First_Service_Attendance'] = 0;
                         $aggregates['Min_Second_Service_Attendance'] = 0;
                     }
+					
+					// Compare the visitor totals vs the attendance totals. If there 
+					// was a service where there were no attenders specified but the
+					// visitor totals were entered, add a record to the attendance 
+					// totals.
+					foreach($visitorResults as $k => $r) {
+						$dateFound = FALSE;
+						for($i=0; $i<$len; $i++) {
+							if(!isset($results[$i]['Attendance_dt'])) {
+								$f->logMessage($results[$i]);
+							}
+							if($r['service_dt'] == $results[$i]['Attendance_dt']) {
+								$dateFound = TRUE;
+								break;
+							}
+						}
+						if(!$dateFound) {
+							$visDate = DateTime::createFromFormat('n/j/Y', $r['service_dt']);
+							$visRec = array(array('Attendance_dt'=>$r['service_dt'], 'Total_Attendance'=>0, 'First_Service_Attendance'=>0, 'Second_Service_Attendance'=>0));
+							$inserted = FALSE;
+							for($i=0; $i<$len; $i++) {
+								$attDate = DateTime::createFromFormat('n/j/Y', $results[$i]['Attendance_dt']);
+								if($visDate > $attDate) {
+									$f->logMessage("VisDate: ".$r['service_dt']);
+									array_splice($results, $i, 0, $visRec);
+									$inserted = TRUE;
+									break;
+								}
+							}
+							if(!$inserted) {
+								array_push($visRec);
+							}
+							$len++;
+						}
+					}
                     for($i=0; $i<$len; $i++) {
                         foreach($visitorResults as $k => $r) {                            
                             if($r['service_dt'] == $results[$i]['Attendance_dt']) {
@@ -215,6 +250,42 @@
                     } else {
                         $aggregates['Min_Total_Attendance'] = 0;
                     }
+					
+					// Compare the visitor totals vs the attendance totals. If there 
+					// was a service where there were no attenders specified but the
+					// visitor totals were entered, add a record to the attendance 
+					// totals.
+					foreach($visitorResults as $k => $r) {
+						$dateFound = FALSE;
+						for($i=0; $i<$len; $i++) {
+							if(!isset($results[$i]['Attendance_dt'])) {
+								$f->logMessage($results[$i]);
+							}
+							if($r['service_dt'] == $results[$i]['Attendance_dt']) {
+								$dateFound = TRUE;
+								break;
+							}
+						}
+						if(!$dateFound) {
+							$visDate = DateTime::createFromFormat('n/j/Y', $r['service_dt']);
+							$visRec = array(array('Attendance_dt'=>$r['service_dt'], 'Total_Attendance'=>0));
+							$inserted = FALSE;
+							for($i=0; $i<$len; $i++) {
+								$attDate = DateTime::createFromFormat('n/j/Y', $results[$i]['Attendance_dt']);
+								if($visDate > $attDate) {
+									$f->logMessage("VisDate: ".$r['service_dt']);
+									array_splice($results, $i, 0, $visRec);
+									$inserted = TRUE;
+									break;
+								}
+							}
+							if(!$inserted) {
+								array_push($visRec);
+							}
+							$len++;
+						}
+					}
+					
                     for($i=0; $i<$len; $i++) {
                         foreach($visitorResults as $k => $r) {                            
                             if($r['service_dt'] == $results[$i]['Attendance_dt']) {
