@@ -68,17 +68,13 @@
                   </tr>
               </thead>
               <tbody>
-			  <?php
-				for($i=0; $i<count($users); $i++) {
-			  ?>
+			  <?php for($i=0; $i<count($users); $i++) { ?>
 				<tr>
 					<td><a href="manage-user.php?id=<?php echo $users[$i]["id"]; ?>"><?php echo $users[$i]["username"]; ?></a></td>
 					<td><?php echo $users[$i]["is_site_admin"] ? "Yes" : "No"; ?></td>
 					<td><?php echo $users[$i]["is_user_admin"] ? "Yes" : "No"; ?></td>
 				</tr>
-			  <?php
-				}
-			  ?>
+			  <?php } ?>
               </tbody>
             </table>
           </div>

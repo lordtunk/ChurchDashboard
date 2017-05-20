@@ -25,24 +25,10 @@
         $dict['success'] = FALSE;
         $f->logMessage('Invalid report parameters');
     } else {
-        if(!isset($_SESSION['user_id']) || !isset($_SESSION['session_id'])) {
-            $dict['success'] = FALSE;
-            $dict['error'] = 1;
-            $f->logMessage('Session information missing');
-        } else {
-            $session_id = $_SESSION['session_id'];
-            $user_id = $_SESSION['user_id'];
-
-
-            try {
-                $dict['success'] = $f->isLoggedIn($user_id, $session_id);
-            } catch (Exception $e) {
-                $dict['success'] = FALSE;
-                $f->logMessage($e->getMessage());
-            }
-            if(!$dict['success'])
-                $dict['error'] = 1;
-        }
+        $dict['success'] = !$f->doRedirect($_SESSION);
+		if($dict['success'] == FALSE) {
+			$dict['error'] = 1;
+		}
     }
     if($dict['success'] == TRUE) {
         try {
