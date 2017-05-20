@@ -206,5 +206,49 @@
 			if(strlen($msg) > 0)
                 throw new Exception($msg);
 		}
+		
+		public static function resetPassword($userId, $f) {
+			$query = "
+					UPDATE Users SET
+						password = :password
+					WHERE
+						id = :id";
+			
+			$passwordText = self::generateRandomString();
+			$password = hash('sha256', $passwordText);
+			$passwordHash = PasswordStorage::create_hash($password);
+			$queryParams = array(":id"=>$userId, ":password"=>$passwordHash);
+			$f->executeAndReturnResult($query, $queryParams);
+			return $passwordText;
+        }
+		
+		private static function generateRandomString($length = 8) {
+			$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			$charactersLength = strlen($characters);
+			$randomString = '';
+			for ($i = 0; $i < $length; $i++) {
+				$randomString .= $characters[rand(0, $charactersLength - 1)];
+			}
+			return $randomString;
+		}
+		
+		public static function deleteUser($userId, $f) {
+			$queryParams = array(":id"=>$userId);
+			$query = "
+					UPDATE People SET modified_by = 0 WHERE modified_by = :id";
+			$f->executeAndReturnResult($query, $queryParams);
+			$query = "
+					UPDATE People SET created_by = 0 WHERE created_by = :id";
+			$f->executeAndReturnResult($query, $queryParams);
+			$query = "
+					UPDATE FollowUps SET modified_by = 0 WHERE modified_by = :id";
+			$f->executeAndReturnResult($query, $queryParams);
+			$query = "
+					UPDATE FollowUps SET created_by = 0 WHERE created_by = :id";
+			$f->executeAndReturnResult($query, $queryParams);
+			$query = "
+					DELETE FROM Users WHERE id = :id";
+			$f->executeAndReturnResult($query, $queryParams);
+        }
     }
 ?>

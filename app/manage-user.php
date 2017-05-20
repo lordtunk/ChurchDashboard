@@ -80,10 +80,17 @@
 		<br />
 		<label for="is-site-admin">Site Admin?</label>
 		<input type="checkbox" id="is-site-admin" />
+		<p id="reset-password-text"></p>
 		<?php } ?>
 		<div class="form-bar background color--gray-keyline">
+			<?php if($isSiteAdmin && $user == TRUE) { ?>
+			<button id="reset-password" type="button" class="btn btn-default"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>  <span class="btn-text">Reset Password</span></button>
+			<?php } ?>
 			<div class="spacer"></div>
 			<button id="save" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span><span class="btn-text">Save</span></button>
+			<?php if($user == TRUE) { ?>
+			<button id="delete" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>  <span class="btn-text">Delete</span></button>
+			<?php } ?>
 		</div>
       </div>
 
@@ -109,7 +116,7 @@
 	<script type="text/javascript">
 <?php
 	if($success) {
-		echo "var editUser = ".json_encode($user).";";
+		echo "var usr = ".json_encode($user).";";
 	} else {
 		echo "$().toastmessage('showErrorToast', 'Error loading user');";
 	}
