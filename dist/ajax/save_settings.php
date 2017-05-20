@@ -1,7 +1,9 @@
 <?php
     session_start();
     include("../utils/func.php");
-    $f = new Func();
+	include("../utils/user.php");
+	$f = new Func();
+	$u = new User($f);
     $startingPointEmails = $_POST['startingPointEmails'];
     $campuses = $_POST['campuses'];
     $serviceLabels = $_POST['serviceLabels'];
@@ -25,8 +27,9 @@
         if($dict['success'] == FALSE) {
             $dict['error'] = 1;
         } else {
-            // Must be me to access this page
-            if($user_id != "1") {
+			$user = $u->getUserPermissions($_SESSION['user_id']);
+			$isSiteAdmin = $user['is_site_admin'] ? TRUE : FALSE;
+            if($isSiteAdmin == FALSE) {
                 $dict['success'] = FALSE;
                 $dict['error'] = 2;
             }

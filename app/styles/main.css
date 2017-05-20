@@ -175,6 +175,10 @@ div.spacer {
   -webkit-overflow-scrolling: touch;
 }
 
+.follow-up-table-container {
+	overflow-x: auto;
+}
+
 #follow-up-table td {
   padding: 5px 10px;
 }
@@ -445,6 +449,7 @@ div.spacer {
 }
 
 .app-form input[type=text],
+.app-form input[type=password],
 .app-form input[type=tel],
 .app-form input[type=email],
 .app-form select {
@@ -715,6 +720,22 @@ table th {
 #search-by-address,
 #search-by-name {
 	display: inline-block;
+}
+
+.manage-user-form > label {
+	width: 160px;
+	text-align: right;
+}
+.manage-user-form  .checkbox-form-section {
+	width: 311px;
+}
+
+#list-users-table-container {
+	max-height: 500px;
+}
+
+#list-users-table td {
+	text-align: center;
 }
 
 /* Larger Screens - desktops and tablets */
