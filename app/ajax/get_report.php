@@ -25,24 +25,10 @@
         $dict['success'] = FALSE;
         $f->logMessage('Invalid report parameters');
     } else {
-        if(!isset($_SESSION['user_id']) || !isset($_SESSION['session_id'])) {
-            $dict['success'] = FALSE;
-            $dict['error'] = 1;
-            $f->logMessage('Session information missing');
-        } else {
-            $session_id = $_SESSION['session_id'];
-            $user_id = $_SESSION['user_id'];
-
-
-            try {
-                $dict['success'] = $f->isLoggedIn($user_id, $session_id);
-            } catch (Exception $e) {
-                $dict['success'] = FALSE;
-                $f->logMessage($e->getMessage());
-            }
-            if(!$dict['success'])
-                $dict['error'] = 1;
-        }
+        $dict['success'] = !$f->doRedirect($_SESSION);
+		if($dict['success'] == FALSE) {
+			$dict['error'] = 1;
+		}
     }
     if($dict['success'] == TRUE) {
         try {
@@ -170,6 +156,41 @@
                         $aggregates['Min_First_Service_Attendance'] = 0;
                         $aggregates['Min_Second_Service_Attendance'] = 0;
                     }
+					
+					// Compare the visitor totals vs the attendance totals. If there 
+					// was a service where there were no attenders specified but the
+					// visitor totals were entered, add a record to the attendance 
+					// totals.
+					foreach($visitorResults as $k => $r) {
+						$dateFound = FALSE;
+						for($i=0; $i<$len; $i++) {
+							if(!isset($results[$i]['Attendance_dt'])) {
+								$f->logMessage($results[$i]);
+							}
+							if($r['service_dt'] == $results[$i]['Attendance_dt']) {
+								$dateFound = TRUE;
+								break;
+							}
+						}
+						if(!$dateFound) {
+							$visDate = DateTime::createFromFormat('n/j/Y', $r['service_dt']);
+							$visRec = array(array('Attendance_dt'=>$r['service_dt'], 'Total_Attendance'=>0, 'First_Service_Attendance'=>0, 'Second_Service_Attendance'=>0));
+							$inserted = FALSE;
+							for($i=0; $i<$len; $i++) {
+								$attDate = DateTime::createFromFormat('n/j/Y', $results[$i]['Attendance_dt']);
+								if($visDate > $attDate) {
+									$f->logMessage("VisDate: ".$r['service_dt']);
+									array_splice($results, $i, 0, $visRec);
+									$inserted = TRUE;
+									break;
+								}
+							}
+							if(!$inserted) {
+								array_push($visRec);
+							}
+							$len++;
+						}
+					}
                     for($i=0; $i<$len; $i++) {
                         foreach($visitorResults as $k => $r) {                            
                             if($r['service_dt'] == $results[$i]['Attendance_dt']) {
@@ -229,6 +250,42 @@
                     } else {
                         $aggregates['Min_Total_Attendance'] = 0;
                     }
+					
+					// Compare the visitor totals vs the attendance totals. If there 
+					// was a service where there were no attenders specified but the
+					// visitor totals were entered, add a record to the attendance 
+					// totals.
+					foreach($visitorResults as $k => $r) {
+						$dateFound = FALSE;
+						for($i=0; $i<$len; $i++) {
+							if(!isset($results[$i]['Attendance_dt'])) {
+								$f->logMessage($results[$i]);
+							}
+							if($r['service_dt'] == $results[$i]['Attendance_dt']) {
+								$dateFound = TRUE;
+								break;
+							}
+						}
+						if(!$dateFound) {
+							$visDate = DateTime::createFromFormat('n/j/Y', $r['service_dt']);
+							$visRec = array(array('Attendance_dt'=>$r['service_dt'], 'Total_Attendance'=>0));
+							$inserted = FALSE;
+							for($i=0; $i<$len; $i++) {
+								$attDate = DateTime::createFromFormat('n/j/Y', $results[$i]['Attendance_dt']);
+								if($visDate > $attDate) {
+									$f->logMessage("VisDate: ".$r['service_dt']);
+									array_splice($results, $i, 0, $visRec);
+									$inserted = TRUE;
+									break;
+								}
+							}
+							if(!$inserted) {
+								array_push($visRec);
+							}
+							$len++;
+						}
+					}
+					
                     for($i=0; $i<$len; $i++) {
                         foreach($visitorResults as $k => $r) {                            
                             if($r['service_dt'] == $results[$i]['Attendance_dt']) {

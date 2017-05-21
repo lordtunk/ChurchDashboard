@@ -24,15 +24,11 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var rimraf = require('rimraf');
 var runSequence = require('run-sequence');
-var browserSync = require('browser-sync');
-var pagespeed = require('psi');
 var gutil = require('gulp-util');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var cache = require('gulp-cache');
-var reload = browserSync.reload;
 var bump = require('gulp-bump');
-var shell = require('gulp-shell');
 
 cache.clearAll();
 
@@ -42,94 +38,49 @@ gulp.task('jshint', function () {
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'))
     .pipe($.jshint.reporter('fail'))
-    .on('error', gutil.log)
-    .pipe(reload({stream: true, once: true}));
+    .on('error', gutil.log);
 });
 
 // Optimize Images
 gulp.task('images', function () {
   return gulp.src('app/images/**/*')
-    .pipe($.cache($.imagemin({
-      progressive: true,
-      interlaced: true
-    })))
-    .pipe(gulp.dest('dist/images'))
-    .pipe(reload({stream: true, once: true}))
-    .pipe($.size({title: 'images'}));
+    // .pipe($.cache($.imagemin({
+      // progressive: true,
+      // interlaced: true
+    // })))
+    .pipe(gulp.dest('dist/images'));
 });
 
 // Automatically Prefix CSS
 gulp.task('styles:css', function () {
   return gulp.src('app/styles/**/*.css')
     .pipe($.autoprefixer('last 1 version'))
-    .pipe(gulp.dest('app/styles'))
-    .pipe(reload({stream: true}))
-    .pipe($.size({title: 'styles:css'}));
+    .pipe(gulp.dest('app/styles'));
 });
 
 gulp.task('styles:bootstrapfonts', function () {
   return gulp.src('app/bootstrap/fonts/**')
-    .pipe(gulp.dest('dist/fonts'))
-    .pipe($.size({title: 'styles:bootstrapfonts'}));
+    .pipe(gulp.dest('dist/fonts'));
 });
 
-////////////////////////////////////////////////////////////////////////
-// Commented out the Sass compilation since I am not using it anymore
-// It might be useful though if I ever add it back in
-////////////////////////////////////////////////////////////////////////
-
-// Compile Sass For Style Guide Components (app/styles/components)
-//gulp.task('styles:components', function () {
-  //return gulp.src('app/styles/components/components.scss')
-    //.pipe($.rubySass({
-      //style: 'expanded',
-      //precision: 10,
-      //loadPath: ['app/styles/components']
-    //}))
-    //.pipe($.autoprefixer('last 1 version'))
-    //.pipe(gulp.dest('app/styles/components'))
-    //.pipe($.size({title: 'styles:components'}));
-//});
-
-// Compile Any Other Sass Files You Added (app/styles)
-//gulp.task('styles:scss', function () {
-  //return gulp.src(['app/styles/**/*.scss', '!app/styles/components/components.scss'])
-    //.pipe($.rubySass({
-      //style: 'expanded',
-      //precision: 10,
-      //loadPath: ['app/styles']
-    //}))
-    //.pipe($.autoprefixer('last 1 version'))
-    //.pipe(gulp.dest('.tmp/styles'))
-    //.pipe($.size({title: 'styles:scss'}));
-//});
-
 // Output Final CSS Styles
-//gulp.task('styles', ['styles:components', 'styles:scss', 'styles:css']);
 gulp.task('styles', ['styles:css', 'styles:bootstrapfonts']);
 
 // Scan Your HTML For Assets & Optimize Them
 gulp.task('html', function () {
-  //return gulp.src('app/**/*.html')
   return gulp.src('app/*.php')
     .pipe($.useref.assets({searchPath: '{.tmp,app}'}))
-    // Concatenate And Minify Styles
-    .pipe($.if('*.css', $.csso()))
     .pipe($.useref.restore())
     .pipe($.useref())
     // Update Production Style Guide Paths
     .pipe($.replace('components/components.css', 'components/main.min.css'))
-    // Minify Any HTML
-    .pipe($.minifyHtml())
     // Output Files
-    .pipe(gulp.dest('dist'))
-    .pipe($.size({title: 'html'}));
+    .pipe(gulp.dest('dist'));
 });
 
 // Leave the files separated since there is only one per screen
 gulp.task('scripts:main', function() {
     return gulp.src('app/scripts/*.js')
-        //.pipe(concat('scripts/main-scripts.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('dist/scripts'));
 });
@@ -145,7 +96,6 @@ gulp.task('scripts:jquery', function() {
 gulp.task('scripts:bootstrap', function() {
     // Just copy the already minified file to the dist folder
     return gulp.src('app/bootstrap/js/bootstrap.min.js')
-        //.pipe(concat('scripts/main-bootstrap.min.js'))
         .pipe(gulp.dest('dist/scripts'));
 });
 
@@ -217,34 +167,7 @@ gulp.task('clean', function (cb) {
   rimraf('dist', rimraf.bind({}, '.tmp', cb));
 });
 
-// Watch Files For Changes & Reload
-gulp.task('serve', function () {
-  browserSync.init({
-    proxy: "localhost:8080/GuideChurchDash/app",
-    notify: false,
-    host: '192.168.2.17'
-  });
-  
-  gulp.watch(['app/**/*.html'], reload);
-  gulp.watch(['app/styles/**/*.scss'], ['styles:scss']);
-  gulp.watch(['app/styles/**/*.css'], ['styles:css']);
-  gulp.watch(['.tmp/styles/**/*.css'], reload);
-  gulp.watch(['app/scripts/**/*.js'], ['jshint']);
-  gulp.watch(['app/images/**/*'], ['images']);
-});
-
 // Build Production Files, the Default Task
 gulp.task('default', ['clean'], function (cb) {
-  runSequence('styles', ['jshint', 'html', 'images', 'files'], 'scripts', cb);
+  runSequence('styles', 'jshint', 'html', 'images', 'files', 'scripts', cb);
 });
-
-// Run PageSpeed Insights
-// Update `url` below to the public URL for your site
-gulp.task('pagespeed', pagespeed.bind(null, {
-  // By default, we use the PageSpeed Insights
-  // free (no API key) tier. You can use a Google
-  // Developer API key if you have one. See
-  // http://goo.gl/RkN0vE for info key: 'YOUR_API_KEY'
-  url: 'http://dev.gcb.my-tasks.info',
-  strategy: 'mobile'
-}));

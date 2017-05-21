@@ -66,10 +66,10 @@
 					<div class="panel-body">
 						<ul>
 							<li><a href="manage-account.php">Manage Account</a></li>
-							<?php if($isUserAdmin) { ?>
+							<?php if($isUserAdmin || $isSiteAdmin) { ?>
 							<!-- <li><a href="attender-status-update.php">Attender Status Update</a></li> -->
-							<!--<li><a href="create-account.php">Create Account</a></li>
-							<li><a href="manage-permissions.php">Manage Permissions</a></li>-->
+							<li><a href="manage-user.php">Create User</a></li>
+							<li><a href="list-users.php">View Users</a></li>
 							<?php } ?>
 							<?php if($isSiteAdmin) {?>
 							<li><a href="settings.php">Settings</a></li>

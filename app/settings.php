@@ -1,21 +1,23 @@
 <?php
   session_start();
-  include("utils/func.php");
-  $f = new Func();
+	include("utils/func.php");
+	include("utils/user.php");
+	$f = new Func();
+	$u = new User($f);
   
   if($f->doRedirect($_SESSION)) {
 	header("Location: ".$f->getLoginUrl());
     die();
   }
-  
-  if($_SESSION['user_id'] != "1") {
-	  
-	  header("Location: attendance.php");
-	  die();
-  }
-  
+   
   $success = TRUE;
   try {
+	  $user = $u->getUserPermissions($_SESSION['user_id']);
+	  $isSiteAdmin = $user['is_site_admin'] ? TRUE : FALSE;
+	  if($isSiteAdmin == FALSE) {	  
+		  header("Location: attendance.php");
+		  die();
+	  }
       $query = "SELECT
                   starting_point_emails,
                   campuses,
