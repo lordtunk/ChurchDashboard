@@ -942,6 +942,7 @@ table th {
 	}
 	.manage-user-form input[type=text],
 	.manage-user-form input[type=password]	{
+		display: block;
 		margin-left: 20px;
 	}
 }
