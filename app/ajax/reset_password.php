@@ -10,9 +10,17 @@
 	if($dict['success'] == TRUE) {
 		$userPermissions = $u->getUserPermissions($_SESSION['user_id']);
 		$isSiteAdmin = $userPermissions['is_site_admin'] ? TRUE : FALSE;
-		if($isSiteAdmin == FALSE) {
+		$isUserAdmin = $userPermissions['is_user_admin'] ? TRUE : FALSE;
+		if(!$isSiteAdmin && !$isUserAdmin) {
 			$dict['success'] = FALSE;
 			$dict['error'] = 2;
+		} else if($isUserAdmin && !$isSiteAdmin) {
+			$deleteUserPermissions = $u->getUserPermissions($userId);
+			$deleteIsSiteAdmin = $deleteUserPermissions['is_site_admin'] ? TRUE : FALSE
+			if($deleteIsSiteAdmin) {
+				$dict['success'] = FALSE;
+				$dict['error'] = 3;
+			}
 		}
 	} else {
 		$dict['error'] = 1;

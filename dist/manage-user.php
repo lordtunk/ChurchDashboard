@@ -12,19 +12,33 @@
 
 	$success = TRUE;
 	$user = FALSE;
+	$canPerformAdminFuncs = TRUE;
 	try {
-		$currentUser = $u->getUserPermissions($_SESSION['user_id']);
+		$userId = $_SESSION['user_id'];
+		$currentUser = $u->getUserPermissions($userId);
 		$isUserAdmin = $currentUser['is_user_admin'] ? TRUE : FALSE;
 		$isSiteAdmin = $currentUser['is_site_admin'] ? TRUE : FALSE;
-		if($isUserAdmin == FALSE && $isSiteAdmin == FALSE) {
+		if(!$isUserAdmin && !$isSiteAdmin) {
 		  header("Location: index.php");
 		  die();
+		} else if($isUserAdmin && !$isSiteAdmin) {
+			$deleteUserPermissions = $u->getUserPermissions($_GET['id']);
+			$deleteIsSiteAdmin = $deleteUserPermissions['is_site_admin'] ? TRUE : FALSE;
+			if($deleteIsSiteAdmin) {
+				$canPerformAdminFuncs = FALSE;
+			}
 		}
 		if(isset($_GET['id'])) {
 			$user = User::getUser($_GET['id'], $f);
+			if($user['id'] == $userId) {
+				$canPerformAdminFuncs = FALSE;
+			}
+		} else {
+			$canPerformAdminFuncs = FALSE;
 		}
 		
     } catch (Exception $e) {
+		$canPerformAdminFuncs = FALSE;
 		$success = FALSE;
 		$f->logMessage($e->getMessage());
     }
@@ -73,12 +87,12 @@
 		<p id="reset-password-text"></p>
 		<?php } ?>
 		<div class="form-bar background color--gray-keyline">
-			<?php if($isSiteAdmin && $user == TRUE) { ?>
+			<?php if($canPerformAdminFuncs) { ?>
 			<button id="reset-password" type="button" class="btn btn-default"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>  <span class="btn-text">Reset Password</span></button>
 			<?php } ?>
 			<div class="spacer"></div>
 			<button id="save" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span><span class="btn-text">Save</span></button>
-			<?php if($user == TRUE) { ?>
+			<?php if($canPerformAdminFuncs) { ?>
 			<button id="delete" type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span>  <span class="btn-text">Delete</span></button>
 			<?php } ?>
 		</div>
