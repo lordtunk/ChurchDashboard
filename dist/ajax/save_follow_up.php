@@ -77,7 +77,7 @@
                               ":info_member"=>$options->info_member,
                               ":info_visit"=>$options->info_visit,
                               ":info_growth"=>$options->info_growth));
-                    if($follow_up->spouseId !== "") {
+                    if($follow_up->spouseId != "") {
                         $spouseFollowUpId = $f->queryLastInsertId($query, 
                             array(":person_id"=>$follow_up->spouseId,
                                   ":type"=>$follow_up->typeCd,
