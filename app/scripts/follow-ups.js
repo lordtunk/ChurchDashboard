@@ -395,7 +395,7 @@
         var row = e.currentTarget.parentElement.parentElement;
 
         var id = row.getAttribute('person_id');
-		var hasSpouse = row.getAttribute('has_spouse');
+		var hasSpouse = row.getAttribute('has_spouse').toLowerCase() == "true";
         var name = row.children[0].getAttribute('person_name');
         doSelectPerson(id, name, hasSpouse);
     }
@@ -433,7 +433,7 @@
     function appendPerson(p) {
         var name = getDisplayName(p);
         $('#search-table > tbody:last').append(
-            '<tr person_id="' + p.id + '" has_spouse="'+(!!p.has_spouse)+'">' +
+            '<tr person_id="' + p.id + '" has_spouse="'+(!!parseInt(p.has_spouse))+'">' +
             '<td data-th="Name" person_name="' + name + '"><a class="person_name" href="javascript:void(0);">' + name + '</a></td>' +
             '<td data-th="Address">' + getAddress(p) + '</td>' +
             '<td data-th="" class="search-table-button-col"><button class="search-button btn btn-xs btn-info">Manage</button></td>' +
